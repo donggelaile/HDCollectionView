@@ -7,12 +7,15 @@
 //
 
 #import "HDAppDelegate.h"
-
+#import "YYFPSLabel.h"
 @implementation HDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.window addSubview:[[YYFPSLabel alloc] initWithFrame:CGRectMake(100, 30, 100, 30)]];
+    });
     return YES;
 }
 

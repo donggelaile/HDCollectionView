@@ -5,6 +5,12 @@ platform :ios, '8.0'
 target 'HDCollectionView_Example' do
   pod 'HDCollectionView', :path => '../'
 
+  pod 'MJRefresh'
+  pod 'SDAutoLayout', '~> 2.1.3'
+  pod 'Masonry'
+  pod 'SDWebImage', '~> 4.0'
+  pod 'SJAttributesFactory'
+  pod 'YYModel', '~> 1.0.4'
   target 'HDCollectionView_Tests' do
     inherit! :search_paths
 

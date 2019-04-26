@@ -1,0 +1,6 @@
+framework module SJAttributesFactory {
+  umbrella header "SJAttributesFactory-umbrella.h"
+
+  export *
+  module * { export * }
+}

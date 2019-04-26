@@ -1,0 +1,6 @@
+framework module HDCollectionView {
+  umbrella header "HDCollectionView-umbrella.h"
+
+  export *
+  module * { export * }
+}

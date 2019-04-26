@@ -1,0 +1,49 @@
+PODS:
+  - HDCollectionView (0.1.0):
+    - Yoga (~> 1.9.0)
+  - Masonry (1.1.0)
+  - MJRefresh (3.1.16)
+  - SDAutoLayout (2.1.9)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - SJAttributesFactory (2.0.5)
+  - Yoga (1.9.0)
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - HDCollectionView (from `../`)
+  - Masonry
+  - MJRefresh
+  - SDAutoLayout (~> 2.1.3)
+  - SDWebImage (~> 4.0)
+  - SJAttributesFactory
+  - YYModel (~> 1.0.4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Masonry
+    - MJRefresh
+    - SDAutoLayout
+    - SDWebImage
+    - SJAttributesFactory
+    - Yoga
+    - YYModel
+
+EXTERNAL SOURCES:
+  HDCollectionView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HDCollectionView: ab263cdc07981f92c7ddad4845094a8103bcf6fa
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  SDAutoLayout: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SJAttributesFactory: d5b670fd0930928ac1c6fb0b06653f92fefd640c
+  Yoga: aaae8abea68951f60bee05f6277d3eed90bb91bb
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: 5908b6ce0f90babef920f8bfbba5bc622ccd1b40
+
+COCOAPODS: 1.5.3

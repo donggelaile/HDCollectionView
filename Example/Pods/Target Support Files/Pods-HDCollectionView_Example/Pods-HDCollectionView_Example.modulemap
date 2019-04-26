@@ -1,0 +1,6 @@
+framework module Pods_HDCollectionView_Example {
+  umbrella header "Pods-HDCollectionView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,624 @@
+{
+    "result": 1,
+    "ads": [{
+        "st": 2500,
+        "requestTime": 1545119707389,
+        "category": "FOCUS2",
+        "style": 3,
+        "is_sense": 0,
+        "ext_param": {
+            "flight_id": 2520,
+            "refresh_time": 1545119707403,
+            "ext_info": "province=%E5%8C%97%E4%BA%AC;city=%E5%8C%97%E4%BA%AC;category=FOCUS2;app=7A16FBB6;network=wifi;dq=750x1334;isp=ct;mcc=460;dt=iPhone 6s;appType=;rid=395f7b27d7124384a27d54ef18ebff36;docid=;platform=ios;normStyle=3;position=6;service=8;style=3",
+            "id": "143930",
+            "clip": "0",
+            "isfixed": "0",
+            "needFilter": false
+        },
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "10",
+        "from": 5,
+        "relatedActionLinks": [],
+        "monitor": [{
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 0,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 1,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=3&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwxrOmXq749SBP%2Fdx2Z4YS%2FcpQ9yO3mO4EpRg0ezbE%2FdIw%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=2520_143930&title=MQ%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=b4f78f3151354bf798225973a430370f&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=10&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=8&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=-5&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=3&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwxrOmXq749SBP%2Fdx2Z4YS%2FcpQ9yO3mO4EpRg0ezbE%2FdIw%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=2520_143930&title=MQ%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=b4f78f3151354bf798225973a430370f&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=10&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=8&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=-5&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "position": 6,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/yt-adp.ws.126.net\/channel4\/750200_aizq_20181217.jpg"]
+        }],
+        "live_status": "",
+        "visibility": [{
+            "type": "0",
+            "rate_height": "1"
+        }],
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "网易传媒",
+        "title": "1",
+        "norm_style": 3,
+        "adid": "yt_2520_143930",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "expire": 1545148799000
+    }, {
+        "st": 2500,
+        "requestTime": 1545119707389,
+        "visibility": [{
+            "type": "0",
+            "rate_height": "1"
+        }],
+        "category": "FOCUS2",
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/yt-adp.ws.126.net\/channel6\/1080540_abqp_20181218.jpg"]
+        }],
+        "ext_param": {
+            "flight_id": 693,
+            "refresh_time": 1545119707403,
+            "ext_info": "province=%E5%8C%97%E4%BA%AC;city=%E5%8C%97%E4%BA%AC;category=FOCUS2;app=7A16FBB6;network=wifi;dq=750x1334;isp=ct;mcc=460;dt=iPhone 6s;appType=;rid=395f7b27d7124384a27d54ef18ebff36;docid=;platform=ios;normStyle=10;position=5;service=1;style=10",
+            "id": "144013",
+            "clip": "0",
+            "isfixed": "0",
+            "needFilter": false
+        },
+        "expire": 1545235199000,
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "20",
+        "from": 5,
+        "is_sense": 0,
+        "monitor": [{
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 0,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 1,
+            "type": "yitou"
+        }, {
+            "url": "http:\/\/clickc.admaster.com.cn\/c\/a120583,b3107767,c369,i0,m101,8a1,8b3,h",
+            "action": 0,
+            "ext_param": {},
+            "type": "neteasy"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwwmD2zatAiU%2BfPcJ7BB%2FGecCzljTTI1fsCcvKM%2Ft2ASZw%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=693_144013&title=5qGD5p2ONDDlubTvvJrmlZnogrLmmK%2Fml7bku6PnmoTohInmkI8g&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=071800bfcea54e2d8d395438248eceb9&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=20&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=1&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20853&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwwmD2zatAiU%2BfPcJ7BB%2FGecCzljTTI1fsCcvKM%2Ft2ASZw%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=693_144013&title=5qGD5p2ONDDlubTvvJrmlZnogrLmmK%2Fml7bku6PnmoTohInmkI8g&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=071800bfcea54e2d8d395438248eceb9&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=20&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=1&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20853&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "position": 5,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "link_ext_param": {
+                "closeOpener": "0",
+                "fullscreen": "0"
+            },
+            "url": "http:\/\/gz.house.163.com\/18\/1216\/20\/E364F56F0087950J.html"
+        }],
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "改革开放",
+        "title": "桃李40年：教育是时代的脉搏 ",
+        "sub_title": "热点",
+        "adid": "yt_693_144013",
+        "norm_style": 10,
+        "is_backup": 2,
+        "live_status": ""
+    }, {
+        "st": 2500,
+        "requestTime": 1545119707389,
+        "visibility": [{
+            "type": "0",
+            "rate_height": "1"
+        }],
+        "category": "FOCUS2",
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/yt-adp.ws.126.net\/channel20\/035692_1080540_eiph_20181214.jpg"]
+        }],
+        "ext_param": {
+            "flight_id": 775,
+            "refresh_time": 1545119707403,
+            "ext_info": "province=%E5%8C%97%E4%BA%AC;city=%E5%8C%97%E4%BA%AC;category=FOCUS2;app=7A16FBB6;network=wifi;dq=750x1334;isp=ct;mcc=460;dt=iPhone 6s;appType=;rid=395f7b27d7124384a27d54ef18ebff36;docid=;platform=ios;normStyle=10;position=11;service=1;style=10",
+            "id": "143764",
+            "clip": "0",
+            "isfixed": "0",
+            "needFilter": false
+        },
+        "expire": 1545235199000,
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "21",
+        "from": 5,
+        "is_sense": 0,
+        "monitor": [{
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 0,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 1,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwwmD2zatAiU%2BfPcJ7BB%2FGecmsQH4j3li7QG1EUit1%2FX6Q%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=775_143764&title=6ZqP5omL5YGa5YWs55uK77yM5Lyg5pKt5q2j6IO96YeP&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=79ba173c13174d20b66faafb45d225ad&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=21&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=1&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20869&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwwmD2zatAiU%2BfPcJ7BB%2FGecmsQH4j3li7QG1EUit1%2FX6Q%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=775_143764&title=6ZqP5omL5YGa5YWs55uK77yM5Lyg5pKt5q2j6IO96YeP&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=79ba173c13174d20b66faafb45d225ad&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=21&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=1&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20869&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "position": 11,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "link_ext_param": {
+                "closeOpener": "0",
+                "fullscreen": "0"
+            },
+            "url": "https:\/\/go.163.com\/web\/20181216_pingan\/index.html?type=1"
+        }],
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": " ",
+        "title": "随手做公益，传播正能量",
+        "sub_title": "广告",
+        "adid": "yt_775_143764",
+        "norm_style": 10,
+        "is_backup": 2,
+        "live_status": ""
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/e.cn.miaozhen.com\/r\/k=2108376&p=7KZkf&dx=__IPDX__&rt=2&ns=__IP__&ni=__IESID__&v=__LOC__&xa=__ADPLATFORM__&tr=__REQUESTID__&mo=__OS__&m0=__OPENUDID__&m0a=__DUID__&m1=__ANDROIDID1__&m1a=__ANDROIDID__&m2=__IMEI__&m4=__AAID__&m5=__IDFA__&m6=__MAC1__&m6a=__MAC__&o=https:\/\/mall.jd.com\/index-1000002062.html"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "22",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/69ced75aa928bfa31091da09e342993b.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=80230&su=80230&p=20870&i=22693&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=9338&order=035947&pli=11266&plu=11266&pri=JO3t%2BJWNixlbHKoHeiTVTA%3D%3D&dataid=&ca=FOCUS2&lo=22&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=53470b351d34a8b6&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "http:\/\/g.cn.miaozhen.com\/x\/k=2108376&p=7KZkf&dx=__IPDX__&rt=2&ns=127.0.0.1&ni=__IESID__&v=__LOC__&xa=__ADPLATFORM__&tr=__REQUESTID__&mo=1&m0=__OPENUDID__&m0a=__DUID__&m1=__ANDROIDID1__&m1a=__ANDROIDID__&m2=__IMEI__&m4=__AAID__&m5=00000000-0000-0000-0000-000000000000&m6=__MAC1__&m6a=__MAC__&o=",
+            "action": 0,
+            "type": "mz"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=80230&su=80230&p=20870&i=22693&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=9338&order=035947&pli=11266&plu=11266&pri=JO3t%2BJWNixlbHKoHeiTVTA%3D%3D&dataid=&ca=FOCUS2&lo=22&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=53470b351d34a8b6&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKW8fjvYGV%2FEAj5I4YZWPDA6g%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22693&title=5YWo5pawS2luZGxlIFBhcGVyd2hpdGXvvIzljYPkuabnm7jkvLTvvIzor7vkuqvmlrDlubTlpb3npLw%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=c5de72e8f20642248ea10fe64d180fb6&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=22&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20870&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKW8fjvYGV%2FEAj5I4YZWPDA6g%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22693&title=5YWo5pawS2luZGxlIFBhcGVyd2hpdGXvvIzljYPkuabnm7jkvLTvvIzor7vkuqvmlrDlubTlpb3npLw%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=c5de72e8f20642248ea10fe64d180fb6&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=22&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20870&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799113,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "亚马逊Kindle",
+        "title": "全新Kindle Paperwhite，千书相伴，读享新年好礼",
+        "category": "FOCUS2",
+        "adid": "yp-22693",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 17
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/bj.house.163.com\/special\/xsly\/"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "23",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/efcfb3a3684d3e75d7226c3448e1e42b.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=79889&su=79889&p=20871&i=22639&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=21182&order=035867&pli=11171&plu=11171&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=23&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=09065b2c725041ce&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=79889&su=79889&p=20871&i=22639&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=21182&order=035867&pli=11171&plu=11171&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=23&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=09065b2c725041ce&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWeKVmbmXwqd%2FRGmW0GvtshA%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22639&title=5LiW6IyC6KW%2F5bGx6b6Z6IOkfOmmluacn%2BWFpeW4guWNs%2Be9hO%2B8jOOAkOWbreezu%2BOAkeaWsOWTgeW6lOW4guWKoOaOqA%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=d9d8a106854c4bd7ae8da728a20f80e8&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=23&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20871&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWeKVmbmXwqd%2FRGmW0GvtshA%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22639&title=5LiW6IyC6KW%2F5bGx6b6Z6IOkfOmmluacn%2BWFpeW4guWNs%2Be9hO%2B8jOOAkOWbreezu%2BOAkeaWsOWTgeW6lOW4guWKoOaOqA%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=d9d8a106854c4bd7ae8da728a20f80e8&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=23&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20871&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799114,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "世茂西山龙胤",
+        "title": "世茂西山龙胤|首期入市即罄，【园系】新品应市加推",
+        "category": "FOCUS2",
+        "adid": "yp-22639",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 23
+    }, {
+        "st": 5000,
+        "requestTime": 1545119707389,
+        "visibility": [{
+            "type": "0",
+            "rate_height": "1"
+        }],
+        "category": "FOCUS2",
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/img1.360buyimg.com\/pop\/jfs\/t1\/21165\/33\/1560\/71138\/5c137000E72b282d0\/ef7d042698a61cc0.jpg"]
+        }],
+        "ext_param": {
+            "flight_id": 1021,
+            "refresh_time": 1545119707403,
+            "ext_info": "province=%E5%8C%97%E4%BA%AC;city=%E5%8C%97%E4%BA%AC;category=FOCUS2;app=7A16FBB6;network=wifi;dq=750x1334;isp=ct;mcc=460;dt=iPhone 6s;appType=;rid=395f7b27d7124384a27d54ef18ebff36;docid=;platform=ios;normStyle=10;position=29;service=1;style=10",
+            "id": "142755",
+            "req_id": "40_api17_15451197071215536",
+            "clip": "0",
+            "isfixed": "0",
+            "needFilter": false
+        },
+        "expire": 1545121507186,
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "24",
+        "from": 5,
+        "is_sense": 1,
+        "monitor": [{
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 0,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/g1.163.com\/madfeedback",
+            "action": 1,
+            "type": "yitou"
+        }, {
+            "url": "https:\/\/im-x.jd.com\/dsp\/np?log=Uo6GHqX0YGdy0PF4ttp2-9fCtMapVJ6soLKWQhTW7BYqZRz-xztr36eXrxfavQce2Rq2HiifjDc2L6V6hZHccCeGWi1Hc3pObeN2bCJRQo21kMdIuv2VhDkykUT9Qt-712sgXp79jj5eM_RFJbQAqIJPbuI_BTPHw4fG8puFf-B1OJDIrLCFlt2fcaUUUDaKLaysPRgdH3cv0JRvoVuDfydxNJZYhHL0ITshi4N-Gynmj69i5hPohxxlqC6uDMwTxxMXjR7dqnmPEtvHhQXYIP0zTOhi2Q10L6D53rBiU-Tr2lnEiWNryQ5b8MBpi518lkIZp-IoRCJX8I1BOCrlxbSmKFGcIOawaetOFvBLMzf7Shopicx2FWby9r_buOy1PlUYBGXoJ9B1dcdDCQXr-GKjsGy4v6juDTeCTqpD3kLU6Bph3DELtbdIWUofm7yL&v=404&seq=1",
+            "action": 0,
+            "ext_param": {},
+            "type": "neteasy"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwwmD2zatAiU%2BfPcJ7BB%2FGecJ1jkdlAK21xeyNAteBwy6Q%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=1021_142755&title=5ri45oiP5r2u55S1IOmihumZkOmHjzUwMOWFg%2BWkp%2BmineWIuA%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=c3072adab4b146c28f3cdf0d3abf6811&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=24&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=1&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20872&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwwmD2zatAiU%2BfPcJ7BB%2FGecJ1jkdlAK21xeyNAteBwy6Q%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100002&crid=1021_142755&title=5ri45oiP5r2u55S1IOmihumZkOmHjzUwMOWFg%2BWkp%2BmineWIuA%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=c3072adab4b146c28f3cdf0d3abf6811&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=24&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100002&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=1&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20872&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "position": 29,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "url": "https:\/\/ccc-x.jd.com\/dsp\/nc?ext=aHR0cHM6Ly9wcm8ubS5qZC5jb20vbWFsbC9hY3RpdmUvZTI5ZHR3WUdWVGJ2MmJaOW9UWmZNSnNkb3RSL2luZGV4Lmh0bWw_YWRfb2Q9MQ&log=Uo6GHqX0YGdy0PF4ttp2-9fCtMapVJ6soLKWQhTW7BYqZRz-xztr36eXrxfavQce2Rq2HiifjDc2L6V6hZHccCeGWi1Hc3pObeN2bCJRQo21kMdIuv2VhDkykUT9Qt-712sgXp79jj5eM_RFJbQAqIJPbuI_BTPHw4fG8puFf-A362Sr9J9ILcDpZkh22xX600aIWVrmCm4AANaoqeLiJaHPYQ71Zgjadv92Bzg1ojGfdVwci9KDE-T-fn7V9X0vdp7LSpfN5ZyO5S6kPg6Ti3zDMdHTpQUX3TpHXLUVGepSQjmBpRczBbIhPLXd_DImxBqJ3zR3ptcpPrD0yuwCVJYJpUDKGDSN4ndGAk6pgPDytZ2Qw3OPvhRWe8fq8wjppjeNumCXI7Sm6nl3QYMWrwBwjwF9OAvWICujiusUuz0&v=404"
+        }],
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "京东",
+        "title": "游戏潮电 领限量500元大额券",
+        "sub_title": "广告",
+        "adid": "yt_1021_142755",
+        "norm_style": 10,
+        "is_backup": 2,
+        "live_status": ""
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/bj.house.163.com\/special\/youanfu\/"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "25",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/bc34cf67404c89c5b29e54de82b1af32.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=79838&su=79838&p=20873&i=22601&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=19103&order=035810&pli=11154&plu=11154&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=25&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=8a7c1156ca0ff75b&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=79838&su=79838&p=20873&i=22601&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=19103&order=035810&pli=11154&plu=11154&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=25&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=8a7c1156ca0ff75b&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWq6eOQdlGwyQSTebETnzx7A%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22601&title=5LqM546v57qv5aKFIOeZu%2BmhtuWGheWfjiDkvZHlronlupzlj6Dmi7zliKvlooXovb3oqonliqDmjqg%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=b3b8ded3ac604bb98a930e16c2a789f8&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=25&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20873&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWq6eOQdlGwyQSTebETnzx7A%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22601&title=5LqM546v57qv5aKFIOeZu%2BmhtuWGheWfjiDkvZHlronlupzlj6Dmi7zliKvlooXovb3oqonliqDmjqg%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=b3b8ded3ac604bb98a930e16c2a789f8&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=25&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20873&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799114,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "佑安府",
+        "title": "二环纯墅 登顶内城 佑安府叠拼别墅载誉加推",
+        "category": "FOCUS2",
+        "adid": "yp-22601",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 35
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/bj.house.163.com\/special\/taofanjie\/"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "26",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/d92a68a26b4efb2ed95ed28459137591.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=80260&su=80260&p=20874&i=22704&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=20960&order=035923&pli=11207&plu=11207&pri=aHyMmLenWFY7E4sC4eTLvg%3D%3D&dataid=&ca=FOCUS2&lo=26&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=20edd8e8b4aa1315&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=80260&su=80260&p=20874&i=22704&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=20960&order=035923&pli=11207&plu=11207&pri=aHyMmLenWFY7E4sC4eTLvg%3D%3D&dataid=&ca=FOCUS2&lo=26&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=20edd8e8b4aa1315&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWTbG48f3gsGoCfXojaM0a0Q%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22704&title=6aaW5bGK5paH5peF5reY5oi%2F6IqC&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=2c93a27c8f9147cfa46bb8768f702407&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=26&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20874&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWTbG48f3gsGoCfXojaM0a0Q%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22704&title=6aaW5bGK5paH5peF5reY5oi%2F6IqC&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=2c93a27c8f9147cfa46bb8768f702407&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=26&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20874&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799114,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "融创",
+        "title": "首届文旅淘房节",
+        "category": "FOCUS2",
+        "adid": "yp-22704",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 41
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/bj.house.163.com\/special\/wdxsbnbj\/"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "27",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/328c67d302bba5abb68b8a0c0648ff22.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=80269&su=80269&p=38228&i=22711&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=11942&order=035891&pli=11277&plu=11193&pri=aHyMmLenWFY7E4sC4eTLvg%3D%3D&dataid=&ca=FOCUS2&lo=27&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=5d1a398e00aacbc1&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=80269&su=80269&p=38228&i=22711&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=11942&order=035891&pli=11277&plu=11193&pri=aHyMmLenWFY7E4sC4eTLvg%3D%3D&dataid=&ca=FOCUS2&lo=27&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=5d1a398e00aacbc1&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWwcIdRA7LTKvfJbDOhC5F6g%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22711&title=57uZ5a2p5a2Q5pu05aSa54ix77yM5Zyo57qv5YeA54mI57qz5ZG85ZC45YGl5bq356ul5bm0&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=8f0387e88aed4b029203fa5a47de6774&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=27&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=38228&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWwcIdRA7LTKvfJbDOhC5F6g%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22711&title=57uZ5a2p5a2Q5pu05aSa54ix77yM5Zyo57qv5YeA54mI57qz5ZG85ZC45YGl5bq356ul5bm0&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=8f0387e88aed4b029203fa5a47de6774&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=27&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=38228&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799114,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "融创西双版纳",
+        "title": "给孩子更多爱，在纯净版纳呼吸健康童年",
+        "category": "FOCUS2",
+        "adid": "yp-22711",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 47
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/bj.house.163.com\/special\/xsly\/"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "28",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/efcfb3a3684d3e75d7226c3448e1e42b.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=79889&su=79889&p=20875&i=22639&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=21182&order=035867&pli=11171&plu=11171&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=28&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=63997254b6ae953a&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=79889&su=79889&p=20875&i=22639&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=21182&order=035867&pli=11171&plu=11171&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=28&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=63997254b6ae953a&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWC6%2BXiay9rO0QzkpulwprJA%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22639&title=5LiW6IyC6KW%2F5bGx6b6Z6IOkfOmmluacn%2BWFpeW4guWNs%2Be9hO%2B8jOOAkOWbreezu%2BOAkeaWsOWTgeW6lOW4guWKoOaOqA%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=cd17cc936f7a47c8bd97bc36e6039965&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=28&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20875&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWC6%2BXiay9rO0QzkpulwprJA%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22639&title=5LiW6IyC6KW%2F5bGx6b6Z6IOkfOmmluacn%2BWFpeW4guWNs%2Be9hO%2B8jOOAkOWbreezu%2BOAkeaWsOWTgeW6lOW4guWKoOaOqA%3D%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=cd17cc936f7a47c8bd97bc36e6039965&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=28&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20875&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799114,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "世茂西山龙胤",
+        "title": "世茂西山龙胤|首期入市即罄，【园系】新品应市加推",
+        "category": "FOCUS2",
+        "adid": "yp-22639",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 53
+    }, {
+        "st": 0,
+        "requestTime": 1545119707096,
+        "ext_param": {},
+        "is_sense": 0,
+        "style": 10,
+        "relatedActionLinks": [{
+            "type": "landing_page",
+            "title": "",
+            "url": "http:\/\/bj.house.163.com\/special\/youanfu\/"
+        }],
+        "visibility": [{
+            "type": "0",
+            "rate_height": "50"
+        }],
+        "sdkad_id": "",
+        "constraint": [],
+        "location": "29",
+        "from": 5,
+        "resources": [{
+            "type": 0,
+            "urls": ["https:\/\/pg-ad-b1.ws.126.net\/yipin\/bc34cf67404c89c5b29e54de82b1af32.jpg"]
+        }],
+        "monitor": [{
+            "url": "https:\/\/ka.163.com\/mf\/c?r=c90694e12ec34f17a4e4e98885e84ad2&s=79838&su=79838&p=20876&i=22601&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=19103&order=035810&pli=11154&plu=11154&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=29&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=0acc9dbb2d1be477&v=2&protect=y",
+            "action": 1,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/ka.163.com\/mf\/s?r=c90694e12ec34f17a4e4e98885e84ad2&s=79838&su=79838&p=20876&i=22601&os=2&bt=ios&u=8007D148-6485-4CA0-9F39-D7ECEA93545E&ac=110100&app=7A16FBB6&isp=ct&devid=&ctrl=2&style=1010017&cust=19103&order=035810&pli=11154&plu=11154&pri=BsGmpN93CiUl%2BTWRGD9HjA%3D%3D&dataid=&ca=FOCUS2&lo=29&gal=8007D148-6485-4CA0-9F39-D7ECEA93545E&exp=1545148799105&sign=0acc9dbb2d1be477&v=2&protect=y",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/show?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWutIjQEcibqyQIvX%2FH1nnGQ%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22601&title=5LqM546v57qv5aKFIOeZu%2BmhtuWGheWfjiDkvZHlronlupzlj6Dmi7zliKvlooXovb3oqonliqDmjqg%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=22628621f750403fa6c89af757e13ab5&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=29&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20876&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 0,
+            "type": "yp"
+        }, {
+            "url": "https:\/\/nex.163.com\/ssp\/click?deviceType=1&category=FOCUS2&style=10&push_tag=-&industry=-&source=7A16FBB6&ctime=1545119707389&galaxyTag=ODAwN0QxNDgtNjQ4NS00Q0EwLTlGMzktRDdFQ0VBOTM1NDVF&t=oKQNF9JyT9nyP46v%2Bu2D1yXiiACykbxo3JpKgDTVzwzAbd4Yjy7KQkOJ4LpPNtKWutIjQEcibqyQIvX%2FH1nnGQ%3D%3D&u=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&locationType=0&client_type=0&dsp_tag=100001&crid=22601&title=5LqM546v57qv5aKFIOeZu%2BmhtuWGheWfjiDkvZHlronlupzlj6Dmi7zliKvlooXovb3oqonliqDmjqg%3D&pa=-&province=110000&pdb_frequency_num=-&v=1&cuuid=22628621f750403fa6c89af757e13ab5&user_code=MDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMDAwMDAwMDAw&isShare=-&app_version=NDMuMQ%3D%3D&ext_adid=-&logversion=4&location=29&os=0&dt=aVBob25lIDZz&subIndustry=-&adMediaPlanId=-&nexSaleType=0&city=MTEwMTA4&dspid=100001&is_test=0&news_req_style=-&device_id=-&advertiserId=LQ%3D%3D&adPlanId=-&service=3&uuid=395f7b27d7124384a27d54ef18ebff36&rpid=20876&news_req_flag=-&timeStamp=1545119707389&contractNumber=-&net_work=wifi",
+            "action": 1,
+            "type": "yp"
+        }],
+        "norm_style": 10,
+        "live_status": "",
+        "expire": 1545148799114,
+        "live_user": -1,
+        "usr_protect_time": 0,
+        "content": "佑安府",
+        "title": "二环纯墅 登顶内城 佑安府叠拼别墅载誉加推",
+        "category": "FOCUS2",
+        "adid": "yp-22601",
+        "sub_title": "广告",
+        "is_backup": 2,
+        "position": 59
+    }]
+}

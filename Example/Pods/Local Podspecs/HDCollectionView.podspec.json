@@ -1,0 +1,27 @@
+{
+  "name": "HDCollectionView",
+  "version": "0.1.0",
+  "summary": "A short description of HDCollectionView.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/donggelaile/HDCollectionView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "donggelaile": "519623144@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/donggelaile/HDCollectionView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HDCollectionView/Classes/**/*",
+  "dependencies": {
+    "Yoga": [
+      "~> 1.9.0"
+    ]
+  }
+}
