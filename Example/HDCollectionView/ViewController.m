@@ -62,12 +62,13 @@
 }
 - (HDSectionModel*)makeSecModel
 {
+    NSArray *demoName = @[@"简单使用",@"多段随机悬浮/对齐",@"自动算高/上拉加载/横竖屏支持",@"待修改",@"横向滑动/悬浮",@"瀑布流/装饰view",@"瀑布流加载更多",@"综合使用"];
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 13;
+    NSInteger cellCount = demoName.count;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
-        model.orgData      = [NSString stringWithFormat:@"%@、%@",@(i+1),[self randomStr]];
+        model.orgData      = [NSString stringWithFormat:@"%@、%@",@(i+1),demoName[i%demoName.count]];
         model.cellSize     = CGSizeMake(self.view.frame.size.width/2, 50);
         model.cellClassStr = nil;
         [cellModelArr addObject:model];
@@ -93,18 +94,7 @@
     
     return secModel;
 }
-- (NSString*)randomStr
-{
-    return @"固定长度";
-    NSString *test = @"所示的 iPhone XR 64GB 机型价格是使用 iPhone 7 Plus 32GB 机型进行折抵换购的价格。上述所示机型的分期付款金额是在使用 iPhone 7 Plus 32GB 机型进行折抵后，再以招商银行、中国工商银行或花呗 24 期免息分期付款方式估算得出的整数金额 (未显示小数点以后的金额)，实际支付金额以银行或花呗账单为准。本优惠活动暂定截止日期为 2019 年 4 月 30 日，可能视情况延长。折抵金额仅可在限定时间内使用，并且要求用于购买新 iPhone，以限制条款为准。实际折抵金额取决于设备的状况、配置、制造年份，以及发售国家或地区。银行或花呗可能要求你的可用信用额度大于所购买产品的总金额，才能使用分期付款服务。有关信用卡或花呗分期服务的申请及使用问题，请与银行或花呗联系，Apple 对此不做任何承诺和保证。Apple 的折抵换购活动为 Apple 与 Apple 折抵服务合作伙伴共同推出，年满 18 周岁及以上者才能享受此项折抵换购服务。店内折抵换购需出示政府颁发并附有照片的有效身份证";
-    NSInteger start = arc4random()%test.length;
-    NSInteger length = arc4random()%(test.length-start)%5;
-    if (length == 0) {
-        length = 1;
-    }
-    NSString *subStr = [test substringWithRange:NSMakeRange(start, length)];
-    return subStr;
-}
+
 - (void)dealCellCallback:(HDCellModel*)sec
 {
     NSMutableArray *vcNameArr = @[].mutableCopy;

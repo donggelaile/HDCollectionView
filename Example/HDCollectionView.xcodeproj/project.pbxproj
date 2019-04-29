@@ -624,6 +624,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = donggelaile;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = Q45PTLH5G9;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -704,7 +707,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/HDCollectionView/HDCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
@@ -729,7 +732,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D48E183BB8D34081BBF191BA /* [CP] Check Pods Manifest.lock */ = {
@@ -939,6 +942,7 @@
 			baseConfigurationReference = EAE00B5FB900A928516BFCB5 /* Pods-HDCollectionView_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Q45PTLH5G9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HDCollectionView/HDCollectionView-Prefix.pch";
 				INFOPLIST_FILE = "HDCollectionView/HDCollectionView-Info.plist";
@@ -954,6 +958,7 @@
 			baseConfigurationReference = F22A251054DFB4159FFB0778 /* Pods-HDCollectionView_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Q45PTLH5G9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HDCollectionView/HDCollectionView-Prefix.pch";
 				INFOPLIST_FILE = "HDCollectionView/HDCollectionView-Info.plist";

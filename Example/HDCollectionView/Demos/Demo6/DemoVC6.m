@@ -32,11 +32,6 @@
 //    self.navigationController.navigationBarHidden = YES;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    UIButton *rightBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    rightBtn.backgroundColor = [UIColor orangeColor];
-    [rightBtn setTitle:@"切换" forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
     collecitonViewH = self.view.frame.size.height-64;
     HDCollectionView *listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
@@ -75,41 +70,6 @@
     HDSectionModel *sec = [self makeSecModel];
     
     NSInteger type = 1;
-    switch (i) {
-        case 0:
-            type = 1;
-            break;
-        case 1:
-            type = 1;
-            break;
-        case 2:
-            type = 1;
-            break;
-        case 3:
-            type = 1;
-            break;
-        case 4:
-            type = 2;
-            break;
-        case 5:
-            type = 1;
-            break;
-        case 6:
-            type = 1;
-            break;
-        case 7:
-            type = 0;
-            break;
-        case 8:
-            type = 2;
-            break;
-        case 9:
-            type = 0;
-            break;
-            
-        default:
-            break;
-    }
     sec.headerTopStopType = type;
     return sec;
 }

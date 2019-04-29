@@ -65,6 +65,9 @@
  */
 @property (nonatomic, strong) id context;
 
+/**
+ 对sectionModel的一个若引用
+ */
 @property (nonatomic, weak, readonly) HDSectionModel *secModel;
 
 @end

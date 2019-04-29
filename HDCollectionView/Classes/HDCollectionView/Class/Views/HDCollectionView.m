@@ -47,6 +47,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 @end
 
 @implementation HDCollectionViewMaker
+    
 - (NSMutableDictionary *)keysSetedMap
 {
     if (!_keysSetedMap) {
@@ -146,6 +147,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 
 
 #pragma mark - HDCollectionView
+
 @interface HDCollectionView()
 {
     void(^allEventCallbcak)(id backModel, HDCallBackType);
@@ -163,6 +165,27 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 @implementation HDCollectionView
 @synthesize collectionV = _collectionV;
 @synthesize allDataArr = _allDataArr;
+    
++ (void)doSomeThing:(void(^)(void))thingsToDo
+{
+    if (thingsToDo) {
+        thingsToDo();
+    }
+}
+    
+void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
+    if (mode == NSRunLoopCommonModes) {
+        if (thingsToDo) {
+            thingsToDo();
+        }
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [HDCollectionView performSelector:@selector(doSomeThing:) withObject:thingsToDo afterDelay:0 inModes:@[mode]];
+        });
+    }
+}
+    
+    
 + (void)load
 {
     static dispatch_once_t onceToken;
@@ -256,11 +279,32 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 {
     [self.collectionV reloadData];
 }
-- (void)hd_forceReloadData
+-(void)hd_reloadDataAndSecitonLayout:(NSString *)sectionKey
+{
+    HDSectionModel *sec = _allSecDict[sectionKey];
+    if (sec) {
+        void (^refreshDataLayout)(void) = ^(){
+            sec.layout.needUpdate = YES;
+            [self reloadSectionAfter:sec.section];
+            [self updateHDColltionViewDataType:HDDataChangeChangeSec start:[NSValue valueWithCGPoint:sec.layout.cacheStart]];
+            [self hd_reloadData];
+        };
+        if (sec.isNeedAutoCountCellHW) {
+            [self hd_autoCountCellsHeight:sec isAll:NO type:HDDataChangeChangeSec finishCallback:^{
+                refreshDataLayout();
+            }];
+        }else{
+            refreshDataLayout();
+        }
+    }
+    
+}
+- (void)hd_reloadDataAndAllLayout
 {
     if ([self.collectionV.collectionViewLayout isKindOfClass:[HDCollectionViewLayout class]]) {
         HDCollectionViewLayout *layout = (HDCollectionViewLayout*)self.collectionV.collectionViewLayout;
         [layout setAllNeedUpdate];
+        [self updateHDColltionViewDataType:HDDataChangeSetAll start:[NSValue valueWithCGPoint:CGPointZero]];
     }
     [self updateSecitonModelDict:YES];
     [self hd_reloadData];
@@ -297,11 +341,11 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 
     if (secModel.isNeedAutoCountCellHW) {
         [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeAppendSec finishCallback:^{
-            [self updateHDColltionViewDataType:HDDataChangeSetAll start:nil];
+            [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
             [self addOneSection:secModel];
         }];
     }else{
-        [self updateHDColltionViewDataType:HDDataChangeSetAll start:nil];
+        [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
         [self addOneSection:secModel];
         [self hd_dataDealFinishCallback:HDDataChangeAppendSec];
     }
@@ -326,10 +370,21 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
             [self reloadSectionAfter:secModel.section];
         }];
     }else{
-        [secModel.sectionDataArr addObjectsFromArray:itemArr];
-        [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-        [self reloadSectionAfter:secModel.section];
-        [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel];
+        
+        void(^appendAction)(void) = ^(){
+            [secModel.sectionDataArr addObjectsFromArray:itemArr];
+            [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+            [self reloadSectionAfter:secModel.section];
+            [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel];
+        };
+        
+        if (_isCalculateCellHOnCommonModes) {
+            appendAction();
+        }else{
+            HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+                appendAction();
+            });
+        }
     }
     
 }
@@ -516,7 +571,6 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-//    [collectionView.collectionViewLayout invalidateLayout];
     return _allDataArr.count;
 }
 
@@ -574,6 +628,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     [secM setValue:@(indexPath.section) forKey:@"section"];
     HDCellModel* cellModel = secM.sectionDataArr[indexPath.item];
     [cellModel setValue:indexPath forKey:@"indexP"];
+    [cellModel setValue:secM forKey:@"secModel"];
     
     if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
         cellModel.cellClassStr = secM.sectionCellClassStr;
@@ -723,12 +778,12 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 {
     if (_isCalculateCellHOnCommonModes) {
         [self hd_inner_autoCountAllViewsHeight];
-    }else{
-        dispatch_async(dispatch_get_main_queue(), ^{
+    }else{        
+        HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
             //1、整体放到NSDefaultRunLoopMode延时执行（默认是在NSRunLoopCommonModes）
             //2、原因: 放到NSDefaultRunLoopMode后，加载数据完成后不会立即刷新，如果此时用户正在滑动屏幕，立即计算会引起瞬间的卡顿。主要是为了不与用户争抢CPU。
             //3、效果: 放到NSDefaultRunLoopMode的效果是在加载完数据后，用户手指未脱离屏幕一直不会刷新，直至手指离开屏幕。此时由UITrackingRunLoopMode切换到NSDefaultRunLoopMode，计算才开始执行，参考微信朋友圈刷新。
-            [self performSelector:@selector(hd_inner_autoCountAllViewsHeight) withObject:nil afterDelay:0 inModes:@[NSDefaultRunLoopMode]];
+            [self hd_inner_autoCountAllViewsHeight];
         });
     }
     
@@ -844,9 +899,9 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
         [self hd_realCountCellsH:par];
     }else{
         if (!_isCalculateCellHOnCommonModes) {
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                [self performSelector:@selector(hd_realCountCellsH:) withObject:par afterDelay:0 inModes:@[NSDefaultRunLoopMode]];
-            }];
+            HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+                [self hd_realCountCellsH:par];
+            });
         }else{
             [self hd_realCountCellsH:par];
         }
@@ -861,7 +916,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 - (void)hd_dataDealFinishCallback:(HDDataChangeType)type
 {
     if (type == HDDataChangeSetAll) {
-        [self hd_forceReloadData];
+        [self hd_reloadDataAndAllLayout];
     }else{
         [self hd_reloadData];
     }
@@ -905,7 +960,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     self.collectionV.frame = self.bounds;
     if (self.isNeedAdaptScreenRotaion) {
         UIInterfaceOrientation oritation = [UIApplication sharedApplication].statusBarOrientation;
-        if (lastOrientation != oritation || 1) {
+        if (lastOrientation != oritation) {
             [self hd_reloadAll];
             lastOrientation = oritation;
         }

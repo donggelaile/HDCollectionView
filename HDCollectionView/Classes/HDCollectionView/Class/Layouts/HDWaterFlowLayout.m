@@ -51,6 +51,7 @@
         
         UICollectionViewLayoutAttributes *header = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathWithIndex:secModel.section]];
         header.frame = CGRectMake(cStart->x, cStart->y, secModel.layout.headerSize.width, secModel.layout.headerSize.height);
+        header.zIndex = HDHeaderViewDefaultZindex;
         sectionSize = CGRectUnion(sectionSize, header.frame);
         [atts addObject:header];
         
@@ -158,6 +159,7 @@
         }
         UICollectionViewLayoutAttributes *cellAtt = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:idx inSection:secModel.section]];
         cellAtt.frame = cellFrame;
+        cellAtt.zIndex = HDCellDefaultZindex;
         [atts addObject:cellAtt];
         obj.cellSize = CGSizeMake(w, h);
         sectionSize = CGRectUnion(sectionSize, cellFrame);
@@ -165,6 +167,9 @@
         //存储每列(行)所对应的属性(内部二分查找使用)
         NSMutableArray *someColumnAtts = self->columAttsArr[minColumnOrRow];
         [someColumnAtts addObject:cellAtt];
+        
+        [obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
+        [obj setValue:secModel forKey:@"secModel"];
     }
 
     //判断是否有无cell,没有cell时不再考虑内边距（即让heder与footer紧邻）
@@ -174,6 +179,7 @@
     //footer
     if (isHaveFooter) {
         UICollectionViewLayoutAttributes *footer = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathWithIndex:secModel.section]];
+        footer.zIndex = HDFooterViewDefaultZindex;
         if (isVertical) {
             footer.frame = CGRectMake(0, CGRectGetMaxY(sectionSize)+offsetY, self.footerSize.width, self.footerSize.height);
         }else{
@@ -214,7 +220,7 @@
             cellBgSize = CGSizeMake(cellBgW, cvSize.height);
         }
         decorationAtt.frame = CGRectMake(decorationXY.x+self.decorationMargin.left, decorationXY.y+self.decorationMargin.top, cellBgSize.width-self.decorationMargin.left-self.decorationMargin.right, cellBgSize.height-self.decorationMargin.top-self.decorationMargin.bottom);
-        decorationAtt.zIndex = NSIntegerMin;
+        decorationAtt.zIndex = HDDecorationViewDefaultZindex;
         [atts addObject:decorationAtt];
     }
     if (isNeedUpdateAll) {

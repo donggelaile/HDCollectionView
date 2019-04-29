@@ -98,6 +98,7 @@
         [secM.itemLayoutConfigArr addObject:headerItem];
         
         UICollectionViewLayoutAttributes *header = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathWithIndex:secModel.section]];
+        header.zIndex = HDHeaderViewDefaultZindex;
         [atts addObject:header];
         if (layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
             decorationXY.y += self.headerSize.height;
@@ -123,7 +124,11 @@
         cellItem.itemType = @"UICollectionElementCategoryCell";
         [secM.itemLayoutConfigArr addObject:cellItem];
         UICollectionViewLayoutAttributes *cellAtt = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:idx inSection:secModel.section]];
+        cellAtt.zIndex = HDCellDefaultZindex;
         [atts addObject:cellAtt];
+        
+        [obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
+        [obj setValue:secModel forKey:@"secModel"];
     }];
     
     //footer
@@ -136,6 +141,7 @@
         [secM.itemLayoutConfigArr addObject:footerItem];
         
         UICollectionViewLayoutAttributes *footer = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathWithIndex:secModel.section]];
+        footer.zIndex = HDFooterViewDefaultZindex;
         [atts addObject:footer];        
     }
     
@@ -177,7 +183,7 @@
         UICollectionViewLayoutAttributes *decorationAtt = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:HDDecorationViewKind withIndexPath:[NSIndexPath indexPathWithIndex:secModel.section]];
         CGRect orgFrame = [finalCountDic[HDFinalDecorationFrmaeKey] CGRectValue];
         decorationAtt.frame = CGRectMake(orgFrame.origin.x+decorationXY.x, orgFrame.origin.y+decorationXY.y, orgFrame.size.width, orgFrame.size.height);
-        decorationAtt.zIndex = -10000000;
+        decorationAtt.zIndex = HDDecorationViewDefaultZindex;
         [atts addObject:decorationAtt];
     }
     

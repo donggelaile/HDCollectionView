@@ -43,9 +43,9 @@
     
     
     NSMutableArray *randomArr = @[].mutableCopy;
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<30; i++) {
         HDSectionModel *sec = [self makeSecModel];
-        sec.headerTopStopType = HDHeaderStopOnTopTypeNormal;
+        sec.headerTopStopType = arc4random()%3;
         [randomArr addObject:sec];
     }    
     
@@ -72,7 +72,7 @@
     
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 50;
+    NSInteger cellCount = 10;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
@@ -121,6 +121,10 @@
 {
     NSLog(@"点击了段尾_%zd",secM.section);
     [listV hd_appendDataWithSecModel:[self makeSecModel]];
+}
+- (void)dealloc
+{
+    
 }
 /*
 #pragma mark - Navigation

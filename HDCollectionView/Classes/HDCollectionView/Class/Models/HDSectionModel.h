@@ -11,6 +11,11 @@
 #import "HDCellModel.h"
 #import "HDBaseLayout.h"
 
+static NSInteger HDHeaderViewDefaultZindex     = -1000000;
+static NSInteger HDFooterViewDefaultZindex     = -1100000;
+static NSInteger HDCellDefaultZindex           = -1200000;
+static NSInteger HDDecorationViewDefaultZindex = -1500000;
+
 static NSString *HDDecorationViewKind = @"HDDecorationViewKind";
 
 typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {

@@ -119,9 +119,14 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 - (void)hd_reloadData;
 
 /**
- 忽视缓存，重新计算所有布局(不会重新计算cell的高度)
+ 重新计算某段的布局，其后的段只会更新x/y坐标/
  */
-- (void)hd_forceReloadData;
+- (void)hd_reloadDataAndSecitonLayout:(NSString*)sectionKey;
+
+/**
+ 忽视缓存，重新计算所有布局(会重新读取cellSize，如果设置了自动算高这里并不会重算)
+ */
+- (void)hd_reloadDataAndAllLayout;
 
 /**
  刷新所有，包含cell高度（如果需要自动算高）(一般情况不需要调用此函数)

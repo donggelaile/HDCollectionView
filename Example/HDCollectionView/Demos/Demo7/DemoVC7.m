@@ -38,6 +38,7 @@
         maker
         .hd_frame(CGRectMake(0, 64, self.view.frame.size.width, self->collecitonViewH))
         .hd_isNeedTopStop(YES)
+        .hd_isCalculateCellHOnCommonModes(YES)
         .hd_scrollDirection(UICollectionViewScrollDirectionVertical);
     }];
     [self.view addSubview:listV];

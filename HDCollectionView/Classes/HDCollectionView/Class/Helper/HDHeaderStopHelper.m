@@ -11,8 +11,7 @@
 #import <objc/runtime.h>
 static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLayoutAttributesIndexKey";
 @implementation HDHeaderStopHelper
-//当heder悬浮时 视图层级由上到下为 InIndicator -> 段数靠前的header -> 段数靠后的header -> cell/footer -> decorationView
-//未悬浮时 decorationView 在最下，其他为默认值
+//视图层级由上到下为 InIndicator -> 段数靠前的header -> 段数靠后的header -> footer -> cell -> decorationView
 + (NSMutableArray *)getAdjustAttArrWith:(NSMutableArray *)oriRectAttArr allSectionData:(NSMutableArray *)secDataArr layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection
 {
     if (!oriRectAttArr) {
@@ -28,10 +27,18 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
         
         BOOL isHeader = [[obj representedElementKind] isEqualToString:UICollectionElementKindSectionHeader];
         BOOL isFooter = [[obj representedElementKind] isEqualToString:UICollectionElementKindSectionFooter];
-        
-        if (obj.representedElementCategory == UICollectionElementCategoryCell || isFooter) {
-            obj.zIndex = -1000000; //footer与cell在同级
+        //先恢复默认值
+        if (obj.representedElementCategory == UICollectionElementCategoryCell ) {
+            obj.zIndex = HDCellDefaultZindex;
+        }else if (isHeader){
+            obj.zIndex = HDHeaderViewDefaultZindex;
+        }else if (isFooter){
+            obj.zIndex = HDFooterViewDefaultZindex;
+        }else if ([obj.representedElementKind isEqualToString:HDDecorationViewKind]){
+            obj.zIndex = HDDecorationViewDefaultZindex;
         }
+        
+        
         NSIndexPath *indexPath = [obj indexPath];
 
         if (isHeader) {

@@ -35,7 +35,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
         maker
         .hd_isNeedTopStop(YES)
         .hd_isCalculateCellHOnCommonModes(NO)
-        .hd_isUseSystemFlowLayout(YES)
+        .hd_isUseSystemFlowLayout(NO)
         .hd_isNeedAdaptScreenRotaion(YES);
     }];
     listV.collectionV.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
@@ -48,7 +48,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
         make.top.mas_equalTo(self.view.hd_mas_top);
     }];
     
-    [self loadData];
+    [listV.collectionV.mj_footer beginRefreshing];
 
     
     __weak typeof(self) weakS = self;
@@ -101,7 +101,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(0, 0, 0, 0);
+    layout.secInset      = UIEdgeInsetsMake(0, 10, 0, 10);
     layout.justify       = YGJustifyFlexStart;
     layout.verticalGap   = 0;
     layout.horizontalGap = 0;

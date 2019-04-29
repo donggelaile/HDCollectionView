@@ -15,7 +15,9 @@
 @end
 
 @implementation DemoVC1
-
+{
+    HDCollectionView *listV;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self demo1];
@@ -26,7 +28,7 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
 //    HDCollectionView *listV = [[HDCollectionView alloc] initWithFrame:self.view.bounds isUseAbsoluteLayout:NO];
-    HDCollectionView *listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
+    listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
         maker.hd_frame(self.view.bounds);
     }];
     [self.view addSubview:listV];
@@ -38,7 +40,11 @@
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
-        
+        if (type == HDCellCallBack) {
+            [weakS clickCell:backModel];
+        }else if (type == HDSectionHeaderCallBack){
+            [weakS clickHeader:backModel];
+        }
     }];
 
 }
@@ -60,7 +66,7 @@
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     layout.secInset      = UIEdgeInsetsMake(10, 0, 10, 0);
-    layout.justify       = YGJustifyFlexStart;
+    layout.justify       = YGJustifySpaceBetween;
     layout.verticalGap   = 10;
     layout.horizontalGap = 0;
     layout.headerSize    = CGSizeMake(self.view.frame.size.width, 100);
@@ -80,6 +86,8 @@
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
+    cellM.cellSize = CGSizeMake(cellM.cellSize.height+5, cellM.cellSize.height+5);
+    [listV hd_reloadDataAndSecitonLayout:cellM.secModel.sectionKey];
 }
 - (void)clickHeader:(HDSectionModel*)secM
 {

@@ -35,13 +35,7 @@
 +(BOOL)accessInstanceVariablesDirectly{
     return YES;
 }
-- (void)setSectionDataArr:(NSMutableArray<HDCellModel *> *)sectionDataArr
-{
-    _sectionDataArr = sectionDataArr;
-    [sectionDataArr enumerateObjectsUsingBlock:^(HDCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setValue:self forKey:@"secModel"];
-    }];
-}
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     
