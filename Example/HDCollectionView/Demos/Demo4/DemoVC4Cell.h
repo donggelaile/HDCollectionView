@@ -1,5 +1,5 @@
 //
-//  NormalNewsCell.h
+//  DemoVC1Cell.h
 //  HDCollectionView
 //
 //  Created by HaoDong chen on 2018/12/18.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NormalNewsCell : HDCollectionCell
+@interface DemoVC4Cell : HDCollectionCell
 
 @end
 
