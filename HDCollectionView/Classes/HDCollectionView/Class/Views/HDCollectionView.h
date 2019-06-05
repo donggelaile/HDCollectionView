@@ -13,6 +13,7 @@
 #import "HDUpdateUIProtocol.h"
 #import "HDYogaFlowLayout.h"
 #import "HDWaterFlowLayout.h"
+#import "HDDefines.h"
 
 @protocol HDInnerCollectionViewClass <NSObject>
 @optional
@@ -33,7 +34,7 @@
  */
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isCalculateCellHOnCommonModes)(BOOL  isCalculateCellHOnCommonModes);
 /**
- 默认NO,是否使用基于UICollectionViewFlowLayout的布局(未YES时只支持HDBaseLayout)
+ 默认NO,是否使用基于UICollectionViewFlowLayout的布局(为YES时只支持HDBaseLayout)
  */
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isUseSystemFlowLayout)(BOOL  isUseSystemFlowLayout);
 /**
@@ -71,7 +72,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 
 /*
     important/important/important
-    所有的数据更改都应该在以下提供的接口中进行，不要直接对某个数组增删元素
+    所有的数据更改都应该在以下提供的接口中进行，不要直接对某个数组增删元素，变更后无需调用 reloadData（内部会调用）
  */
 
 /**
@@ -142,17 +143,36 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 // 1、如果需要更多其他回调，可继承HDCollectionView来实现，复写方法前先判断父类是否实现，实现了先调父类。比如@interface YourHDCollectionView:HDCollectionView
 // 2、对于内部的UICollectionView，可以让YourHDCollectionView遵循 HDInnerCollectionViewClass协议 来自定义内部的UICollectionView
 
-//设置内部UICollectionView手势与其他手势间的响应 (CollectionView多层嵌套时可能使用)
+/**
+ 设置内部UICollectionView手势与其他手势间的响应 (CollectionView多层嵌套时可能使用)
+ */
 - (void)hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:(BOOL(^)(UIGestureRecognizer*selfGestture,UIGestureRecognizer*otherGesture))multiGestureCallBack;
-//设置cell及section后的回调 
+
+//contentSize发生变化的回调(当数据源较少时，可用于获取colletionView合适的大小)
+- (void)hd_setContentSizeChangeCallBack:(void(^)(CGSize newContentSize))contentSizeChangeCallBack;
+
+
+//滑动事件的相关回调
+- (void)hd_setScrollViewDidScrollCallback:(void(^)(UIScrollView *scrollView))callback;
+- (void)hd_setScrollViewWillBeginDraggingCallback:(void(^)(UIScrollView *scrollView))callback;
+- (void)hd_setScrollViewDidEndDraggingCallback:(void(^)(UIScrollView *scrollView, BOOL decelerate))callback;
+- (void)hd_setScrollViewDidEndDeceleratingCallback:(void(^)(UIScrollView *scrollView))callback;
+
+/**
+ 设置cell及section后的回调
+ */
 - (void)hd_setCellUIUpdateCallback:(void(^)(__kindof UICollectionViewCell*cell,NSIndexPath*indexP))setedCallback;
 - (void)hd_setSecViewUIUpdateCallback:(void(^)(__kindof UICollectionReusableView*secView,NSIndexPath*indexP,NSString* kind))setedCallback;
-
+@property (nonatomic, strong, readonly) NSArray *innerAllData;
 @property (nonatomic, strong, readonly) HDInnerCollectionView *collectionV;
 @property (nonatomic, assign, readonly) BOOL isNeedTopStop;
 @property (nonatomic, assign, readonly) BOOL isCalculateCellHOnCommonModes;
 @property (nonatomic, assign, readonly) BOOL isUseSystemFlowLayout;
 @property (nonatomic, assign, readonly) UICollectionViewScrollDirection scrollDirection;
 @property (nonatomic, assign, readonly) BOOL isNeedAdaptScreenRotaion;
+
+//- (instancetype)init NS_UNAVAILABLE;
+//- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+//- (instancetype)new NS_UNAVAILABLE;
 
 @end

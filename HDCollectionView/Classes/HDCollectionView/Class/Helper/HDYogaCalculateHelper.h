@@ -10,17 +10,12 @@
 #import "YGEnums.h"
 #import <UIKit/UIKit.h>
 
-static NSString *const HDYogaItemTypeKey = @"HDYogaItemTypeKey";
-static NSString *const HDYogaItemPointKey = @"HDYogaItemPointKey";
-static NSString *const HDYogaOrgSizeKey = @"HDYogaOrgSizeKey";
+static NSString * _Nonnull const HDYogaItemTypeKey = @"HDYogaItemTypeKey";
+static NSString * _Nonnull const HDYogaItemPointKey = @"HDYogaItemPointKey";
+static NSString * _Nonnull const HDYogaOrgSizeKey = @"HDYogaOrgSizeKey";
 
-static NSString *const HDFinalDecorationFrmaeKey = @"HDFinalDecorationFrmaeKey";
-static NSString *const HDFinalOtherInfoArrKey = @"HDFinalOtherInfoArrKey";
-
-typedef NS_ENUM(NSInteger) {
-    HDFlexDirectionRow,
-    HDFlexDirectionColumn
-}HDFlexDirection;
+static NSString * _Nonnull const HDFinalDecorationFrmaeKey = @"HDFinalDecorationFrmaeKey";
+static NSString * _Nonnull const HDFinalOtherInfoArrKey = @"HDFinalOtherInfoArrKey";
 
 //******************************************item****************************************** begin
 @protocol HDYogaItemProtocol <NSObject>
@@ -31,14 +26,14 @@ typedef NS_ENUM(NSInteger) {
 /**
  item 外边距 默认 UIEdgeInsetZero
  */
-@property (nonatomic, assign) UIEdgeInsets margin;
+@property (nonatomic, assign) UIEdgeInsets margain;
 
 /**
  item 对齐方式 默认 YGAlignFlexStart
  */
 @property (nonatomic, assign) YGAlign alignSelf;
 
-@property (nonatomic, copy) NSString *itemType;
+@property (nonatomic, copy, nullable) NSString *itemType;
 @end
 //******************************************item****************************************** end
 
@@ -94,7 +89,7 @@ typedef NS_ENUM(NSInteger) {
 /**
  每段内部cell/header/footer的配置
  */
-@property (nonatomic, strong) NSMutableArray<id<HDYogaItemProtocol>> *itemLayoutConfigArr;
+@property (nonatomic, strong, nonnull) NSMutableArray<id<HDYogaItemProtocol>> *itemLayoutConfigArr;
 @end
 //******************************************section****************************************** end
 

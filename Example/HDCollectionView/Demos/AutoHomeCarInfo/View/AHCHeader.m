@@ -36,7 +36,7 @@
     }
     return self;
 }
-- (void)updateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateSecVUI:(__kindof HDSectionModel *)model
 {
     titleL.text = model.headerObj;
 }

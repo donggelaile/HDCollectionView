@@ -36,7 +36,6 @@
     HDSectionModel *sec1 = [self makeSecModel];
     
     [listV hd_setAllDataArr:@[sec1].mutableCopy];
-    [listV hd_reloadData];
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
@@ -66,7 +65,7 @@
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     layout.secInset      = UIEdgeInsetsMake(10, 0, 10, 0);
-    layout.justify       = YGJustifySpaceBetween;
+    layout.justify       = YGJustifyCenter;
     layout.verticalGap   = 10;
     layout.horizontalGap = 0;
     layout.headerSize    = CGSizeMake(self.view.frame.size.width, 100);
@@ -86,8 +85,10 @@
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
-    cellM.cellSize = CGSizeMake(cellM.cellSize.height+5, cellM.cellSize.height+5);
-    [listV hd_reloadDataAndSecitonLayout:cellM.secModel.sectionKey];
+    
+    [listV hd_changeSectionModelWithKey:cellM.secModel.sectionKey changingIn:^(HDSectionModel *secModel) {
+        cellM.cellSize = CGSizeMake(cellM.cellSize.height+5, cellM.cellSize.height+5);
+    }];
 }
 - (void)clickHeader:(HDSectionModel*)secM
 {

@@ -12,7 +12,7 @@
 #import "Masonry.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-BOOL isDemo3OpenSubviewFrameCache = YES;
+#import "DemoVC3.h"
 
 @interface DemoVC3Cell()
 @property (nonatomic, strong) UILabel *titleL;
@@ -52,14 +52,14 @@ BOOL isDemo3OpenSubviewFrameCache = YES;
         self.bottomLine.backgroundColor = [UIColor lightGrayColor];
         [self.contentView addSubview:self.bottomLine];
     }
-    __weak typeof(self) weakS = self;
+//    __weak typeof(self) weakS = self;
 //    self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
 //    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
 //        [weakS clickSelf];
 //    }];
 
     self.backgroundColor = [UIColor whiteColor];
-
+    
     return self;
 }
 - (void)setLayoutWithModel:(HDCellModel*)cellModel
@@ -113,14 +113,31 @@ BOOL isDemo3OpenSubviewFrameCache = YES;
 }
 - (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel *)cellModel
 {
+    /*
+     1、当你想缓存cell子view Frame时，实现cacheSubviewsFrameBySetLayoutWithCellModel函数即可，
+     在此cell内部无需调用cacheSubviewsFrameBySetLayoutWithCellModel和setLayoutWithModel方法，
+     此时最后展示到界面上的cell没有设置任何约束，但其所有frame是通过一个相同类的tempCell在设置约束后计算而来的
+     
+     2、当该段设置isNeedCacheSubviewsFrame为NO时，你需要在cell的- (instancetype)initWithFrame:(CGRect)frame中调用setLayoutWithModel方法
+     此时的展示与常规方式相同，每个cell均设置有约束，滑动列表时autoLayout会重新计算子view新的frame。而情况1滑动列表时只是在重设所有子view的frame。
+     
+     3、需要注意的是，当cell内嵌套了collectionView时。该cell建议不要开启isNeedCacheSubviewsFrame,因为此时遍历的子view数量可能会太多了。。
+     isNeedCacheSubviewsFrame是以段为单位的，同一段内的某种类型的cell不想开启缓存子view frame功能，不实现
+     - (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel *)cellModel 方法即可。
+     */
     [self setLayoutWithModel:cellModel];
 }
--(void)updateCellUI:(HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback
+-(void)updateCellUI:(__kindof HDCellModel *)model
 {
-    if (!isDemo3OpenSubviewFrameCache) {
-        [self setLayoutWithModel:model];
+    uint64_t dispatch_benchmark(size_t count, void (^block)(void));//GCD私有API
+    if (!isDemoVC3OpenCellSubviewFrameCache) {
+        uint64_t ns = dispatch_benchmark(1, ^{
+            //写在updateCellUI中会在滑动时创建约束，这会损耗一些时间（因为这里约束需要根据model来做变更）
+            [self setLayoutWithModel:model];
+        });
+        double time1 = ns/(pow(10, 6));
+        printf("重建约束消耗时间为%f毫秒\n",time1);
     }
-    
     DemoVC3CellModel *cellM = model.orgData;
     self.titleL.attributedText = cellM.title;
     self.detailL.attributedText = cellM.detail;
@@ -134,7 +151,7 @@ BOOL isDemo3OpenSubviewFrameCache = YES;
 }
 - (void)clickSelf
 {
-    self.callback(self.hdModel, HDCellCallBack);
+    self.callback(self.hdModel);
 }
 //- (CGSize)sizeThatFits:(CGSize)size
 //{

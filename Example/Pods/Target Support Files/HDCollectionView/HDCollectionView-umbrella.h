@@ -28,6 +28,7 @@
 #import "HDSectionModel.h"
 #import "HDCollectionCell.h"
 #import "HDCollectionView.h"
+#import "HDScrollJoinView.h"
 #import "HDSectionView.h"
 
 FOUNDATION_EXPORT double HDCollectionViewVersionNumber;

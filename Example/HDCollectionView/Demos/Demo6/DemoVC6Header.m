@@ -7,7 +7,7 @@
 //
 
 #import "DemoVC6Header.h"
-//#import "UIView+gesture.h"
+#import "UIView+gesture.h"
 @interface DemoVC6Header()
 @property (nonatomic, strong) UILabel *title;
 @end
@@ -38,19 +38,17 @@
     }
     
     __weak typeof (self) weakS = self;
-//    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
-//        [weakS clickSelf];
-//    }];
+    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
+        [weakS clickSelf];
+    }];
     self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     return self;
 }
-- (void)updateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateSecVUI:(__kindof HDSectionModel *)model
 {
     _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
 }
 - (void)clickSelf{
-    if (self.callback) {
-        self.callback(self.hdSecModel, HDSectionHeaderCallBack);
-    }
+    self.callback(self.hdSecModel);
 }
 @end

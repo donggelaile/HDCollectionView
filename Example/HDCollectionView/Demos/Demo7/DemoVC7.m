@@ -9,6 +9,8 @@
 #import "DemoVC7.h"
 #import "HDCollectionView.h"
 #import <MJRefresh/MJRefresh.h>
+#import "UIView+HDSafeArea.h"
+
 @interface DemoVC7 ()
 {
     CGFloat collecitonViewH;
@@ -33,15 +35,20 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
 
-    collecitonViewH = self.view.frame.size.height-64;
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker
-        .hd_frame(CGRectMake(0, 64, self.view.frame.size.width, self->collecitonViewH))
         .hd_isNeedTopStop(YES)
         .hd_isCalculateCellHOnCommonModes(YES)
         .hd_scrollDirection(UICollectionViewScrollDirectionVertical);
     }];
     [self.view addSubview:listV];
+    
+    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.hd_mas_left);
+        make.right.mas_equalTo(self.view.hd_mas_right);
+        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
+        make.top.mas_equalTo(self.view.hd_mas_top);
+    }];
     
     __weak typeof(listV) weakListV = listV;
     [listV hd_dataChangeFinishedCallBack:^(HDDataChangeType changeType) {
@@ -110,7 +117,6 @@
     HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionCellClassStr   = @"VCCell";
     secModel.isNeedAutoCountCellHW  = YES;
-    secModel.isForceUseHdSizeThatFits = YES;
     secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;

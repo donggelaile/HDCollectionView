@@ -74,7 +74,7 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
     self.cacheAtts = (NSMutableArray*)result;
     self.needUpdate = NO;
     self.cacheEnd = CGPointMake(cStart->x, cStart->y);
-//    [layout invalidateLayout];
+
     return result;
 }
 

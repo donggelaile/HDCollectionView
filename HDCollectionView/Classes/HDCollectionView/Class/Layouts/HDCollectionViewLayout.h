@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class HDSectionModel;
-static char *HDAttributesIndexKey = "HDAttributesIndexKey";
+static char * _Nonnull HDAttributesIndexKey = "HDAttributesIndexKey";
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDCollectionViewLayout : UICollectionViewLayout

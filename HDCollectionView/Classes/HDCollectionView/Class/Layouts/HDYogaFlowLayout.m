@@ -35,7 +35,7 @@
 
 @implementation HDFlowLayoutItemModel
 @synthesize alignSelf;
-@synthesize margin;
+@synthesize margain;
 @synthesize size;
 @synthesize itemType;
 
@@ -53,7 +53,7 @@
     self = [super init];
     if (self) {
         self.secInset = UIEdgeInsetsZero;
-        self.justify = YGJustifyFlexStart;
+        self.justify = YGJustifySpaceBetween;//默认与系统类似(系统flowLayout的最后一行会左对齐，YGJustifySpaceBetween每行都两端对齐)
         self.align = YGAlignFlexStart;
         self.cellSize = CGSizeZero;
         self.headerSize = CGSizeZero;
@@ -92,7 +92,7 @@
     BOOL isHaveHeader = !CGSizeEqualToSize(CGSizeZero, self.headerSize) && secModel.sectionHeaderClassStr;
     if (isHaveHeader) {
         HDFlowLayoutItemModel *headerItem = [HDFlowLayoutItemModel new];
-        headerItem.margin = UIEdgeInsetsZero;
+        headerItem.margain = UIEdgeInsetsZero;
         headerItem.size = self.headerSize;
         headerItem.itemType = UICollectionElementKindSectionHeader;
         [secM.itemLayoutConfigArr addObject:headerItem];
@@ -119,7 +119,7 @@
             obj.cellSize = self.cellSize;
         }
         HDFlowLayoutItemModel *cellItem = [HDFlowLayoutItemModel new];
-        cellItem.margin = obj.margin;
+        cellItem.margain = obj.margain;
         cellItem.size = obj.cellSize;
         cellItem.itemType = @"UICollectionElementCategoryCell";
         [secM.itemLayoutConfigArr addObject:cellItem];
@@ -135,7 +135,7 @@
     BOOL isHaveFooter = !CGSizeEqualToSize(CGSizeZero, self.footerSize) && secModel.sectionFooterClassStr;
     if (isHaveFooter) {
         HDFlowLayoutItemModel *footerItem = [HDFlowLayoutItemModel new];
-        footerItem.margin = UIEdgeInsetsZero;
+        footerItem.margain = UIEdgeInsetsZero;
         footerItem.size = self.footerSize;
         footerItem.itemType = UICollectionElementKindSectionFooter;
         [secM.itemLayoutConfigArr addObject:footerItem];
@@ -187,6 +187,7 @@
         [atts addObject:decorationAtt];
     }
     
+    [secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
     return atts;
 }
 - (id)valueForUndefinedKey:(NSString *)key

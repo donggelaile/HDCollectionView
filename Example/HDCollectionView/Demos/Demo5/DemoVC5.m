@@ -8,6 +8,7 @@
 
 #import "DemoVC5.h"
 #import "HDCollectionView.h"
+#import "UIView+HDSafeArea.h"
 @interface DemoVC5 ()
 {
     CGFloat collecitonViewH;
@@ -19,7 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self demo];
-
+    NSNumber *num1 = @(1).stringValue; NSNumber *num2 = @(1).stringValue;
+    NSLog(@"%p--%p",num1,num2);
     // Do any additional setup after loading the view.
 }
 - (void)demo
@@ -31,56 +33,28 @@
     collecitonViewH = 350;
     HDCollectionView *listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker
-        .hd_frame(CGRectMake(0, 64, self.view.frame.size.width, self->collecitonViewH))
         .hd_isNeedTopStop(YES)
-        .hd_isUseSystemFlowLayout(YES)
+        .hd_isUseSystemFlowLayout(NO)
         .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal);
     }];
     [self.view addSubview:listV];
     
+    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.hd_mas_left);
+        make.right.mas_equalTo(self.view.hd_mas_right);
+        make.top.mas_equalTo(self.view.hd_mas_top);
+        make.height.mas_equalTo(collecitonViewH);
+    }];
+    
     
     NSMutableArray *randomArr = @[].mutableCopy;
     for (int i=0; i<10; i++) {
-        HDSectionModel *sec = [self makeSecModel];
-        
-        NSInteger type = 0;
-        switch (i) {
-            case 0:
-                type = 1;
-                break;
-            case 1:
-                type = 1;
-                break;
-            case 2:
-                type = 1;
-                break;
-            case 3:
-                type = 1;
-                break;
-            case 4:
-                type = 2;
-                break;
-            case 5:
-                type = 1;
-                break;
-            case 6:
-                type = 1;
-                break;
-            case 7:
-                type = 0;
-                break;
-            case 8:
-                type = 2;
-                break;
-            case 9:
-                type = 0;
-                break;
-           
-            default:
-                break;
+        HDSectionModel *sec;
+        if (arc4random()%2) {
+            sec = [self makeSecModel];
+        }else{
+            sec = [self makeWaterSecModel];
         }
-        sec.headerTopStopType = type;
-//        NSLog(@"%d",sec.headerTopStopType);
         [randomArr addObject:sec];
     }    
     
@@ -96,7 +70,7 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 30;
+    NSInteger cellCount = 4;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
@@ -107,17 +81,19 @@
     
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(0, 10, 0, 10);
+    layout.secInset      = UIEdgeInsetsMake(0, 20, 0, 20);
     layout.justify       = YGJustifyCenter;
     layout.verticalGap   = 10;
     layout.horizontalGap = 20;
     layout.headerSize    = CGSizeMake(50, collecitonViewH);
     layout.footerSize    = CGSizeMake(50, collecitonViewH);
+    layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionHeaderClassStr = @"DemoVC5Header";
     secModel.sectionFooterClassStr = @"DemoVC5Footer";
+    secModel.decorationClassStr    = @"DemoVC5DecorationView";
     secModel.headerObj             = nil;
     secModel.footerObj             = nil;
     secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
@@ -126,10 +102,47 @@
     
     return secModel;
 }
-- (void)test
+
+- (HDSectionModel*)makeWaterSecModel
 {
+    //该段cell数据源
+    NSMutableArray *cellModelArr = @[].mutableCopy;
+    NSInteger cellCount = 50;
+    for (int i =0; i<cellCount; i++) {
+        HDCellModel *model = [HDCellModel new];
+        model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
+        model.cellSize     = CGSizeMake(arc4random()%200 + 100, 0);
+        model.cellClassStr = @"DemoVC5Cell";
+        //        model.whRatio = ((arc4random() & 1024)+50)/1024.0f+1;
+        [cellModelArr addObject:model];
+    }
     
+    //该段layout
+    HDWaterFlowLayout *layout = [HDWaterFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
+    layout.secInset      = UIEdgeInsetsMake(30, 30, 30, 30);
+    layout.verticalGap   = 10;
+    layout.horizontalGap = 10;
+    layout.headerSize    = CGSizeMake(40, collecitonViewH);
+    layout.footerSize    = CGSizeMake(40, collecitonViewH);
+    layout.columnRatioArr = @[@1,@2,@1,@2];
+    layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
+    
+    //该段的所有数据封装
+    HDSectionModel *secModel = [HDSectionModel new];
+    secModel.sectionHeaderClassStr = @"DemoVC5Header";
+    secModel.sectionFooterClassStr = @"DemoVC5Footer";
+    secModel.headerObj             = nil;
+    secModel.footerObj             = nil;
+    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNormal;
+    secModel.sectionDataArr        = cellModelArr;
+    secModel.layout                = layout;
+    secModel.decorationClassStr    = @"DemoVC5DecorationView";
+    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
+    
+    return secModel;
 }
+
+
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);

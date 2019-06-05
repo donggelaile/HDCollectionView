@@ -43,11 +43,16 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
 
         if (isHeader) {
             headerAtts[@(indexPath.section)] = obj;
+            UICollectionViewLayoutAttributes *currentAttribute = secLastAtt[@(indexPath.section)];
+            if (!currentAttribute) {
+                [secLastAtt setObject:obj forKey:@(indexPath.section)];
+            }
         } else{
             UICollectionViewLayoutAttributes *currentAttribute = secLastAtt[@(indexPath.section)];
             if ( !currentAttribute ||
                 indexPath.item > currentAttribute.indexPath.item ||
-                ((currentAttribute.indexPath.section == indexPath.section)&&(isFooter))) {
+                ((currentAttribute.indexPath.section == indexPath.section)&&(isFooter))||
+                [currentAttribute.representedElementKind isEqualToString:UICollectionElementKindSectionHeader]) {
                 [secLastAtt setObject:obj forKey:@(indexPath.section)];
             }
         }
@@ -55,9 +60,9 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     }];
     
     __block NSInteger crtMaxSec = 0;//当前展示的最大的section
-    [secLastAtt.allKeys enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.integerValue > crtMaxSec) {
-            crtMaxSec = obj.integerValue;
+    [AllRectAtts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.indexPath.section > crtMaxSec) {
+            crtMaxSec = obj.indexPath.section;
         }
     }];
     
@@ -120,10 +125,10 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     CGFloat contentOffsetXY = 0;//当前横向或纵向的偏移量
     CGFloat sectionMaxXY = 0;//当前header能最大到达的偏移量（HDHeaderStopOnTopTypeAlways不受此限制）
     if (isVertical) {
-        contentOffsetXY = CGRectGetMinY(currentBounds) + layout.collectionView.contentInset.top + *offset;
+        contentOffsetXY = CGRectGetMinY(currentBounds) + *offset;
         sectionMaxXY = CGRectGetMaxY(lastCellAttributes.frame) - CGRectGetHeight(attributes.frame);
     }else{
-        contentOffsetXY = CGRectGetMinX(currentBounds) + layout.collectionView.contentInset.left + *offset;
+        contentOffsetXY = CGRectGetMinX(currentBounds) + *offset;
         sectionMaxXY = CGRectGetMaxX(lastCellAttributes.frame) - CGRectGetWidth(attributes.frame);
     }
     
@@ -152,9 +157,6 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     }
     
     attributes.zIndex =  -10 - section;//后边的逐级递减，否则后边的会在前边view的上面
-    //    if (@available(iOS 11.0, *)) {
-    //        [attributes setValue:@(attributes.zIndex) forKey:@"zPosition"];
-    //    }
     
     attributes.frame = CGRectMake(originX, originY, attributes.frame.size.width, attributes.frame.size.height);
 }

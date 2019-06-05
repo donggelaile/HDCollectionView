@@ -41,13 +41,15 @@
     self.backgroundColor = [UIColor redColor];
     return self;
 }
-- (void)updateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateSecVUI:(__kindof HDSectionModel *)model
 {
     _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
 }
 - (void)clickSelf{
-    if (self.callback) {
-        self.callback(self.hdSecModel, HDSectionHeaderCallBack);
-    }
+    //无需此判断
+//    if (self.callback) {
+//        self.callback(self.hdSecModel);
+//    }
+    self.callback(self.hdSecModel);
 }
 @end

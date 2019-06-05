@@ -33,7 +33,7 @@ step 2.在scrollview的delegate的类中包含HDSCVOffsetBinder并添加
  }
  */
 
-static char *HDContentOffsetIsNotNeedKVONotify = "HDContentOffsetIsNotNeedKVONotify";
+static char * _Nonnull HDContentOffsetIsNotNeedKVONotify = "HDContentOffsetIsNotNeedKVONotify";
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>

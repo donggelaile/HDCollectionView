@@ -19,12 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat horizontalGap;
 
 /**
- 回调方式获取headerSize,优先级最高（一般需要适配横竖屏时使用,内部必须弱应用self）
+ 回调方式获取headerSize,优先级最高（一般需要适配横竖屏时使用,内部必须弱引用self）
  */
 @property (nonatomic, copy) CGSize(^headerSizeCb)(void);
 
 /**
- 回调方式获取footerSize,优先级最高（一般需要适配横竖屏时使用,内部必须弱应用self）
+ 回调方式获取footerSize,优先级最高（一般需要适配横竖屏时使用,内部必须弱引用self）
  */
 @property (nonatomic, copy) CGSize(^footerSizeCb)(void);
 @end

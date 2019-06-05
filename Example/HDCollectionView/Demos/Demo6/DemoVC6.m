@@ -9,10 +9,10 @@
 #import "DemoVC6.h"
 #import "HDCollectionView.h"
 #import "Masonry.h"
+#import "UIView+HDSafeArea.h"
+
 @interface DemoVC6 ()
-{
-    CGFloat collecitonViewH;
-}
+
 @end
 
 @implementation DemoVC6
@@ -23,29 +23,29 @@
 
     // Do any additional setup after loading the view.
 }
-- (void)change
-{
-    
-}
+
 - (void)demo
 {
-//    self.navigationController.navigationBarHidden = YES;
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    collecitonViewH = self.view.frame.size.height-64;
+
     HDCollectionView *listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker
-        .hd_frame(CGRectMake(0, 64, self.view.frame.size.width, self->collecitonViewH))
-        .hd_isNeedTopStop(NO)
+        .hd_isNeedTopStop(YES)
         .hd_scrollDirection(UICollectionViewScrollDirectionVertical);
     }];
     [self.view addSubview:listV];
     
+    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.hd_mas_left);
+        make.right.mas_equalTo(self.view.hd_mas_right);
+        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
+        make.top.mas_equalTo(self.view.hd_mas_top);
+    }];
+    
     
     NSMutableArray *randomArr = @[].mutableCopy;
 
-    for (int i=0; i<20; i++) {
+    for (int i=0; i<7; i++) {
         BOOL random = arc4random()%2;
         HDSectionModel *sec;
         if (random) {
@@ -60,16 +60,25 @@
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
-        
+        [weakS allEventCallback:backModel type:type];
     }];
 
 }
-
+- (void)allEventCallback:(id)backModel type:(HDCallBackType)type
+{
+    if (type == HDCellCallBack) {
+        [self clickCell:backModel];
+    }else if (type == HDSectionHeaderCallBack){
+        [self clickHeader:backModel];
+    }else if (type == HDSectionFooterCallBack){
+        [self clickFooter:backModel];
+    }
+}
 - (HDSectionModel*)makeWaterSec:(NSInteger)i
 {
     HDSectionModel *sec = [self makeSecModel];
     
-    NSInteger type = 1;
+    NSInteger type = 2;
     sec.headerTopStopType = type;
     return sec;
 }
@@ -77,7 +86,7 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = arc4random() & 40 + 5;
+    NSInteger cellCount = 40;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = @(i).stringValue;
@@ -89,7 +98,7 @@
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     layout.secInset      = UIEdgeInsetsMake(30, 30, 30, 30);
-    layout.justify       = YGJustifyCenter;
+    layout.justify       = arc4random()%YGJustifyCount;
     layout.verticalGap   = 10;
     layout.horizontalGap = 10;
     layout.headerSize    = CGSizeMake(self.view.frame.size.width, 50);
@@ -102,7 +111,7 @@
     secModel.sectionFooterClassStr = @"DemoVC6Footer";
     secModel.headerObj             = nil;
     secModel.footerObj             = nil;
-    secModel.headerTopStopType     = ABS(arc4random() & 1);
+    secModel.headerTopStopType     = arc4random()%2+1;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
     secModel.decorationClassStr    = @"DemoVC6DecorationView";
@@ -114,11 +123,11 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 30;
+    NSInteger cellCount = 50;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
-        model.cellSize     = CGSizeMake(100, arc4random()%200 + 100);
+        model.cellSize     = CGSizeMake(0, arc4random()%200 + 100);
         model.cellClassStr = @"DemoVC6Cell";
 //        model.whRatio = ((arc4random() & 1024)+50)/1024.0f+1;
         [cellModelArr addObject:model];
@@ -126,10 +135,10 @@
     
     //该段layout
     HDWaterFlowLayout *layout = [HDWaterFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.secInset      = UIEdgeInsetsMake(30, 30, 30, 30);
     layout.verticalGap   = 10;
     layout.horizontalGap = 10;
-    layout.headerSize    = CGSizeMake(self.view.frame.size.width, 50);//CGSizeMake(50, collecitonViewH);//CGSizeMake(self.view.frame.size.width, 50)
+    layout.headerSize    = CGSizeMake(self.view.frame.size.width, 50);
     layout.footerSize    = CGSizeMake(self.view.frame.size.width, 50);
     layout.columnRatioArr = @[@1,@2,@1,@2];
     layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
@@ -140,17 +149,13 @@
     secModel.sectionFooterClassStr = @"DemoVC6Footer";
     secModel.headerObj             = nil;
     secModel.footerObj             = nil;
-    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
+    secModel.headerTopStopType     = arc4random()%2+1;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
     secModel.decorationClassStr    = @"DemoVC6DecorationView";
     secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
 
     return secModel;
-}
-- (void)test
-{
-    
 }
 - (void)clickCell:(HDCellModel*)cellM
 {

@@ -8,6 +8,7 @@
 
 #import "HDAppDelegate.h"
 #import "YYFPSLabel.h"
+#import "CHD_ListView_Structure.h"
 @implementation HDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -16,6 +17,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.window addSubview:[[YYFPSLabel alloc] initWithFrame:CGRectMake(100, 30, 100, 30)]];
     });
+//    [CHD_ListView_Structure openStructureShow_TableV:NO collectionV:NO];
     return YES;
 }
 

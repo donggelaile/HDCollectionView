@@ -118,7 +118,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
     secModel.isNeedAutoCountCellHW  = YES;
-    secModel.isNeedCacheSubviewsFrame = YES;
+    secModel.isNeedCacheSubviewsFrame = isDemoVC3OpenCellSubviewFrameCache;
     return secModel;
 }
 - (void)clickCell:(HDCellModel*)cellM

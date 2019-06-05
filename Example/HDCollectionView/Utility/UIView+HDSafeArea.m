@@ -25,7 +25,7 @@
 }
 - (MASViewAttribute *)hd_mas_top {
     if (@available(iOS 11.0, *)) {
-        //当VC的系统导航未隐藏时，safeAreaLayoutGuideTop会包含导航
+        //当VC的系统导航未隐藏时,VC.view的safeAreaLayoutGuideTop会包含导航
         return [[MASViewAttribute alloc] initWithView:self item:self.safeAreaLayoutGuide layoutAttribute:NSLayoutAttributeTop];
     } else {
         return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeTop];

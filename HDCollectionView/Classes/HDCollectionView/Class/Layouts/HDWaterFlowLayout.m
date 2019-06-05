@@ -61,7 +61,18 @@
         }else{
             decorationXY.x += self.headerSize.width;
         }
+    }else{
+        UICollectionViewLayoutAttributes *firstAtt = [self->columAttsArr[0] firstObject];
+        if ([firstAtt.representedElementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+            if (isVertical) {
+                decorationXY.y += self.headerSize.height;
+            }else{
+                decorationXY.x += self.headerSize.width;
+            }
+            sectionSize = CGRectUnion(sectionSize, firstAtt.frame);
+        }
     }
+
     
     //cells
     NSMutableDictionary *RowOrColumnXYDic = @{}.mutableCopy;//每行或每列起始的x或y坐标
@@ -103,6 +114,7 @@
     
     NSInteger cellStartIndex = 0;
     if (!isNeedUpdateAll) {
+        //不需要更新缓存时将decorationView及footerView的att移除（后面会重新添加）
         if (isHaveDecoration) {
             [self.cacheAtts removeLastObject];
         }
@@ -211,12 +223,14 @@
         if (isVertical) {
             CGFloat headerH = isHaveHeader?self.headerSize.height:0;
             CGFloat footerH = isHaveFooter?self.footerSize.height:0;
-            CGFloat cellBgH = sectionSize.size.height - headerH - footerH;
+            CGFloat bgOffset = isHaveFooter?0:self.secInset.bottom;
+            CGFloat cellBgH = sectionSize.size.height - headerH - footerH + bgOffset;
             cellBgSize = CGSizeMake(cvSize.width, cellBgH);
         }else{
             CGFloat headerW = isHaveHeader?self.headerSize.width:0;
             CGFloat footerW = isHaveFooter?self.footerSize.width:0;
-            CGFloat cellBgW = sectionSize.size.height - headerW - footerW;
+            CGFloat bgOffset = isHaveFooter?0:self.secInset.right;
+            CGFloat cellBgW = sectionSize.size.width - headerW - footerW + bgOffset;
             cellBgSize = CGSizeMake(cellBgW, cvSize.height);
         }
         decorationAtt.frame = CGRectMake(decorationXY.x+self.decorationMargin.left, decorationXY.y+self.decorationMargin.top, cellBgSize.width-self.decorationMargin.left-self.decorationMargin.right, cellBgSize.height-self.decorationMargin.top-self.decorationMargin.bottom);
@@ -230,7 +244,7 @@
         [self.cacheAtts addObjectsFromArray:atts];
 
     }
-    
+    [secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
     return self.cacheAtts;
 }
 

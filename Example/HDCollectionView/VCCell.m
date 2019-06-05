@@ -25,7 +25,7 @@
     [self.contentView addGestureRecognizer:tap];
     return self;
 }
-- (void)updateCellUI:(HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateCellUI:(__kindof HDCellModel *)model
 {
     self.titleL.text = model.orgData;
     self.titleL.frame = self.bounds;
@@ -33,7 +33,7 @@
 - (void)clickSelf
 {
     if (self.callback) {
-        self.callback(self.hdModel, HDCellCallBack);
+        self.callback(self.hdModel);
     }
 }
 //-(void)layoutSubviews

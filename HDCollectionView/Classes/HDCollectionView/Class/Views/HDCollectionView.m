@@ -19,6 +19,7 @@ static NSString *const hd_secmodel_key = @"hd_secmodel_key";
 static NSString *const hd_is_all_key   = @"hd_is_all_key";
 static NSString *const hd_data_finished_type_key = @"hd_data_finished_type_key";
 static NSString *const hd_default_hf_class = @"HDSectionView";
+static NSString *const hd_default_cell_class = @"HDCollectionCell";
 static NSString *const hd_inner_count_cellH_back_key = @"hd_inner_count_cellH_back_key";
 static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 
@@ -28,7 +29,8 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     if (multiGesCallBack) {
         return multiGesCallBack(gestureRecognizer,otherGestureRecognizer);
     }else{
-        return [gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]];
+        //默认不响应其他手势
+        return NO;
     }
 }
 @end
@@ -90,7 +92,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     }else{
         [obj setValue:@(defultMaker.isNeedAdaptScreenRotaion) forKey:@"isNeedAdaptScreenRotaion"];
     }
-    
+    obj.backgroundColor = [UIColor whiteColor];
     [obj collectionV];
     
     return obj;
@@ -150,15 +152,20 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 
 @interface HDCollectionView()
 {
-    void(^allEventCallbcak)(id backModel, HDCallBackType);
+    void (^allEventCallbcak)(id backModel, HDCallBackType);
     void (^setedCellCallback)(__kindof UICollectionViewCell *, NSIndexPath *);
     void (^setedSecViewCallback)(__kindof UICollectionViewCell *, NSIndexPath *,NSString*);
     void (^dataDealFinishCallback)(HDDataChangeType);
+    void (^scDidScrollCallback)(UIScrollView *sc);
+    void (^scWillBeginDraggingCallback)(UIScrollView *sc);
+    void (^scDidEndDraggingCallback)(UIScrollView *sc,BOOL slowDown);
+    void (^scDidEndDeceleratingCallback)(UIScrollView *sc);
     UIInterfaceOrientation lastOrientation;
 }
 @property (nonatomic, strong) NSMutableArray *allDataCopy;
 @property (nonatomic, strong, readonly) NSMutableArray<HDSectionModel*>* allDataArr;
 @property (nonatomic, copy) BOOL (^multiGesCallBack)(UIGestureRecognizer*ges1,UIGestureRecognizer*ges2);
+@property (nonatomic, copy) void(^contentSizeChangeCallBack)(CGSize newSize);
 @property (nonatomic, strong) NSMutableDictionary *allSecDict;
 @end
 
@@ -184,7 +191,19 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         });
     }
 }
-    
+
+void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
+{
+    if ([NSThread currentThread].isMainThread) {
+        if (thingsToDo) {
+            thingsToDo();
+        }else{
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                thingsToDo();
+            });
+        }
+    }
+}
     
 + (void)load
 {
@@ -222,6 +241,14 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
     }
     return _allDataArr;
 }
+- (void)setAllDataArr:(NSMutableArray<HDSectionModel *> *)allDataArr
+{
+    _allDataArr = allDataArr;
+}
+- (NSArray *)innerAllData
+{
+    return self.allDataArr;
+}
 - (UICollectionView *)collectionV
 {
     if (!_collectionV) {
@@ -245,11 +272,12 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         _collectionV.dataSource = self;
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-        _collectionV.backgroundColor = [UIColor whiteColor];
         _collectionV.contentInset = UIEdgeInsetsZero;
-        [self registerWithCellClass:nil headerClass:hd_default_hf_class footerClass:hd_default_hf_class decorationClass:nil];
+        [self registerWithCellClass:hd_default_cell_class cellReuseID:hd_default_cell_class headerClass:hd_default_hf_class footerClass:hd_default_hf_class decorationClass:nil];
         [self addSubview:_collectionV];
     }
+    _collectionV.backgroundColor = [UIColor clearColor];
+    
     return _collectionV;
 }
 - (Class)HDInnerCollectionViewClass
@@ -325,122 +353,124 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
 #pragma mark - dataSet
 - (void)hd_setAllDataArr:(NSMutableArray<HDSectionModel*>*)dataArr
 {
-    self.allDataCopy = dataArr.mutableCopy;
-    [self hd_autoCountAllViewsHeight];
+    HDDoSomeThingInMainQueueSyn(^{
+        self.allDataCopy = dataArr.mutableCopy;
+        [self hd_autoCountAllViewsHeight];
+    });
+}
 
-}
-- (void)setAllDataArr:(NSMutableArray<HDSectionModel *> *)allDataArr
-{
-    _allDataArr = allDataArr;
-}
 - (void)hd_appendDataWithSecModel:(HDSectionModel *)secModel
 {
-    if (!secModel) {
-        return;
-    }
-
-    if (secModel.isNeedAutoCountCellHW) {
-        [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeAppendSec finishCallback:^{
+    HDDoSomeThingInMainQueueSyn(^{
+        if (!secModel) {
+            return;
+        }
+        
+        if (secModel.isNeedAutoCountCellHW) {
+            [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeAppendSec finishCallback:^{
+                [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
+                [self addOneSection:secModel];
+            }];
+        }else{
             [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
             [self addOneSection:secModel];
-        }];
-    }else{
-        [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
-        [self addOneSection:secModel];
-        [self hd_dataDealFinishCallback:HDDataChangeAppendSec];
-    }
-
+            [self hd_dataDealFinishCallback:HDDataChangeAppendSec];
+        }
+    });
 }
 
 - (void)hd_appendDataWithCellModelArr:(NSArray<HDCellModel *> *)itemArr sectionKey:(NSString *)sectionKey
 {
-    if (!sectionKey) {
-        return;
-    }
-    HDSectionModel *secModel = self.allSecDict[sectionKey];
-    if (!secModel) {
-        return;
-    }
-    if (secModel.isNeedAutoCountCellHW) {
-        HDSectionModel *copy = [secModel copy];
-        copy.sectionDataArr = itemArr.mutableCopy;
-        [self hd_autoCountCellsHeight:copy isAll:NO type:HDDataChangeAppendCellModel finishCallback:^{
-            [secModel.sectionDataArr addObjectsFromArray:copy.sectionDataArr];
-            [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-            [self reloadSectionAfter:secModel.section];
-        }];
-    }else{
-        
-        void(^appendAction)(void) = ^(){
-            [secModel.sectionDataArr addObjectsFromArray:itemArr];
-            [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-            [self reloadSectionAfter:secModel.section];
-            [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel];
-        };
-        
-        if (_isCalculateCellHOnCommonModes) {
-            appendAction();
-        }else{
-            HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
-                appendAction();
-            });
+    HDDoSomeThingInMainQueueSyn(^{
+        if (!sectionKey) {
+            return;
         }
-    }
-    
+        HDSectionModel *secModel = self.allSecDict[sectionKey];
+        if (!secModel) {
+            return;
+        }
+        if (secModel.isNeedAutoCountCellHW) {
+            HDSectionModel *copy = [secModel copy];
+            copy.sectionDataArr = itemArr.mutableCopy;
+            [self hd_autoCountCellsHeight:copy isAll:NO type:HDDataChangeAppendCellModel finishCallback:^{
+                [secModel.sectionDataArr addObjectsFromArray:copy.sectionDataArr];
+                [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+                [self reloadSectionAfter:secModel.section];
+            }];
+        }else{
+            
+            void(^appendAction)(void) = ^(){
+                [secModel.sectionDataArr addObjectsFromArray:itemArr];
+                [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+                [self reloadSectionAfter:secModel.section];
+                [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel];
+            };
+            
+            if (self->_isCalculateCellHOnCommonModes) {
+                appendAction();
+            }else{
+                HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+                    appendAction();
+                });
+            }
+        }
+    });
 }
 - (void)hd_changeSectionModelWithKey:(NSString *)sectionKey changingIn:(void (^)(HDSectionModel *))changeBlock
 {
-    if (!sectionKey) {
-        return;
-    }
-    HDSectionModel *secModel = self.allSecDict[sectionKey];
-    if (!secModel) {
-        return;
-    }
-    if (changeBlock) {
-        changeBlock(secModel);
-    }
-    if (secModel.isNeedAutoCountCellHW) {
-        [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeChangeSec finishCallback:^{
+    HDDoSomeThingInMainQueueSyn(^{
+        if (!sectionKey) {
+            return;
+        }
+        HDSectionModel *secModel = self.allSecDict[sectionKey];
+        if (!secModel) {
+            return;
+        }
+        if (changeBlock) {
+            changeBlock(secModel);
+        }
+        if (secModel.isNeedAutoCountCellHW) {
+            [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeChangeSec finishCallback:^{
+                secModel.layout.needUpdate = YES;
+                [self updateHDColltionViewDataType:HDDataChangeChangeSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+                [self reloadSectionAfter:secModel.section];
+            }];
+        }else{
             secModel.layout.needUpdate = YES;
             [self updateHDColltionViewDataType:HDDataChangeChangeSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
             [self reloadSectionAfter:secModel.section];
-        }];
-    }else{
-        secModel.layout.needUpdate = YES;
-        [self updateHDColltionViewDataType:HDDataChangeChangeSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-        [self reloadSectionAfter:secModel.section];
-        [self hd_dataDealFinishCallback:HDDataChangeChangeSec];
-    }
-    
+            [self hd_dataDealFinishCallback:HDDataChangeChangeSec];
+        }
+    });
 }
 - (void)hd_deleteSectionWithKey:(NSString *)sectionKey
 {
-    if (!sectionKey) {
-        return;
-    }
-    HDSectionModel *secModel = self.allSecDict[sectionKey];
-    if (!secModel) {
-        return;
-    }
-    HDSectionModel *nextSecM = nil;
-    NSInteger secIndex = 0;
-
-    if (self.allDataArr.count>secModel.section+1) {
-        nextSecM = self.allDataArr[secModel.section+1];
-    }
-    secIndex = [self.allDataArr indexOfObject:secModel];
-    if (secIndex != NSNotFound) {
-        [self.allDataArr removeObjectAtIndex:secIndex];
-    }
-    
-    [self.allSecDict removeObjectForKey:sectionKey];
-    
-    [self updateSecitonModelDict:NO];
-    [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-    [self reloadSectionAfter:secIndex];
-    [self hd_dataDealFinishCallback:HDDataChangeDeleteSec];
-    
+    HDDoSomeThingInMainQueueSyn(^{
+        if (!sectionKey) {
+            return;
+        }
+        HDSectionModel *secModel = self.allSecDict[sectionKey];
+        if (!secModel) {
+            return;
+        }
+        HDSectionModel *nextSecM = nil;
+        NSInteger secIndex = 0;
+        
+        if (self.allDataArr.count>secModel.section+1) {
+            nextSecM = self.allDataArr[secModel.section+1];
+        }
+        secIndex = [self.allDataArr indexOfObject:secModel];
+        if (secIndex != NSNotFound) {
+            [self.allDataArr removeObjectAtIndex:secIndex];
+        }
+        
+        [self.allSecDict removeObjectForKey:sectionKey];
+        
+        [self updateSecitonModelDict:NO];
+        [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+        [self reloadSectionAfter:secIndex];
+        [self hd_dataDealFinishCallback:HDDataChangeDeleteSec];
+    });
 }
 - (BOOL)hd_sectionModelExist:(NSString *)sectionKey
 {
@@ -561,7 +591,29 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
     if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
         scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
     }
+    if (scDidScrollCallback) {
+        scDidScrollCallback(scrollView);
+    }
 }
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    if (scWillBeginDraggingCallback) {
+        scWillBeginDraggingCallback(scrollView);
+    }
+}
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (scDidEndDraggingCallback) {
+        scDidEndDraggingCallback(scrollView,decelerate);
+    }
+}
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (scDidEndDeceleratingCallback) {
+        scDidEndDeceleratingCallback(scrollView);
+    }
+}
+
 #pragma mark -
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -577,17 +629,20 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     HDSectionModel *secM = _allDataArr[indexPath.section];
-    [self registerWithCellClass:nil headerClass:secM.sectionHeaderClassStr footerClass:secM.sectionFooterClassStr decorationClass:secM.decorationClassStr];
+    [self registerWithCellClass:nil cellReuseID:nil headerClass:secM.sectionHeaderClassStr footerClass:secM.sectionFooterClassStr decorationClass:secM.decorationClassStr];
     __kindof UICollectionReusableView<HDUpdateUIProtocol> * secView = nil;
     if ([NSClassFromString(secM.sectionHeaderClassStr) isSubclassOfClass:[UICollectionReusableView class]]  && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
         //自定义段头
         secView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self getSupplementReuseidWithClass:secM.sectionHeaderClassStr kind:UICollectionElementKindSectionHeader] forIndexPath:indexPath];
+        [secView setValue:UICollectionElementKindSectionHeader forKey:@"currentElementKind"];
     }else if ([NSClassFromString(secM.sectionFooterClassStr) isSubclassOfClass:[UICollectionReusableView class]] && [kind isEqualToString:UICollectionElementKindSectionFooter]){
         //自定义段尾
         secView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self getSupplementReuseidWithClass:secM.sectionFooterClassStr kind:UICollectionElementKindSectionFooter] forIndexPath:indexPath];
+        [secView setValue:UICollectionElementKindSectionFooter forKey:@"currentElementKind"];
     }else if ([NSClassFromString(secM.decorationClassStr) isSubclassOfClass:[UICollectionReusableView class]] && [kind isEqualToString:HDDecorationViewKind]){
         //自定义装饰(一段一个)
         secView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self getSupplementReuseidWithClass:secM.decorationClassStr kind:HDDecorationViewKind] forIndexPath:indexPath];
+        [secView setValue:HDDecorationViewKind forKey:@"currentElementKind"];
     }else{
         //默认段view
         if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
@@ -597,16 +652,14 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         }
     }
     __hd_WeakSelf
-    
-    if ([secView respondsToSelector:@selector(updateSecVUI:callback:)]) {
+    if ([secView respondsToSelector:@selector(superUpdateSecVUI:callback:)]) {
         id secCallback = ^(id secModel,HDCallBackType type) {
             [weakSelf dealAllCallback:secModel type:type];
         };
-        if ([secView isKindOfClass:NSClassFromString(@"HDSectionView")]) {
-            [secView setValue:secCallback forKey:@"callback"];
-            [secView setValue:secM forKey:@"hdSecModel"];
-        }
-        [secView updateSecVUI:secM callback:secCallback];
+        [secView superUpdateSecVUI:secM callback:secCallback];
+    }
+    if ([secView respondsToSelector:@selector(updateSecVUI:)]) {
+        [secView updateSecVUI:secM];
     }
     if (setedSecViewCallback) {
         setedSecViewCallback(secView,indexPath,kind);
@@ -622,10 +675,10 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"%@",indexPath);
     __hd_WeakSelf
     HDSectionModel *secM = _allDataArr[indexPath.section];
     [secM setValue:@(indexPath.section) forKey:@"section"];
+    
     HDCellModel* cellModel = secM.sectionDataArr[indexPath.item];
     [cellModel setValue:indexPath forKey:@"indexP"];
     [cellModel setValue:secM forKey:@"secModel"];
@@ -633,41 +686,56 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
     if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
         cellModel.cellClassStr = secM.sectionCellClassStr;
     }
-    NSAssert([NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]], @"cellModel.cellClassStr 或 secM.sectionCellClassStr必须是 UICollectionViewCell或其子类");
     
-    [self registerWithCellClass:cellModel.cellClassStr headerClass:nil footerClass:nil decorationClass:nil];
+    [self registerWithCellClass:cellModel.cellClassStr cellReuseID:cellModel.reuseIdentifier headerClass:nil footerClass:nil decorationClass:nil];
     
-    HDCollectionCell<HDUpdateUIProtocol> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellModel.cellClassStr forIndexPath:indexPath];
+    HDCollectionCell<HDUpdateUIProtocol> *cell;
+    
+    if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:hd_default_cell_class forIndexPath:indexPath];
+#ifdef DEBUG
+        NSLog(@"使用了默认cell");
+#endif
+        
+    }else{
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellModel.reuseIdentifier forIndexPath:indexPath];
+    }
+    
     id callback = ^(id cellModel, HDCallBackType type) {
         [weakSelf dealAllCallback:cellModel type:type];
     };
-    if ([cell respondsToSelector:@selector(superUpdateCellUI:callback:)]) {
-        [cell superUpdateCellUI:cellModel callback:callback];
-    }
-    if ([cell respondsToSelector:@selector(updateCellUI:callback:)]) {
-        [cell updateCellUI:cellModel callback:callback];
-    }
-    if (secM.isNeedCacheSubviewsFrame) {
+
+    //这里先设置frame的原因是后面的函数可能需要用到子view的frame
+    //使用isNeedCacheSubviewsFrame时isNeedAutoCountCellHW必须为YES
+    if (secM.isNeedAutoCountCellHW&&secM.isNeedCacheSubviewsFrame) {
         if ([cell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
+            [cell setCacheKeysIfNeed];
             [HDCellFrameCacheHelper resetViewSubviewFrame:cell subViewFrame:cellModel.subviewsFrame];
         }
     }
-    
+    if ([cell respondsToSelector:@selector(superUpdateCellUI:callback:)]) {
+        [cell superUpdateCellUI:cellModel callback:callback];
+    }
+    if ([cell respondsToSelector:@selector(updateCellUI:)]) {
+        [cell updateCellUI:cellModel];
+    }
     if (setedCellCallback) {
         setedCellCallback(cell,indexPath);
     }
-//    NSLog(@"%@----%@",indexPath,cell);
     return cell;
 }
 
 #pragma mark -
 #pragma mark register
 
-- (void)registerWithCellClass:(NSString*)cellClassStr headerClass:(NSString*)headerClassStr footerClass:(NSString*)footerClassStr decorationClass:(NSString*)decorationClassStr
+- (void)registerWithCellClass:(NSString*)cellClassStr cellReuseID:(NSString*)cellID headerClass:(NSString*)headerClassStr footerClass:(NSString*)footerClassStr decorationClass:(NSString*)decorationClassStr
 {
     if ((!cellClassStr && !headerClassStr && !footerClassStr) ||
         !self.collectionV) {
         return ;
+    }
+    if (!cellID) {
+        cellID = cellClassStr;
     }
     
     static dispatch_semaphore_t gcd_lock;
@@ -683,12 +751,12 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         weakRegisterRecordMap = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsWeakMemory valueOptions:NSPointerFunctionsCopyIn];
     });
     
-    void(^registCell)(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) = ^(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) {
-        if (NSClassFromString(idFd) && collectionView) {
+    void(^registCell)(NSString*,NSString*,UICollectionView*,NSMapTable *) = ^(NSString*cellCls,NSString*cellReID,UICollectionView*collectionView,NSMapTable *CVMap) {
+        if (NSClassFromString(cellCls) && collectionView) {
             dispatch_semaphore_wait(gcd_lock, DISPATCH_TIME_FOREVER);
             
-            [collectionView registerClass:NSClassFromString(idFd) forCellWithReuseIdentifier:idFd];
-            [CVMap setObject:@(1) forKey:idFd];
+            [collectionView registerClass:NSClassFromString(cellCls) forCellWithReuseIdentifier:cellReID];
+            [CVMap setObject:@(1) forKey:cellReID];
             
             dispatch_semaphore_signal(gcd_lock);
         }
@@ -732,8 +800,8 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
     NSMapTable *CVMap = [weakRegisterRecordMap objectForKey:self.collectionV];
     if (CVMap) {
         //查找cell是否注册过
-        if (![CVMap objectForKey:cellClassStr] && cellClassStr && ![cellClassStr isEqualToString:@""]) {
-            registCell(cellClassStr,self.collectionV,CVMap);
+        if (![CVMap objectForKey:cellID] && cellID && ![cellID isEqualToString:@""]) {
+            registCell(cellClassStr,cellID,self.collectionV,CVMap);
         }
         //查找header是否注册过
         if (![CVMap objectForKey:[self getSupplementReuseidWithClass:headerClassStr kind:UICollectionElementKindSectionHeader]] && headerClassStr && ![headerClassStr isEqualToString:@""]) {
@@ -753,7 +821,7 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         CVMap = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsWeakMemory valueOptions:NSPointerFunctionsCopyIn];
         [weakRegisterRecordMap setObject:CVMap forKey:self.collectionV];
         dispatch_semaphore_signal(gcd_lock);
-        [self registerWithCellClass:cellClassStr headerClass:headerClassStr footerClass:footerClassStr decorationClass:decorationClassStr];
+        [self registerWithCellClass:cellClassStr cellReuseID:cellID headerClass:headerClassStr footerClass:footerClassStr decorationClass:decorationClassStr];
     }
     
 }
@@ -823,7 +891,7 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
             [self hd_dataDealFinishCallback:type];
         }
     };
-    if (!secModel.isNeedAutoCountCellHW && !secModel.isNeedCacheSubviewsFrame) {
+    if (!secModel.isNeedAutoCountCellHW) {
         executeFinish();
         return;
     }
@@ -845,45 +913,7 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         if (![NSClassFromString(obj.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
             obj.cellClassStr = secModel.sectionCellClassStr;
         }
-        
-        //这个cell只是用来帮助计算的，并不会显示到页面
-        HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[NSClassFromString(obj.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, obj.cellSize.width, obj.cellSize.height)];
-        
-        if ([tempCell respondsToSelector:@selector(superUpdateCellUI:callback:)]) {
-            [tempCell superUpdateCellUI:obj callback:nil];
-        }
-        if ([tempCell respondsToSelector:@selector(updateCellUI:callback:)]) {
-            [tempCell updateCellUI:obj callback:nil];
-        }
-        
-        if (secModel.isNeedCacheSubviewsFrame) {
-            if ([tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
-                [tempCell cacheSubviewsFrameBySetLayoutWithCellModel:obj];
-            }
-        }
-        
-        if (secModel.isNeedAutoCountCellHW) {
-            BOOL isForceUseSizeThatFits = obj.isForceUseSizeThatFitH?YES:secModel.isForceUseHdSizeThatFits;
-            if (isForceUseSizeThatFits) {
-                CGSize fitSize = obj.cellSize;
-                if ([tempCell respondsToSelector:@selector(hdSizeThatFits:)]) {
-                    fitSize = [tempCell hdSizeThatFits:CGSizeMake(obj.cellSize.width, obj.cellSize.height)];
-                }
-                obj.cellSize = fitSize;
-            }else{
-                if ([tempCell respondsToSelector:@selector(superAutoLayoutDefaultSet:)]) {
-                    [tempCell superAutoLayoutDefaultSet:obj];
-                }
-                CGSize fitSize = [tempCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-                obj.cellSize = fitSize;
-            }
-            tempCell.contentView.frame = CGRectMake(0, 0, obj.cellSize.width, obj.cellSize.height);
-        }
-        
-        if (secModel.isNeedCacheSubviewsFrame) {
-            [tempCell.contentView layoutIfNeeded];
-            [obj setValue:[HDCellFrameCacheHelper copySubViewsFrame:tempCell] forKey:@"subviewsFrame"];
-        }
+        [obj calculateCellProperSize:secModel.isNeedCacheSubviewsFrame];
     }];
 
     executeFinish();
@@ -940,6 +970,38 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         self.multiGesCallBack = multiGestureCallBack;
     }
 }
+- (void)hd_setContentSizeChangeCallBack:(void (^)(CGSize))contentSizeChangeCallBack
+{
+    if (contentSizeChangeCallBack) {
+        self.contentSizeChangeCallBack = contentSizeChangeCallBack;
+        [self.collectionV addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+    }
+}
+- (void)hd_setScrollViewDidScrollCallback:(void (^)(UIScrollView *))callback
+{
+    if (callback) {
+        scDidScrollCallback = callback;
+    }
+}
+- (void)hd_setScrollViewWillBeginDraggingCallback:(void (^)(UIScrollView *))callback
+{
+    if (callback) {
+        scWillBeginDraggingCallback = callback;
+    }
+}
+- (void)hd_setScrollViewDidEndDraggingCallback:(void (^)(UIScrollView *, BOOL))callback
+{
+    if (callback) {
+        scDidEndDraggingCallback = callback;
+    }
+}
+- (void)hd_setScrollViewDidEndDeceleratingCallback:(void (^)(UIScrollView *))callback
+{
+    if (callback) {
+        scDidEndDeceleratingCallback = callback;
+    }
+}
+
 - (void)hd_setCellUIUpdateCallback:(void (^)(__kindof UICollectionViewCell *, NSIndexPath *))setedCallback
 {
     if (setedCallback) {
@@ -952,6 +1014,21 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
         setedSecViewCallback = setedCallback;
     }
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        if (self.contentSizeChangeCallBack) {
+            CGSize newSize = [change[NSKeyValueChangeNewKey] CGSizeValue];
+            if (newSize.width!=0 && newSize.height!=0) {
+                self.contentSizeChangeCallBack(newSize);
+            }
+        }
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 #pragma mark -
 
 - (void)layoutSubviews
@@ -968,7 +1045,9 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
 }
 - (void)dealloc
 {
-
+    if (self.contentSizeChangeCallBack) {
+        [self.collectionV removeObserver:self forKeyPath:@"contentSize"];
+    }
 }
 @end
 

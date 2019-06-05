@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self demo];
-
+    
     // Do any additional setup after loading the view.
 }
 - (void)demo
@@ -41,11 +41,11 @@
         make.top.mas_equalTo(self.view.hd_mas_top);
     }];
     
-    
+    //大量数据测试 2W
     NSMutableArray *randomArr = @[].mutableCopy;
-    for (int i=0; i<30; i++) {
+    for (int i=0; i<200; i++) {
         HDSectionModel *sec = [self makeSecModel];
-        sec.headerTopStopType = arc4random()%3;
+        sec.headerTopStopType = arc4random()%2;
         [randomArr addObject:sec];
     }    
     
@@ -72,7 +72,7 @@
     
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 10;
+    NSInteger cellCount = 100;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
@@ -99,7 +99,6 @@
     secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
-    secModel.layout = layout;
     
     return secModel;
     

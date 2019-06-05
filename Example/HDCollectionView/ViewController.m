@@ -62,7 +62,7 @@
 }
 - (HDSectionModel*)makeSecModel
 {
-    NSArray *demoName = @[@"简单使用",@"多段随机悬浮/对齐",@"自动算高/上拉加载/横竖屏支持",@"待修改",@"横向滑动/悬浮",@"瀑布流/装饰view",@"瀑布流加载更多",@"综合使用"];
+    NSArray *demoName = @[@"简单使用",@"多段随机悬浮/对齐",@"自动算高/上拉加载/横竖屏支持",@"纵向夹杂横向",@"横向滑动/悬浮",@"瀑布流/装饰view",@"瀑布流加载更多",@"汽车之家",@"QQ联系人",@"多scrollview混合滑动"];
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = demoName.count;
@@ -77,7 +77,7 @@
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     layout.secInset      = UIEdgeInsetsMake(30, 10, 30, 10);
-    layout.justify       = YGJustifyFlexStart;
+    layout.justify       = YGJustifySpaceBetween;
     layout.verticalGap   = 10;
     layout.horizontalGap = 20;
     layout.headerSize    = CGSizeZero;
@@ -87,7 +87,6 @@
     HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionCellClassStr   = @"VCCell";
     secModel.isNeedAutoCountCellHW  = YES;
-    secModel.isForceUseHdSizeThatFits = YES;
     secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
@@ -102,6 +101,8 @@
         [vcNameArr addObject:[NSString stringWithFormat:@"DemoVC%@",@(i)]];
     }
     [vcNameArr addObject:@"AutoHomeCarInfoVC"];
+    [vcNameArr addObject:@"QQDemo2VC"];
+    [vcNameArr addObject:@"NewsDetailDemoVC"];
     UIViewController *demoVC = [NSClassFromString(vcNameArr[sec.indexP.item%vcNameArr.count]) new];
     if (demoVC) {
         [self.navigationController pushViewController:demoVC animated:YES];

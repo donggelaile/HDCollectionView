@@ -170,6 +170,7 @@ static NSInteger AHCNormalHeaderH = 30;
         model.orgData      = @[[self AHCNormalCellInnerSec:obj]];
         model.cellSize     = CGSizeMake(hd_deviceWidth, AHCNormalCellH);
         model.cellClassStr = @"AHCNormalCell";
+//        model.reuseIdentifier = [NSString stringWithFormat:@"AHCNormalCell_%@_%@",@(start),@(idx)];
         [cellModelArr addObject:model];
     }
 

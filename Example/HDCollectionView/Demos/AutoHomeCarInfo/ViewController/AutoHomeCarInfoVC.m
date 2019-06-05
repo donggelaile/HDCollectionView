@@ -40,7 +40,6 @@
 
 - (void)setUI
 {
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
 
     collecitonViewH = self.view.frame.size.height-64;
@@ -49,27 +48,23 @@
         .hd_frame(CGRectMake(0, 64, self.view.frame.size.width, self->collecitonViewH))
         .hd_isNeedTopStop(YES)
         .hd_scrollDirection(UICollectionViewScrollDirectionVertical)
-        .hd_isCalculateCellHOnCommonModes(NO);
+        .hd_isCalculateCellHOnCommonModes(YES);
     }];
     listV.collectionV.showsVerticalScrollIndicator = NO;
-    
-    [listV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
-        return NO;
-    }];
     [self.view addSubview:listV];
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
-        if (type == HDCellCallBack) {
-            [weakS clickCell:backModel];
-        }else if (type == HDSectionHeaderCallBack){
+        if ([backModel isKindOfClass:[HDSectionModel class]]) {
             [weakS clickHeader:backModel];
+        }else if ([backModel isKindOfClass:[HDCellModel class]]){
+            [weakS clickCell:backModel];
         }
     }];
 }
 - (void)loadData
 {
-    __hd_WeakSelf
+    __hd_WeakSelf//此处可以不用weakSelf，因为内部并没有对block进行强引用。不过用也没问题。。。
     [self.viewModel loadData:^(NSMutableArray *secArr, NSError *error) {
         if (!error) {
             [weakSelf updateUI:secArr];
@@ -104,10 +99,7 @@
         [listV hd_setAllDataArr:newSecArr];
     }
 }
-- (void)clickFooter:(HDSectionModel*)secM
-{
-    NSLog(@"点击了段尾_%zd",secM.section);
-}
+
 /*
 #pragma mark - Navigation
 

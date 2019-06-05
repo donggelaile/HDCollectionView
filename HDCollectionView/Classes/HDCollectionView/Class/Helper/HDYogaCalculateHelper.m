@@ -102,7 +102,7 @@ void YGSetSize(YGNodeRef node, CGSize size){
         YGSetSize(footerNode.yogaNode, lastItem.size);
         [sec.itemLayoutConfigArr removeObject:lastItem];
     }
-    //cells
+    //cell 的父node
     HDYogaNode* helpNode = nil;
     if (sec.itemLayoutConfigArr.count > 0) {
         helpNode = [HDYogaNode defaultNode];
@@ -112,6 +112,11 @@ void YGSetSize(YGNodeRef node, CGSize size){
         YGNodeStyleSetFlexWrap(helpNode.yogaNode, YGWrapWrap);
         YGNodeStyleSetFlexGrow(helpNode.yogaNode, 1);
         YGSetPading(helpNode.yogaNode, secPading);
+        
+        /*
+         因为cell间的间距是由cellNode设置margain的left及top实现的：(YGSetMargain(subNode.yogaNode, UIEdgeInsetsMake(mTop, mLeft, margin.bottom, margin.right)); 149行)
+         因此需要对cell的父node设置整体偏移，否则段内左间距及顶部间距将变为secInset与verticalGap/horizontalGap之和
+         */
         YGSetMargain(helpNode.yogaNode, UIEdgeInsetsMake(-sec.verticalGap, -sec.horizontalGap, 0, 0));
     }
     
@@ -132,14 +137,16 @@ void YGSetSize(YGNodeRef node, CGSize size){
         HDYogaNode* subNode = [HDYogaNode defaultNode];
         [cellNodeArr addObject:subNode];
         
-        UIEdgeInsets margin = obj.margin;
+        UIEdgeInsets margain = obj.margain;
         CGSize size = obj.size;
         YGAlign alignSelf = obj.alignSelf;
 
-        YGSetMargain(subNode.yogaNode, margin);
         YGNodeStyleSetAlignSelf(subNode.yogaNode, alignSelf);
         YGSetSize(subNode.yogaNode, size);
-        YGSetMargain(subNode.yogaNode, UIEdgeInsetsMake(sec.verticalGap, sec.horizontalGap, 0, 0));
+        
+        CGFloat mTop = margain.top==0 ?sec.verticalGap: margain.top;
+        CGFloat mLeft = margain.left==0 ?sec.horizontalGap: margain.left;
+        YGSetMargain(subNode.yogaNode, UIEdgeInsetsMake(mTop, mLeft, margain.bottom, margain.right));
         //添加子节点
         YGNodeInsertChild(helpNode.yogaNode, subNode.yogaNode, (uint32_t)idx);
     }];
@@ -169,7 +176,9 @@ YGNodeCalculateLayout(rootNode.yogaNode,calculateSize.width,calculateSize.height
         [result addObject:@{HDYogaItemTypeKey:firstItem.itemType,HDYogaItemPointKey:[NSValue valueWithCGPoint:headerStart],HDYogaOrgSizeKey:[NSValue valueWithCGSize:firstItem.size]}];
     }
     
+    CGRect allCellFrame = CGRectNull;
     if (helpNode) {
+        allCellFrame = CGRectZero;
         //添加cell point
         uint32_t childCount =  YGNodeGetChildCount(helpNode.yogaNode);
         CGPoint helpStart = {
@@ -191,7 +200,7 @@ YGNodeCalculateLayout(rootNode.yogaNode,calculateSize.width,calculateSize.height
                 type = item.itemType;
             }
             [result addObject:@{HDYogaItemTypeKey:type,HDYogaItemPointKey:[NSValue valueWithCGPoint:topLeft],HDYogaOrgSizeKey:[NSValue valueWithCGSize:item.size]}];
-            
+            allCellFrame = CGRectUnion(allCellFrame, (CGRect){topLeft,item.size});
         }
     }
     
@@ -201,7 +210,17 @@ YGNodeCalculateLayout(rootNode.yogaNode,calculateSize.width,calculateSize.height
             YGNodeLayoutGetLeft(footerNode.yogaNode),
             YGNodeLayoutGetTop(footerNode.yogaNode),
         };
-        
+        //当align为YGAlignSpaceBetween或YGAlignSpaceAround时，helpNode子节点的布局会超出父节点,导致footer在cell上
+        //并使得后面的段的起点不再正确，这里做了修复
+        if (sec.align == YGAlignSpaceBetween || sec.align == YGAlignSpaceAround) {
+            if (!CGRectIsNull(allCellFrame)) {
+                if (sec.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    footerStart.y = MAX(CGRectGetMaxY(allCellFrame), footerStart.y);
+                }else{
+                    footerStart.x = MAX(CGRectGetMaxX(allCellFrame), footerStart.x);
+                }
+            }
+        }
         [result addObject:@{HDYogaItemTypeKey:lastItem.itemType,HDYogaItemPointKey:[NSValue valueWithCGPoint:footerStart],HDYogaOrgSizeKey:[NSValue valueWithCGSize:lastItem.size]}];
     }
     

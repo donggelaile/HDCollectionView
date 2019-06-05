@@ -40,9 +40,10 @@
 - (void)showOrHideSameLine
 {
     self.hdSecModel.context = NSStringFromSelector(_cmd);
-    self.callback(self.hdSecModel, HDSectionHeaderCallBack);
+    self.callback(self.hdSecModel);
+    self.hdSecModel.context = nil;
 }
-- (void)updateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateSecVUI:(__kindof HDSectionModel *)model
 {
     if (![model.headerObj boolValue]) {
         [self.showOrHideSame setTitle:@"显示相同项" forState:UIControlStateNormal];
@@ -83,7 +84,7 @@
     }
     return self;
 }
-- (void)updateCellUI:(HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateCellUI:(HDCellModel *)model
 {
     AHCSpecitems *item = model.orgData;
     self.titleL.text = [NSString stringWithFormat:@"%@ %@",item.seriesname,item.specname];
@@ -98,7 +99,8 @@
 - (void)delteBtnClick
 {
     self.hdModel.context = NSStringFromSelector(_cmd);
-    self.callback(self.hdModel, HDCellCallBack);
+    self.callback(self.hdModel);
+    self.hdModel.context = nil;
 }
 @end
 
@@ -115,7 +117,7 @@
     }
     return self;
 }
-- (void)updateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateSecVUI:(__kindof HDSectionModel *)model
 {
     [self.lineBg removeFromSuperview];
     CGFloat offsetX = 5;
@@ -166,12 +168,11 @@
     }
     return self;
 }
-- (void)headerCallBack:(HDCellModel*)cellModel type:(HDCallBackType)type
+- (void)headerCallBack:(HDSectionModel*)cellModel type:(HDCallBackType)type
 {
-    self.callback(cellModel, type);
-    
+    self.callback(cellModel);
 }
-- (void)updateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)updateSecVUI:(__kindof HDSectionModel *)model
 {
     [self.collectionV hd_setAllDataArr:model.headerObj];
     CGPoint point =  [[[HDSCVOffsetBinder shareInstance] getCurrentOffsetByGroupID:AHC_Hor_Colletionview] CGPointValue];

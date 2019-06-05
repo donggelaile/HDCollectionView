@@ -8,17 +8,24 @@
 
 #import "DemoVC4.h"
 #import "HDCollectionView.h"
-#import "newsRootModel.h"
-#import "YYModel.h"
 #import "MJRefresh.h"
+#import "DemoVC4ViewModel.h"
+#import "UIView+HDSafeArea.h"
 @interface DemoVC4 ()
 {
-    HDCollectionView*hdListV;
+    HDCollectionView*listV;
 }
+@property (nonatomic, strong) DemoVC4ViewModel *viewModel;
 @end
 
 @implementation DemoVC4
-
+- (DemoVC4ViewModel *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [DemoVC4ViewModel new];
+    }
+    return _viewModel;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self demo];
@@ -26,78 +33,43 @@
 }
 - (void)demo
 {
+    //    self.navigationController.navigationBarHidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    HDCollectionView *listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-        maker.hd_frame(CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height));
-        maker.hd_isCalculateCellHOnCommonModes(NO);
+    
+    listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
+        maker
+        .hd_isNeedTopStop(YES)
+        .hd_scrollDirection(UICollectionViewScrollDirectionVertical);
     }];
-    listV.collectionV.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefreshBegin)];
     [self.view addSubview:listV];
-    [listV.collectionV.mj_footer beginRefreshing];
-    hdListV = listV;
     
-    __weak typeof(self)weakS = self;
-    [hdListV hd_dataChangeFinishedCallBack:^(HDDataChangeType changeType) {
-        [weakS reloadData];
+    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.hd_mas_left);
+        make.right.mas_equalTo(self.view.hd_mas_right);
+        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
+        make.top.mas_equalTo(self.view.hd_mas_top);
     }];
     
     
-//    [listV hd_setAllEventCallBack:^(HDSectionModel *secModel, HDCellModel *cellModel, HDCallBackType type) {
-//        if (type == HDCellCallBack) {
-//            [weakS clickCell:cellModel];
-//        }else if (type == HDSectionHeaderCallBack){
-//            [weakS clickHeader:secModel];
-//        }
-//    }];
-
+    [self.viewModel loadData:^(BOOL success, id  _Nonnull res) {
+        if (success) {
+            [listV hd_setAllDataArr:res];
+        }else{
+            //error
+        }
+    }];
+    
+    
+//    __weak typeof(self) weakS = self;
+    [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
+        
+    }];
     
 }
-- (HDSectionModel*)makeSecModel
-{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"news" ofType:@"geojson"];
 
-    newsRootModel *rootM = [newsRootModel yy_modelWithJSON:[NSData dataWithContentsOfFile:path]];
 
-    //该段cell数据源
-    NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = rootM.tid.count;
-    for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
-        model.orgData      = rootM.tid[i];
-        model.cellSize     = CGSizeMake(self.view.frame.size.width, 0);
-        model.cellClassStr = @"NormalNewsCell";
-        [cellModelArr addObject:model];
-    }
-    
-    //该段layout
-    HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(0, 0, 0, 0);
-    layout.justify       = YGJustifyFlexStart;
-    layout.verticalGap   = 0;
-    layout.horizontalGap = 0;
-    layout.headerSize    = CGSizeMake(0, 0);
-    layout.footerSize    = CGSizeMake(0, 0);
-    
-    //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
-    secModel.isNeedAutoCountCellHW = YES;
-    secModel.isNeedCacheSubviewsFrame = YES;
-    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
-    secModel.sectionDataArr        = cellModelArr;
-    secModel.layout                = layout;
-    return secModel;
-}
-- (void)footerRefreshBegin
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self->hdListV hd_appendDataWithSecModel:[self makeSecModel]];
-    });
-}
-- (void)reloadData
-{
-    [self->hdListV hd_reloadData];
-    [self->hdListV.collectionV.mj_footer endRefreshing];
-}
+
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);

@@ -17,7 +17,6 @@
         self.headerTopStopType = HDHeaderStopOnTopTypeNone;
         self.sectionDataArr = @[].mutableCopy;
         self.isNeedAutoCountCellHW = NO;
-        self.isForceUseHdSizeThatFits = NO;
         self.isNeedCacheSubviewsFrame = NO;
     }
     return self;

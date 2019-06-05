@@ -74,6 +74,7 @@
 #define chd_collection_cell_color [UIColor orangeColor]
 #define chd_collection_header_color [UIColor purpleColor]
 #define chd_collection_footer_color [UIColor cyanColor]
+#define chd_collection_decoration_color [UIColor blackColor]
 #define chd_collection_bg_alpha 1
 #define chd_collection_text_color [UIColor whiteColor]
 
@@ -285,7 +286,6 @@ BOOL __CHD_Instance_Transition_Swizzle(Class originalClass,SEL originalSelector,
          2、这里未对子类再进行交换，原因是如果子类重载了方法并且调用了[super someMethod]将会递归循环
          3、目前可以判断子类是否重载了某个函数，但无法判断子类内部是否调用了[super someMethod]，所以目前先不对子类做处理
          4、未对子类进行处理的情况下，如果子类调用了[super someMethod]或未重载父类方法将会正常显示，否则子类的页面将无法显示结构
-         5、如果子类未重载方法，class_getInstanceMethod获取的将是父类的实现，父类的实现目前可能已被交换为SwizzeIMP,此时再交换的话，也会出现问题。。
          */
         
         //综上有两种建议：1、不使用继承实现delegate和dataSource的方法 2、使用了继承在子类重载的话要调用[super someMethod]
@@ -550,8 +550,30 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
 
 @implementation CHD_CollectionHelper
 
++ (NSAttributedString*)hoverAtt:(NSIndexPath*)indexPath cell:(UICollectionViewCell*)cell cacheToObj:(NSObject*)target
+{
+    static char *HDListViewHoverTextCacheKey;
+    NSMutableDictionary *hoverCache = objc_getAssociatedObject(target, &HDListViewHoverTextCacheKey);
+    if (!hoverCache) {
+        hoverCache = @{}.mutableCopy;
+        objc_setAssociatedObject(target, &HDListViewHoverTextCacheKey, hoverCache, OBJC_ASSOCIATION_RETAIN);
+    }
+    NSString *key = [NSString stringWithFormat:@"%zd-%zd",indexPath.section,indexPath.item];
+    NSAttributedString *result = hoverCache[key];
+    if (!result) {
+        result = [CHD_MustrHelper getMustr:[NSString stringWithFormat:@"%@++%@++%@",NSStringFromClass([cell class]),@(indexPath.section),@(indexPath.item)] textColor:chd_collection_text_color backGroundColor:[chd_collection_cell_color colorWithAlphaComponent:chd_collection_bg_alpha]];
+        hoverCache[key] = result;
+    }
+    return result;
+}
+- (void)someMthond
+{
+    
+}
 - (__kindof UICollectionViewCell *)CHD_collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //方法交换后需要注意一个问题，此处的代码中的self代表的是 UICollectionView的delegate
+    //此处的self不是CHD_CollectionHelper。因此 此处调用[self someMthond]; 编译不报错，运行时会报找不到方法
     __block UICollectionViewCell *cell = nil;
     uint64_t dispatch_benchmark(size_t count, void (^block)(void));
     uint64_t ns =  dispatch_benchmark(1, ^{
@@ -559,19 +581,38 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
     });
     
     double currentTime = ns/(pow(10, 6));
-    printf("本次时间%lf \n",currentTime);
+#ifdef DEBUG
+//    printf("cellForItemAtIndexPath----本次时间%lf \n",currentTime);
+#endif
     
-    static NSInteger count = 1;
-    static double totalTime = 0;
+    static char *HDListViewCountKey;
+    static char *HDListViewScrollTotalTimeKey;
+    
+    NSNumber *numCount = objc_getAssociatedObject(self, &HDListViewCountKey);
+    NSInteger count = 1;
+    if (numCount) {
+        count = numCount.integerValue;
+    }
+    double totalTime = 0;
+    NSNumber *numTotal = objc_getAssociatedObject(self, &HDListViewScrollTotalTimeKey);
+    if (numCount) {
+        totalTime = numTotal.doubleValue;
+    }
     totalTime += currentTime;
     double eveTime = (totalTime)/count;
-    printf("平均时间%lf \n",eveTime);
-    
+#ifdef DEBUG
+//    printf("cellForItemAtIndexPath----平均时间%lf \n",eveTime);
+#endif
     count++;
     
-//    UILabel *hover = [cell hoverView:chd_collection_cell_color];
-//    hover.attributedText = [CHD_MustrHelper getMustr:[NSString stringWithFormat:@"%@++%@++%@",NSStringFromClass([cell class]),@(indexPath.section),@(indexPath.item)] textColor:chd_collection_text_color backGroundColor:[chd_collection_cell_color colorWithAlphaComponent:chd_collection_bg_alpha]];
-//    hover.hidden = ![CHD_HookHelper shareInstance].is_open_chdCollection;
+    objc_setAssociatedObject(self, &HDListViewCountKey, @(count), OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &HDListViewScrollTotalTimeKey, @(totalTime), OBJC_ASSOCIATION_RETAIN);
+    
+
+    UILabel *hover = [cell hoverView:chd_collection_cell_color];
+    hover.attributedText = [CHD_CollectionHelper hoverAtt:indexPath cell:cell cacheToObj:self];
+    hover.hidden = ![CHD_HookHelper shareInstance].is_open_chdCollection;
+    
     return cell;
 }
 
@@ -594,6 +635,9 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
     if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
         sectionViewColor = chd_collection_footer_color;
         Kind = @"Footer";
+    }else if ([elementKind isEqualToString:@"HDDecorationViewKind"]){
+        Kind = @"Decoration(装饰)";
+        sectionViewColor = chd_collection_decoration_color;
     }
     UILabel *hover = [view hoverView:sectionViewColor];
     
@@ -609,6 +653,9 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
     if ([elementKind isEqualToString:UICollectionElementKindSectionFooter]) {
         sectionViewColor = chd_collection_footer_color;
         Kind = @"Footer";
+    }else if ([elementKind isEqualToString:@"HDDecorationViewKind"]){
+        Kind = @"Decoration(装饰)";
+        sectionViewColor = chd_collection_decoration_color;
     }
     UILabel *hover = [view hoverView:sectionViewColor];
     

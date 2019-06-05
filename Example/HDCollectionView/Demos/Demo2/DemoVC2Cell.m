@@ -33,13 +33,13 @@
     _titleL.frame = self.bounds;
     [super layoutSubviews];
 }
--(void)updateCellUI:(HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback
+-(void)updateCellUI:(__kindof HDCellModel *)model
 {
     self.titleL.text = [NSString stringWithFormat:@"%@_%zd_%zd",model.cellClassStr,model.indexP.section,model.indexP.item];
 }
 - (void)clickSelf
 {
-    self.callback(self.hdModel, HDCellCallBack);
+    self.callback(self.hdModel);
 }
 - (void)dealloc
 {
