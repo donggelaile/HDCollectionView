@@ -20,8 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self demo];
-    NSNumber *num1 = @(1).stringValue; NSNumber *num2 = @(1).stringValue;
-    NSLog(@"%p--%p",num1,num2);
     // Do any additional setup after loading the view.
 }
 - (void)demo

@@ -5,7 +5,8 @@
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
 ## 简述
-HDCollectionView是专门用于快速搭建高效灵活的滑动列表组件，基本上可以一站式解决目前常见的各种滑动布局。
+[跳转](#4)
+HDCollectionView是专门用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
  ### 1、为什么创建这个库?
 在日常开发及项目维护中，变更较多的一般都是UI层。因此，如何高效搭建一个滑动列表页，并且让该页面后期易于维护，是提交开发效率重要因素。而对于一些底层基础库，譬如网络层、持久化层等，一旦沉淀下来将很少变更。因此，UI层的构建速率及维护成本对开发整体的开发效率有很大的影响。
 
@@ -45,7 +46,7 @@ Yoga是facebook对flexbox的C++实现。既然是继承UICollectionViewLayout重
 #### 3.8、关于添加decorationView
 说实话，对于系统添加decorationView的方式一开始我是拒绝的，后来也是拒绝的。。。先来说下这个view是干啥用的吧，就是当你拿到设计图时，你发现在每一段的一组cell后面都有个整体的背景，无论是放在header/cell/footer上都不是很合适，此时你就需要这个装饰view了。HDCollectionView对装饰view的添加相当简单，你应该不会拒绝。。。
 #### 3.9、每段可以使用不同的布局
-这个还是很有用的一个特点的。如果让你实现类似淘宝首页的布局，怎么搞？我们姑且认为上面的一大段都是普通的流式布局，但是滑到下面的时候发现是很明显的瀑布流布局。对于这样的布局我们可能这样做：最底部搞一个使用flowLayout的collectionView，前面的部分照常实现。到瀑布流的时候，在cell上加一个collectionView，然后使用瀑布流layout。然后在滑动的时候在合适的时机设置两个collection的contentOffset属性。重点来了，如果使用HDCollectionView来做的话，就可以忘记前面那些骚操作了，（不过对于一些复杂样式依然得这么做。。）。因为HDCollectionView本身就支持每段使用不同的布局。而且HDCollectionView可以扩展自己的布局，具体可以参考内部实现的HDWaterFlowLayout及HDYogaFlowLayout。理论上这两种布局已经包含了大部分样式。
+如果让你实现类似淘宝首页的布局，怎么搞？我们姑且认为上面的一大段都是普通的流式布局，但是滑到下面的时候发现是很明显的瀑布流布局。对于这样的布局我们可能这样做：最底部搞一个使用flowLayout的collectionView，前面的部分照常实现。到瀑布流的时候，在cell上加一个collectionView，然后使用瀑布流layout。然后在滑动的时候在合适的时机设置两个collection的contentOffset属性。重点来了，如果使用HDCollectionView来做的话，就可以忘记前面那些骚操作了，（不过对于一些复杂样式依然得这么做。。）。因为HDCollectionView本身就支持每段使用不同的布局。而且HDCollectionView可以扩展自己的布局，具体可以参考内部实现的HDWaterFlowLayout及HDYogaFlowLayout。理论上这两种布局已经包含了大部分样式。
 #### 3.10、 cell子view frame缓存
 这个特性可以让你使用autolayout来设置布局，但是在实际布局过程中却是用frame布局。相当于用一个tempView设置相应约束，计算后拷贝出其所有子view的frame设置到相同类的view中。最终滑动过程中实现cell的子view只是在设置新的frame，并不需要重新计算。
 #### 3.11、统一回调
@@ -53,9 +54,19 @@ HDCollectionView对所有子view做了统一的回调封装，在cell/header/foo
 #### 3.12、横纵向滑动支持
 HDCollectionView无论是普通布局还是瀑布流布局，均支持横向或纵向滑动。对于悬停，纵向滑动为顶部悬浮。横向滑动为左部悬浮。
 
-### 4、如何使用
-终于来了了使用篇。。。
-强烈建议将以下代码添加到Code Snippet
+### <h1 id="4"> 4、安装</h1>
+```ruby
+pod 'HDCollectionView'
+```
+##### 并打开 use_frameworks!
+1、首先，初始化并加到父view
+```
+HDCollectionView* listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
+    maker.hd_frame(self.view.bounds);
+}];
+[self.view addSubview:listV];
+```
+2、建议将以下代码添加到Code Snippet
 ```
 //该段cell数据源
 NSMutableArray *cellModelArr = @[].mutableCopy;
@@ -88,21 +99,28 @@ secModel.isNeedAutoCountCellHW    = NO;
 secModel.sectionDataArr           = cellModelArr;
 secModel.layout                   = layout;
 ```
-如何添加：拷贝以上代码到Xcode任意文件中->选中以上代码->右击->选择Create Code Snippet ->填写title及completion shortCut ->重启Xcode。然后就在Xcode任意位置打刚刚的completion shortCut。嗯，以后搭一个普通滑动列表的架子只需要在一分钟之内搞定，剩下的事就是去实现cell了。
-## Requirements
+如何添加：拷贝以上代码到Xcode任意文件中->选中以上代码->右击->选择Create Code Snippet ->填写title及completion shortCut ->重启Xcode。然后就在Xcode任意位置打刚刚的completion shortCut。
 
-## Installation
-
-HDCollectionView is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'HDCollectionView'
+3、设置数据
 ```
+[listV hd_setAllDataArr:@[secsecModel].mutableCopy];
+```
+嗯，以后搭一个普通滑动列表的架子只需要在一分钟之内搞定，剩下的事就是去实现cell了。
 
-## Author
+### 4、一些其他布局
+1、前面提到了QQ联系人页面，这个页面相对来说还是比较典型的。支持横向滑动切换栏目，纵向滑动时 栏目view 会在顶部悬浮，子view的header也会悬浮。HDCollectionView借助轮子[JXCategoryView](https://github.com/pujiaxin33/JXCategoryView)实现了QQ联系人页面，并封装到了HDMultipleScrollListView中。由于依赖了JXCategoryView,所以HDMultipleScrollListView并没有放到pod库中，因此如果使用的话需要手动拖入代码并安装JXCategoryView。
 
-donggelaile, 519623144@qq.com
+2、对于淘宝首页这种页面，可以直接用一个HDCollectionView来实现，也可以用HDScrollJoinView来实现。HDScrollJoinView是一个完全独立的类，不依赖于其他任何代码。但是由于只有一个类所以直接放到了HDCollectionView库中。HDScrollJoinView主要是用来衔接多个scrollView的滑动的类。对于一些新闻详情页，往往是上面是webview(详情)，底部是原生的view(评论，跟帖)。用一个滑动列表来实现的话可能需要拉大webview的frame为其contentSize，这样会导致webview很大时内存过高。HDScrollJoinView可以衔接任意个数滑动view，任意位置插入滑动view，且内部支持两种悬浮。这里面比较关键的是HDScrollJoinView不会无限拉大子滑动view的frame。而是保持其frame最大值为最底部view frame。这在很大程度上控制了内存问题及滑动view衔接问题。
+
+##### 其他使用详情参见源码及demo,源码API已经做了尽量多的注释
+### 5、部分demo截图
+![](https://dev.tencent.com/api/share/image/2df92573-9249-4912-8bcd-f358b43696aa)
+![](https://dev.tencent.com/api/share/image/3fe69e75-f3e8-4f67-9bc4-9778225b916f)
+![](https://dev.tencent.com/api/share/image/f871fd45-f589-4441-b1a6-877e7c4cc6c2)
+![](https://dev.tencent.com/api/share/image/51b269b6-5a8a-4249-ba18-38ef70df7ad5)
+
+## Requirements
+iOS8+
 
 ## License
 

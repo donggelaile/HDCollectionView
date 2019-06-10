@@ -582,7 +582,7 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
     
     double currentTime = ns/(pow(10, 6));
 #ifdef DEBUG
-//    printf("cellForItemAtIndexPath----本次时间%lf \n",currentTime);
+    printf("cellForItemAtIndexPath----本次时间%lf \n",currentTime);
 #endif
     
     static char *HDListViewCountKey;
@@ -601,7 +601,7 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
     totalTime += currentTime;
     double eveTime = (totalTime)/count;
 #ifdef DEBUG
-//    printf("cellForItemAtIndexPath----平均时间%lf \n",eveTime);
+    printf("cellForItemAtIndexPath----平均时间%lf \n",eveTime);
 #endif
     count++;
     

@@ -382,11 +382,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (void)hd_appendDataWithCellModelArr:(NSArray<HDCellModel *> *)itemArr sectionKey:(NSString *)sectionKey
 {
     HDDoSomeThingInMainQueueSyn(^{
-        if (!sectionKey) {
-            return;
-        }
         HDSectionModel *secModel = self.allSecDict[sectionKey];
-        if (!secModel) {
+        if (![secModel isKindOfClass:[HDSectionModel class]]) {
             return;
         }
         if (secModel.isNeedAutoCountCellHW) {

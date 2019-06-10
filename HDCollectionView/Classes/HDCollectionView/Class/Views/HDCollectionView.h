@@ -171,8 +171,8 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 @property (nonatomic, assign, readonly) UICollectionViewScrollDirection scrollDirection;
 @property (nonatomic, assign, readonly) BOOL isNeedAdaptScreenRotaion;
 
-//- (instancetype)init NS_UNAVAILABLE;
-//- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
-//- (instancetype)new NS_UNAVAILABLE;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+- (instancetype)new NS_UNAVAILABLE;
 
 @end

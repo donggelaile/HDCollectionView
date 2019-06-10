@@ -314,24 +314,24 @@ static char *HDStopViewMaxXYKey;
         if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
             CGFloat orgMinXY = CGRectGetMinY([objc_getAssociatedObject(stopView, &HDRelativeOriginalFrameKey) CGRectValue]);
             if (stopType == HDScrollJoinViewStopTypeAlways) {
-                frame.origin.y = MAX(currentContentOffset.y + currentOffset, orgMinXY);
+                frame.origin.y = MAX(self->currentContentOffset.y + currentOffset, orgMinXY);
                 stopView.frame = frame;
                 currentOffset += frame.size.height;
             }else if (stopType == HDScrollJoinViewStopTypeWhenNextDismiss){
                 CGFloat orgMaxXY = [objc_getAssociatedObject(stopView, &HDStopViewMaxXYKey) floatValue];
-                CGFloat maxY = MAX(currentContentOffset.y + currentOffset, orgMinXY);
+                CGFloat maxY = MAX(self->currentContentOffset.y + currentOffset, orgMinXY);
                 frame.origin.y = MIN(orgMaxXY, maxY);
                 stopView.frame = frame;
             }
         }else{
             CGFloat orgMinXY = CGRectGetMinX([objc_getAssociatedObject(stopView, &HDRelativeOriginalFrameKey) CGRectValue]);
             if (stopType == HDScrollJoinViewStopTypeAlways) {
-                frame.origin.x = MAX(currentContentOffset.x + currentOffset, orgMinXY);
+                frame.origin.x = MAX(self->currentContentOffset.x + currentOffset, orgMinXY);
                 stopView.frame = frame;
                 currentOffset += frame.size.width;
             }else if (stopType == HDScrollJoinViewStopTypeWhenNextDismiss){
                 CGFloat orgMaxXY = [objc_getAssociatedObject(stopView, &HDStopViewMaxXYKey) floatValue];
-                CGFloat maxX = MAX(currentContentOffset.x + currentOffset, orgMinXY);
+                CGFloat maxX = MAX(self->currentContentOffset.x + currentOffset, orgMinXY);
                 frame.origin.x = MIN(orgMaxXY, maxX);
                 stopView.frame = frame;
             }

@@ -54,7 +54,6 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     __weak typeof(self) weakS = self;
     
     [listV hd_dataChangeFinishedCallBack:^(HDDataChangeType changeType){
-//        [listV.allDataArr addObject:secm];
         [weakS countDataFinish];
     }];
     
@@ -65,7 +64,6 @@ extern BOOL isDemo3OpenSubviewFrameCache;
 - (void)countDataFinish
 {
     [listV.collectionV.mj_footer endRefreshing];
-    [listV hd_reloadData];
 }
 - (void)loadData
 {

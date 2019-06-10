@@ -36,11 +36,6 @@
         self.callback(self.hdModel);
     }
 }
-//-(void)layoutSubviews
-//{
-//
-//    [super layoutSubviews];
-//}
 
 - (CGSize)hdSizeThatFits:(CGSize)size
 {

@@ -182,7 +182,6 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
             maker.hd_isNeedTopStop(YES)
             .hd_isCalculateCellHOnCommonModes(YES);
         }];
-//        _mainCollecitonV.collectionV.bounces = NO;
         _mainCollecitonV.collectionV.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {
             _mainCollecitonV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
@@ -192,9 +191,7 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
     }
     [self addSubview:_mainCollecitonV];
     _mainCollecitonV.collectionV.bounces = NO;
-//    [_mainCollecitonV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
-//        return YES;
-//    }];
+
     return _mainCollecitonV;
 }
 - (void)layoutSubviews
