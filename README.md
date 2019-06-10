@@ -59,6 +59,8 @@ HDCollectionView无论是普通布局还是瀑布流布局，均支持横向或�
 pod 'HDCollectionView'
 ```
 ##### 并打开 use_frameworks!
+找不到请先执行 ```pod repo update ```
+
 1、首先，初始化并加到父view
 ```
 HDCollectionView* listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
