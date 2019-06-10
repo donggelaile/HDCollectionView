@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
 ## 简述
-HDCollectionView是专门用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
+HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
 
 ### 1、为什么创建这个库?
 在日常开发及项目维护中，变更较多的一般都是UI层。因此，如何高效搭建一个滑动列表页，并且让该页面后期易于维护，是提交开发效率重要因素。而对于一些底层基础库，譬如网络层、持久化层等，一旦沉淀下来将很少变更。因此，UI层的构建速率及维护成本对开发整体的开发效率有很大的影响。
@@ -47,7 +47,7 @@ Yoga是facebook对flexbox的C++实现。既然是继承UICollectionViewLayout重
 说实话，对于系统添加decorationView的方式一开始我是拒绝的，后来也是拒绝的。。。先来说下这个view是干啥用的吧，就是当你拿到设计图时，你发现在每一段的一组cell后面都有个整体的背景，无论是放在header/cell/footer上都不是很合适，此时你就需要这个装饰view了。HDCollectionView对装饰view的添加相当简单，你应该不会拒绝。。。
 #### 3.9、每段可以使用不同的布局
 如果让你实现类似淘宝首页的布局，怎么搞？我们姑且认为上面的一大段都是普通的流式布局，但是滑到下面的时候发现是很明显的瀑布流布局。对于这样的布局我们可能这样做：最底部搞一个使用flowLayout的collectionView，前面的部分照常实现。到瀑布流的时候，在cell上加一个collectionView，然后使用瀑布流layout。然后在滑动的时候在合适的时机设置两个collection的contentOffset属性。重点来了，如果使用HDCollectionView来做的话，就可以忘记前面那些骚操作了，（不过对于一些复杂样式依然得这么做。。）。因为HDCollectionView本身就支持每段使用不同的布局。而且HDCollectionView可以扩展自己的布局，具体可以参考内部实现的HDWaterFlowLayout及HDYogaFlowLayout。理论上这两种布局已经包含了大部分样式。
-#### 3.10、 cell子view frame缓存
+#### 3.10、cell子view frame缓存
 这个特性可以让你使用autolayout来设置布局，但是在实际布局过程中却是用frame布局。相当于用一个tempView设置相应约束，计算后拷贝出其所有子view的frame设置到相同类的view中。最终滑动过程中实现cell的子view只是在设置新的frame，并不需要重新计算。
 #### 3.11、统一回调
 HDCollectionView对所有子view做了统一的回调封装，在cell/header/footer/decoration中回调到VC简单并且统一。使用协议统一所有cell UI更新函数，方便统一UI设定。
