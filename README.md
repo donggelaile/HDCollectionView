@@ -5,9 +5,9 @@
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
 ## 简述
-[跳转](#4、安装)
 HDCollectionView是专门用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
- ### 1、为什么创建这个库?
+
+### 1、为什么创建这个库?
 在日常开发及项目维护中，变更较多的一般都是UI层。因此，如何高效搭建一个滑动列表页，并且让该页面后期易于维护，是提交开发效率重要因素。而对于一些底层基础库，譬如网络层、持久化层等，一旦沉淀下来将很少变更。因此，UI层的构建速率及维护成本对开发整体的开发效率有很大的影响。
 
 ### 2、使用HDCollectionView来搭建滑动列表有哪些优势？
@@ -114,9 +114,9 @@ secModel.layout                   = layout;
 
 ##### 其他使用详情参见源码及demo,源码API已经做了尽量多的注释
 ### 5、部分demo截图
-![](https://dev.tencent.com/api/share/image/2df92573-9249-4912-8bcd-f358b43696aa)
-![](https://dev.tencent.com/api/share/image/3fe69e75-f3e8-4f67-9bc4-9778225b916f)
-![](https://dev.tencent.com/api/share/image/f871fd45-f589-4441-b1a6-877e7c4cc6c2)
+![](https://dev.tencent.com/api/share/image/bc027d12-0aeb-4612-be3a-cef01f73b995)
+![](https://dev.tencent.com/api/share/image/3e9381db-588c-44a9-b299-67f833cf2fc3)
+![](https://dev.tencent.com/api/share/image/908b52bb-3782-4089-b484-10d6c07f77f6)
 ![](https://dev.tencent.com/api/share/image/51b269b6-5a8a-4249-ba18-38ef70df7ad5)
 
 ## Requirements
