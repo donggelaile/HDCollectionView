@@ -58,7 +58,7 @@ HDCollectionView无论是普通布局还是瀑布流布局，均支持横向或�
 ```ruby
 pod 'HDCollectionView'
 ```
-##### 并打开 use_frameworks!
+#### 并打开 use_frameworks!
 找不到请先执行 ```pod repo update ```
 
 1、首先，初始化并加到父view
@@ -116,10 +116,10 @@ secModel.layout                   = layout;
 
 ##### 其他使用详情参见源码及demo,源码API已经做了尽量多的注释
 ### 5、部分demo截图
-![](https://dev.tencent.com/api/share/image/bc027d12-0aeb-4612-be3a-cef01f73b995)
-![](https://dev.tencent.com/api/share/image/3e9381db-588c-44a9-b299-67f833cf2fc3)
-![](https://dev.tencent.com/api/share/image/908b52bb-3782-4089-b484-10d6c07f77f6)
-![](https://dev.tencent.com/api/share/image/51b269b6-5a8a-4249-ba18-38ef70df7ad5)
+![](https://i.loli.net/2019/06/11/5cff09d3bd78f76741.png)
+![](https://i.loli.net/2019/06/11/5cff09651e3c654719.png)
+![](https://i.loli.net/2019/06/11/5cff09d2c463491618.png)
+![](https://i.loli.net/2019/06/11/5cff09d56eaec65490.gif)
 
 ## Requirements
 iOS8+
