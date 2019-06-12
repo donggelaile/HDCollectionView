@@ -5,10 +5,12 @@
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
 ## 部分demo截图
-![](https://i.loli.net/2019/06/11/5cff09d3bd78f76741.png)
-![](https://i.loli.net/2019/06/12/5d00a390a2f9661648.gif)
-![](https://i.loli.net/2019/06/12/5d00a3927540160683.gif)
-![](https://i.loli.net/2019/06/11/5cff09d56eaec65490.gif)
+![](https://i.loli.net/2019/06/12/5d00ab2ac101d43716.gif)
+![](https://i.loli.net/2019/06/12/5d00ab2c100f664903.gif)
+![](https://i.loli.net/2019/06/12/5d00ab31445f641547.gif)
+![](https://i.loli.net/2019/06/12/5d00ab2daeb9949426.gif)
+![](https://i.loli.net/2019/06/12/5d00ab333036b59506.gif)
+![](https://i.loli.net/2019/06/12/5d00ab2f6db0f53217.gif)
 
 ## 简述
 HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
