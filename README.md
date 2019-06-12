@@ -4,6 +4,12 @@
 ![](https://img.shields.io/badge/language-objectiveC-green.svg)
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
+## 部分demo截图
+![](https://i.loli.net/2019/06/11/5cff09d3bd78f76741.png)
+![](https://i.loli.net/2019/06/12/5d00a390a2f9661648.gif)
+![](https://i.loli.net/2019/06/12/5d00a3927540160683.gif)
+![](https://i.loli.net/2019/06/11/5cff09d56eaec65490.gif)
+
 ## 简述
 HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
 
@@ -109,17 +115,15 @@ secModel.layout                   = layout;
 ```
 嗯，以后搭一个普通滑动列表的架子只需要在一分钟之内搞定，剩下的事就是去实现cell了。
 
-### 4、一些其他布局
+### 5、一些其他布局
 1、前面提到了QQ联系人页面，这个页面相对来说还是比较典型的。支持横向滑动切换栏目，纵向滑动时 栏目view 会在顶部悬浮，子view的header也会悬浮。HDCollectionView借助轮子[JXCategoryView](https://github.com/pujiaxin33/JXCategoryView)实现了QQ联系人页面，并封装到了HDMultipleScrollListView中。由于依赖了JXCategoryView,所以HDMultipleScrollListView并没有放到pod库中，因此如果使用的话需要手动拖入代码并安装JXCategoryView。
 
 2、对于淘宝首页这种页面，可以直接用一个HDCollectionView来实现，也可以用HDScrollJoinView来实现。HDScrollJoinView是一个完全独立的类，不依赖于其他任何代码。但是由于只有一个类所以直接放到了HDCollectionView库中。HDScrollJoinView主要是用来衔接多个scrollView的滑动的类。对于一些新闻详情页，往往是上面是webview(详情)，底部是原生的view(评论，跟帖)。用一个滑动列表来实现的话可能需要拉大webview的frame为其contentSize，这样会导致webview很大时内存过高。HDScrollJoinView可以衔接任意个数滑动view，任意位置插入滑动view，且内部支持两种悬浮。这里面比较关键的是HDScrollJoinView不会无限拉大子滑动view的frame。而是保持其frame最大值为最底部view frame。这在很大程度上控制了内存问题及滑动view衔接问题。
 
 ##### 其他使用详情参见源码及demo,源码API已经做了尽量多的注释
-### 5、部分demo截图
-![](https://i.loli.net/2019/06/11/5cff09d3bd78f76741.png)
-![](https://i.loli.net/2019/06/11/5cff09651e3c654719.png)
-![](https://i.loli.net/2019/06/11/5cff09d2c463491618.png)
-![](https://i.loli.net/2019/06/11/5cff09d56eaec65490.gif)
+
+### 6、其它
+Yoga计算的view坐标的时候默认对frame的x,y值进行了取整操作，且没有开放参数来设置不取整。因此，在精度计算要求较高的情况可能会出现1像素没有对齐的现象。如需要去掉取整可以找到Yoga.cpp文件，将3418行的else取整部分逻辑注释即可。
 
 ## Requirements
 iOS8+
