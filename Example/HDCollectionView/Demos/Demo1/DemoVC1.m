@@ -27,10 +27,10 @@
 {
 
     self.view.backgroundColor = [UIColor whiteColor];
-//    HDCollectionView *listV = [[HDCollectionView alloc] initWithFrame:self.view.bounds isUseAbsoluteLayout:NO];
-    HDCollectionView* listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
+    listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
         maker.hd_frame(self.view.bounds);
     }];
+    
     [self.view addSubview:listV];
     
     HDSectionModel *sec1 = [self makeSecModel];
