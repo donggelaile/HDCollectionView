@@ -40,11 +40,6 @@
 @property (nonatomic, strong) NSString *cellClassStr;
 
 /**
- 自适应高度时是否强制使用对应cell的hd_sizeThatFit返回的高度
- */
-@property (nonatomic, assign) BOOL isForceUseSizeThatFitH;
-
-/**
  仅在layout为HDFlowLayout生效，cell在交叉轴的对齐方式
  */
 @property (nonatomic, assign) YGAlign alignSelf;
