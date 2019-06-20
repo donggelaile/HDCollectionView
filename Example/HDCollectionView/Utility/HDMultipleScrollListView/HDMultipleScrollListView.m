@@ -9,14 +9,11 @@
 #import "HDMultipleScrollListView.h"
 #import "HDWeakHashMap.h"
 #import "HDCollectionView+MultipleScroll.h"
+#import "HDMultipleScrollListSubVC.h"
+#import <objc/runtime.h>
 
 static NSString *HDMultipleScrollListViewKey = @"HDMultipleScrollListViewKey";
 static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollListViewTitleHeaderKey";
-
-#pragma mark - HDMultipleScrollListViewTitleHeader
-@interface HDMultipleScrollListViewTitleHeader:HDSectionView
-@property (nonatomic, weak) HDMultipleScrollListView *rootView;
-@end
 
 @implementation HDMultipleScrollListViewTitleHeader
 - (instancetype)initWithFrame:(CGRect)frame
@@ -43,12 +40,12 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
 @end
 
 @implementation HDMultipleScrollListViewContentCell
-- (void)updateCellUI:(__kindof HDCellModel *)model
+- (void)updateCellUI:(__kindof HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback
 {
     [self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-    UIViewController <HDMultipleScrollListViewScrollViewDidScroll>*VC = model.orgData;
+    HDMultipleScrollListSubVC <HDMultipleScrollListViewScrollViewDidScroll>*VC = model.orgData;
     __weak typeof(self) weakSelf = self;
     if ([VC isKindOfClass:[UIViewController class]] && [VC respondsToSelector:@selector(HDMultipleScrollListViewScrollViewDidScroll:)]) {
         [VC HDMultipleScrollListViewScrollViewDidScroll:^(UIScrollView * _Nonnull sc) {
@@ -59,26 +56,38 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
         VC.view.frame = self.bounds;
         [self.contentView addSubview:VC.view];
     }
-    
+    //监听主HDCollectionView的滑动回调
+    HDMultipleScrollListView *rootView = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewKey];
+    [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH]];
 }
 - (void)hd_setSubScrollViewDidScrollCallback:(UIScrollView *)sc
 {
-    HDMultipleScrollListView *rootView = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewKey];
-    HDMultipleScrollListViewTitleHeader *titleHeader = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewTitleHeaderKey];
-    
-    UIScrollView *mainRealSc = rootView.mainCollecitonV.collectionV;
-    CGFloat topH = [self.superview convertRect:self.frame toView:mainRealSc].origin.y;
-    if (rootView.confingers.isHeaderNeedStop) {
-        topH = titleHeader.frame.origin.y;
-    }
-    //监听主HDCollectionView的滑动回调
-    [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV currentScrollingSubView:sc topH:topH];
-    
+    [[HDWeakHashMap shareInstance] hd_saveValue:sc forKey:HDMUltipleCurrentSubScrollKey];
+    CGFloat topH = [self topH];
+    UIScrollView *mainRealSc = [self mainScrollV];
     if (mainRealSc.contentOffset.y < topH) {
         sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
     }else{
         mainRealSc.contentOffset = CGPointMake(mainRealSc.contentOffset.x, topH);
     }
+}
+- (UIScrollView*)mainScrollV
+{
+    HDMultipleScrollListView *rootView = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewKey];
+    UIScrollView *mainRealSc = rootView.mainCollecitonV.collectionV;
+    return mainRealSc;
+}
+- (CGFloat)topH
+{
+    HDMultipleScrollListView *rootView = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewKey];
+    HDMultipleScrollListViewTitleHeader *titleHeader = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewTitleHeaderKey];
+    UIScrollView *mainRealSc = rootView.mainCollecitonV.collectionV;
+    
+    CGFloat topH = [self convertRect:self.frame toView:mainRealSc].origin.y;
+    if (rootView.confingers.isHeaderNeedStop) {
+        topH = titleHeader.frame.origin.y;
+    }
+    return topH;
 }
 @end
 
@@ -99,15 +108,33 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
             .hd_isCalculateCellHOnCommonModes(YES);
         }];
         self.contentCV.collectionV.pagingEnabled = YES;
+        self.contentCV.collectionV.bounces = NO;
         [self addSubview:self.contentCV];
     }
     HDMultipleScrollListView *rootView = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMultipleScrollListViewKey];
     rootView.jxTitle.contentScrollView = self.contentCV.collectionV;
+    __hd_WeakSelf
+    [self.contentCV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
+        return [weakSelf dealFullScrrenBackGesture:otherGesture];
+    }];
     return self;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (BOOL)dealFullScrrenBackGesture:(UIGestureRecognizer*)otherGes
 {
-    if (!self.contentCV.innerAllData.count) {
+    BOOL isRes = NO;
+    NSInteger curPage = self.contentCV.collectionV.contentOffset.x/self.contentCV.frame.size.width;
+    if (curPage == 0) {
+        if ([otherGes isKindOfClass:[UIPanGestureRecognizer class]] &&
+            [otherGes.view isKindOfClass:NSClassFromString(@"UILayoutContainerView")]) {
+            isRes = YES;
+        }
+    }
+    return isRes;
+}
+- (void)updateSecVUI:(__kindof HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+{
+    HDSectionModel *firstSec = [self.contentCV.innerAllData firstObject];
+    if (!firstSec.sectionDataArr.count) {
         [self.contentCV hd_setAllDataArr:model.headerObj];
     }
 }
@@ -122,6 +149,14 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
 
 #pragma mark - configer
 @implementation HDMultipleScrollListConfiger
+- (void)setTopSecArr:(NSMutableArray<HDSectionModel *> *)topSecArr
+{
+    //此时顶部的secHeader均不支持悬浮
+    [topSecArr enumerateObjectsUsingBlock:^(HDSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.headerTopStopType = HDHeaderStopOnTopTypeNone;
+    }];
+    _topSecArr = topSecArr;
+}
 @end
 
 @interface HDMultipleScrollListView()
@@ -133,6 +168,9 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
 
 #pragma mark - HDMultipleScrollListView
 @implementation HDMultipleScrollListView
+{
+    CGRect lastViewFrame;
+}
 @synthesize mainCollecitonV = _mainCollecitonV,jxTitle = _jxTitle, jxLineView = _jxLineView, confingers = _confingers;
 - (instancetype)init
 {
@@ -140,6 +178,7 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
     if (self) {
         [[HDWeakHashMap shareInstance] hd_saveValue:self forKey:HDMultipleScrollListViewKey];
     }
+    lastViewFrame = CGRectZero;
     return self;
 }
 - (instancetype)initWithFrame:(CGRect)frame
@@ -148,6 +187,7 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
     if (self) {
         [[HDWeakHashMap shareInstance] hd_saveValue:self forKey:HDMultipleScrollListViewKey];
     }
+    lastViewFrame = CGRectZero;
     return self;
 }
 - (NSMutableArray *)finalSecArr
@@ -182,12 +222,25 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
             maker.hd_isNeedTopStop(YES)
             .hd_isCalculateCellHOnCommonModes(YES);
         }];
+//        _mainCollecitonV.collectionV.bounces = NO;
         _mainCollecitonV.collectionV.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {
             _mainCollecitonV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
             // Fallback on earlier versions
         }
+        //让主滑动view contentSize不至于过小，从而存在一个滑动惯性。
+        //这样可以使顶部高度过低时，从底部滑动到顶部时不卡顿
+        _mainCollecitonV.collectionV.contentInset = UIEdgeInsetsMake(HDMainDefaultTopEdge, 0, 0, 0);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self->_mainCollecitonV.collectionV.contentOffset=CGPointZero;
+        });
+        
+        [_mainCollecitonV hd_setScrollViewDidScrollCallback:^(UIScrollView *scrollView) {
+            if (scrollView.contentOffset.y<0) {
+                scrollView.contentOffset = CGPointZero;
+            }
+        }];
     }
     [self addSubview:_mainCollecitonV];
     _mainCollecitonV.collectionV.bounces = NO;
@@ -197,8 +250,11 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _mainCollecitonV.frame = self.bounds;
-    [self updateData];
+    self.mainCollecitonV.frame = self.bounds;
+    if (!CGRectEqualToRect(lastViewFrame, self.frame)) {
+        [self updateData];
+    }
+    lastViewFrame = self.frame;
 }
 - (void)configWithConfiger:(void (^)(HDMultipleScrollListConfiger * _Nonnull configer))config
 {
@@ -211,6 +267,8 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
     if (configFinishGlobal) {
         configFinishGlobal(configer);
     }
+    
+    [self updateData];
 }
 - (void)configFinishCallback:(void (^)(HDMultipleScrollListConfiger * _Nonnull))configFinish
 {
@@ -235,7 +293,14 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
 }
 - (HDSectionModel*)HDMultipleScrollListViewTitleHeaderSec
 {
-    HDSectionModel *titleSec = [self normalSecWithCellModelArr:nil headerSize:self.confingers.titleContentSize headerClsStr:@"HDMultipleScrollListViewTitleHeader" autoCountCellH:NO];
+    NSString *clsStr = @"HDMultipleScrollListViewTitleHeader";
+    if (self.confingers.diyHeaderClsStr) {
+        Class cls = NSClassFromString(self.confingers.diyHeaderClsStr);
+        if ([cls isKindOfClass:object_getClass(NSClassFromString(clsStr))]) {
+            clsStr = self.confingers.diyHeaderClsStr;
+        }
+    }
+    HDSectionModel *titleSec = [self normalSecWithCellModelArr:nil headerSize:self.confingers.titleContentSize headerClsStr:clsStr autoCountCellH:NO];
     titleSec.headerObj = self.confingers.titles;;
     titleSec.headerTopStopType = self.confingers.isHeaderNeedStop?HDHeaderStopOnTopTypeAlways:HDHeaderStopOnTopTypeNone;
     return titleSec;
@@ -279,9 +344,9 @@ static NSString *HDMultipleScrollListViewTitleHeaderKey = @"HDMultipleScrollList
 - (CGSize)realContentSize
 {
     if (self.confingers.isHeaderNeedStop) {
-        return CGSizeMake(_mainCollecitonV.frame.size.width, _mainCollecitonV.frame.size.height- self.confingers.titleContentSize.height);
+        return CGSizeMake(self.mainCollecitonV.frame.size.width, self.mainCollecitonV.frame.size.height- self.confingers.titleContentSize.height);
     }else{
-        return _mainCollecitonV.frame.size;
+        return self.mainCollecitonV.frame.size;
     }
 }
 

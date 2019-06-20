@@ -106,7 +106,7 @@ secModel.sectionFooterClassStr    = <#NSString* footerClassStr#>;
 secModel.headerObj                = nil;
 secModel.footerObj                = nil;
 secModel.headerTopStopType        = HDHeaderStopOnTopTypeNone;
-secModel.isNeedAutoCountCellHW    = NO;
+secModel.isNeedAutoCountCellHW    = YES;
 secModel.sectionDataArr           = cellModelArr;
 secModel.layout                   = layout;
 ```

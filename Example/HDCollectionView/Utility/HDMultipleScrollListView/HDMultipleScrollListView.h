@@ -10,20 +10,28 @@
 #import <HDCollectionView/HDCollectionView.h>
 #import <JXCategoryView/JXCategoryView.h>
 
-NS_ASSUME_NONNULL_BEGIN
+static NSInteger HDMainDefaultTopEdge = 444;
 
+NS_ASSUME_NONNULL_BEGIN
+@class HDMultipleScrollListView;
 @protocol HDMultipleScrollListViewScrollViewDidScroll <NSObject>
 @required
 - (void)HDMultipleScrollListViewScrollViewDidScroll:(void(^)(UIScrollView*))ScrollCallback;
+@end
+
+
+#pragma mark - HDMultipleScrollListViewTitleHeader
+@interface HDMultipleScrollListViewTitleHeader:HDSectionView
+@property (nonatomic, weak) HDMultipleScrollListView *rootView;
 @end
 
 @interface HDMultipleScrollListConfiger : NSObject
 @property (nonatomic, strong, nullable) NSMutableArray <HDSectionModel*> *topSecArr;
 @property (nonatomic, strong) NSMutableArray <UIViewController<HDMultipleScrollListViewScrollViewDidScroll> *> *controllers;
 @property (nonatomic, strong) NSMutableArray <NSString*> *titles;
-@property (nonatomic, assign) CGSize titleContentSize;
+@property (nonatomic, assign) CGSize titleContentSize;//标题滑动view的大小
 @property (nonatomic, assign) BOOL isHeaderNeedStop;
-
+@property (nonatomic, copy) NSString *diyHeaderClsStr;//需要自定义header时设置该参数,必须继承自 HDMultipleScrollListViewTitleHeader
 @end
 
 

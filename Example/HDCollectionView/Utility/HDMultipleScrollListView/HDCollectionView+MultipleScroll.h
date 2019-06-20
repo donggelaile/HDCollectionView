@@ -7,11 +7,11 @@
 //
 
 #import <HDCollectionView/HDCollectionView.h>
-
+static NSString * _Nullable HDMUltipleCurrentSubScrollKey = @"HDMUltipleCurrentSubScrollKey";
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDCollectionView(MultipleScroll)
-- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView currentScrollingSubView:(UIScrollView*)currentScrollV topH:(CGFloat)topH;
+- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,28 +7,37 @@
 //
 
 #import "HDCollectionView+MultipleScroll.h"
-
+#import "HDMultipleScrollListView.h"
+#import "HDWeakHashMap.h"
 @implementation HDCollectionView(MultipleScroll)
-- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView currentScrollingSubView:(nonnull UIScrollView *)currentScrollV topH:(CGFloat)topH
+- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH
 {
-    if (!subScrollContentView || !currentScrollV) {
+    if (!subScrollContentView) {
         return;
     }
     __weak typeof(self) weakS = self;
+    __weak typeof (subScrollContentView) weakContentV = subScrollContentView;
     [self hd_setScrollViewDidScrollCallback:^(UIScrollView *scrollView) {
 
-        if (currentScrollV.contentOffset.y>0) {
-            weakS.collectionV.contentOffset = CGPointMake(weakS.collectionV.contentOffset.x, topH);
+        UIScrollView *currentSubSc = [[HDWeakHashMap shareInstance] hd_getValueForKey:HDMUltipleCurrentSubScrollKey];
+        if ((NSInteger)scrollView.contentInset.top == HDMainDefaultTopEdge) {
+            CGFloat fitY = MAX(0, weakS.collectionV.contentOffset.y);
+            scrollView.contentOffset = CGPointMake(0, fitY);
+        }
+        if (currentSubSc.contentOffset.y>0) {
+            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, topH);
         }
         if (weakS.collectionV.contentOffset.y < topH) {
-            [weakS dealAllSubScrollViewScrollEnabled:subScrollContentView];
+            [weakS dealAllSubScrollViewScrollEnabled:weakContentV];
         }
+
     }];
+
 }
 
 - (void)dealAllSubScrollViewScrollEnabled:(UIView*)scrollContent
 {
-    //层次遍历
+    //层次遍历sc
     NSMutableArray *queue = scrollContent.subviews.mutableCopy;
 
     while (queue.count) {
