@@ -7,6 +7,7 @@
 //
 
 #import "HDMultipleScrollListMainVC.h"
+#import "HDMultipleScrollListView.h"
 @interface HDMultipleScrollListMainVC ()
 @end
 

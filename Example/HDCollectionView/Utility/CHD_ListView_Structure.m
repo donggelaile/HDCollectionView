@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 
 
-
 //Switch
 @interface CHD_SwitchView : UIButton
 
@@ -43,7 +42,7 @@
 
 
 //UITableView
-@interface UITableView (CHD_Structure)
+@interface UITableViewHDStructure:NSObject
 @end
 
 @interface CHD_TableHelper : NSObject
@@ -52,7 +51,7 @@
 
 
 //UICollectionView
-@interface UICollectionView (CHD_Structure)
+@interface UICollectionViewHDStructure:NSObject
 @end
 
 @interface CHD_CollectionHelper : NSObject
@@ -196,6 +195,7 @@ BOOL __CHD_Instance_Transition_Swizzle(Class originalClass,SEL originalSelector,
         UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
         CGFloat btnW = 50.0f;
         CHD_SwitchView *btn = [[CHD_SwitchView alloc] initWithFrame:CGRectMake(0, 50, btnW, btnW)];
+        btn.alpha = 0.5;
         [btn setTitle:@"Toggle" forState:UIControlStateNormal];
         btn.layer.cornerRadius = btnW/2.0f;
         btn.backgroundColor = [UIColor orangeColor];
@@ -213,8 +213,8 @@ BOOL __CHD_Instance_Transition_Swizzle(Class originalClass,SEL originalSelector,
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    __CHD_Instance_Transition_Swizzle([UITableView class], @selector(setDelegate:), [UITableView class],@selector(CHD_setDelegate:));
-    __CHD_Instance_Transition_Swizzle([UITableView class], @selector(setDataSource:), [UITableView class],@selector(CHD_setDataSource:));
+    __CHD_Instance_Transition_Swizzle([UITableView class], @selector(setDelegate:), [UITableViewHDStructure class],@selector(CHD_setDelegate:));
+    __CHD_Instance_Transition_Swizzle([UITableView class], @selector(setDataSource:), [UITableViewHDStructure class],@selector(CHD_setDataSource:));
     NSArray *selArr = @[@"setTableFooterView:",@"setTableHeaderView:"];
     [[CHD_HookHelper shareInstance] hookSelectors:selArr orginalObj:[UITableView new] swizzedObj:[CHD_TableHelper class]];
 #pragma clang diagnostic pop
@@ -224,8 +224,8 @@ BOOL __CHD_Instance_Transition_Swizzle(Class originalClass,SEL originalSelector,
 {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    __CHD_Instance_Transition_Swizzle([UICollectionView class], @selector(setDelegate:), [UICollectionView class], @selector(CHD_setDelegate:));
-    __CHD_Instance_Transition_Swizzle([UICollectionView class], @selector(setDataSource:), [UICollectionView class], @selector(CHD_setDataSource:));
+    __CHD_Instance_Transition_Swizzle([UICollectionView class], @selector(setDelegate:), [UICollectionViewHDStructure class], @selector(CHD_setDelegate:));
+    __CHD_Instance_Transition_Swizzle([UICollectionView class], @selector(setDataSource:), [UICollectionViewHDStructure class], @selector(CHD_setDataSource:));
 #pragma clang diagnostic pop
 }
 
@@ -240,17 +240,23 @@ BOOL __CHD_Instance_Transition_Swizzle(Class originalClass,SEL originalSelector,
 
 
 #pragma mark - CHD_HookHelper
+
+static CHD_HookHelper *helper;
+
 @implementation CHD_HookHelper
 {
     NSMutableDictionary *swizzedData;
 }
 + (instancetype)shareInstance
 {
-    static CHD_HookHelper *helper;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    UIApplication *app = [UIApplication sharedApplication];
+    
+    helper = objc_getAssociatedObject(app, (__bridge const void * _Nonnull)(@(123)));
+    if (!helper) {
         helper = [[self alloc] init];
-    });
+        objc_setAssociatedObject(app, (__bridge const void * _Nonnull)(@(123)), helper, OBJC_ASSOCIATION_RETAIN);
+    }
+
     return helper;
 }
 
@@ -306,6 +312,11 @@ BOOL __CHD_Instance_Transition_Swizzle(Class originalClass,SEL originalSelector,
                 swizzedData[[self getUniqueStr:NSStringFromClass([oriObj class])  sel:selStr]] = @(YES);
             }
         }
+        
+//        [oriObj aspect_hookSelector:sel withOptions:AspectPositionInstead usingBlock:^(id<AspectInfo> aspectInfo) {
+//
+//
+//        } error:nil];
     }
     
     
@@ -416,7 +427,7 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
 
 
 #pragma mark - UITableView (CHD_Structure)
-@implementation UITableView (CHD_Structure)
+@implementation UITableViewHDStructure
 - (void)CHD_setDelegate:(id)delegate
 {
     if (delegate) {
@@ -515,7 +526,7 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
 //CollectionView
 #pragma mark - UICollectionView (CHD_Structure)
 
-@implementation UICollectionView (CHD_Structure)
+@implementation UICollectionViewHDStructure
 
 - (void)CHD_setDelegate:(id)delegate
 {
@@ -572,41 +583,48 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
 }
 - (__kindof UICollectionViewCell *)CHD_collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    //方法交换后需要注意一个问题，此处的代码中的self代表的是 UICollectionView的delegate
-    //此处的self不是CHD_CollectionHelper。因此 此处调用[self someMthond]; 编译不报错，运行时会报找不到方法
+    static BOOL isSHowTime = NO;
     __block UICollectionViewCell *cell = nil;
-    uint64_t dispatch_benchmark(size_t count, void (^block)(void));
-    uint64_t ns =  dispatch_benchmark(1, ^{
+    
+    //dispatch_benchmark 为私有API
+    if (isSHowTime) {
+//        //方法交换后需要注意一个问题，此处的代码中的self代表的是 UICollectionView的delegate
+//        //此处的self不是CHD_CollectionHelper。因此 此处调用[self someMthond]; 编译不报错，运行时会报找不到方法
+//        uint64_t dispatch_benchmark(size_t count, void (^block)(void));
+//        uint64_t ns =  dispatch_benchmark(1, ^{
+//            cell = [self CHD_collectionView:collectionView cellForItemAtIndexPath:indexPath];
+//        });
+//
+//        double currentTime = ns/(pow(10, 6));
+//#ifdef DEBUG
+//        printf("cellForItemAtIndexPath----本次时间%lf \n",currentTime);
+//#endif
+//
+//        static char *HDListViewCountKey;
+//        static char *HDListViewScrollTotalTimeKey;
+//
+//        NSNumber *numCount = objc_getAssociatedObject(self, &HDListViewCountKey);
+//        NSInteger count = 1;
+//        if (numCount) {
+//            count = numCount.integerValue;
+//        }
+//        double totalTime = 0;
+//        NSNumber *numTotal = objc_getAssociatedObject(self, &HDListViewScrollTotalTimeKey);
+//        if (numCount) {
+//            totalTime = numTotal.doubleValue;
+//        }
+//        totalTime += currentTime;
+//        double eveTime = (totalTime)/count;
+//#ifdef DEBUG
+//        printf("cellForItemAtIndexPath----平均时间%lf \n",eveTime);
+//#endif
+//        count++;
+//
+//        objc_setAssociatedObject(self, &HDListViewCountKey, @(count), OBJC_ASSOCIATION_RETAIN);
+//        objc_setAssociatedObject(self, &HDListViewScrollTotalTimeKey, @(totalTime), OBJC_ASSOCIATION_RETAIN);
+    }else{
         cell = [self CHD_collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    });
-    
-    double currentTime = ns/(pow(10, 6));
-#ifdef DEBUG
-    printf("cellForItemAtIndexPath----本次时间%lf \n",currentTime);
-#endif
-    
-    static char *HDListViewCountKey;
-    static char *HDListViewScrollTotalTimeKey;
-    
-    NSNumber *numCount = objc_getAssociatedObject(self, &HDListViewCountKey);
-    NSInteger count = 1;
-    if (numCount) {
-        count = numCount.integerValue;
     }
-    double totalTime = 0;
-    NSNumber *numTotal = objc_getAssociatedObject(self, &HDListViewScrollTotalTimeKey);
-    if (numCount) {
-        totalTime = numTotal.doubleValue;
-    }
-    totalTime += currentTime;
-    double eveTime = (totalTime)/count;
-#ifdef DEBUG
-    printf("cellForItemAtIndexPath----平均时间%lf \n",eveTime);
-#endif
-    count++;
-    
-    objc_setAssociatedObject(self, &HDListViewCountKey, @(count), OBJC_ASSOCIATION_RETAIN);
-    objc_setAssociatedObject(self, &HDListViewScrollTotalTimeKey, @(totalTime), OBJC_ASSOCIATION_RETAIN);
     
 
     UILabel *hover = [cell hoverView:chd_collection_cell_color];

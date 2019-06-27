@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <HDCollectionView/HDCollectionView.h>
+#import "HDCollectionView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDMultipleScrollListSubVC : UIViewController

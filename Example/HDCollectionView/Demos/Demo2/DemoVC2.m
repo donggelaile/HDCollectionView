@@ -44,9 +44,15 @@
     //大量数据测试 2W
     NSMutableArray *randomArr = @[].mutableCopy;
     for (int i=0; i<200; i++) {
-        HDSectionModel *sec = [self makeSecModel];
-        sec.headerTopStopType = arc4random()%2;
-        [randomArr addObject:sec];
+        if (arc4random()%2) {
+            HDSectionModel *sec = [self makeCellSizeRandomSecModel];
+            sec.headerTopStopType = arc4random()%2;
+            [randomArr addObject:sec];
+        }else{
+            HDSectionModel *sec = [self makeSecModel];
+            sec.headerTopStopType = arc4random()%2;
+            [randomArr addObject:sec];
+        }
     }    
     
     [listV hd_setAllDataArr:randomArr];
@@ -101,8 +107,47 @@
     secModel.layout                = layout;
     
     return secModel;
-    
+}
 
+- (HDSectionModel*)makeCellSizeRandomSecModel
+{
+    CGFloat minItemCap = 15;
+    
+    //该段cell数据源
+    NSMutableArray *cellModelArr = @[].mutableCopy;
+    NSInteger cellCount = 100;
+    for (int i =0; i<cellCount; i++) {
+        
+        CGFloat randomW = arc4random()%200+40;
+        CGFloat cellH = 30;
+        
+        HDCellModel *model = [HDCellModel new];
+        model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
+        model.cellSize     = CGSizeMake(randomW,cellH);
+        model.cellClassStr = @"DemoVC2Cell";
+        [cellModelArr addObject:model];
+    }
+    
+    //该段layout
+    HDYogaFlowLayout *layout = [HDYogaFlowLayout new];
+    layout.secInset = UIEdgeInsetsMake(10, 10, 10, 10);
+    layout.justify = arc4random()%6;
+    layout.verticalGap = 10;
+    layout.horizontalGap = minItemCap;
+    layout.headerSize = CGSizeMake(self.view.frame.size.width, 50);
+    layout.footerSize = CGSizeMake(self.view.frame.size.width, 50);
+    
+    //该段的所有数据封装
+    HDSectionModel *secModel = [HDSectionModel new];
+    secModel.sectionHeaderClassStr = @"DemoVC2Header";
+    secModel.sectionFooterClassStr = @"DemoVC2Footer";
+    secModel.headerObj             = nil;
+    secModel.footerObj             = nil;
+    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
+    secModel.sectionDataArr        = cellModelArr;
+    secModel.layout                = layout;
+    
+    return secModel;
 }
 - (void)clickCell:(HDCellModel*)cellM
 {

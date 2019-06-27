@@ -19,6 +19,7 @@
         self.titleL = [[UILabel alloc] initWithFrame:self.bounds];
         self.titleL.textAlignment = NSTextAlignmentCenter;
         self.titleL.numberOfLines = 0;
+        self.titleL.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:self.titleL];
     }
     __weak typeof(self) weakS = self;

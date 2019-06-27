@@ -25,7 +25,6 @@
 		6643053D2292E0DA00E29603 /* HDMultipleScrollListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643053C2292E0D900E29603 /* HDMultipleScrollListView.m */; };
 		664305452292E1A800E29603 /* QQDemo2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664305442292E1A800E29603 /* QQDemo2VC.m */; };
 		664305482292E6DF00E29603 /* QQDemo2VCViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 664305472292E6DF00E29603 /* QQDemo2VCViewModel.m */; };
-		667A6D77228D4ECF0071C415 /* HDWeakHashMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 667A6D76228D4ECF0071C415 /* HDWeakHashMap.m */; };
 		6689F3B922964D8C0041A441 /* QQDemoOpenCloseSec.m in Sources */ = {isa = PBXBuildFile; fileRef = 6689F3A622964D8B0041A441 /* QQDemoOpenCloseSec.m */; };
 		6689F3BA22964D8C0041A441 /* QQDemoFriendCellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 6689F3A722964D8B0041A441 /* QQDemoFriendCellVM.m */; };
 		6689F3BC22964D8C0041A441 /* QQDemoSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6689F3AE22964D8B0041A441 /* QQDemoSearchCell.m */; };
@@ -140,8 +139,6 @@
 		664305442292E1A800E29603 /* QQDemo2VC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQDemo2VC.m; sourceTree = "<group>"; };
 		664305462292E6DF00E29603 /* QQDemo2VCViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQDemo2VCViewModel.h; sourceTree = "<group>"; };
 		664305472292E6DF00E29603 /* QQDemo2VCViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQDemo2VCViewModel.m; sourceTree = "<group>"; };
-		667A6D75228D4ECF0071C415 /* HDWeakHashMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDWeakHashMap.h; sourceTree = "<group>"; };
-		667A6D76228D4ECF0071C415 /* HDWeakHashMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDWeakHashMap.m; sourceTree = "<group>"; };
 		6689F3A422964D8B0041A441 /* QQDemoFriendCellVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQDemoFriendCellVM.h; sourceTree = "<group>"; };
 		6689F3A522964D8B0041A441 /* QQDemoOpenCloseSec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QQDemoOpenCloseSec.h; sourceTree = "<group>"; };
 		6689F3A622964D8B0041A441 /* QQDemoOpenCloseSec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QQDemoOpenCloseSec.m; sourceTree = "<group>"; };
@@ -420,8 +417,6 @@
 				6635BBE42293AB3E0037EE0A /* HDMultipleScrollListSubVC.m */,
 				6635BBE72293BF7D0037EE0A /* HDCollectionView+MultipleScroll.h */,
 				6635BBE62293BF7D0037EE0A /* HDCollectionView+MultipleScroll.m */,
-				667A6D75228D4ECF0071C415 /* HDWeakHashMap.h */,
-				667A6D76228D4ECF0071C415 /* HDWeakHashMap.m */,
 			);
 			path = HDMultipleScrollListView;
 			sourceTree = "<group>";
@@ -908,7 +903,6 @@
 				6696B2FF2272B4AE007FDFE4 /* AHCHeader.m in Sources */,
 				6696B2E42272B4AE007FDFE4 /* DemoVC2Header.m in Sources */,
 				6635BBE22293AB2E0037EE0A /* HDMultipleScrollListMainVC.m in Sources */,
-				667A6D77228D4ECF0071C415 /* HDWeakHashMap.m in Sources */,
 				6689F3C222964D8C0041A441 /* QQDemoGapCell.m in Sources */,
 				66B6B7FA22844CCB009FECF1 /* DemoVC4Header.m in Sources */,
 				66B825D822A3F8D6006549A2 /* DemoVC5DecorationView.m in Sources */,

@@ -24,10 +24,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    __hd_WeakSelf
-    [self.multipleSc configWithConfiger:^(HDMultipleScrollListConfiger * _Nonnull configer) {
-        [weakSelf setWith:configer];
-    }];
     [self.multipleSc mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.hd_mas_left);
         make.right.mas_equalTo(self.view.hd_mas_right);
@@ -42,6 +38,11 @@
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(0.5);
+    }];
+    
+    __hd_WeakSelf
+    [self.multipleSc configWithConfiger:^(HDMultipleScrollListConfiger * _Nonnull configer) {
+        [weakSelf setWith:configer];
     }];
     
     // Do any additional setup after loading the view.
