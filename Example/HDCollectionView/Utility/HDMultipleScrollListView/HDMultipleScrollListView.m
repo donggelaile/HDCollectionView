@@ -63,13 +63,16 @@
     if ([VC isKindOfClass:[HDMultipleScrollListSubVC class]]) {
         //监听主HDCollectionView的滑动回调
         HDMultipleScrollListView *rootView = [self rootView];
-        [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH] curSubSc:VC.collectionV.collectionV];
+        [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH]];
     }
 }
 - (void)hd_setSubScrollViewDidScrollCallback:(UIScrollView *)sc
 {
-    CGFloat topH = [self topH];
     UIScrollView *mainRealSc = [self mainScrollV];
+    HDCollectionView *mainHDCV = [self rootView].mainCollecitonV;
+    [mainHDCV setCurrentSubSc:sc];
+    CGFloat topH = [self topH];
+    
     if (mainRealSc.contentOffset.y < topH) {
         sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
     }else{

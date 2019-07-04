@@ -586,9 +586,11 @@ static const void * CHDHOVERLABELKEY = "CHDHOVERLABELKEY";
     static BOOL isSHowTime = NO;
     __block UICollectionViewCell *cell = nil;
     
-    //dispatch_benchmark 为私有API
+    
     if (isSHowTime) {
-//        //方法交换后需要注意一个问题，此处的代码中的self代表的是 UICollectionView的delegate
+//dispatch_benchmark 为系统私有API，不建议线上使用
+
+        //        //方法交换后需要注意一个问题，此处的代码中的self代表的是 UICollectionView的delegate
 //        //此处的self不是CHD_CollectionHelper。因此 此处调用[self someMthond]; 编译不报错，运行时会报找不到方法
 //        uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 //        uint64_t ns =  dispatch_benchmark(1, ^{

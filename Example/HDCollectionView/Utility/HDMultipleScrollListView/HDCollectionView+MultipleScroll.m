@@ -8,22 +8,31 @@
 
 #import "HDCollectionView+MultipleScroll.h"
 #import "HDMultipleScrollListView.h"
+#import <objc/runtime.h>
 @implementation HDCollectionView(MultipleScroll)
-- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH curSubSc:(nonnull UIScrollView *)curSubSc
+- (void)setCurrentSubSc:(UIScrollView *)currentSubSc
+{
+    objc_setAssociatedObject(self, &HDMUltipleCurrentSubScrollKey, currentSubSc, OBJC_ASSOCIATION_ASSIGN);
+}
+- (UIScrollView *)currentSubSc
+{
+    return objc_getAssociatedObject(self, &HDMUltipleCurrentSubScrollKey);
+}
+- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH
 {
     if (!subScrollContentView) {
         return;
     }
     __weak typeof(self) weakS = self;
     __weak typeof(subScrollContentView) weakContentV = subScrollContentView;
-    __weak typeof(curSubSc) weakSubSc = curSubSc;
+    
     [self hd_setScrollViewDidScrollCallback:^(UIScrollView *scrollView) {
-
         if ((NSInteger)scrollView.contentInset.top == HDMainDefaultTopEdge) {
             CGFloat fitY = MAX(0, weakS.collectionV.contentOffset.y);
             scrollView.contentOffset = CGPointMake(0, fitY);
         }
-        if (weakSubSc.contentOffset.y>0) {
+        UIScrollView *subSc = weakS.currentSubSc;
+        if (subSc.contentOffset.y>0) {
             scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, topH);
         }
         if (weakS.collectionV.contentOffset.y < topH) {
