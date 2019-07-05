@@ -22,11 +22,12 @@
 }
 - (void)setUp
 {
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _collectionV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker.hd_isNeedTopStop(YES);
     }];
     _collectionV.collectionV.showsVerticalScrollIndicator = NO;
-    
+        
     [self.collectionV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
         if ([otherGesture.view isKindOfClass:[UICollectionView class]]) {
             UICollectionView *cv = (UICollectionView*)otherGesture.view;
@@ -41,6 +42,14 @@
     [self.collectionV hd_setScrollViewDidScrollCallback:^(UIScrollView *scrollView) {
         [weakSelf scDicScroll:scrollView];
     }];
+    
+    CGFloat safeBottom = 0;
+    if (@available(iOS 11.0, *)) {
+        safeBottom = [[UIApplication sharedApplication].delegate window].safeAreaInsets.bottom;
+    } else {
+        // Fallback on earlier versions
+    }
+    self.collectionV.collectionV.contentInset = UIEdgeInsetsMake(0, 0, safeBottom, 0);
     [self.view addSubview:self.collectionV];
 }
 - (void)viewDidLayoutSubviews

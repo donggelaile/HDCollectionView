@@ -21,6 +21,7 @@
 }
 - (void)setUp
 {
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _multipleSc = [[HDMultipleScrollListView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.multipleSc];
     

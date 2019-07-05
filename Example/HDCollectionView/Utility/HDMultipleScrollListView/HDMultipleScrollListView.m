@@ -132,6 +132,11 @@
         }];
         self.contentCV.collectionV.pagingEnabled = YES;
         self.contentCV.collectionV.bounces = NO;
+        if (@available(iOS 11.0, *)) {
+            _contentCV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            // Fallback on earlier versions
+        }
         [self addSubview:self.contentCV];
     }
     __hd_WeakSelf

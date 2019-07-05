@@ -27,7 +27,7 @@
     [self.multipleSc mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.hd_mas_left);
         make.right.mas_equalTo(self.view.hd_mas_right);
-        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
+        make.bottom.mas_equalTo(0);
         make.top.mas_equalTo(self.view.hd_mas_top);
     }];
     
