@@ -58,6 +58,42 @@
         self.layer.zPosition = layoutAttributes.zIndex;
     }
 }
+- (void)dealEventByEventKey:(NSString*)eventKey backType:(HDCallBackType)type backModel:(id)backModel self:(void(^)(void))selfDealCode
+{
+    HDCollectionViewEventDealPolicy policy = HDCollectionViewEventDealPolicyBySubView;
+    
+    //获取HDCollectionView对该事件设置的处理策略
+    if ([eventKey isKindOfClass:[NSString class]] && self.superCollectionV.allSubViewEventDealPolicy[eventKey]) {
+        policy = [self.superCollectionV.allSubViewEventDealPolicy[eventKey] integerValue];
+        if (policy>HDCollectionViewEventDealPolicyBeforeSubView || policy < 0) {
+            policy = HDCollectionViewEventDealPolicyBySubView;
+        }
+    }
+    
+    if (!selfDealCode) {
+        policy = HDCollectionViewEventDealPolicyInstead;
+    }
+    
+    if (policy == HDCollectionViewEventDealPolicyBySubView) {
+        if (selfDealCode) {
+            selfDealCode();
+        }
+    }else if (policy == HDCollectionViewEventDealPolicyInstead){
+        self.callback(backModel);
+    }else if (policy == HDCollectionViewEventDealPolicyAfterSubView){
+        if (selfDealCode) {
+            selfDealCode();
+        }
+        self.callback(backModel);
+    }else if (policy == HDCollectionViewEventDealPolicyBeforeSubView){
+        self.callback(backModel);
+        if (selfDealCode) {
+            selfDealCode();
+        }
+    }
+    self.hdSecModel.context = nil;
+    self.hdSecModel.otherParameter = nil;
+}
 +(BOOL)accessInstanceVariablesDirectly{
     return YES;
 }

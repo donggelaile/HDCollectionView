@@ -62,6 +62,9 @@
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
         [weakS allEventCallback:backModel type:type];
     }];
+    
+    //如果cell回调处使用的是HDDefaultCellEventDeal宏，则此处的key 为cell类名 + # + 方法名。
+    listV.allSubViewEventDealPolicy[@"DemoVC6Cell#clickSelf"] = @(HDCollectionViewEventDealPolicyAfterSubView);
 
 }
 - (void)allEventCallback:(id)backModel type:(HDCallBackType)type

@@ -10,6 +10,26 @@
 #import "HDDefines.h"
 #import "NSObject+HDCopy.h"
 @implementation HDSectionModel
+
+@synthesize sectionHeaderClassStr    = _sectionHeaderClassStr;
+@synthesize sectionFooterClassStr    = _sectionFooterClassStr;
+@synthesize sectionCellClassStr      = _sectionCellClassStr;
+@synthesize decorationClassStr       = _decorationClassStr;
+@synthesize headerObj                = _headerObj;
+@synthesize footerObj                = _footerObj;
+@synthesize isNeedAutoCountCellHW    = _isNeedAutoCountCellHW;
+@synthesize isNeedCacheSubviewsFrame = _isNeedCacheSubviewsFrame;
+@synthesize headerTopStopType        = _headerTopStopType;
+@synthesize sectionDataArr           = _sectionDataArr;
+@synthesize layout                   = _layout;
+@synthesize sectionKey               = _sectionKey;
+@synthesize decorationObj            = _decorationObj;
+@synthesize isFinalSection           = _isFinalSection;
+@synthesize section                  = _section;
+@synthesize context                  = _context;
+@synthesize secProperRect            = _secProperRect;
+@synthesize otherParameter           = _otherParameter;
+
 - (instancetype)init
 {
     self = [super init];
@@ -43,4 +63,5 @@
 {
     return nil;
 }
+
 @end

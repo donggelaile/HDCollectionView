@@ -39,9 +39,16 @@
 }
 - (void)clickSelf
 {
-    self.hdModel.context = NSStringFromSelector(_cmd);//设置标志供HDCollectionView回调中判断是哪个事件
-    //此处无需判断self.callback是否为空，内部已经判断
-    self.callback(self.hdModel);//此处调用会回调到HDCollectionView的hd_setAllEventCallBack中
-    self.hdModel.context = nil;//使用完毕则置nil
+    //方式1，自己管理context
+//    self.hdModel.context = NSStringFromSelector(_cmd);//设置标志供HDCollectionView回调中判断是哪个事件
+//    //此处无需判断self.callback是否为空，内部已经判断
+//    self.callback(self.hdModel);//此处调用会回调到HDCollectionView的hd_setAllEventCallBack中
+//    self.hdModel.context = nil;//使用完毕则置nil
+    
+    //方式2，使用内置的宏来管理回调。配合cell所在HDCollecitonView的allSubViewEventDealPolicy配置来管理回调事件的策略
+    void(^selfDealCode)(void) = ^{
+        NSLog(@"点击了cell");
+    };
+    HDDefaultCellEventDeal(selfDealCode);
 }
 @end

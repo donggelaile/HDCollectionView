@@ -11,9 +11,17 @@
 #import "HDSectionModel.h"
 #import "HDSectionView.h"
 #import "HDUpdateUIProtocol.h"
+#import "HDModelProtocol.h"
 #import "HDYogaFlowLayout.h"
 #import "HDWaterFlowLayout.h"
 #import "HDDefines.h"
+
+typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
+    HDCollectionViewEventDealPolicyBySubView,//默认，让cell或sectionView自己处理
+    HDCollectionViewEventDealPolicyInstead,//直接由HDCollectionView处理
+    HDCollectionViewEventDealPolicyAfterSubView,//在subView处理完后，HDCollectionView再进行进一步处理
+    HDCollectionViewEventDealPolicyBeforeSubView,//在子view处理之前，HDCollectionView先处理
+};
 
 @protocol HDInnerCollectionViewClass <NSObject>
 @optional
@@ -30,7 +38,7 @@
  */
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isNeedTopStop)(BOOL  isNeedTopStop);
 /**
- 默认NO， 是否在Runloop的commenModes计算cell高度。默认在defaultMode计算(这样做的结果是当网络数据返回后如果用户正在滑动屏幕，则不会刷新数据，直至松开屏幕)
+ 默认YES， 是否在Runloop的commenModes计算cell高度。(这样做的结果是当网络数据返回后如果用户正在滑动屏幕，则不会刷新数据，直至松开屏幕)
  */
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isCalculateCellHOnCommonModes)(BOOL  isCalculateCellHOnCommonModes);
 /**
@@ -78,7 +86,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 /**
  一次性初始化所有数据 (完成后会回调 dataChangeFinishedCallBack)
  */
-- (void)hd_setAllDataArr:(NSMutableArray<HDSectionModel*>*)dataArr;
+- (void)hd_setAllDataArr:(NSArray<HDSectionModel*>*)dataArr;
 
 /**
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
@@ -163,6 +171,11 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
  */
 - (void)hd_setCellUIUpdateCallback:(void(^)(__kindof UICollectionViewCell*cell,NSIndexPath*indexP))setedCallback;
 - (void)hd_setSecViewUIUpdateCallback:(void(^)(__kindof UICollectionReusableView*secView,NSIndexPath*indexP,NSString* kind))setedCallback;
+
+/**
+ 用于存储所有子view回调的处理策略，需要外部对字典增删元素，来实现控制某个事件的回调策略
+ */
+@property (nonatomic, strong, readonly) NSMutableDictionary *allSubViewEventDealPolicy;
 @property (nonatomic, strong, readonly) NSArray *innerAllData;
 @property (nonatomic, strong, readonly) HDInnerCollectionView *collectionV;
 @property (nonatomic, assign, readonly) BOOL isNeedTopStop;
@@ -170,6 +183,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 @property (nonatomic, assign, readonly) BOOL isUseSystemFlowLayout;
 @property (nonatomic, assign, readonly) UICollectionViewScrollDirection scrollDirection;
 @property (nonatomic, assign, readonly) BOOL isNeedAdaptScreenRotaion;
+@property (nonatomic, assign, readonly) BOOL isInnerDataEmpty;//内部数据是否为空
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

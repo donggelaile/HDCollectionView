@@ -88,6 +88,10 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     }else{
         NSInteger firstAttIndex = [self findFirstSetionAttIndex:sectionIndex];
         cachedAttributes = [cachedAttributes subarrayWithRange:NSMakeRange(0, firstAttIndex)].mutableCopy;
+        
+        if (firstAttIndex == 0 || cachedAttributes.count == 0) {
+            sectionIndex = 0;
+        }
     }
     //刷新重新添加
     for (NSInteger i=sectionIndex; i<[self allDataArr].count; i++) {

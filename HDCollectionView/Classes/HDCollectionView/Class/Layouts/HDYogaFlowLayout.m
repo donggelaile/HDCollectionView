@@ -9,6 +9,7 @@
 #import "HDYogaFlowLayout.h"
 #import "HDDefines.h"
 #import "HDSectionModel.h"
+#import "HDCellModel.h"
 #import "HDYogaCalculateHelper.h"
 #import <objc/runtime.h>
 

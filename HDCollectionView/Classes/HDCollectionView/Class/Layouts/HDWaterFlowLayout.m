@@ -8,6 +8,7 @@
 
 #import "HDWaterFlowLayout.h"
 #import "HDSectionModel.h"
+#import "HDCellModel.h"
 #import <objc/runtime.h>
 #import "HDBaseLayout+Cache.h"
 

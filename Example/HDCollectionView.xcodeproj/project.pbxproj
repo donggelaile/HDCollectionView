@@ -621,10 +621,10 @@
 		6696B2BF2272B4AE007FDFE4 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6696B2C22272B4AE007FDFE4 /* AutoHomeCarInfoVC.h */,
-				6696B2C02272B4AE007FDFE4 /* AutoHomeCarInfoVC.m */,
 				6696B2C32272B4AE007FDFE4 /* HDSCVOffsetBinder.h */,
 				6696B2C12272B4AE007FDFE4 /* HDSCVOffsetBinder.m */,
+				6696B2C22272B4AE007FDFE4 /* AutoHomeCarInfoVC.h */,
+				6696B2C02272B4AE007FDFE4 /* AutoHomeCarInfoVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

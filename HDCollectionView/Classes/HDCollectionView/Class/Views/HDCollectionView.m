@@ -161,6 +161,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     void (^scDidEndDraggingCallback)(UIScrollView *sc,BOOL slowDown);
     void (^scDidEndDeceleratingCallback)(UIScrollView *sc);
     UIInterfaceOrientation lastOrientation;
+    BOOL isObserveContentSize;
 }
 @property (nonatomic, strong) NSMutableArray *allDataCopy;
 @property (nonatomic, strong, readonly) NSMutableArray<HDSectionModel*>* allDataArr;
@@ -172,7 +173,16 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 @implementation HDCollectionView
 @synthesize collectionV = _collectionV;
 @synthesize allDataArr = _allDataArr;
-    
+@synthesize allSubViewEventDealPolicy = _allSubViewEventDealPolicy;
+
+- (NSMutableArray *)allDataCopy
+{
+    if (!_allDataCopy) {
+        _allDataCopy = self.allDataArr;
+    }
+    return _allDataCopy;
+}
+
 + (void)doSomeThing:(void(^)(void))thingsToDo
 {
     if (thingsToDo) {
@@ -211,7 +221,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     dispatch_once(&onceToken, ^{
         HDCollectionViewMaker *maker = [HDCollectionViewMaker new];
         maker.isNeedTopStop = NO;
-        maker.isCalculateCellHOnCommonModes = NO;
+        maker.isCalculateCellHOnCommonModes = YES;
         maker.isUseSystemFlowLayout = NO;
         maker.scrollDirection = UICollectionViewScrollDirectionVertical;
         maker.isNeedAdaptScreenRotaion = NO;
@@ -226,8 +236,22 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         maker(makerObj);
     }
 }
-
+- (BOOL)isInnerDataEmpty
+{
+    __block NSInteger allCount = 0;
+    [self.allDataCopy enumerateObjectsUsingBlock:^(HDSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        allCount += obj.sectionDataArr.count;
+    }];
+    return allCount == 0;
+}
 #pragma mark - lazyload
+- (NSMutableDictionary *)allSubViewEventDealPolicy
+{
+    if (!_allSubViewEventDealPolicy) {
+        _allSubViewEventDealPolicy = @{}.mutableCopy;
+    }
+    return _allSubViewEventDealPolicy;
+}
 - (NSMutableDictionary *)allSecDict{
     if (!_allSecDict) {
         _allSecDict = @{}.mutableCopy;
@@ -247,7 +271,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (NSArray *)innerAllData
 {
-    return self.allDataArr;
+    return self.allDataCopy;
 }
 - (UICollectionView *)collectionV
 {
@@ -351,7 +375,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
 //Public
 #pragma mark - dataSet
-- (void)hd_setAllDataArr:(NSMutableArray<HDSectionModel*>*)dataArr
+- (void)hd_setAllDataArr:(NSArray<HDSectionModel*>*)dataArr
 {
     HDDoSomeThingInMainQueueSyn(^{
         self.allDataCopy = dataArr.mutableCopy;
@@ -910,7 +934,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         if (![NSClassFromString(obj.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
             obj.cellClassStr = secModel.sectionCellClassStr;
         }
-        [obj calculateCellProperSize:secModel.isNeedCacheSubviewsFrame];
+        [obj calculateCellProperSize:secModel.isNeedCacheSubviewsFrame forceUseAutoLayout:NO];
     }];
 
     executeFinish();
@@ -969,47 +993,38 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)hd_setContentSizeChangeCallBack:(void (^)(CGSize))contentSizeChangeCallBack
 {
-    if (contentSizeChangeCallBack) {
-        self.contentSizeChangeCallBack = contentSizeChangeCallBack;
+    //确保即使外部多次调用也只 添加一次观察者，否则外部多次调用后，dealloc时将异常
+    //非线程安全，多线程调用时外部自行加锁即可
+    if (!isObserveContentSize) {
+        isObserveContentSize = YES;
         [self.collectionV addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     }
+    self.contentSizeChangeCallBack = contentSizeChangeCallBack;
 }
 - (void)hd_setScrollViewDidScrollCallback:(void (^)(UIScrollView *))callback
 {
-    if (callback) {
-        scDidScrollCallback = callback;
-    }
+    scDidScrollCallback = callback;
 }
 - (void)hd_setScrollViewWillBeginDraggingCallback:(void (^)(UIScrollView *))callback
 {
-    if (callback) {
-        scWillBeginDraggingCallback = callback;
-    }
+    scWillBeginDraggingCallback = callback;
 }
 - (void)hd_setScrollViewDidEndDraggingCallback:(void (^)(UIScrollView *, BOOL))callback
 {
-    if (callback) {
-        scDidEndDraggingCallback = callback;
-    }
+    scDidEndDraggingCallback = callback;
 }
 - (void)hd_setScrollViewDidEndDeceleratingCallback:(void (^)(UIScrollView *))callback
 {
-    if (callback) {
-        scDidEndDeceleratingCallback = callback;
-    }
+    scDidEndDeceleratingCallback = callback;
 }
 
 - (void)hd_setCellUIUpdateCallback:(void (^)(__kindof UICollectionViewCell *, NSIndexPath *))setedCallback
 {
-    if (setedCallback) {
-        setedCellCallback = setedCallback;
-    }
+    setedCellCallback = setedCallback;
 }
 - (void)hd_setSecViewUIUpdateCallback:(void (^)(__kindof UICollectionReusableView *, NSIndexPath *,NSString*))setedCallback
 {
-    if (setedCallback) {
-        setedSecViewCallback = setedCallback;
-    }
+    setedSecViewCallback = setedCallback;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -1042,7 +1057,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)dealloc
 {
-    if (self.contentSizeChangeCallBack) {
+    if (isObserveContentSize) {
         [self.collectionV removeObserver:self forKeyPath:@"contentSize"];
     }
 }

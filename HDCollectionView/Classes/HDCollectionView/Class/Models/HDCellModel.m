@@ -11,8 +11,21 @@
 #import "HDCellFrameCacheHelper.h"
 
 @implementation HDCellModel
-@synthesize secModel = _secModel;
-@synthesize subviewsFrame = _subviewsFrame;
+
+@synthesize secModel        = _secModel;
+@synthesize subviewsFrame   = _subviewsFrame;
+@synthesize alignSelf       = _alignSelf;
+@synthesize cellClassStr    = _cellClassStr;
+@synthesize cellFrameXY     = _cellFrameXY;
+@synthesize cellSize        = _cellSize;
+@synthesize cellSizeCb      = _cellSizeCb;
+@synthesize context         = _context;
+@synthesize indexP          = _indexP;
+@synthesize isConvertedToVM = _isConvertedToVM;
+@synthesize margain         = _margain;
+@synthesize orgData         = _orgData;
+@synthesize reuseIdentifier = _reuseIdentifier;
+@synthesize otherParameter  = _otherParameter;
 - (instancetype)init
 {
     self = [super init];
@@ -37,9 +50,8 @@
 {
     return nil;
 }
-- (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame
+- (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout
 {
-    //这个cell只是用来帮助计算的，并不会显示到页面
     HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[NSClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];
     
     isNeedCacheSubviewsFrame = isNeedCacheSubviewsFrame && [tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)];
@@ -60,7 +72,7 @@
         }
     }
     
-    BOOL isUsehdSizeThatFits = [tempCell respondsToSelector:@selector(hdSizeThatFits:)];
+    BOOL isUsehdSizeThatFits = [tempCell respondsToSelector:@selector(hdSizeThatFits:)] && !isForceUseAutoLayout;
     if (isUsehdSizeThatFits) {
         CGSize fitSize = self.cellSize;
         if ([tempCell respondsToSelector:@selector(hdSizeThatFits:)]) {
@@ -81,6 +93,9 @@
     tempCell.contentView.frame = CGRectMake(0, 0, self.cellSize.width, self.cellSize.height);
     
     if (isNeedCacheSubviewsFrame) {
+        NSLayoutConstraint *heightCons = [NSLayoutConstraint constraintWithItem:tempCell.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.cellSize.height];
+        heightCons.priority = UILayoutPriorityDefaultLow;
+        [NSLayoutConstraint activateConstraints:@[heightCons]];
         if ([tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
             [tempCell.contentView layoutIfNeeded];
             _subviewsFrame = [HDCellFrameCacheHelper copySubViewsFrame:tempCell];
@@ -88,6 +103,7 @@
     }
     return self.cellSize;
 }
+
 @end
 
 

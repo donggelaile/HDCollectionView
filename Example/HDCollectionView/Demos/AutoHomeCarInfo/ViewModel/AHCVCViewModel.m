@@ -11,6 +11,7 @@
 #import "AHCModel.h"
 #import "HDYogaFlowLayout.h"
 #import "HDDefines.h"
+#import "HDCellModel.h"
 #define SafeRealStr(str) (([str isKindOfClass:[NSString class]])?str:@"")
 static NSInteger AHCLeftHeaderW = 80;
 static NSInteger AHCTopHeaderHW = 120;

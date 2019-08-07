@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HDUpdateUIProtocol.h"
-
+#import "HDDefines.h"
 @class HDCollectionView;
 
 @interface HDCollectionCell : UICollectionViewCell<HDUpdateUIProtocol>

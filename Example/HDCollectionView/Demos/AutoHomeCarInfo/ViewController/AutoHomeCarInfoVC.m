@@ -44,8 +44,15 @@
 
     collecitonViewH = self.view.frame.size.height-64;
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
+        CGFloat topY = 44;
+        if (@available(iOS 11.0, *)) {
+            topY += [[UIApplication sharedApplication] delegate].window.safeAreaInsets.top;
+        } else {
+            // Fallback on earlier versions
+            topY += 20;
+        }
         maker
-        .hd_frame(CGRectMake(0, 64, self.view.frame.size.width, self->collecitonViewH))
+        .hd_frame(CGRectMake(0, topY, self.view.frame.size.width, self->collecitonViewH))
         .hd_isNeedTopStop(YES)
         .hd_scrollDirection(UICollectionViewScrollDirectionVertical)
         .hd_isCalculateCellHOnCommonModes(YES);

@@ -8,6 +8,7 @@
 
 #import "HDHeaderStopHelper.h"
 #import "HDSectionModel.h"
+#import "HDBaseLayout.h"
 #import <objc/runtime.h>
 static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLayoutAttributesIndexKey";
 @implementation HDHeaderStopHelper
