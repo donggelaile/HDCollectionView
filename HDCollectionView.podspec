@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HDCollectionView'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = '快速构建灵活易用滑动列表的第三方库'
 
 # This description is used to generate tags and improve search results.
