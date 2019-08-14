@@ -35,7 +35,6 @@
 @end
 
 @implementation HDFlowLayoutItemModel
-@synthesize alignSelf;
 @synthesize margain;
 @synthesize size;
 @synthesize itemType;
@@ -127,7 +126,7 @@
         UICollectionViewLayoutAttributes *cellAtt = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:idx inSection:secModel.section]];
         cellAtt.zIndex = HDCellDefaultZindex;
         [atts addObject:cellAtt];
-        
+
         [obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
         [obj setValue:secModel forKey:@"secModel"];
     }];
@@ -155,7 +154,7 @@
             CGPoint origin = [obj[HDYogaItemPointKey] CGPointValue];
             att.frame = CGRectMake(cStart->x+origin.x, cStart->y+origin.y, size.width, size.height);
             sectionSize = CGRectUnion(sectionSize, att.frame);
-
+        
         }];
     }
 

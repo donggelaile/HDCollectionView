@@ -7,17 +7,22 @@
 //
 
 #import "QQDemo2FriendVC.h"
-#import "QQDemo2VC.h"
+
 @interface QQDemo2FriendVC ()
 @end
 
 @implementation QQDemo2FriendVC
-
+- (QQDemo2FriendVCVM *)viewModel
+{
+    if (!_viewModel) {
+        _viewModel = [QQDemo2FriendVCVM new];
+    }
+    return _viewModel;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionV.backgroundColor = [UIColor whiteColor];
-    QQDemo2VC *mainVC = (QQDemo2VC*)self.parentViewController;
-    [self.collectionV hd_setAllDataArr:[mainVC.viewModel QQDemo2FriendVCSecArr]];
+    [self.collectionV hd_setAllDataArr:[self.viewModel QQDemo2FriendVCSecArr]];
 
 }
 

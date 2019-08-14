@@ -9,12 +9,12 @@
 #import "HDCellModel.h"
 #import "HDCollectionCell.h"
 #import "HDCellFrameCacheHelper.h"
+#import <objc/runtime.h>
 
 @implementation HDCellModel
 
 @synthesize secModel        = _secModel;
 @synthesize subviewsFrame   = _subviewsFrame;
-@synthesize alignSelf       = _alignSelf;
 @synthesize cellClassStr    = _cellClassStr;
 @synthesize cellFrameXY     = _cellFrameXY;
 @synthesize cellSize        = _cellSize;
@@ -103,7 +103,31 @@
     }
     return self.cellSize;
 }
-
+//取出当前类的所有property,然后去self.orgData中查找是否实现了对应的get方法，实现了则读取并赋值。
+- (void)superDefaultConvertOrgModelToViewModel
+{
+    NSMutableArray *allPropertyGetters = @[].mutableCopy;
+    unsigned int propertyCount = 0;
+    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
+    if (properties) {
+        for (unsigned int i = 0; i < propertyCount; i++) {
+            const char *name = property_getName(properties[i]);
+            if (name) {
+                [allPropertyGetters addObject:[NSString stringWithUTF8String:name]];
+            }
+        }
+        free(properties);
+    }
+    
+    [allPropertyGetters enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([self.orgData respondsToSelector:NSSelectorFromString(obj)] && [obj isKindOfClass:[NSString class]]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [self setValue:[self.orgData performSelector:NSSelectorFromString(obj)] forKey:obj];
+#pragma clang diagnostic pop
+        }
+    }];
+}
 @end
 
 

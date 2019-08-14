@@ -58,5 +58,6 @@
 {
     QQDemoFriendCellVM *vm = [self viewModel];
     self.titleL.attributedText = vm.vmTitle;
+
 }
 @end

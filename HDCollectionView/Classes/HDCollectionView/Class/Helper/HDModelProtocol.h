@@ -40,11 +40,6 @@
 @property (nonatomic, strong) NSString * _Nullable cellClassStr;
 
 /**
- 仅在layout为HDFlowLayout生效，cell在交叉轴的对齐方式
- */
-@property (nonatomic, assign) YGAlign alignSelf;
-
-/**
  仅在layout为HDFlowLayout生效，cell外边距。用于单独控制某个cell与其他cell间的间距
  假设纵向滑动下，设置HDYogaFlowLayout的verticalGap为10，并设置第一个cellModel的margin = UIEdgeInsetsMake(0, 0, 20, 0);
  那么第一个cell与第二个cell的纵向间距将为20+10，其他cell纵向间距仍为10
@@ -77,7 +72,7 @@
 @property (nonatomic, strong) id _Nullable otherParameter;
 
 /**
- 对sectionModel的一个弱引用
+ 对sectionModel的一个弱引用(赋值在UI更新之后)
  */
 @property (nonatomic, weak, readonly) HDSectionModel * _Nullable secModel;
 
@@ -89,9 +84,9 @@
 @property (nonatomic, assign) BOOL isConvertedToVM;
 
 /**
- 最终cell在collectionView上的xy坐标
+ 最终cell在collectionView上的xy坐标(赋值在UI更新之后)
  */
-@property (nonatomic, assign, readonly) CGPoint cellFrameXY;
+@property (nonatomic,strong, readonly) NSValue* _Nullable cellFrameXY;//CGPoint
 /**
  根据当前配置的参数计算当前cell的大小
  */

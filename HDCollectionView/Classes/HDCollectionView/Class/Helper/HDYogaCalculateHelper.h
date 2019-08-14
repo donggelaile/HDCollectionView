@@ -28,11 +28,6 @@ static NSString * _Nonnull const HDFinalOtherInfoArrKey = @"HDFinalOtherInfoArrK
  */
 @property (nonatomic, assign) UIEdgeInsets margain;
 
-/**
- item 对齐方式 默认 YGAlignFlexStart
- */
-@property (nonatomic, assign) YGAlign alignSelf;
-
 @property (nonatomic, copy, nullable) NSString *itemType;
 @end
 //******************************************item****************************************** end

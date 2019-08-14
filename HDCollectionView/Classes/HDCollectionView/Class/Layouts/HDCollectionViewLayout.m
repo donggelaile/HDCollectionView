@@ -12,7 +12,7 @@
 #import "HDWaterFlowLayout.h"
 #import "HDBaseLayout+Cache.h"
 
-#define HDContinueFindCount 20
+#define HDContinueFindCount 200
 static NSString *const HDNormalLayoutAttsKey = @"HDNormalLayoutAttsKey";
 static NSString *const HDWaterFlowSectionKey = @"HDWaterFlowSectionKey";
 static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     CGFloat contentY;
     BOOL isNeedTopStop;
     NSMutableArray *cachedAttributes;//所有属性缓存(不包含装饰view)
-    NSMutableDictionary *cacheDicAtts;//所有属性字典缓存
+    NSMutableDictionary *cacheDicAtts;//所有属性字典缓存, 与cachedAttributes中的obj是同一个obj
     CGPoint *currentStart;
     CGPoint realCurrentStart;
 }
@@ -266,7 +266,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     //前
     for (NSInteger i=firstFind-1; i>=0; i--) {
         UICollectionViewLayoutAttributes *att = columnAtts[i];
-        if (CGRectIntersectsRect(att.frame,rect)) {
+        if ([self isRectIntersectsRect:att.frame rect2:rect]) {
             [result addObject:att];
         }else{
             break;
@@ -275,7 +275,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     //后
     for (NSInteger i=firstFind+1; i<columnAtts.count; i++) {
         UICollectionViewLayoutAttributes *att = columnAtts[i];
-        if (CGRectIntersectsRect(att.frame,rect)) {
+        if ([self isRectIntersectsRect:att.frame rect2:rect]) {
             [result addObject:att];
         }else{
             break;
@@ -364,13 +364,15 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     BOOL isFrontStop = NO;
     for (NSInteger i=firstFind-1; i>=0; i--) {
         UICollectionViewLayoutAttributes *att = cachedAttributes[i];
-        if (!CGRectIntersectsRect(att.frame, rect)) {
+        UICollectionViewLayoutAttributes *nextAtt = cachedAttributes[i+1];
+        if (![self isRectIntersectsRect:att.frame rect2:rect lastOrNextAttRect:nextAtt.frame]) {
             //找到临界点后再向前找几个
             NSInteger continuFindCount = HDContinueFindCount;
             for (NSInteger j=i-1; j>=0; j--) {
                 UICollectionViewLayoutAttributes *att2 = cachedAttributes[j];
-                if (CGRectIntersectsRect(att2.frame, rect)) {
-                    isFrontStop = !addNormalAtt(att2,HDAttSearchFront,j);
+                UICollectionViewLayoutAttributes *nextAtt2 = cachedAttributes[j+1];
+                if ([self isRectIntersectsRect:att2.frame rect2:rect lastOrNextAttRect:nextAtt2.frame]) {
+                    isFrontStop = !addNormalAtt(att2,HDAttSearchFirst,j);
                 }
                 continuFindCount--;
                 if (continuFindCount<=0 || isFrontStop) {
@@ -391,12 +393,13 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     BOOL isBehindStop = NO;
     for (NSInteger i=firstFind+1; i<cachedAttributes.count; i++) {
         UICollectionViewLayoutAttributes *att = cachedAttributes[i];
-        if (!CGRectIntersectsRect(att.frame, rect)) {
-            
+        UICollectionViewLayoutAttributes *lastAtt = cachedAttributes[i-1];
+        if (![self isRectIntersectsRect:att.frame rect2:rect lastOrNextAttRect:lastAtt.frame]) {
             NSInteger continuFindCount = HDContinueFindCount;
             for (NSInteger j=i+1; j<cachedAttributes.count; j++) {
                 UICollectionViewLayoutAttributes *att2 = cachedAttributes[j];
-                if (CGRectIntersectsRect(att2.frame, rect)) {
+                UICollectionViewLayoutAttributes *lastAtt2 = cachedAttributes[j-1];
+                if ([self isRectIntersectsRect:att2.frame rect2:rect lastOrNextAttRect:lastAtt2.frame]) {
                     isBehindStop = !addNormalAtt(att2,HDAttSearchBehind,j);
                 }
                 continuFindCount--;
@@ -502,5 +505,38 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
         cacheKey = [NSString stringWithFormat:@"HDCell_%zd_%zd",indexPath.section,indexPath.item];
     }
     return cacheKey;
+}
+- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect
+{
+    return [self isRectIntersectsRect:attRect rect2:visualRect lastOrNextAttRect:CGRectNull];
+}
+
+- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect lastOrNextAttRect:(CGRect)lnRect
+{
+    BOOL orgResutlt = CGRectIntersectsRect(attRect,visualRect);
+    
+    BOOL criticalPoint = NO;
+    NSInteger pointH = 1;
+    //临界点，当CGRectGetMinY(rect1) == CGRectGetMaxY(rect2) 也认为是相交的。因为二分查找时，相等也认为是相交
+    if ([self scrollDirection] == UICollectionViewScrollDirectionVertical) {
+        criticalPoint = (ABS(CGRectGetMinY(attRect) - CGRectGetMaxY(visualRect))<pointH) || (ABS(CGRectGetMinY(visualRect) - CGRectGetMaxY(attRect))<pointH);
+    }else{
+        criticalPoint = (ABS(CGRectGetMinX(attRect) - CGRectGetMaxX(visualRect))<pointH) || (ABS(CGRectGetMinX(visualRect) - CGRectGetMaxX(attRect))<pointH);
+    }
+    
+    BOOL isLastNextOneLine = NO;
+    if (!CGRectIsNull(lnRect)) {
+        //当传入其临近att的frame时，同一行/列 的则认为在查找范围内
+        BOOL isNextInVisualRect = [self isRectIntersectsRect:lnRect rect2:visualRect];
+        BOOL isSameLine = NO;
+        if ([self scrollDirection] == UICollectionViewScrollDirectionVertical) {
+            isSameLine = CGRectUnion(attRect, lnRect).size.height<(attRect.size.height+lnRect.size.height);
+        }else{
+            isSameLine = CGRectUnion(attRect, lnRect).size.width<(attRect.size.width+lnRect.size.width);
+        }
+        isLastNextOneLine = isSameLine && isNextInVisualRect;
+    }
+    
+    return orgResutlt || criticalPoint || isLastNextOneLine;
 }
 @end

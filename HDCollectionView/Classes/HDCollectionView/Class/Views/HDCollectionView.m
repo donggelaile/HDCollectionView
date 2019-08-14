@@ -703,6 +703,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     HDCellModel* cellModel = secM.sectionDataArr[indexPath.item];
     [cellModel setValue:indexPath forKey:@"indexP"];
     [cellModel setValue:secM forKey:@"secModel"];
+    UICollectionViewLayoutAttributes *cellAtt = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
+    [cellModel setValue:[NSValue valueWithCGPoint:cellAtt.frame.origin] forKey:@"cellFrameXY"];
     
     if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
         cellModel.cellClassStr = secM.sectionCellClassStr;

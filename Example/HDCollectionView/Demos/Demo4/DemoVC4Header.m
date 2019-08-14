@@ -7,7 +7,7 @@
 //
 
 #import "DemoVC4Header.h"
-//#import "UIView+gesture.h"
+#import "UIView+gesture.h"
 @interface DemoVC4Header()
 @property (nonatomic, strong) UILabel *title;
 @end
@@ -38,9 +38,9 @@
     }
     
     __weak typeof (self) weakS = self;
-//    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
-//        [weakS clickSelf];
-//    }];
+    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
+        [weakS clickSelf];
+    }];
     self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     return self;
 }

@@ -8,39 +8,44 @@
 
 #import "DemoVC2Cell.h"
 #import "UIView+gesture.h"
+#import "HDCollectionView.h"
 @interface DemoVC2Cell()
-@property (nonatomic, strong) UILabel *titleL;
 @end
 @implementation DemoVC2Cell
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.titleL = [[UILabel alloc] initWithFrame:self.bounds];
-        self.titleL.textAlignment = NSTextAlignmentCenter;
-        self.titleL.numberOfLines = 0;
-        self.titleL.adjustsFontSizeToFitWidth = YES;
-        [self.contentView addSubview:self.titleL];
     }
     __weak typeof(self) weakS = self;
-    self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
+    self.contentView.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
         [weakS clickSelf];
     }];
+
     return self;
 }
-- (void)layoutSubviews
-{
-    _titleL.frame = self.bounds;
-    [super layoutSubviews];
-}
+
 -(void)updateCellUI:(__kindof HDCellModel *)model
 {
-    self.titleL.text = [NSString stringWithFormat:@"%@_%zd_%zd",model.cellClassStr,model.indexP.section,model.indexP.item];
 }
 - (void)clickSelf
 {
-    self.callback(self.hdModel);
+    //比如点击这个cell,想做的操作是 删除这个cell
+    
+    //方式1
+    //    self.callback(self.hdModel);//直接调用主view设置的回调,让主view去处理
+    
+    //方式2
+    //配合主view的allSubViewEventDealPolicy使用
+    NSLog(@"%@",self.hdModel.cellFrameXY);
+    void(^selfDeal)(void) = ^{
+        __hd_WeakSelf
+        [self.superCollectionV hd_changeSectionModelWithKey:self.hdModel.secModel.sectionKey changingIn:^(HDSectionModel *secModel) {
+            [secModel.sectionDataArr removeObjectAtIndex:weakSelf.hdModel.indexP.item];
+        }];
+    };
+    HDDefaultCellEventDeal(selfDeal);
 }
 - (void)dealloc
 {

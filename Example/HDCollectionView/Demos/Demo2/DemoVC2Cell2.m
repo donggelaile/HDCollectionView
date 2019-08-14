@@ -7,6 +7,8 @@
 //
 
 #import "DemoVC2Cell2.h"
+#import "UIView+gesture.h"
+#import "HDCollectionView.h"
 
 @interface DemoVC2Cell2()
 @property (nonatomic, strong) UILabel *titleL;
@@ -23,9 +25,9 @@
     }
     __weak typeof(self) weakS = self;
     self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
-//    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
-//        [weakS clickSelf];
-//    }];
+    [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
+        [weakS clickSelf];
+    }];
     return self;
 }
 - (void)layoutSubviews
@@ -35,10 +37,22 @@
 }
 -(void)updateCellUI:(__kindof HDCellModel *)model
 {
-    self.titleL.text = [NSString stringWithFormat:@"%@_%zd_%zd",model.cellClassStr,model.indexP.section,model.indexP.item];
 }
 - (void)clickSelf
 {
-    self.callback(self.hdModel);
+    //比如点击这个cell,想做的操作是 删除这个cell
+    
+    //方式1
+//    self.callback(self.hdModel);//直接调用主view设置的回调,让主view去处理
+    
+    //方式2
+    void(^selfDeal)(void) = ^{
+        __hd_WeakSelf
+        [self.superCollectionV hd_changeSectionModelWithKey:self.hdModel.secModel.sectionKey changingIn:^(HDSectionModel *secModel) {
+            [secModel.sectionDataArr removeObjectAtIndex:weakSelf.hdModel.indexP.item];
+        }];
+    };
+    HDDefaultCellEventDeal(selfDeal);
+    
 }
 @end

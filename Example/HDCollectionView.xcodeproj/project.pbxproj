@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */; };
+		28FE5C1222FD536E007FD9AA /* QQDemoFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FE5C1122FD536E007FD9AA /* QQDemoFriendModel.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -106,6 +108,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28E4B541230263A700BEBC34 /* QQDemo2FriendVCVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQDemo2FriendVCVM.h; sourceTree = "<group>"; };
+		28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQDemo2FriendVCVM.m; sourceTree = "<group>"; };
+		28FE5C1022FD536E007FD9AA /* QQDemoFriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQDemoFriendModel.h; sourceTree = "<group>"; };
+		28FE5C1122FD536E007FD9AA /* QQDemoFriendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQDemoFriendModel.m; sourceTree = "<group>"; };
 		3EA6CFB47225E3A04727A23D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		5A59C08DD2ABECAE07CC4F07 /* Pods_HDCollectionView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDCollectionView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B164F0C9815D3C73EF62558 /* Pods-HDCollectionView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Tests/Pods-HDCollectionView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -437,6 +443,8 @@
 			children = (
 				664305462292E6DF00E29603 /* QQDemo2VCViewModel.h */,
 				664305472292E6DF00E29603 /* QQDemo2VCViewModel.m */,
+				28E4B541230263A700BEBC34 /* QQDemo2FriendVCVM.h */,
+				28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */,
 				6689F3A422964D8B0041A441 /* QQDemoFriendCellVM.h */,
 				6689F3A722964D8B0041A441 /* QQDemoFriendCellVM.m */,
 				6689F3A522964D8B0041A441 /* QQDemoOpenCloseSec.h */,
@@ -459,6 +467,8 @@
 		6689F3A322964D8B0041A441 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				28FE5C1022FD536E007FD9AA /* QQDemoFriendModel.h */,
+				28FE5C1122FD536E007FD9AA /* QQDemoFriendModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -913,6 +923,7 @@
 				6696B2E22272B4AE007FDFE4 /* DemoVC5Cell.m in Sources */,
 				66B825D5229FC1BD006549A2 /* HDStopView.m in Sources */,
 				6689F3BE22964D8C0041A441 /* QQDemoFriendGroupHeader.m in Sources */,
+				28FE5C1222FD536E007FD9AA /* QQDemoFriendModel.m in Sources */,
 				6696B31A2272B4EB007FDFE4 /* YYWeakProxy.m in Sources */,
 				6696B3072272B4AE007FDFE4 /* DemoVC6Cell.m in Sources */,
 				6689F3B922964D8C0041A441 /* QQDemoOpenCloseSec.m in Sources */,
@@ -927,6 +938,7 @@
 				6696B3232272C952007FDFE4 /* VCCell.m in Sources */,
 				66BF786E229E690D006C5118 /* HDWebView.m in Sources */,
 				6696B2FB2272B4AE007FDFE4 /* AHCRefPriceCell.m in Sources */,
+				28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */,
 				66B6B7FE2284FEB1009FECF1 /* DemoVC4Cell2.m in Sources */,
 				6696B2F92272B4AE007FDFE4 /* AHCModel.m in Sources */,
 				6696B30A2272B4AE007FDFE4 /* DemoVC7.m in Sources */,

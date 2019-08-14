@@ -58,7 +58,7 @@
     
     [listV hd_setAllDataArr:randomArr];
     
-    __weak typeof(self) weakS = self;
+//    __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
 
     }];

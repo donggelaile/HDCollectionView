@@ -139,9 +139,7 @@ void YGSetSize(YGNodeRef node, CGSize size){
         
         UIEdgeInsets margain = obj.margain;
         CGSize size = obj.size;
-        YGAlign alignSelf = obj.alignSelf;
-
-        YGNodeStyleSetAlignSelf(subNode.yogaNode, alignSelf);
+        
         YGSetSize(subNode.yogaNode, size);
         
         CGFloat mTop = margain.top==0 ?sec.verticalGap: margain.top;

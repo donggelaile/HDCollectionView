@@ -10,18 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+//实际中这个可以继承一个基类VC的ViewModel或者遵循一个基类协议
 @interface QQDemo2VCViewModel : NSObject
-
-//QQDemo2VC
 @property (nonatomic, strong) NSMutableArray *topSecArr;;
 @property (nonatomic, strong) NSMutableArray *controllers;
 @property (nonatomic, strong) NSMutableArray *titles;
 @property (nonatomic, assign) CGSize titleSize;
 @property (nonatomic, assign) BOOL headerStop;;
-
-//QQDemo2FriendVC
-@property (nonatomic, strong) NSMutableArray *QQDemo2FriendVCSecArr;
-
 @end
 
 NS_ASSUME_NONNULL_END
