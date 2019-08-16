@@ -37,6 +37,11 @@
         [self addChildViewController:obj];
     }];
 }
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.multipleSc.frame = self.view.bounds;
+}
 - (void)dealloc
 {
     

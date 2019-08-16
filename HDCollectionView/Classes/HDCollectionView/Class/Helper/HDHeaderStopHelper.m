@@ -12,7 +12,7 @@
 #import <objc/runtime.h>
 static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLayoutAttributesIndexKey";
 @implementation HDHeaderStopHelper
-//视图层级由上到下为 InIndicator -> 段数靠前的header -> 段数靠后的header -> footer -> cell -> decorationView
+//视图层级由上到下为 Indicator -> 段数靠前的header -> 段数靠后的header -> footer -> cell -> decorationView
 + (NSMutableArray *)getAdjustAttArrWith:(NSMutableArray *)oriRectAttArr allSectionData:(NSMutableArray *)secDataArr layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection
 {
     if (!oriRectAttArr) {
