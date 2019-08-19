@@ -5,13 +5,11 @@
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
 ## 部分demo截图
-![](https://i.loli.net/2019/06/12/5d00b375c561e21723.gif)
-![](https://i.loli.net/2019/06/12/5d00b3770d5df68735.gif)
-![](https://i.loli.net/2019/06/12/5d00b3789d7e575580.gif)
-![](https://i.loli.net/2019/06/12/5d00b37bd968d77225.gif)
-![](https://i.loli.net/2019/06/12/5d00b37d98c2922733.gif)
-![](https://i.loli.net/2019/06/12/5d00b37f68d3377556.gif)
-![](https://i.loli.net/2019/06/12/5d00b37a42abf21786.gif)
+|说明 | gif | 说明 | gif|
+|:----:|:------:|:----:|:------:|
+| 概览 |  <img src="https://i.loli.net/2019/06/12/5d00b375c561e21723.gif" width="375" height="auto"> | 简单使用 |  <img src="https://i.loli.net/2019/06/12/5d00b3770d5df68735.gif" width="375" height="auto"> |
+| 纵向夹杂横向 |  <img src="https://i.loli.net/2019/06/12/5d00b3789d7e575580.gif" width="375" height="auto"> | 横向悬浮 |  <img src="https://i.loli.net/2019/06/12/5d00b37bd968d77225.gif" width="375" height="auto"> |
+| 汽车之家 |  <img src="https://i.loli.net/2019/06/12/5d00b37f68d3377556.gif" width="375" height="auto"> | QQ联系人 |  <img src="https://i.loli.net/2019/06/12/5d00b37a42abf21786.gif" width="375" height="auto"> |
 
 ## 简述
 HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。
