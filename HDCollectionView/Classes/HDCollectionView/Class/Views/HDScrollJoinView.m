@@ -129,6 +129,8 @@ static char *HDStopViewMaxXYKey;
             
             listContentWidthSum += hdSize.width;
         }
+        [view setNeedsLayout];
+        [view layoutIfNeeded];
     }];
     [self.innerListArr enumerateObjectsUsingBlock:^(id<HDScrollJoinViewRealScroll>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UIView *view = (UIView *)obj;

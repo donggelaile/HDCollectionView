@@ -871,9 +871,6 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         [self hd_inner_autoCountAllViewsHeight];
     }else{        
         HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
-            //1、整体放到NSDefaultRunLoopMode延时执行（默认是在NSRunLoopCommonModes）
-            //2、原因: 放到NSDefaultRunLoopMode后，加载数据完成后不会立即刷新，如果此时用户正在滑动屏幕，立即计算会引起瞬间的卡顿。主要是为了不与用户争抢CPU。
-            //3、效果: 放到NSDefaultRunLoopMode的效果是在加载完数据后，用户手指未脱离屏幕一直不会刷新，直至手指离开屏幕。此时由UITrackingRunLoopMode切换到NSDefaultRunLoopMode，计算才开始执行，参考微信朋友圈刷新。
             [self hd_inner_autoCountAllViewsHeight];
         });
     }

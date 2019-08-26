@@ -46,17 +46,17 @@
     NSMutableArray *result = @[].mutableCopy;
     
     //网页
-//    HDWebView *web = [HDWebView new];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com"]];
-//    //https://c.m.163.com/news/a/EGBAJ7FS002398HK.html?spss=newsapp
-//    [web loadRequest:request];
-//    [result addObject:web];
+    HDWebView *web = [HDWebView new];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://github.com"]];
+    //https://c.m.163.com/news/a/EGBAJ7FS002398HK.html?spss=newsapp
+    [web loadRequest:request];
+    [result addObject:web];
     
-//    //悬停
-//    HDStopView *stopView = [[HDStopView alloc] initWithFrame:CGRectMake(0, 0, hd_deviceWidth, 70)];
-//    stopView.backgroundColor = [UIColor blueColor];
-//    [stopView setStopType:HDScrollJoinViewStopTypeAlways title:@"一直悬浮在顶部"];
-//    [result addObject:stopView];
+    //悬停
+    HDStopView *stopView = [[HDStopView alloc] initWithFrame:CGRectMake(0, 0, hd_deviceWidth, 70)];
+    stopView.backgroundColor = [UIColor blueColor];
+    [stopView setStopType:HDScrollJoinViewStopTypeAlways title:@"一直悬浮在顶部"];
+    [result addObject:stopView];
     
     //原生(这里内嵌了HDNewsCollectionView，建议关闭其悬浮功能。使用HDScrollJoinView内置的功能来做悬浮)
     HDNewsCollectionView *cv = [HDNewsCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
@@ -64,26 +64,26 @@
     }];
     [cv hd_setAllDataArr:[self secArr:6]];
     [result addObject:cv];
-//
-//    //网页
-//    HDWebView *web2 = [HDWebView new];
-//    NSURLRequest *request2 = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://c.m.163.com/news/a/EGBAJ7FS002398HK.html?spss=newsapp"]];
-//    [web2 loadRequest:request2];
-//    [result addObject:web2];
-//    
-//    //悬停
-//    HDStopView *stopView2 = [[HDStopView alloc] initWithFrame:CGRectMake(0, 0, hd_deviceWidth, 60)];
-//    stopView2.backgroundColor = [UIColor orangeColor];
-//    [stopView2 setStopType:HDScrollJoinViewStopTypeWhenNextDismiss title:@"跟随下一个view的滑出而滑出"];
-//    [result addObject:stopView2];
-//    
-//    //原生
-//    HDNewsCollectionView *cv2 = [HDNewsCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-//        maker.hd_frame(CGRectZero)
-//        .hd_isNeedTopStop(YES);
-//    }];
-//    [cv2 hd_setAllDataArr:[self secArr:60]];
-//    [result addObject:cv2];
+
+    //网页
+    HDWebView *web2 = [HDWebView new];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://c.m.163.com/news/a/EGBAJ7FS002398HK.html?spss=newsapp"]];
+    [web2 loadRequest:request2];
+    [result addObject:web2];
+    
+    //悬停
+    HDStopView *stopView2 = [[HDStopView alloc] initWithFrame:CGRectMake(0, 0, hd_deviceWidth, 60)];
+    stopView2.backgroundColor = [UIColor orangeColor];
+    [stopView2 setStopType:HDScrollJoinViewStopTypeWhenNextDismiss title:@"跟随下一个view的滑出而滑出"];
+    [result addObject:stopView2];
+    
+    //原生
+    HDNewsCollectionView *cv2 = [HDNewsCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
+        maker.hd_frame(CGRectZero)
+        .hd_isNeedTopStop(YES);
+    }];
+    [cv2 hd_setAllDataArr:[self secArr:60]];
+    [result addObject:cv2];
     return result;
 }
 - (NSMutableArray *)secArr:(NSInteger)cellCount
