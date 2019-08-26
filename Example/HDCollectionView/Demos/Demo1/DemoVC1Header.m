@@ -41,7 +41,7 @@
     self.backgroundColor = [UIColor redColor];
     return self;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
 }

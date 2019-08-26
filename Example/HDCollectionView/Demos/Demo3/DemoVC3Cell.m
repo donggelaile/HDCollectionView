@@ -114,6 +114,10 @@
 - (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel *)cellModel
 {
     /*
+     0、前提条件：该cell所在的段(HDSectionModel)
+     secModel.isNeedAutoCountCellHW  = YES;
+     secModel.isNeedCacheSubviewsFrame = YES;
+     
      1、当你想缓存cell子view Frame时，实现cacheSubviewsFrameBySetLayoutWithCellModel函数即可，
      在此cell内部无需调用cacheSubviewsFrameBySetLayoutWithCellModel和setLayoutWithModel方法，
      此时最后展示到界面上的cell没有设置任何约束，但其所有frame是通过一个相同类的tempCell在设置约束后计算而来的
@@ -127,7 +131,7 @@
      */
     [self setLayoutWithModel:cellModel];
 }
--(void)updateCellUI:(__kindof HDCellModel *)model
+-(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     uint64_t dispatch_benchmark(size_t count, void (^block)(void));//GCD私有API
     if (!isDemoVC3OpenCellSubviewFrameCache) {

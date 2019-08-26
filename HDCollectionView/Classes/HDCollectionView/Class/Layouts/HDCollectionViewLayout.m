@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     currentStart = &realCurrentStart;
 
 }
-- (NSMutableArray<HDSectionModel*> *)allDataArr
+- (NSMutableArray<id<HDSectionModelProtocol>> *)allDataArr
 {
     NSMutableArray *arr = [self.collectionView.superview valueForKey:@"allDataArr"];
     return arr;
@@ -95,7 +95,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     }
     //刷新重新添加
     for (NSInteger i=sectionIndex; i<[self allDataArr].count; i++) {
-        HDSectionModel *sec = [self allDataArr][i];
+        id<HDSectionModelProtocol> sec = [self allDataArr][i];
         
         if (sec.section == 0) {
             currentStart->x = 0;
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     }
     
     //刷新完毕后更正 currentStart (删除最后一个secModel的时候必须更新)
-    HDSectionModel *lastSec = [[self allDataArr] lastObject];
+    id<HDSectionModelProtocol> lastSec = [[self allDataArr] lastObject];
     currentStart->x = lastSec.layout.cacheEnd.x;
     currentStart->y = lastSec.layout.cacheEnd.y;
     
@@ -159,7 +159,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     return result;
 }
 
-- (void)addOneSection:(HDSectionModel*)section isFirst:(BOOL)isFirst
+- (void)addOneSection:(id<HDSectionModelProtocol>)section isFirst:(BOOL)isFirst
 {
     NSArray *Atts = [section.layout getAttsWithLayout:self sectionModel:section currentStart:currentStart isFirstSec:isFirst];
     [Atts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes* obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -243,7 +243,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
 - (NSMutableArray*)findWaterFlowAtts:(NSArray*)sections rect:(CGRect)rect
 {
     NSMutableArray *result = @[].mutableCopy;
-    [sections enumerateObjectsUsingBlock:^(HDSectionModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [sections enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
         HDWaterFlowLayout *layout = obj.layout;
         if ([layout isKindOfClass:[HDWaterFlowLayout class]]) {
             [layout.columnAtts enumerateObjectsUsingBlock:^(NSArray<UICollectionViewLayout *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -324,7 +324,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
             
             //保存可见瀑布流
             if (att.indexPath.section < [self allDataArr].count) {
-                HDSectionModel *secModel = [self allDataArr][att.indexPath.section];
+                id<HDSectionModelProtocol> secModel = [self allDataArr][att.indexPath.section];
                 waterFlowSections[@(secModel.section).stringValue] = secModel;
             }
             
@@ -426,7 +426,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     if (att.indexPath.section>[self allDataArr].count) {
         return NO;
     }
-    HDSectionModel *secModel = [self allDataArr][att.indexPath.section];
+    id<HDSectionModelProtocol> secModel = [self allDataArr][att.indexPath.section];
     BOOL isWaterFlowLayout = [secModel.layout isKindOfClass:NSClassFromString(@"HDWaterFlowLayout")];
     return isWaterFlowLayout;
 }

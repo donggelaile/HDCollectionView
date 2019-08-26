@@ -51,7 +51,7 @@
     }
     return self;
 }
-- (void)updateCellUI:(__kindof HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     //需要确保DemoVC4Cell2不会与其他cell共同复用，这里就可以只设置一次self.collectionV的数据源
     //如果DemoVC4Cell2与其他cell复用了，则需要去掉 if (self.collectionV.innerAllData.count == 0)判断

@@ -21,7 +21,7 @@
 
 @implementation HDWaterFlowLayout
 
-- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(HDSectionModel *)secModel currentStart:(CGPoint *)cStart
+- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart
 {
     BOOL isNeedUpdateAll = self.needUpdate || self.cacheAtts.count == 0;
     
@@ -133,7 +133,7 @@
     }
     
     for (NSInteger idx = cellStartIndex; idx<secModel.sectionDataArr.count; idx++) {
-        HDCellModel *obj = secModel.sectionDataArr[idx];
+        id<HDCellModelProtocol>obj = secModel.sectionDataArr[idx];
         CGRect cellFrame = CGRectZero;
         if (!secModel.isNeedAutoCountCellHW) {
             if (obj.cellSizeCb) {
@@ -181,8 +181,8 @@
         NSMutableArray *someColumnAtts = self->columAttsArr[minColumnOrRow];
         [someColumnAtts addObject:cellAtt];
         
-        [obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
-        [obj setValue:secModel forKey:@"secModel"];
+        [(NSObject*)obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
+        [(NSObject*)obj setValue:secModel forKey:@"secModel"];
     }
 
     //判断是否有无cell,没有cell时不再考虑内边距（即让heder与footer紧邻）
@@ -245,7 +245,7 @@
         [self.cacheAtts addObjectsFromArray:atts];
 
     }
-    [secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
+    [(NSObject*)secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
     return self.cacheAtts;
 }
 

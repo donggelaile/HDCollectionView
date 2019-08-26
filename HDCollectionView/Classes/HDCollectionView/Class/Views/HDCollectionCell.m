@@ -33,7 +33,7 @@
     return _superCollectionV;
 }
 
-- (void)superUpdateCellUI:(HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)superUpdateCellUI:(id<HDCellModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback
 {
     self.superCallback = callback;
     __weak typeof(self)weakS = self;
@@ -61,7 +61,7 @@
     }
 }
 
-- (void)superAutoLayoutDefaultSet:(HDCellModel *)cellModel
+- (void)superAutoLayoutDefaultSet:(id<HDCellModelProtocol>)cellModel
 {
     //设置宽度约束，自适应高度时设定父view宽度 才能准备使用autolayout计算需要的高度，尤其iOS8及以下
     //这里只计算高度，如果想完全控制cell宽高或者定高算宽 可以在子类cell的 - (CGSize)hdSizeThatFits:(CGSize)size中返回响应的size

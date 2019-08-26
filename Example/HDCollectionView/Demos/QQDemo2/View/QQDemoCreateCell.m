@@ -38,7 +38,7 @@
     return self;
 }
 
-- (void)updateCellUI:(__kindof HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     self.titleL.text = model.orgData;
 }

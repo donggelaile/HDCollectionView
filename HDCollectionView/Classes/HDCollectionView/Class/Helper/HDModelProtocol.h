@@ -3,7 +3,7 @@
 //  HDCollectionView
 //
 //  Created by HaoDong chen on 2019/7/8.
-//
+//  
 
 #ifndef HDModelProtocol_h
 #define HDModelProtocol_h
@@ -106,7 +106,7 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
     HDHeaderStopOnTopTypeAlways//始终悬停在顶部(纵向滑动)或左部(横向滑动)，多个悬停的相遇后，后面的会在其后悬停
 };
 
-@protocol HDSectionModelProtocol <NSObject>
+@protocol HDSectionModelProtocol <NSObject,NSCopying>
 
 @required
 

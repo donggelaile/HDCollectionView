@@ -34,7 +34,7 @@
     
     return self;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     self.titleL.text = model.headerObj;
 }
@@ -59,7 +59,7 @@
     }
     return self;
 }
-- (void)updateCellUI:(HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     AHCModelexcessids *item = model.orgData;
     self.titleL.text = item.value;
@@ -98,7 +98,7 @@
     return self;
 }
 
--(void)updateCellUI:(__kindof HDCellModel *)model
+-(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     [self.collectionV hd_setAllDataArr:model.orgData];
     CGPoint point =  [[[HDSCVOffsetBinder shareInstance] getCurrentOffsetByGroupID:AHC_Hor_Colletionview] CGPointValue];

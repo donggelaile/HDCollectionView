@@ -65,7 +65,7 @@
     return self;
 }
 
-- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(HDSectionModel *)secModel currentStart:(CGPoint *)cStart
+- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart
 {
     __block CGRect sectionSize = CGRectMake(cStart->x, cStart->y, 0, 0);
     
@@ -109,7 +109,7 @@
     
     //cells
     BOOL isHaveCell = secModel.sectionDataArr.count>0;
-    [secModel.sectionDataArr enumerateObjectsUsingBlock:^(HDCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [secModel.sectionDataArr enumerateObjectsUsingBlock:^(id<HDCellModelProtocol> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!secModel.isNeedAutoCountCellHW) {
             if (obj.cellSizeCb) {
                 obj.cellSize = obj.cellSizeCb();
@@ -127,8 +127,8 @@
         cellAtt.zIndex = HDCellDefaultZindex;
         [atts addObject:cellAtt];
 
-        [obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
-        [obj setValue:secModel forKey:@"secModel"];
+        [(NSObject*)obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
+        [(NSObject*)obj setValue:secModel forKey:@"secModel"];
     }];
     
     //footer
@@ -187,7 +187,7 @@
         [atts addObject:decorationAtt];
     }
     
-    [secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
+    [(NSObject*)secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
     return atts;
 }
 - (id)valueForUndefinedKey:(NSString *)key

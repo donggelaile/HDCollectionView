@@ -70,9 +70,9 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     NSMutableArray *needStopHeader = @[].mutableCopy;
     
     //找到当前滑动范围之前的所有需要悬停的header
-    [secDataArr enumerateObjectsUsingBlock:^(HDSectionModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [secDataArr enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        [obj setValue:@(idx) forKey:@"section"];//需要对section手动赋值
+        [(NSObject*)obj setValue:@(idx) forKey:@"section"];//需要对section手动赋值
         if (obj.headerTopStopType != HDHeaderStopOnTopTypeNone) {
             if (idx>crtMaxSec) {
                 *stop = YES;
@@ -92,7 +92,7 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     
     __block CGFloat topOffset = 0;
     //更新header的frame及topOffset
-    [needStopHeader enumerateObjectsUsingBlock:^(HDSectionModel* obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [needStopHeader enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
         UICollectionViewLayoutAttributes *header = headerAtts[@(obj.section)];
         if (!header) {
             //对于已经不再可视范围内的，需要重新获取。重新获取的属性，其原来的frame等属性不能被改，所以必须copy一份

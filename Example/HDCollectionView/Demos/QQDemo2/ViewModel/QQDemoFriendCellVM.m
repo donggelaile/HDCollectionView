@@ -19,7 +19,7 @@
     }
     return self;
 }
-//此处用来 装换原始模型到视图模型
+//此处用来 转换原始模型到视图模型
 - (void)convertOrgModelToViewModel
 {
     [self superDefaultConvertOrgModelToViewModel];

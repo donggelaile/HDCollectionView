@@ -54,7 +54,7 @@
     }
     return nil;
 }
-- (void)updateCellUI:(__kindof HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     QQDemoFriendCellVM *vm = [self viewModel];
     self.titleL.attributedText = vm.vmTitle;

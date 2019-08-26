@@ -75,7 +75,7 @@
     }
     secm.isOpen = !secm.isOpen;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     self.titleL.text = model.headerObj;
     self.onlineState.text = @"5/65";

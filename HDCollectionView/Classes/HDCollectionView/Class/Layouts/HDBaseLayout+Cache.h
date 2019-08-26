@@ -7,7 +7,7 @@
 //
 
 #import "HDBaseLayout.h"
-
+#import "HDModelProtocol.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDBaseLayout (Cache)
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *cacheAtts;
 @property (nonatomic, assign) BOOL needUpdate;
 @property (nonatomic, assign) CGRect cacheSectionSize;
-- (NSArray *)getAttsWithLayout:(HDCollectionViewLayout*)layout sectionModel:(HDSectionModel*)secModel currentStart:(CGPoint*)cStart isFirstSec:(BOOL)isFirstSec;
+- (NSArray *)getAttsWithLayout:(HDCollectionViewLayout*)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint*)cStart isFirstSec:(BOOL)isFirstSec;
 @end
 
 NS_ASSUME_NONNULL_END

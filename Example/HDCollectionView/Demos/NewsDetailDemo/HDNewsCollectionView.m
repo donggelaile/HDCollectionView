@@ -27,7 +27,7 @@
     [super layoutSubviews];
     self.titleL.frame = self.bounds;
 }
-- (void)updateCellUI:(__kindof HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     self.contentView.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     self.titleL.text = [NSString stringWithFormat:@"原生--%@",@(model.indexP.item)];

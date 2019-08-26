@@ -36,7 +36,7 @@
     }
     return self;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     titleL.text = model.headerObj;
 }

@@ -7,14 +7,13 @@
 //
 #import <UIKit/UIKit.h>
 #import "HDCollectionViewLayout.h"
+#import "HDModelProtocol.h"
 #ifndef HDLayoutProtocol_h
 #define HDLayoutProtocol_h
-@class HDSectionModel;
-@class HDCellModel;
 @protocol HDLayoutProtocol <NSObject>
 
 @optional
 @required
-- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(HDSectionModel *)secModel currentStart:(CGPoint *)cStart;
+- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart;
 @end
 #endif /* HDLayoutProtocol_h */

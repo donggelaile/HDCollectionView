@@ -21,15 +21,15 @@ typedef NS_ENUM(NSInteger,HDCallBackType) {
 @protocol HDUpdateUIProtocol <NSObject>
 @optional
 - (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel*)cellModel;//cell实现该函数后,cell内部无需调用，将通过此函数布局并保存子view的frame
-- (void)updateCellUI:(__kindof HDCellModel*)model;
-- (void)updateSecVUI:(__kindof HDSectionModel*)model;
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model;
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model;
 //对内部事件的处理
 - (void)dealEventByEventKey:(NSString*)eventKey backType:(HDCallBackType)type backModel:(id)backModel self:(void(^)(void))selfDealCode;
 
 - (CGSize)hdSizeThatFits:(CGSize)size;
-- (void)superUpdateCellUI:(HDCellModel *)model callback:(void (^)(id, HDCallBackType))callback;
-- (void)superUpdateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback;
-- (void)superAutoLayoutDefaultSet:(HDCellModel *)cellModel;
+- (void)superUpdateCellUI:(id<HDCellModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback;
+- (void)superUpdateSecVUI:(id<HDSectionModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback;
+- (void)superAutoLayoutDefaultSet:(id<HDCellModelProtocol>)cellModel;
 @end
 
 #endif /* HDUpdateUIProtocol_h */

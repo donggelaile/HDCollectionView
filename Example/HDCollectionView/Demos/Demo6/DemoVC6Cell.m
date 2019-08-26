@@ -33,7 +33,7 @@
     _titleL.frame = self.bounds;
     [super layoutSubviews];
 }
--(void)updateCellUI:(__kindof HDCellModel *)model
+-(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     self.titleL.text = [NSString stringWithFormat:@"%@_%zd_%zd",model.cellClassStr,model.indexP.section,model.indexP.item];
 }

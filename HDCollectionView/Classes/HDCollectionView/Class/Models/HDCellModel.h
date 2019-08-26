@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "HDModelProtocol.h"
 #import "HDDefines.h"
-@class HDSectionModel;
 
 @interface HDCellModel : NSObject<HDCellModelProtocol>
 - (void)superDefaultConvertOrgModelToViewModel;

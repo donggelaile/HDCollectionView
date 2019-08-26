@@ -35,7 +35,7 @@
     _titleL.frame = self.bounds;
     [super layoutSubviews];
 }
--(void)updateCellUI:(__kindof HDCellModel *)model
+-(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
 }
 - (void)clickSelf

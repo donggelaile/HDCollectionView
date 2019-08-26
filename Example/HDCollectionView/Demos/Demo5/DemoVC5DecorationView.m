@@ -9,7 +9,7 @@
 #import "DemoVC5DecorationView.h"
 
 @implementation DemoVC5DecorationView
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     self.layer.cornerRadius = 5;
     self.layer.borderWidth = 1;

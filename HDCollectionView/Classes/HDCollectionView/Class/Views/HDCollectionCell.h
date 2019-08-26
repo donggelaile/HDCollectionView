@@ -18,7 +18,7 @@
  外部无需赋值，直接调用即可，无需判断callback是否为空
  */
 @property (nonatomic, copy, readonly) void(^callback)(id par);
-@property (nonatomic, strong, readonly) __kindof HDCellModel * hdModel;
+@property (nonatomic, strong, readonly) __kindof id<HDCellModelProtocol> hdModel;
 @property (nonatomic, weak, readonly) HDCollectionView *superCollectionV;
 
 

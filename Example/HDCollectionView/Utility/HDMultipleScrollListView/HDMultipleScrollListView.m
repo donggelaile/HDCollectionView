@@ -20,7 +20,7 @@
     }
     self.rootView.jxTitle.frame = self.bounds;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     
 }
@@ -157,9 +157,9 @@
     }
     return isRes;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    HDSectionModel *firstSec = [self.contentCV.innerAllData firstObject];
+    id<HDSectionModelProtocol> firstSec = [self.contentCV.innerAllData firstObject];
     if (!firstSec.sectionDataArr.count) {
         [self.contentCV hd_setAllDataArr:model.headerObj];
     }
@@ -322,7 +322,7 @@
     [self.finalSecArr addObject:[self HDMultipleScrollListViewTitleHeaderSec]];
     [self.finalSecArr addObject:[self HDMultipleScrollListViewContentHeaderSec]];
 }
-- (HDSectionModel*)HDMultipleScrollListViewTitleHeaderSec
+- (id<HDSectionModelProtocol>)HDMultipleScrollListViewTitleHeaderSec
 {
     NSString *clsStr = @"HDMultipleScrollListViewTitleHeader";
     if (self.confingers.diyHeaderClsStr) {
@@ -331,21 +331,21 @@
             clsStr = self.confingers.diyHeaderClsStr;
         }
     }
-    HDSectionModel *titleSec = [self normalSecWithCellModelArr:nil headerSize:self.confingers.titleContentSize headerClsStr:clsStr autoCountCellH:NO];
+    id<HDSectionModelProtocol> titleSec = [self normalSecWithCellModelArr:nil headerSize:self.confingers.titleContentSize headerClsStr:clsStr autoCountCellH:NO];
     titleSec.headerObj = self.confingers.titles;;
     titleSec.headerTopStopType = self.confingers.isHeaderNeedStop?HDHeaderStopOnTopTypeAlways:HDHeaderStopOnTopTypeNone;
     return titleSec;
 }
 
-- (HDSectionModel*)HDMultipleScrollListViewContentHeaderSec
+- (id<HDSectionModelProtocol>)HDMultipleScrollListViewContentHeaderSec
 {
-    HDSectionModel *secModel = [self normalSecWithCellModelArr:@[].mutableCopy headerSize:[self realContentSize] headerClsStr:@"HDMultipleScrollListViewContentHeader" autoCountCellH:NO];
+    id<HDSectionModelProtocol> secModel = [self normalSecWithCellModelArr:@[].mutableCopy headerSize:[self realContentSize] headerClsStr:@"HDMultipleScrollListViewContentHeader" autoCountCellH:NO];
     secModel.headerObj = @[[self realContentSec]];
     secModel.headerTopStopType = HDHeaderStopOnTopTypeAlways;
     
     return secModel;
 }
-- (HDSectionModel *)realContentSec
+- (id<HDSectionModelProtocol>)realContentSec
 {
     //该段cell数据源
     static NSInteger index = 0;
@@ -367,7 +367,7 @@
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
+    id<HDSectionModelProtocol> secModel = [HDSectionModel new];
     secModel.sectionDataArr           = cellModelArr;
     secModel.layout                   = layout;
     return secModel;
@@ -381,7 +381,7 @@
     }
 }
 
-- (HDSectionModel*)normalSecWithCellModelArr:(NSArray*)cellModelArr headerSize:(CGSize)headerSize headerClsStr:(NSString*)headerClsStr autoCountCellH:(BOOL)autoCountCellH
+- (id<HDSectionModelProtocol>)normalSecWithCellModelArr:(NSArray*)cellModelArr headerSize:(CGSize)headerSize headerClsStr:(NSString*)headerClsStr autoCountCellH:(BOOL)autoCountCellH
 {
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
@@ -389,7 +389,7 @@
     layout.headerSize    = headerSize;
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
+    id<HDSectionModelProtocol> secModel = [HDSectionModel new];
     secModel.sectionHeaderClassStr    = headerClsStr;
     secModel.isNeedAutoCountCellHW    = autoCountCellH;
     secModel.sectionDataArr           = cellModelArr.mutableCopy;

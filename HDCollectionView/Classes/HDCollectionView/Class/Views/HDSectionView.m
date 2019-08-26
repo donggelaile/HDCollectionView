@@ -25,7 +25,7 @@
     }
     return _superCollectionV;
 }
-- (void)superUpdateSecVUI:(HDSectionModel *)model callback:(void (^)(id, HDCallBackType))callback
+- (void)superUpdateSecVUI:(id<HDSectionModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback
 {
     self.superCallback = callback;
     __weak typeof(self) weakS = self;

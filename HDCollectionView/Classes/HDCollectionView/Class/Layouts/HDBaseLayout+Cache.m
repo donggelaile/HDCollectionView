@@ -19,7 +19,7 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
 @end
 
 @implementation HDBaseLayout (Cache)
-- (NSArray *)getAttsWithLayout:(HDCollectionViewLayout *)layout sectionModel:(HDSectionModel *)secModel currentStart:(CGPoint *)cStart isFirstSec:(BOOL)isFirstSec
+- (NSArray *)getAttsWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart isFirstSec:(BOOL)isFirstSec
 {
     CGPoint orgStart = self.cacheStart;
     self.cacheStart = CGPointMake(cStart->x, cStart->y);
@@ -78,7 +78,7 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
     return result;
 }
 
-- (NSArray*)updateWithoffsetXY:(CGPoint)offsetXY start:(CGPoint*)start secm:(HDSectionModel*)secM
+- (NSArray*)updateWithoffsetXY:(CGPoint)offsetXY start:(CGPoint*)start secm:(id<HDSectionModelProtocol>)secM
 {
     [self.cacheAtts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGRect newFrame = CGRectMake(obj.frame.origin.x+offsetXY.x, obj.frame.origin.y+offsetXY.y, obj.frame.size.width, obj.frame.size.height);

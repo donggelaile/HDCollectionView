@@ -8,6 +8,7 @@
 
 #import "HDBaseLayout.h"
 #import "NSObject+HDCopy.h"
+#import "HDModelProtocol.h"
 @interface HDBaseLayout()
 @end
 
@@ -43,7 +44,7 @@
 {
     return  [self hd_copyWithZone:zone];
 }
-- (NSMutableArray *)layoutWithLayout:(UICollectionViewLayout *)layout sectionModel:(HDSectionModel *)secModel currentStart:(CGPoint *)cStart
+- (NSMutableArray *)layoutWithLayout:(UICollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart
 {
     return @[].mutableCopy;
 }

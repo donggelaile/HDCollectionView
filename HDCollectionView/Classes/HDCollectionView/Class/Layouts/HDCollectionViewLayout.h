@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-@class HDSectionModel;
 static char * _Nonnull HDAttributesIndexKey = "HDAttributesIndexKey";
 NS_ASSUME_NONNULL_BEGIN
 

@@ -43,7 +43,7 @@
     self.callback(self.hdSecModel);
     self.hdSecModel.context = nil;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     if (![model.headerObj boolValue]) {
         [self.showOrHideSame setTitle:@"显示相同项" forState:UIControlStateNormal];
@@ -84,7 +84,7 @@
     }
     return self;
 }
-- (void)updateCellUI:(HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     AHCSpecitems *item = model.orgData;
     self.titleL.text = [NSString stringWithFormat:@"%@ %@",item.seriesname,item.specname];
@@ -117,7 +117,7 @@
     }
     return self;
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     [self.lineBg removeFromSuperview];
     CGFloat offsetX = 5;
@@ -172,7 +172,7 @@
 {
     self.callback(cellModel);
 }
-- (void)updateSecVUI:(__kindof HDSectionModel *)model
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     [self.collectionV hd_setAllDataArr:model.headerObj];
     CGPoint point =  [[[HDSCVOffsetBinder shareInstance] getCurrentOffsetByGroupID:AHC_Hor_Colletionview] CGPointValue];

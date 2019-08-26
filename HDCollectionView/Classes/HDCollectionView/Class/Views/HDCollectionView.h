@@ -86,26 +86,26 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 /**
  一次性初始化所有数据 (完成后会回调 dataChangeFinishedCallBack)
  */
-- (void)hd_setAllDataArr:(NSArray<HDSectionModel*>*)dataArr;
+- (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>*)dataArr;
 
 /**
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
  */
-- (void)hd_appendDataWithSecModel:(HDSectionModel*)secModel;
+- (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel;
 
 /**
  向某个段内增加cell/默认的sectionKey是第几段
  该方法目前对于瀑布流元素的增加，内部计算是增量计算的。但对于HDYogaFlowLayout会对该段整体重新计算
  如果想增量计算HDYogaFlowLayout，使用hd_appendDataWithSecModel，新增一个新的段。
  */
-- (void)hd_appendDataWithCellModelArr:(NSArray<HDCellModel*>*)itemArr sectionKey:(NSString*)sectionKey;
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey;
 
 /**
  如果仅仅是向secModel新增cellModel，使用 hd_appendDataWithCellModelArr方法
  该方法改变已有的某个section内的数据，比如对sectionDataArr增删
- 如果设置了HDSectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
+ 如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
  */
-- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey changingIn:(void(^)(HDSectionModel*secModel))changeBlock;
+- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
 
 /**
  删除某段的所有内容

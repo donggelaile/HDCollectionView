@@ -164,7 +164,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     BOOL isObserveContentSize;
 }
 @property (nonatomic, strong) NSMutableArray *allDataCopy;
-@property (nonatomic, strong, readonly) NSMutableArray<HDSectionModel*>* allDataArr;
+@property (nonatomic, strong, readonly) NSMutableArray<id<HDSectionModelProtocol>>* allDataArr;
 @property (nonatomic, copy) BOOL (^multiGesCallBack)(UIGestureRecognizer*ges1,UIGestureRecognizer*ges2);
 @property (nonatomic, copy) void(^contentSizeChangeCallBack)(CGSize newSize);
 @property (nonatomic, strong) NSMutableDictionary *allSecDict;
@@ -239,7 +239,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (BOOL)isInnerDataEmpty
 {
     __block NSInteger allCount = 0;
-    [self.allDataCopy enumerateObjectsUsingBlock:^(HDSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.allDataCopy enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         allCount += obj.sectionDataArr.count;
     }];
     return allCount == 0;
@@ -258,14 +258,14 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     }
     return _allSecDict;
 }
-- (NSMutableArray<HDSectionModel *> *)allDataArr
+- (NSMutableArray<id<HDSectionModelProtocol>> *)allDataArr
 {
     if (!_allDataArr) {
         _allDataArr = @[].mutableCopy;
     }
     return _allDataArr;
 }
-- (void)setAllDataArr:(NSMutableArray<HDSectionModel *> *)allDataArr
+- (void)setAllDataArr:(NSMutableArray<id<HDSectionModelProtocol>> *)allDataArr
 {
     _allDataArr = allDataArr;
 }
@@ -333,7 +333,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 -(void)hd_reloadDataAndSecitonLayout:(NSString *)sectionKey
 {
-    HDSectionModel *sec = _allSecDict[sectionKey];
+    id<HDSectionModelProtocol> sec = _allSecDict[sectionKey];
     if (sec) {
         void (^refreshDataLayout)(void) = ^(){
             sec.layout.needUpdate = YES;
@@ -375,7 +375,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
 //Public
 #pragma mark - dataSet
-- (void)hd_setAllDataArr:(NSArray<HDSectionModel*>*)dataArr
+- (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>*)dataArr
 {
     HDDoSomeThingInMainQueueSyn(^{
         self.allDataCopy = dataArr.mutableCopy;
@@ -383,7 +383,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     });
 }
 
-- (void)hd_appendDataWithSecModel:(HDSectionModel *)secModel
+- (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol> )secModel
 {
     HDDoSomeThingInMainQueueSyn(^{
         if (!secModel) {
@@ -403,15 +403,15 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     });
 }
 
-- (void)hd_appendDataWithCellModelArr:(NSArray<HDCellModel *> *)itemArr sectionKey:(NSString *)sectionKey
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>> *)itemArr sectionKey:(NSString *)sectionKey
 {
     HDDoSomeThingInMainQueueSyn(^{
-        HDSectionModel *secModel = self.allSecDict[sectionKey];
-        if (![secModel isKindOfClass:[HDSectionModel class]]) {
+        id<HDSectionModelProtocol> secModel = self.allSecDict[sectionKey];
+        if (![(NSObject*)secModel conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
             return;
         }
         if (secModel.isNeedAutoCountCellHW) {
-            HDSectionModel *copy = [secModel copy];
+            id<HDSectionModelProtocol> copy = [(NSObject*)secModel copy];
             copy.sectionDataArr = itemArr.mutableCopy;
             [self hd_autoCountCellsHeight:copy isAll:NO type:HDDataChangeAppendCellModel finishCallback:^{
                 [secModel.sectionDataArr addObjectsFromArray:copy.sectionDataArr];
@@ -437,13 +437,13 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         }
     });
 }
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey changingIn:(void (^)(HDSectionModel *))changeBlock
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
 {
     HDDoSomeThingInMainQueueSyn(^{
         if (!sectionKey) {
             return;
         }
-        HDSectionModel *secModel = self.allSecDict[sectionKey];
+        id<HDSectionModelProtocol> secModel = self.allSecDict[sectionKey];
         if (!secModel) {
             return;
         }
@@ -470,11 +470,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         if (!sectionKey) {
             return;
         }
-        HDSectionModel *secModel = self.allSecDict[sectionKey];
+        id<HDSectionModelProtocol> secModel = self.allSecDict[sectionKey];
         if (!secModel) {
             return;
         }
-        HDSectionModel *nextSecM = nil;
+        id<HDSectionModelProtocol> nextSecM = nil;
         NSInteger secIndex = 0;
         
         if (self.allDataArr.count>secModel.section+1) {
@@ -504,14 +504,14 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 //Private
 - (void)updateSecitonModelDict:(BOOL)needUpdateLayout
 {
-    [self.allDataArr enumerateObjectsUsingBlock:^(HDSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setValue:@(idx) forKey:@"section"];
+    [self.allDataArr enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [(NSObject*)obj setValue:@(idx) forKey:@"section"];
         [self updateSectionKey:obj];
         obj.layout.needUpdate = needUpdateLayout;
         [self.allSecDict setValue:obj forKey:obj.sectionKey];
     }];
 }
-- (void)updateSectionKey:(HDSectionModel*)secM
+- (void)updateSectionKey:(id<HDSectionModelProtocol>)secM
 {
     //如果没有自定义sectionKey就更新(这里认为只要是纯数字就不是自定义的)
     if ([self regexIsMatchWithPattern:@"\\d+" needRegexStr:secM.sectionKey]) {
@@ -527,7 +527,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     NSRange firstMatchR = [regExp rangeOfFirstMatchInString:oriStr options:kNilOptions range:NSMakeRange(0, oriStr.length)];
     return firstMatchR.location != NSNotFound && firstMatchR.length != 0;
 }
-- (void)addOneSection:(HDSectionModel*)section
+- (void)addOneSection:(id<HDSectionModelProtocol>)section
 {
     [self.allDataArr addObject:section];
     [self updateSecitonModelDict:NO];
@@ -566,8 +566,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 #pragma mark UICollectionViewDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    HDSectionModel *secModel = _allDataArr[indexPath.section];
-    HDCellModel *cellM = secModel.sectionDataArr[indexPath.item];
+    id<HDSectionModelProtocol> secModel = _allDataArr[indexPath.section];
+    id<HDCellModelProtocol> cellM = secModel.sectionDataArr[indexPath.item];
     if (!secModel.isNeedAutoCountCellHW) {
         if (cellM.cellSizeCb) {
             cellM.cellSize = cellM.cellSizeCb();
@@ -580,28 +580,28 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    HDSectionModel *secM = _allDataArr[section];
+    id<HDSectionModelProtocol> secM = _allDataArr[section];
     return secM.layout.secInset;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    HDSectionModel *secM = _allDataArr[section];
+    id<HDSectionModelProtocol> secM = _allDataArr[section];
     return secM.layout.verticalGap;
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-    HDSectionModel *secM = _allDataArr[section];
+    id<HDSectionModelProtocol> secM = _allDataArr[section];
     return secM.layout.horizontalGap;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    HDSectionModel *secM = _allDataArr[section];
+    id<HDSectionModelProtocol> secM = _allDataArr[section];
     return secM.layout.headerSize;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    HDSectionModel *secM = _allDataArr[section];
+    id<HDSectionModelProtocol> secM = _allDataArr[section];
     return secM.layout.footerSize;
 }
 
@@ -639,7 +639,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    HDSectionModel *secM = _allDataArr[section];
+    id<HDSectionModelProtocol> secM = _allDataArr[section];
     return secM.sectionDataArr.count;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -649,7 +649,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    HDSectionModel *secM = _allDataArr[indexPath.section];
+    id<HDSectionModelProtocol> secM = _allDataArr[indexPath.section];
     [self registerWithCellClass:nil cellReuseID:nil headerClass:secM.sectionHeaderClassStr footerClass:secM.sectionFooterClassStr decorationClass:secM.decorationClassStr];
     __kindof UICollectionReusableView<HDUpdateUIProtocol> * secView = nil;
     if ([NSClassFromString(secM.sectionHeaderClassStr) isSubclassOfClass:[UICollectionReusableView class]]  && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
@@ -686,9 +686,9 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         setedSecViewCallback(secView,indexPath,kind);
     }
     if (indexPath.section == _allDataArr.count-1) {
-        [secM setValue:@(YES) forKey:@"isFinalSection"];
+        [(NSObject*)secM setValue:@(YES) forKey:@"isFinalSection"];
     }else{
-        [secM setValue:@(NO) forKey:@"isFinalSection"];
+        [(NSObject*)secM setValue:@(NO) forKey:@"isFinalSection"];
     }
     
     return secView;
@@ -697,14 +697,14 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     __hd_WeakSelf
-    HDSectionModel *secM = _allDataArr[indexPath.section];
-    [secM setValue:@(indexPath.section) forKey:@"section"];
+    id<HDSectionModelProtocol> secM = _allDataArr[indexPath.section];
+    [(NSObject*)secM setValue:@(indexPath.section) forKey:@"section"];
     
-    HDCellModel* cellModel = secM.sectionDataArr[indexPath.item];
-    [cellModel setValue:indexPath forKey:@"indexP"];
-    [cellModel setValue:secM forKey:@"secModel"];
+    id<HDCellModelProtocol> cellModel = secM.sectionDataArr[indexPath.item];
+    [(NSObject*)cellModel setValue:indexPath forKey:@"indexP"];
+    [(NSObject*)cellModel setValue:secM forKey:@"secModel"];
     UICollectionViewLayoutAttributes *cellAtt = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
-    [cellModel setValue:[NSValue valueWithCGPoint:cellAtt.frame.origin] forKey:@"cellFrameXY"];
+    [(NSObject*)cellModel setValue:[NSValue valueWithCGPoint:cellAtt.frame.origin] forKey:@"cellFrameXY"];
     
     if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
         cellModel.cellClassStr = secM.sectionCellClassStr;
@@ -882,8 +882,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 //计算所有宽高
 -(void)hd_inner_autoCountAllViewsHeight
 {
-    [self.allDataCopy enumerateObjectsUsingBlock:^(HDSectionModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setValue:@(idx) forKey:@"section"];
+    [self.allDataCopy enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [(NSObject*)obj setValue:@(idx) forKey:@"section"];
         if (obj.isNeedAutoCountCellHW) {
             //当计算整体section的时候，内部的每个section将不会再延时执行
             [self hd_autoCountCellsHeight:obj isAll:YES type:HDDataChangeSetAll finishCallback:^{
@@ -900,7 +900,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (void)hd_realCountCellsH:(NSDictionary*)pars
 {
     void(^innerFinishCallBack)(void)  = pars[hd_inner_count_cellH_back_key];
-    HDSectionModel*secModel = pars[hd_secmodel_key];
+    id<HDSectionModelProtocol> secModel = pars[hd_secmodel_key];
     BOOL isAll = [pars[hd_is_all_key] boolValue];
     HDDataChangeType type = [pars[hd_data_finished_type_key] integerValue];
     
@@ -924,8 +924,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     //计算cell的高度/宽度
 //    __block CGFloat cellWidth = secCellSize.width;
 //    __block CGFloat cellFitH = 0;
-    [cellModelArr enumerateObjectsUsingBlock:^(HDCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
+    [cellModelArr enumerateObjectsUsingBlock:^(id<HDCellModelProtocol> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [(NSObject*)obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
         if (obj.cellSizeCb) {
             obj.cellSize = obj.cellSizeCb();
         }
@@ -942,7 +942,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     executeFinish();
 }
 
-- (void)hd_autoCountCellsHeight:(HDSectionModel*)secModel isAll:(BOOL)isAll type:(HDDataChangeType)type finishCallback:(void(^)(void))finishCb
+- (void)hd_autoCountCellsHeight:(id<HDSectionModelProtocol>)secModel isAll:(BOOL)isAll type:(HDDataChangeType)type finishCallback:(void(^)(void))finishCb
 {
     NSMutableDictionary *par = @{hd_secmodel_key:secModel,hd_is_all_key:@(isAll),hd_data_finished_type_key:@(type)}.mutableCopy;
     if (finishCb) {
