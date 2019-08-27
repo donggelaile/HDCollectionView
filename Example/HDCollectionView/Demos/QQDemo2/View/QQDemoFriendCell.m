@@ -56,6 +56,7 @@
 }
 - (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
+    //相当于将cell的UI与QQDemoFriendCellVM的数据进行了绑定。后期适配服务器其他model，让新model遵循QQDemoFriendCellVM中的协议即可
     QQDemoFriendCellVM *vm = [self viewModel];
     self.titleL.attributedText = vm.vmTitle;
 

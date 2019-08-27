@@ -38,6 +38,7 @@
     
     //方式2
     //配合主view的allSubViewEventDealPolicy使用
+    //HDCollectionView的allSubViewEventDealPolicy未设置时默认为cell自己处理该事件,使用方式见Demo6
     NSLog(@"%@",self.hdModel.cellFrameXY);
     void(^selfDeal)(void) = ^{
         __hd_WeakSelf

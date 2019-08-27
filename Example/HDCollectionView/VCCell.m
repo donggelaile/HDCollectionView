@@ -32,9 +32,7 @@
 }
 - (void)clickSelf
 {
-    if (self.callback) {
-        self.callback(self.hdModel);
-    }
+    self.callback(self.hdModel);
 }
 
 - (CGSize)hdSizeThatFits:(CGSize)size

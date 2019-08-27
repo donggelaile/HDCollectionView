@@ -30,7 +30,7 @@
 @property (nonatomic, assign) CGSize cellSize;
 
 /**
- 回调方式获取cellSize,优先级最高（一般需要适配横竖屏时使用该属性返回cell大小,内部必须弱应用self）
+ 回调方式获取cellSize,优先级最高（一般需要适配横竖屏时使用该属性返回cell大小,内部必须弱引用self）
  */
 @property (nonatomic, copy) CGSize(^ _Nullable cellSizeCb)(void);
 
@@ -40,7 +40,7 @@
 @property (nonatomic, strong) NSString * _Nullable cellClassStr;
 
 /**
- 仅在layout为HDFlowLayout生效，cell外边距。用于单独控制某个cell与其他cell间的间距
+ 仅在layout为HDYogaFlowLayout生效，cell外边距。用于单独控制某个cell与其他cell间的间距
  假设纵向滑动下，设置HDYogaFlowLayout的verticalGap为10，并设置第一个cellModel的margin = UIEdgeInsetsMake(0, 0, 20, 0);
  那么第一个cell与第二个cell的纵向间距将为20+10，其他cell纵向间距仍为10
  */
@@ -155,7 +155,7 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
 /**
  默认会初始化一个可变空数组,用于存放所有子model(初始化完毕后，不要直接增删元素。需要增删请使用HDCollectionView提供的接口)
  */
-@property (nonatomic, strong, nonnull) NSMutableArray<HDCellModel*> *sectionDataArr;
+@property (nonatomic, strong, nonnull) NSMutableArray<id<HDCellModelProtocol>> *sectionDataArr;
 
 /**
  默认nil,存放该段布局

@@ -142,6 +142,8 @@
         double time1 = ns/(pow(10, 6));
         printf("重建约束消耗时间为%f毫秒\n",time1);
     }
+    //这里的示例相当于将DemoVC3CellModel与cell进行了绑定，后期适配其他model会变得困难
+    //更好的适配方式见 QQDemo2 ，QQDemoFriendCell绑定的将是一个viewModel。后期很容易让容易cell适配不同原始model
     DemoVC3CellModel *cellM = model.orgData;
     self.titleL.attributedText = cellM.title;
     self.detailL.attributedText = cellM.detail;
@@ -157,12 +159,7 @@
 {
     self.callback(self.hdModel);
 }
-//- (CGSize)sizeThatFits:(CGSize)size
-//{
-//    CGSize newsize = [self.titleL sizeThatFits:size];
-//    newsize = CGSizeMake(size.width, newsize.height+20);
-//    return newsize;
-//}
+
 - (void)dealloc
 {
     
