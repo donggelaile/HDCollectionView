@@ -4,6 +4,8 @@
 ![](https://img.shields.io/badge/language-objectiveC-green.svg)
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
+[相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
+
 ## 部分demo截图
 |说明 | gif | 说明 | gif|
 |:----:|:------:|:----:|:------:|
