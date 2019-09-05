@@ -116,7 +116,7 @@ secModel.layout                   = layout;
 
 3、设置数据
 ```
-[listV hd_setAllDataArr:@[secsecModel].mutableCopy];
+[listV hd_setAllDataArr:@[secModel]];
 ```
 嗯，以后搭一个普通滑动列表的架子只需要在一分钟之内搞定，剩下的事就是去实现cell了。
 
