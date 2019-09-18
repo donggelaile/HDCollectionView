@@ -93,9 +93,9 @@
     CGFloat titleHeaderY = titleHeaderAtt.frame.origin.y;
     UIScrollView *mainRealSc = rootView.mainCollecitonV.collectionV;
     
-    CGFloat topH = [self convertRect:self.frame toView:mainRealSc].origin.y;
+    CGFloat topH = floor([self convertRect:self.frame toView:mainRealSc].origin.y);
     if (rootView.confingers.isHeaderNeedStop) {
-        topH = titleHeaderY;
+        topH = floor(titleHeaderY);
     }
     return topH;
 }
