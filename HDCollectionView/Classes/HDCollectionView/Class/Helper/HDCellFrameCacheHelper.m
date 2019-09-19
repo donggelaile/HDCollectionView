@@ -8,14 +8,13 @@
 
 #import "HDCellFrameCacheHelper.h"
 #import "HDAssociationManager.h"
-#import <objc/runtime.h>
-static char *const HDCollectionCellSubViewFrameCacheKey = "HDCollectionCellSubViewFrameCacheKey";
+
 @implementation HDCollectionCell(subViewFrameCache)
 - (void)setCacheKeysIfNeed
 {
-    if (!objc_getAssociatedObject(self, HDCollectionCellSubViewFrameCacheKey)) {
+    id curObjMap = [[HDAssociationManager hd_currentVaules]objectForKey:self];
+    if ([[curObjMap keyEnumerator] allObjects].count<=0) {
         [HDCellFrameCacheHelper setAllsubViewFrameKey:self];
-        objc_setAssociatedObject(self, HDCollectionCellSubViewFrameCacheKey, @(YES), OBJC_ASSOCIATION_RETAIN);
     }
 }
 @end
@@ -65,7 +64,7 @@ static char *const HDCollectionCellSubViewFrameCacheKey = "HDCollectionCellSubVi
         [cache setCacheFrame:cacheView.frame];
         [allSubViewFrame addObject:cache];
         
-        if (oneSubV.subviews.count) {
+        if (oneSubV.subviews.count && ![self isListView:oneSubV]) {
             [queue addObjectsFromArray:oneSubV.subviews];
         }
         index ++;
@@ -95,10 +94,23 @@ static char *const HDCollectionCellSubViewFrameCacheKey = "HDCollectionCellSubVi
         //出队
         [queue removeObjectAtIndex:0];
         //子view入队
-        [queue addObjectsFromArray:firstView.subviews];
+        if (firstView.subviews.count && ![self isListView:firstView]) {
+            [queue addObjectsFromArray:firstView.subviews];
+        }
         index ++;
         
     }
 }
-
++ (BOOL)isListView:(UIView*)view
+{
+    NSArray *clsArr = @[@"HDCollectionView",@"UITableView",@"UICollectionView"];
+    __block BOOL isListV = NO;
+    [clsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([view isKindOfClass:NSClassFromString(obj)]) {
+            isListV = YES;
+            *stop = YES;
+        }
+    }];
+    return isListV;
+}
 @end
