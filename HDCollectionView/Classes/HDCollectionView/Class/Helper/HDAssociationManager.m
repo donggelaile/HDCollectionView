@@ -28,7 +28,7 @@ static pthread_rwlock_t rwLock;//静态全局变量，所以不考虑释放（pt
     pthread_rwlock_wrlock(&rwLock);
     NSMapTable *objMap = [hd_big_map objectForKey:obj];
     if (!objMap) {
-        objMap = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsWeakMemory valueOptions:NSPointerFunctionsWeakMemory];
+        objMap = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsWeakMemory];
         [objMap setObject:value forKey:key];
         [hd_big_map setObject:objMap forKey:obj];
                 
