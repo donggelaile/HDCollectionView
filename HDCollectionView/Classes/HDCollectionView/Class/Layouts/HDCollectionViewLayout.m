@@ -246,7 +246,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     [sections enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
         HDWaterFlowLayout *layout = obj.layout;
         if ([layout isKindOfClass:[HDWaterFlowLayout class]]) {
-            [layout.columnAtts enumerateObjectsUsingBlock:^(NSArray<UICollectionViewLayout *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [layout.columnAtts enumerateObjectsUsingBlock:^(NSArray<UICollectionViewLayoutAttributes *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [result addObjectsFromArray:[self oneColumnAtts:rect columnAtts:obj]];
             }];
         }

@@ -288,7 +288,7 @@
     }
     return minH;
 }
-- (NSArray<NSArray<UICollectionViewLayout *> *> *)columnAtts
+- (NSArray<NSArray<UICollectionViewLayoutAttributes *> *> *)columnAtts
 {
     return columAttsArr;
 }
