@@ -44,7 +44,7 @@
     BOOL isVertical = layout.scrollDirection == UICollectionViewScrollDirectionVertical;
     BOOL isHaveHeader = !CGSizeEqualToSize(CGSizeZero, self.headerSize) && secModel.sectionHeaderClassStr;
     BOOL isHaveCell = secModel.sectionDataArr.count>0;
-    BOOL isHaveDecoration = [NSClassFromString(secModel.decorationClassStr) isKindOfClass:object_getClass([UICollectionReusableView class])] && isHaveCell;
+    BOOL isHaveDecoration = [NSClassFromString(secModel.decorationClassStr) isKindOfClass:object_getClass([UICollectionReusableView class])];
     BOOL isHaveFooter = !CGSizeEqualToSize(CGSizeZero, self.footerSize) && secModel.sectionFooterClassStr;
     
     //header
@@ -127,7 +127,7 @@
             }
         }
         cellStartIndex = self.cacheAtts.count;
-        if (isHaveHeader && self.cacheAtts.count>1) {
+        if (isHaveHeader && self.cacheAtts.count>=1) {
             cellStartIndex -= 1;
         }
     }
@@ -237,6 +237,10 @@
         decorationAtt.frame = CGRectMake(decorationXY.x+self.decorationMargin.left, decorationXY.y+self.decorationMargin.top, cellBgSize.width-self.decorationMargin.left-self.decorationMargin.right, cellBgSize.height-self.decorationMargin.top-self.decorationMargin.bottom);
         decorationAtt.zIndex = HDDecorationViewDefaultZindex;
         [atts addObject:decorationAtt];
+
+        if (!isHaveCell) {
+            decorationAtt.frame = CGRectZero;
+        }
     }
     if (isNeedUpdateAll) {
         self.cacheAtts = atts;

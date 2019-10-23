@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28AC5E0D235ED6F300657ACE /* NSArray+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */; };
+		28AC5E10235FF9E300657ACE /* DemoVC4DecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */; };
 		28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */; };
 		28FE5C1222FD536E007FD9AA /* QQDemoFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FE5C1122FD536E007FD9AA /* QQDemoFriendModel.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -77,7 +79,6 @@
 		6696B31A2272B4EB007FDFE4 /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B3122272B4EB007FDFE4 /* YYWeakProxy.m */; };
 		6696B31B2272B4EB007FDFE4 /* CHD_ListView_Structure.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B3132272B4EB007FDFE4 /* CHD_ListView_Structure.m */; };
 		6696B31C2272B4EB007FDFE4 /* UIView+gesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B3172272B4EB007FDFE4 /* UIView+gesture.m */; };
-		6696B31D2272B4EB007FDFE4 /* UIView+HDSafeArea.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B3192272B4EB007FDFE4 /* UIView+HDSafeArea.m */; };
 		6696B3202272B76C007FDFE4 /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B31E2272B76C007FDFE4 /* YYFPSLabel.m */; };
 		6696B3232272C952007FDFE4 /* VCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6696B3222272C952007FDFE4 /* VCCell.m */; };
 		66B6B7F922844CCB009FECF1 /* DemoVC4Footer.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B6B7F322844CCA009FECF1 /* DemoVC4Footer.m */; };
@@ -108,6 +109,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28AC5E0B235ED6F300657ACE /* NSArray+HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDHelper.h"; sourceTree = "<group>"; };
+		28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDHelper.m"; sourceTree = "<group>"; };
+		28AC5E0E235FF9E300657ACE /* DemoVC4DecorationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC4DecorationView.h; sourceTree = "<group>"; };
+		28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoVC4DecorationView.m; sourceTree = "<group>"; };
 		28E4B541230263A700BEBC34 /* QQDemo2FriendVCVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQDemo2FriendVCVM.h; sourceTree = "<group>"; };
 		28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQDemo2FriendVCVM.m; sourceTree = "<group>"; };
 		28FE5C1022FD536E007FD9AA /* QQDemoFriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQDemoFriendModel.h; sourceTree = "<group>"; };
@@ -241,11 +246,9 @@
 		6696B3122272B4EB007FDFE4 /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
 		6696B3132272B4EB007FDFE4 /* CHD_ListView_Structure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHD_ListView_Structure.m; sourceTree = "<group>"; };
 		6696B3142272B4EB007FDFE4 /* UIView+gesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+gesture.h"; sourceTree = "<group>"; };
-		6696B3152272B4EB007FDFE4 /* UIView+HDSafeArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HDSafeArea.h"; sourceTree = "<group>"; };
 		6696B3162272B4EB007FDFE4 /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		6696B3172272B4EB007FDFE4 /* UIView+gesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+gesture.m"; sourceTree = "<group>"; };
 		6696B3182272B4EB007FDFE4 /* CHD_ListView_Structure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHD_ListView_Structure.h; sourceTree = "<group>"; };
-		6696B3192272B4EB007FDFE4 /* UIView+HDSafeArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HDSafeArea.m"; sourceTree = "<group>"; };
 		6696B31E2272B76C007FDFE4 /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		6696B31F2272B76C007FDFE4 /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		6696B3212272C952007FDFE4 /* VCCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VCCell.h; sourceTree = "<group>"; };
@@ -575,6 +578,8 @@
 				66B6B7F322844CCA009FECF1 /* DemoVC4Footer.m */,
 				66B6B7F522844CCA009FECF1 /* DemoVC4Header.h */,
 				66B6B7F622844CCA009FECF1 /* DemoVC4Header.m */,
+				28AC5E0E235FF9E300657ACE /* DemoVC4DecorationView.h */,
+				28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */,
 			);
 			path = Demo4;
 			sourceTree = "<group>";
@@ -687,6 +692,8 @@
 		6696B3112272B4EB007FDFE4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				28AC5E0B235ED6F300657ACE /* NSArray+HDHelper.h */,
+				28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */,
 				6643053A2292E0D900E29603 /* HDMultipleScrollListView */,
 				6696B31F2272B76C007FDFE4 /* YYFPSLabel.h */,
 				6696B31E2272B76C007FDFE4 /* YYFPSLabel.m */,
@@ -694,8 +701,6 @@
 				6696B3122272B4EB007FDFE4 /* YYWeakProxy.m */,
 				6696B3182272B4EB007FDFE4 /* CHD_ListView_Structure.h */,
 				6696B3132272B4EB007FDFE4 /* CHD_ListView_Structure.m */,
-				6696B3152272B4EB007FDFE4 /* UIView+HDSafeArea.h */,
-				6696B3192272B4EB007FDFE4 /* UIView+HDSafeArea.m */,
 				6696B3142272B4EB007FDFE4 /* UIView+gesture.h */,
 				6696B3172272B4EB007FDFE4 /* UIView+gesture.m */,
 			);
@@ -847,11 +852,10 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/HDCollectionView/HDCollectionView.framework",
+				"${BUILT_PRODUCTS_DIR}/HDListViewDiffer/HDListViewDiffer.framework",
 				"${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
@@ -862,10 +866,9 @@
 				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HDCollectionView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HDListViewDiffer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXCategoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
@@ -922,6 +925,7 @@
 				6696B2E12272B4AE007FDFE4 /* DemoVC5Header.m in Sources */,
 				6696B2E22272B4AE007FDFE4 /* DemoVC5Cell.m in Sources */,
 				66B825D5229FC1BD006549A2 /* HDStopView.m in Sources */,
+				28AC5E10235FF9E300657ACE /* DemoVC4DecorationView.m in Sources */,
 				6689F3BE22964D8C0041A441 /* QQDemoFriendGroupHeader.m in Sources */,
 				28FE5C1222FD536E007FD9AA /* QQDemoFriendModel.m in Sources */,
 				6696B31A2272B4EB007FDFE4 /* YYWeakProxy.m in Sources */,
@@ -940,6 +944,7 @@
 				6696B2FB2272B4AE007FDFE4 /* AHCRefPriceCell.m in Sources */,
 				28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */,
 				66B6B7FE2284FEB1009FECF1 /* DemoVC4Cell2.m in Sources */,
+				28AC5E0D235ED6F300657ACE /* NSArray+HDHelper.m in Sources */,
 				6696B2F92272B4AE007FDFE4 /* AHCModel.m in Sources */,
 				6696B30A2272B4AE007FDFE4 /* DemoVC7.m in Sources */,
 				6696B2FE2272B4AE007FDFE4 /* AHCTopHeader.m in Sources */,
@@ -955,7 +960,6 @@
 				6696B30B2272B4AE007FDFE4 /* DemoVC7Footer.m in Sources */,
 				6635BBE82293BF7D0037EE0A /* HDCollectionView+MultipleScroll.m in Sources */,
 				6696B3022272B4AE007FDFE4 /* DemoVC1.m in Sources */,
-				6696B31D2272B4EB007FDFE4 /* UIView+HDSafeArea.m in Sources */,
 				6696B2F52272B4AE007FDFE4 /* DemoVC4.m in Sources */,
 				6696B2EA2272B4AE007FDFE4 /* DemoVC3Footer.m in Sources */,
 				66B6B7F922844CCB009FECF1 /* DemoVC4Footer.m in Sources */,

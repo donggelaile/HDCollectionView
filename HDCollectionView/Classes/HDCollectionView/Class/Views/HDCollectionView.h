@@ -37,10 +37,7 @@ typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
  默认NO,是否需要header悬停,不需要悬停请不要设置为YES（如果设置的scrollDirection == UICollectionViewScrollDirectionVertical则会在左侧悬停）
  */
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isNeedTopStop)(BOOL  isNeedTopStop);
-/**
- 默认YES， 是否在Runloop的commenModes计算cell高度。(这样做的结果是当网络数据返回后如果用户正在滑动屏幕，则不会刷新数据，直至松开屏幕)
- */
-@property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isCalculateCellHOnCommonModes)(BOOL  isCalculateCellHOnCommonModes);
+
 /**
  默认NO,是否使用基于UICollectionViewFlowLayout的布局(为YES时只支持HDBaseLayout)
  */
@@ -91,26 +88,26 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 /**
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
  */
-- (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel;
+- (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel animated:(BOOL)animated;
 
 /**
  向某个段内增加cell/默认的sectionKey是第几段
  该方法目前对于瀑布流元素的增加，内部计算是增量计算的。但对于HDYogaFlowLayout会对该段整体重新计算
  如果想增量计算HDYogaFlowLayout，使用hd_appendDataWithSecModel，新增一个新的段。
  */
-- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey;
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated;
 
 /**
  如果仅仅是向secModel新增cellModel，使用 hd_appendDataWithCellModelArr方法
  该方法改变已有的某个section内的数据，比如对sectionDataArr增删
  如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
  */
-- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
+- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
 
 /**
  删除某段的所有内容
  */
-- (void)hd_deleteSectionWithKey:(NSString*)sectionKey;
+- (void)hd_deleteSectionWithKey:(NSString*)sectionKey animated:(BOOL)animated;
 
 /**
  某个key的ectionModel是否存在
@@ -179,7 +176,6 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 @property (nonatomic, strong, readonly) NSArray *innerAllData;
 @property (nonatomic, strong, readonly) HDInnerCollectionView *collectionV;
 @property (nonatomic, assign, readonly) BOOL isNeedTopStop;
-@property (nonatomic, assign, readonly) BOOL isCalculateCellHOnCommonModes;
 @property (nonatomic, assign, readonly) BOOL isUseSystemFlowLayout;
 @property (nonatomic, assign, readonly) UICollectionViewScrollDirection scrollDirection;
 @property (nonatomic, assign, readonly) BOOL isNeedAdaptScreenRotaion;

@@ -10,7 +10,6 @@
 #import "HDNewsCollectionView.h"
 #import "HDWebView.h"
 #import "Masonry.h"
-#import "UIView+HDSafeArea.h"
 #import "HDStopView.h"
 
 
@@ -32,7 +31,12 @@
     [self.view addSubview:self.mainView];
     [self.mainView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(self.view.hd_mas_top);
+        if (@available(iOS 11.0, *)) {
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        } else {
+            // Fallback on earlier versions
+            make.top.mas_equalTo(64);
+        }
     }];
     //这里只是demo，实际中建议testArr.count 控制在3个左右
     NSMutableArray *testArr = @[].mutableCopy;

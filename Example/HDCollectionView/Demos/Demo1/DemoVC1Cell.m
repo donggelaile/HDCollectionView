@@ -35,7 +35,7 @@
 }
 - (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
-    self.titleL.text = [NSString stringWithFormat:@"%@_%zd_%zd",model.cellClassStr,model.indexP.section,model.indexP.item];
+    self.titleL.text = model.orgData;
 }
 - (void)clickSelf
 {

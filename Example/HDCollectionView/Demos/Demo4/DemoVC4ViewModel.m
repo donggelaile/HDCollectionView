@@ -44,36 +44,41 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 5;
+    NSInteger cellCount = 15;
+    CGFloat vhGap = 10;
+    UIEdgeInsets secInset = UIEdgeInsetsMake(30, 10, 30, 10);
+    NSInteger columCount = 4;
+    CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
+    
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = @(i).stringValue;
-        model.cellSize     = CGSizeMake(140, 50);
-        model.cellClassStr = @"DemoVC6Cell";
+        model.cellSize     = CGSizeMake(cellW, 50);
+        model.cellClassStr = @"DemoVC4Cell";
         [cellModelArr addObject:model];
     }
     
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(30, 30, 30, 30);
+    layout.secInset      = secInset;
     layout.justify       = arc4random()%YGJustifyCount;
-    layout.verticalGap   = 10;
-    layout.horizontalGap = 10;
+    layout.verticalGap   = vhGap;
+    layout.horizontalGap = vhGap;
     layout.headerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
     layout.footerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    layout.decorationMargin = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.decorationMargin = UIEdgeInsetsMake(5, 5, 5, 5);
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];
-    secModel.sectionHeaderClassStr = @"DemoVC6Header";
-    secModel.sectionFooterClassStr = @"DemoVC6Footer";
+    secModel.sectionHeaderClassStr = @"DemoVC4Header";
+    secModel.sectionFooterClassStr = @"DemoVC4Footer";
     secModel.headerObj             = nil;
     secModel.footerObj             = nil;
     secModel.headerTopStopType     = ABS(arc4random() & 1);
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
-    //    secModel.decorationClassStr    = @"DemoVC6DecorationView";
-    //    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
+    secModel.decorationClassStr    = @"DemoVC4DecorationView";
+    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     
     return secModel;
 }
@@ -87,7 +92,7 @@
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
-        model.cellSize     = CGSizeMake(100, arc4random()%200 + 100);
+        model.cellSize     = CGSizeMake(0, arc4random()%200 + 100);
         model.cellClassStr = @"DemoVC4Cell";
         //        model.whRatio = ((arc4random() & 1024)+50)/1024.0f+1;
         [cellModelArr addObject:model];
@@ -100,8 +105,8 @@
     layout.horizontalGap = 10;
     layout.headerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);//CGSizeMake(50, collecitonViewH);//CGSizeMake(self.view.frame.size.width, 50)
     layout.footerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    layout.columnRatioArr = @[@1,@2,@1,@2];
-    layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
+    layout.columnRatioArr = @[@1,@1,@1];
+    layout.decorationMargin = UIEdgeInsetsMake(5, 5, 5, 5);
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];
@@ -112,6 +117,8 @@
     secModel.headerTopStopType     = HDHeaderStopOnTopTypeNormal;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
+    secModel.decorationClassStr    = @"DemoVC4DecorationView";
+    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     
     return secModel;
 }

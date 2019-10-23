@@ -8,6 +8,8 @@
 
 #import "DemoVC4Cell.h"
 #import "UIView+gesture.h"
+#import "HDCollectionView.h"
+
 @interface DemoVC4Cell()
 @property (nonatomic, strong) UILabel *titleL;
 @end
@@ -35,10 +37,12 @@
 }
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
-    self.titleL.text = [NSString stringWithFormat:@"%@_%zd_%zd",model.cellClassStr,model.indexP.section,model.indexP.item];
+    self.titleL.text = [NSString stringWithFormat:@"%@",model.orgData];
 }
 - (void)clickSelf
 {
-    self.callback(self.hdModel);
+    [self.superCollectionV hd_changeSectionModelWithKey:self.hdModel.secModel.sectionKey animated:YES changingIn:^(HDSectionModel *secModel) {
+            [secModel.sectionDataArr removeObject:self.hdModel];
+    }];
 }
 @end

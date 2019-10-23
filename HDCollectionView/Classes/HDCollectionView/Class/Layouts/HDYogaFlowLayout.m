@@ -185,6 +185,10 @@
         decorationAtt.frame = CGRectMake(orgFrame.origin.x+decorationXY.x, orgFrame.origin.y+decorationXY.y, orgFrame.size.width, orgFrame.size.height);
         decorationAtt.zIndex = HDDecorationViewDefaultZindex;
         [atts addObject:decorationAtt];
+        
+        if (!isHaveCell) {
+            decorationAtt.frame = CGRectZero;
+        }
     }
     
     [(NSObject*)secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];

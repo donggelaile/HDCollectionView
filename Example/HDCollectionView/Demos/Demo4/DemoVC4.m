@@ -10,7 +10,8 @@
 #import "HDCollectionView.h"
 #import "MJRefresh.h"
 #import "DemoVC4ViewModel.h"
-#import "UIView+HDSafeArea.h"
+#import "Masonry.h"
+
 @interface DemoVC4 ()
 {
     HDCollectionView*listV;
@@ -44,13 +45,23 @@
     }];
     [self.view addSubview:listV];
     
-    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.hd_mas_left);
-        make.right.mas_equalTo(self.view.hd_mas_right);
-        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
-        make.top.mas_equalTo(self.view.hd_mas_top);
-    }];
-    
+    if (@available(iOS 11.0, *)) {
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.mas_equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }];
+        listV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else{
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     [self.viewModel loadData:^(BOOL success, id  _Nonnull res) {
         if (success) {
@@ -61,23 +72,10 @@
     }];
     
     
-//    __weak typeof(self) weakS = self;
-    [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
-        
-    }];
-    
 }
 
 
 
-- (void)clickCell:(HDCellModel*)cellM
-{
-    NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
-}
-- (void)clickHeader:(HDSectionModel*)secM
-{
-    NSLog(@"点击了段头");
-}
 /*
 #pragma mark - Navigation
 

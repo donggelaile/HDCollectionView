@@ -43,7 +43,6 @@
         self.collectionV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
             maker
             .hd_frame(self.bounds)
-            .hd_isCalculateCellHOnCommonModes(YES)//内部嵌套的HDCollectionView需要设置为YES，否则会刷新延迟
             .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal);
         }];
 

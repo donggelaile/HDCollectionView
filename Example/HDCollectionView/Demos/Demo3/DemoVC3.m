@@ -11,7 +11,6 @@
 #import "DemoVC3CellModel.h"
 #import <MJRefresh/MJRefresh.h>
 #import "Masonry.h"
-#import "UIView+HDSafeArea.h"
 extern BOOL isDemo3OpenSubviewFrameCache;
 @interface DemoVC3 ()
 {
@@ -34,19 +33,29 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker
         .hd_isNeedTopStop(YES)
-        .hd_isCalculateCellHOnCommonModes(NO)
         .hd_isUseSystemFlowLayout(NO)
         .hd_isNeedAdaptScreenRotaion(YES);
     }];
     listV.collectionV.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     [self.view addSubview:listV];
     
-    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.hd_mas_left);
-        make.right.mas_equalTo(self.view.hd_mas_right);
-        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
-        make.top.mas_equalTo(self.view.hd_mas_top);
-    }];
+    if (@available(iOS 11.0, *)) {
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.mas_equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }];
+        listV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else{
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     [listV.collectionV.mj_footer beginRefreshing];
 
@@ -70,7 +79,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         NSInteger repeatCount = 1;
         while (repeatCount) {
-            [self->listV hd_appendDataWithSecModel:[self makeSecModel]];
+            [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:YES];
             repeatCount--;
         }
     });

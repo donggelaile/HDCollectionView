@@ -8,6 +8,8 @@
 
 #import "DemoVC4Header.h"
 #import "UIView+gesture.h"
+#import "NSArray+HDHelper.h"
+#import "HDCollectionView.h"
 @interface DemoVC4Header()
 @property (nonatomic, strong) UILabel *title;
 @end
@@ -46,9 +48,12 @@
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
+    _title.text = [NSString stringWithFormat:@"这是段头--%@--点我试试",@(model.section)];
 }
 - (void)clickSelf{
-    self.callback(self.hdSecModel);
+    
+    [self.superCollectionV hd_changeSectionModelWithKey:self.hdSecModel.sectionKey animated:YES changingIn:^(id<HDSectionModelProtocol> secModel) {
+        secModel.sectionDataArr = [secModel.sectionDataArr shuffle].mutableCopy;
+    }];
 }
 @end

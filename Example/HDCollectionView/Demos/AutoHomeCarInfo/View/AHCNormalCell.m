@@ -86,7 +86,6 @@
             .hd_frame(self.bounds)
             .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal)
             .hd_isNeedTopStop(YES)
-            .hd_isCalculateCellHOnCommonModes(YES)
             ;
         }];
         self.collectionV.collectionV.bounces = NO;

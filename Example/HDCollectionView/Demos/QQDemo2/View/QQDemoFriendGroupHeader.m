@@ -65,11 +65,11 @@
 {
     QQDemoOpenCloseSec*secm = [self secModel];
     if (secm.isOpen) {
-        [self.superCollectionV hd_changeSectionModelWithKey:secm.sectionKey changingIn:^(HDSectionModel *secModel) {
+        [self.superCollectionV hd_changeSectionModelWithKey:secm.sectionKey animated:YES changingIn:^(HDSectionModel *secModel) {
             secModel.sectionDataArr = @[].mutableCopy;
         }];
     }else{
-        [self.superCollectionV hd_changeSectionModelWithKey:secm.sectionKey changingIn:^(HDSectionModel *secModel) {
+        [self.superCollectionV hd_changeSectionModelWithKey:secm.sectionKey animated:YES changingIn:^(HDSectionModel *secModel) {
             secModel.sectionDataArr = secm.sectionDataCopy.mutableCopy;
         }];
     }

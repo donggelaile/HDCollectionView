@@ -8,7 +8,6 @@
 
 #import "QQDemo2VC.h"
 #import "Masonry.h"
-#import "UIView+HDSafeArea.h"
 @interface QQDemo2VC ()
 @end
 
@@ -24,12 +23,22 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.multipleSc mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.hd_mas_left);
-        make.right.mas_equalTo(self.view.hd_mas_right);
-        make.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(self.view.hd_mas_top);
-    }];
+    if (@available(iOS 11.0, *)) {
+        [self.multipleSc mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.mas_equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }];
+    }else{
+        [self.multipleSc mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     UIView *line = [UIView new];
     line.backgroundColor = [UIColor colorWithRed:0.871 green:0.875 blue:0.878 alpha:1.000];

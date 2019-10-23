@@ -6,7 +6,22 @@
 
 [相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
 
-## 部分demo截图
+## 现已支持diff操作
+### 不支持diff的列表组件是木得灵魂的 ----- 鲁迅（我没说过）
+
+单独的组件见[HDListViewDiffer](https://github.com/donggelaile/HDListViewDiffer),效果图如下：
+
+|说明 | 示例 | 说明 | 示例|
+|:----:|:------:|:----:|:------:|
+| 系统flowLayout |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g88cxmv9vpg307u0hldm3.gif" > | 瀑布流加载更多 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g88ctadvmig307u0hl7wh.gif" > | 
+| 中间对齐删除 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g88a47y18qg307u0hljy8.gif" > | 瀑布流删除/交换 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g88a8whe12g307u0hlduo.gif" > |
+| HDYogaFlowLayout删除/交换 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g88ab9hha9g307u0hlk43.gif" > | 横向滚动diff |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g88ah0qgdjg307u0hlnij.gif" > |
+
+
+更多效果请下载demo自行测试
+
+
+## 部分静态页面截图
 |说明 | 示例 | 说明 | 示例|
 |:----:|:------:|:----:|:------:|
 | 概览 |  <img src="https://i.loli.net/2019/06/12/5d00b375c561e21723.gif" width="375" height="auto"> | 简单使用 |  <img src="https://i.loli.net/2019/06/12/5d00b3770d5df68735.gif" width="375" height="auto"> |
@@ -27,7 +42,6 @@ HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本�
 * 基于[Yoga](https://github.com/facebook/yoga)(flexbox),实现了流式布局，完全可以替代系统的flowLayout
 * 可自定义每行/每列 所占比例的瀑布流布局、瀑布流加载更多数据为增量计算
 * 支持指定任一 header 段内悬浮、永久悬浮/ 横向滑动左部悬浮
-* 刷新界面可指定RunloopMode
 * 支持cell高度自动计算/缓存,支持AutoLayout计算或hdSizeThatFits方式返回
 * 轻松添加decorationView(装饰view)
 * 每段可使用不同布局(比如第1段使用常规布局，第2段使用瀑布流布局，参考淘宝首页)
@@ -50,19 +64,17 @@ Yoga是facebook对flexbox的C++实现。既然是继承UICollectionViewLayout重
 首先，实现header悬浮的原理必然是在滑动时实时计算header需要的frame新值。这样的话就要求
 ```- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds```
 函数必须返回YES，而一旦此处返回YES，只要一产生滑动就会调用```- (void)prepareLayout```函数。显然在prepareLayout需要判断是否使用缓存数据，如果直接重新计算所有布局的话，那在header悬浮的情况下将产生大量无用的重复计算并且数据量大时卡顿随即产生。为了保持在支持悬浮情况下的高效滑动，HDCollectionView在此处做了缓存判断。随后会调用layoutAttributesForElementsInRect函数，基于上面提到的二分查找，使得HDCollectionView在支持悬浮且超长数据列表情况下的滑动性能依然表现👌。此外，HDCollectionView的header悬浮支持指定任意一个header悬浮或者不悬浮，悬浮的模式分为两种，一种随着该段cell及footer的滑出一起滑出，另一种则为永久悬浮在顶部。最终看起来就像2级悬浮，实现效果类似qq应用中的好友/群聊/设备..栏为永久悬浮，而下面的好友分类header则为普通悬浮。
-#### 3.6、指定runloopMode来刷新页面
-首先说下为什么需要这个功能。有些时候，当用户触发了上拉加载时，在某一时刻数据返回了。而此时用户手指依然没有离开屏幕，此时刷新页面的话可能会产生瞬间的卡顿。因为刷新需要计算新产生数据的cell的宽高，布局等。为了避免这种情况发生，可以将刷新行为延后执行，而延后的方式则是指定相关刷新函数在NSDefaultRunLoopMode中进行，而默认在主线程的代码是在NSRunLoopCommonModes中进行的。
-#### 3.7、关于cell自动算高
+#### 3.6、关于cell自动算高
 当设置某段需要自动算高时，内部在刷新页面前会默认先判断cell是否实现了hdSizeThatFit，实现则以此来决定宽高。否则使用autoLayout计算需要的高度。这里没有使用系统的sizeThatFit来获取高度的原因是当支持悬浮时，滑动就会调用cell的sizeThatFit函数，可能会带来性能问题。
-#### 3.8、关于添加decorationView
+#### 3.7、关于添加decorationView
 说实话，对于系统添加decorationView的方式一开始我是拒绝的，后来也是拒绝的。。。先来说下这个view是干啥用的吧，就是当你拿到设计图时，你发现在每一段的一组cell后面都有个整体的背景，无论是放在header/cell/footer上都不是很合适，此时你就需要这个装饰view了。HDCollectionView对装饰view的添加相当简单，你应该不会拒绝。。。
-#### 3.9、每段可以使用不同的布局
+#### 3.8、每段可以使用不同的布局
 如果让你实现类似淘宝首页的布局，怎么搞？我们姑且认为上面的一大段都是普通的流式布局，但是滑到下面的时候发现是很明显的瀑布流布局。对于这样的布局我们可能这样做：最底部搞一个使用flowLayout的collectionView，前面的部分照常实现。到瀑布流的时候，在cell上加一个collectionView，然后使用瀑布流layout。然后在滑动的时候在合适的时机设置两个collection的contentOffset属性。重点来了，如果使用HDCollectionView来做的话，就可以忘记前面那些骚操作了，（不过对于一些复杂样式依然得这么做。。）。因为HDCollectionView本身就支持每段使用不同的布局。而且HDCollectionView可以扩展自己的布局，具体可以参考内部实现的HDWaterFlowLayout及HDYogaFlowLayout。理论上这两种布局已经包含了大部分样式。
-#### 3.10、cell子view frame缓存
+#### 3.9、cell子view frame缓存
 这个特性可以让你使用autolayout来设置布局，但是在实际布局过程中却是用frame布局。相当于用一个tempView设置相应约束，计算后拷贝出其所有子view的frame设置到相同类的view中。最终滑动过程中实现cell的子view只是在设置新的frame，并不需要重新计算。
-#### 3.11、统一回调
+#### 3.10、统一回调
 HDCollectionView对所有子view做了统一的回调封装，在cell/header/footer/decoration中回调到VC简单并且统一。使用协议统一所有cell UI更新函数，方便统一UI设定。
-#### 3.12、横纵向滑动支持
+#### 3.11、横纵向滑动支持
 HDCollectionView无论是普通布局还是瀑布流布局，均支持横向或纵向滑动。对于悬停，纵向滑动为顶部悬浮。横向滑动为左部悬浮。
 
 ### 4、安装

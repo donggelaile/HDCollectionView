@@ -48,7 +48,7 @@
     //方式2
     void(^selfDeal)(void) = ^{
         __hd_WeakSelf
-        [self.superCollectionV hd_changeSectionModelWithKey:self.hdModel.secModel.sectionKey changingIn:^(HDSectionModel *secModel) {
+        [self.superCollectionV hd_changeSectionModelWithKey:self.hdModel.secModel.sectionKey animated:YES changingIn:^(HDSectionModel *secModel) {
             [secModel.sectionDataArr removeObjectAtIndex:weakSelf.hdModel.indexP.item];
         }];
     };

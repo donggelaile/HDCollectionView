@@ -9,7 +9,6 @@
 #import "DemoVC2.h"
 #import "HDCollectionView.h"
 #import "Masonry.h"
-#import "UIView+HDSafeArea.h"
 @interface DemoVC2 ()
 {
     HDCollectionView *listV;
@@ -34,22 +33,35 @@
     }];
     [self.view addSubview:listV];
     
-    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.hd_mas_left);
-        make.right.mas_equalTo(self.view.hd_mas_right);
-        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
-        make.top.mas_equalTo(self.view.hd_mas_top);
-    }];
+    if (@available(iOS 11.0, *)) {
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.mas_equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }];
+        listV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else{
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     //大量数据测试 2W
     NSMutableArray *randomArr = @[].mutableCopy;
     for (int i=0; i<200; i++) {
         if (arc4random()%2) {
             HDSectionModel *sec = [self makeCellSizeRandomSecModel];
+            sec.headerObj = @(i).stringValue;
             sec.headerTopStopType = arc4random()%2;
             [randomArr addObject:sec];
         }else{
             HDSectionModel *sec = [self makeSecModel];
+            sec.headerObj = @(i).stringValue;
             sec.headerTopStopType = arc4random()%2;
             [randomArr addObject:sec];
         }
@@ -152,19 +164,19 @@
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
-    [listV hd_changeSectionModelWithKey:@(cellM.indexP.section).stringValue changingIn:^(HDSectionModel *secModel) {
+    [listV hd_changeSectionModelWithKey:@(cellM.indexP.section).stringValue animated:YES changingIn:^(HDSectionModel *secModel) {
         [secModel.sectionDataArr removeLastObject];
     }];
 }
 - (void)clickHeader:(HDSectionModel*)secM
 {
-    [listV hd_deleteSectionWithKey:secM.sectionKey];
+    [listV hd_deleteSectionWithKey:secM.sectionKey animated:YES];
     NSLog(@"点击了段头_%zd",secM.section);
 }
 - (void)clickFooter:(HDSectionModel*)secM
 {
     NSLog(@"点击了段尾_%zd",secM.section);
-    [listV hd_appendDataWithSecModel:[self makeSecModel]];
+    [listV hd_appendDataWithSecModel:[self makeSecModel] animated:YES];
 }
 - (void)dealloc
 {

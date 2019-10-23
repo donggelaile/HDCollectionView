@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "HDCollectionView.h"
 #import "Masonry.h"
-#import "UIView+HDSafeArea.h"
 
 @interface ViewController ()
 {
@@ -32,17 +31,27 @@
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker
         .hd_isUseSystemFlowLayout(NO)
-        .hd_isCalculateCellHOnCommonModes(YES)
         .hd_isNeedAdaptScreenRotaion(YES);
     }];
     [self.view addSubview:listV];
     
-    [listV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.hd_mas_left);
-        make.right.mas_equalTo(self.view.hd_mas_right);
-        make.bottom.mas_equalTo(self.view.hd_mas_bottom);
-        make.top.mas_equalTo(self.view.hd_mas_top);
-    }];
+    if (@available(iOS 11.0, *)) {
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.mas_equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }];
+        listV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else{
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
     NSMutableArray *secArr = @[].mutableCopy;
     for (int i=0; i<1; i++) {

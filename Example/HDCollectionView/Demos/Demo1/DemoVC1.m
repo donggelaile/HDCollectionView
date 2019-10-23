@@ -9,6 +9,7 @@
 #import "DemoVC1.h"
 #import "HDCollectionView.h"
 #import "YYFPSLabel.h"
+#import "NSArray+HDHelper.h"
 //#import "UILabel+HDChainMaker.h"
 @interface DemoVC1 ()
 
@@ -28,7 +29,8 @@
 
     self.view.backgroundColor = [UIColor whiteColor];
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
-        maker.hd_frame(self.view.bounds);
+        maker.hd_frame(self.view.bounds)
+        .hd_isUseSystemFlowLayout(YES);
     }];
     
     [self.view addSubview:listV];
@@ -50,22 +52,20 @@
 - (HDSectionModel*)makeSecModel
 {
 
-    NSArray *demosName = @[@"这是demo1",@"这是demo1",@"这是demo1",@"这是demo1"];
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = demosName.count;
+    NSInteger cellCount = 10;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
-        model.orgData      = [NSString stringWithFormat:@"%@、%@",@(i+1),demosName[i]];
+        model.orgData      = @(i).stringValue;
         model.cellSize     = CGSizeMake(self.view.frame.size.width/2, 50);
         model.cellClassStr = @"DemoVC1Cell";
         [cellModelArr addObject:model];
     }
     
     //该段layout
-    HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
+    HDBaseLayout *layout = [HDBaseLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     layout.secInset      = UIEdgeInsetsMake(10, 0, 10, 0);
-    layout.justify       = YGJustifyCenter;
     layout.verticalGap   = 10;
     layout.horizontalGap = 0;
     layout.headerSize    = CGSizeMake(self.view.frame.size.width, 100);
@@ -86,13 +86,18 @@
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
     
-    [listV hd_changeSectionModelWithKey:cellM.secModel.sectionKey changingIn:^(HDSectionModel *secModel) {
-        cellM.cellSize = CGSizeMake(cellM.cellSize.height+5, cellM.cellSize.height+5);
+    [listV hd_changeSectionModelWithKey:cellM.secModel.sectionKey animated:YES changingIn:^(HDSectionModel *secModel) {
+        [secModel.sectionDataArr removeObject:cellM];
+//        cellM.cellSize = CGSizeMake(cellM.cellSize.height+5, cellM.cellSize.height+5);
     }];
 }
 - (void)clickHeader:(HDSectionModel*)secM
 {
-    NSLog(@"点击了段头");
+//    NSLog(@"点击了段头");
+    
+    [listV hd_changeSectionModelWithKey:secM.sectionKey animated:YES changingIn:^(id<HDSectionModelProtocol> secModel) {
+        secM.sectionDataArr = [secM.sectionDataArr shuffle].mutableCopy;
+    }];
 }
 /*
 #pragma mark - Navigation

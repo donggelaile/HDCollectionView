@@ -8,6 +8,9 @@
 
 #import "DemoVC5Header.h"
 #import "UIView+gesture.h"
+#import "HDCollectionView.h"
+#import "NSArray+HDHelper.h"
+
 @interface DemoVC5Header()
 @property (nonatomic, strong) UILabel *title;
 @end
@@ -49,6 +52,8 @@
     _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
 }
 - (void)clickSelf{
-    self.callback(self.hdSecModel);
+    [self.superCollectionV hd_changeSectionModelWithKey:self.hdSecModel.sectionKey animated:YES changingIn:^(id<HDSectionModelProtocol> secModel) {
+        secModel.sectionDataArr = [secModel.sectionDataArr shuffle].mutableCopy;
+    }];
 }
 @end

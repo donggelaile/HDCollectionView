@@ -153,8 +153,7 @@
             maker
             .hd_frame(self.bounds)
             .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal)
-            .hd_isNeedTopStop(YES)
-            .hd_isCalculateCellHOnCommonModes(YES);
+            .hd_isNeedTopStop(YES);
         }];
         self.collectionV.collectionV.bounces = NO;
         self.collectionV.collectionV.showsHorizontalScrollIndicator = NO;

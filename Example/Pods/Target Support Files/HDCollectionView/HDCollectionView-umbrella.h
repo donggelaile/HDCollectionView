@@ -14,6 +14,7 @@
 #import "HDCellFrameCacheHelper.h"
 #import "HDDefines.h"
 #import "HDHeaderStopHelper.h"
+#import "HDModelProtocol.h"
 #import "HDUpdateUIProtocol.h"
 #import "HDYogaCalculateHelper.h"
 #import "NSObject+HDCopy.h"

@@ -127,8 +127,7 @@
     if (self) {
         self.contentCV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
             maker
-            .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal)
-            .hd_isCalculateCellHOnCommonModes(YES);
+            .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal);
         }];
         self.contentCV.collectionV.pagingEnabled = YES;
         self.contentCV.collectionV.bounces = NO;
@@ -249,8 +248,7 @@
 {
     if (!_mainCollecitonV) {
         _mainCollecitonV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-            maker.hd_isNeedTopStop(YES)
-            .hd_isCalculateCellHOnCommonModes(YES);
+            maker.hd_isNeedTopStop(YES);
         }];
 //        _mainCollecitonV.collectionV.bounces = NO;
         _mainCollecitonV.collectionV.showsVerticalScrollIndicator = NO;

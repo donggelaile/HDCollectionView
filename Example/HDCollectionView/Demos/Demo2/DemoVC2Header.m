@@ -43,7 +43,7 @@
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
+    _title.text = [NSString stringWithFormat:@"这是段头---%@---点击删除该段",model.headerObj];
 }
 - (void)clickSelf{
     self.callback(self.hdSecModel);

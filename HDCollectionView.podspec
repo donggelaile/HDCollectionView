@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HDCollectionView'
-  s.version          = '0.3.3'
+  s.version          = '0.4.0'
   s.summary          = '快速构建灵活易用滑动列表的第三方库'
 
 # This description is used to generate tags and improve search results.
@@ -40,4 +40,5 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   s.user_target_xcconfig = { 'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES' }
   s.dependency 'Yoga', '~> 1.9.0'
+  s.dependency 'HDListViewDiffer'
 end

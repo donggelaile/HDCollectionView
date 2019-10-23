@@ -112,12 +112,18 @@ void YGSetSize(YGNodeRef node, CGSize size){
         YGNodeStyleSetFlexWrap(helpNode.yogaNode, YGWrapWrap);
         YGNodeStyleSetFlexGrow(helpNode.yogaNode, 1);
         YGSetPading(helpNode.yogaNode, secPading);
+        if (sec.scrollDirection == UICollectionViewScrollDirectionVertical) {
+            YGNodeStyleSetWidth(helpNode.yogaNode, sec.superViewSize.width+sec.horizontalGap);
+        }else{
+            YGNodeStyleSetHeight(helpNode.yogaNode,sec.superViewSize.height+sec.verticalGap);
+        } 
         
         /*
          因为cell间的间距是由cellNode设置margain的left及top实现的：(YGSetMargain(subNode.yogaNode, UIEdgeInsetsMake(mTop, mLeft, margin.bottom, margin.right)); 149行)
          因此需要对cell的父node设置整体偏移，否则段内左间距及顶部间距将变为secInset与verticalGap/horizontalGap之和
          */
         YGSetMargain(helpNode.yogaNode, UIEdgeInsetsMake(-sec.verticalGap, -sec.horizontalGap, 0, 0));
+        
     }
     
     //添加child

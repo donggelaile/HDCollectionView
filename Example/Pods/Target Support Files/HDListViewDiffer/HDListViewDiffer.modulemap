@@ -1,0 +1,6 @@
+framework module HDListViewDiffer {
+  umbrella header "HDListViewDiffer-umbrella.h"
+
+  export *
+  module * { export * }
+}

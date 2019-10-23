@@ -13,10 +13,10 @@
 #import "AHCModel.h"
 #import "HDSCVOffsetBinder.h"
 #import "AHCBaseCollectionView.h"
+#import "Masonry.h"
 
 @interface AutoHomeCarInfoVC ()
 {
-    CGFloat collecitonViewH;
     HDCollectionView *listV;
 }
 @property (nonatomic, strong) AHCVCViewModel *viewModel;
@@ -42,24 +42,32 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
 
-    collecitonViewH = self.view.frame.size.height-64;
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-        CGFloat topY = 44;
-        if (@available(iOS 11.0, *)) {
-            topY += [[UIApplication sharedApplication] delegate].window.safeAreaInsets.top;
-        } else {
-            // Fallback on earlier versions
-            topY += 20;
-        }
         maker
-        .hd_frame(CGRectMake(0, topY, self.view.frame.size.width, self->collecitonViewH))
         .hd_isNeedTopStop(YES)
-        .hd_scrollDirection(UICollectionViewScrollDirectionVertical)
-        .hd_isCalculateCellHOnCommonModes(YES);
+        .hd_scrollDirection(UICollectionViewScrollDirectionVertical);
     }];
     listV.collectionV.showsVerticalScrollIndicator = NO;
     [self.view addSubview:listV];
     
+    if (@available(iOS 11.0, *)) {
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.mas_equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.mas_equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.top.mas_equalTo(self.view.mas_safeAreaLayoutGuideTop);
+        }];
+        listV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }else{
+        [listV mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
         if ([backModel isKindOfClass:[HDSectionModel class]]) {
@@ -68,6 +76,7 @@
             [weakS clickCell:backModel];
         }
     }];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 - (void)loadData
 {
