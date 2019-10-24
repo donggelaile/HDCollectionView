@@ -415,8 +415,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
     });
 }
-
-- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>> *)itemArr sectionKey:(NSString *)sectionKey animated:(BOOL)animated
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>> *)itemArr sectionKey:(NSString *)sectionKey animated:(BOOL)animated animationFinishCallback:(void (^)(void))animationFinish
 {
     HDDoSomeThingInMainQueueSyn(^{
         id<HDSectionModelProtocol> secModel = self.allSecDict[sectionKey];
@@ -460,7 +459,9 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 secModel.sectionDataArr = newArr;
                 
             } dataChangeFinishCallback:^{
-                
+                if (animationFinish) {
+                    animationFinish();
+                }
             }];
         }else{
             updateLayout();
@@ -468,7 +469,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         
     });
 }
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>> *)itemArr sectionKey:(NSString *)sectionKey animated:(BOOL)animated
+{
+    [self hd_appendDataWithCellModelArr:itemArr sectionKey:sectionKey animated:animated animationFinishCallback:nil];
+}
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish
 {
     HDDoSomeThingInMainQueueSyn(^{
         if (!sectionKey) {
@@ -520,13 +525,19 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 secModel.sectionDataArr = newArr;
                 
             } dataChangeFinishCallback:^{
-                
+                if (animationFinish) {
+                    animationFinish();
+                }
             }];
         }else{
             updateLayout();
         }
         
     });
+}
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
+{
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated changingIn:changeBlock animationFinishCallback:nil];
 }
 - (void)hd_deleteSectionWithKey:(NSString *)sectionKey animated:(BOOL)animated
 {

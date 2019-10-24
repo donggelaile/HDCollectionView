@@ -95,6 +95,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
  该方法目前对于瀑布流元素的增加，内部计算是增量计算的。但对于HDYogaFlowLayout会对该段整体重新计算
  如果想增量计算HDYogaFlowLayout，使用hd_appendDataWithSecModel，新增一个新的段。
  */
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated animationFinishCallback:(void(^)(void))animationFinish;
 - (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated;
 
 /**
@@ -102,6 +103,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
  该方法改变已有的某个section内的数据，比如对sectionDataArr增删
  如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
  */
+- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock animationFinishCallback:(void(^)(void))animationFinish;
 - (void)hd_changeSectionModelWithKey:(NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
 
 /**
