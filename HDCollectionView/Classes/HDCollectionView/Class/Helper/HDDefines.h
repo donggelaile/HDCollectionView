@@ -15,7 +15,7 @@
 
 
 //默认回调相关--------------------------------------------------------begin
-#define HDGetBackModelContext(backModel) (([backModel conformsToProtocol:[HDCellModelProtocol class]] || [backModel conformsToProtocol:[HDSectionModelProtocol class]] || [backModel isKindOfClass:[NSDictionary class]])?[backModel valueForKey:@"context"]:nil)
+#define HDGetBackModelContext(backModel) (([backModel conformsToProtocol:@protocol(HDCellModelProtocol)] || [backModel conformsToProtocol:@protocol(HDSectionModelProtocol)] || [backModel isKindOfClass:[NSDictionary class]])?[backModel valueForKey:@"context"]:nil)
 
 //默认的eventKey和context 为 类型#方法名
 
