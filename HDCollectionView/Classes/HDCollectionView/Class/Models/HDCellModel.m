@@ -50,6 +50,10 @@
 {
     return nil;
 }
+- (NSString *)hdDiffIdentifier
+{
+    return @(self.hash).stringValue;
+}
 - (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout
 {
     HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[NSClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];

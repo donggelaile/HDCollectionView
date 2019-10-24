@@ -10,8 +10,9 @@
 #import <UIKit/UIKit.h>
 #import "HDModelProtocol.h"
 #import "HDDefines.h"
+#import "HDListViewDiffer.h"
 
-@interface HDCellModel : NSObject<HDCellModelProtocol>
+@interface HDCellModel : NSObject<HDCellModelProtocol,HDListViewDifferProtocol>
 - (void)superDefaultConvertOrgModelToViewModel;
 @end
 
