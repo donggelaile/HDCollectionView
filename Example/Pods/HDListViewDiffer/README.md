@@ -25,7 +25,7 @@ pod 'HDListViewDiffer'
 ```
 包含类别头文件,调用类别提供的方法即可，详见DEMO
 
-## 4、全面支持[HDCollectionView](https://github.com/donggelaile/HDCollectionView) （当然也支持任意UICollectionView及UITableView）
+## 5、全面支持[HDCollectionView](https://github.com/donggelaile/HDCollectionView) （当然也支持任意UICollectionView及UITableView）
 在HDCollectionView中使用diff时，你仅仅需要指定是否需要动画变更数据即可，接口将更加简单。
 ### 顺便放上部分HDCollectionView中的效果
 |说明 | 示例 | 说明 | 示例|

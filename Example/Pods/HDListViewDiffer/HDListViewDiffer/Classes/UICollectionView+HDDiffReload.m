@@ -25,47 +25,65 @@ static char *HDListViewDifferKey;
     return differ;
 }
 
-- (void)hd_reloadWithSection:(NSInteger)section oldData:(NSArray<id<HDListViewDifferProtocol>> *)oldArr newData:(NSArray<id<HDListViewDifferProtocol>> *)newArr sourceDataChangeCode:(void(^)(void))sourceDataChangeBlock dataChangeFinishCallback:(void(^)(void))dataChangeFinishCallback;
+- (void)hd_reloadWithSection:(NSInteger)section
+                oldData:(NSArray<id<HDListViewDifferProtocol>>*)oldArr
+     newArrGenerateCode:(NSArray<id<HDListViewDifferProtocol>>*(^)(void))newArrGenerateCode
+  calculateDiffFinishCb:(void(^)(void))calculateDiffFinishCb
+   sourceDataChangeCode:(void(^)(NSArray<id<HDListViewDifferProtocol>>* newArr))sourceDataChangeCode
+animationFinishCallback:(nullable void(^)(void))animationFinishCallback
 {
-    [self.hdDiffer setSection:section oldData:oldArr newData:newArr finishCalback:dataChangeFinishCallback];
-    
-    if (self.hdDiffer.isExistEqualItemInOldOrNewArr) {
+    [self.hdDiffer setSection:section oldData:oldArr newArrGenerateCode:newArrGenerateCode finishCalback:calculateDiffFinishCb];
         
-        if (sourceDataChangeBlock) {
-            sourceDataChangeBlock();
-        }
-        [self reloadData];
-        
-        if (dataChangeFinishCallback) {
-            dataChangeFinishCallback();
-        }
-    }else{
-
-        [self performBatchUpdates:^{
+        if (self.hdDiffer.isExistEqualItemInOldOrNewArr) {
             
-            if (!sourceDataChangeBlock) {
-#ifdef DEBUG
-                NSLog(@"数据源的变更必须放在此blcok内");
-#endif
-            }else{
-                sourceDataChangeBlock();
+            if (sourceDataChangeCode) {
+                sourceDataChangeCode(self.hdDiffer.afterArr);
             }
+            [self reloadData];
             
-            [self deleteItemsAtIndexPaths:self.hdDiffer.deletItems];
-            [self insertItemsAtIndexPaths:self.hdDiffer.insertItems];
-            [self reloadItemsAtIndexPaths:self.hdDiffer.updateItems];
-            
-            [self.hdDiffer.moveItems enumerateObjectsUsingBlock:^(HDCollectionViewUpdateItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self moveItemAtIndexPath:obj.indexPathBeforeUpdate toIndexPath:obj.indexPathAfterUpdate];
+            if (animationFinishCallback) {
+                animationFinishCallback();
+            }
+        }else{
+
+            [self performBatchUpdates:^{
+                
+                if (!sourceDataChangeCode) {
+    #ifdef DEBUG
+                    NSLog(@"数据源的变更必须放在此blcok内");
+    #endif
+                }else{
+                    sourceDataChangeCode(self.hdDiffer.afterArr);
+                }
+                
+                [self deleteItemsAtIndexPaths:self.hdDiffer.deletItems];
+                [self insertItemsAtIndexPaths:self.hdDiffer.insertItems];
+                [self reloadItemsAtIndexPaths:self.hdDiffer.updateItems];
+                
+                [self.hdDiffer.moveItems enumerateObjectsUsingBlock:^(HDCollectionViewUpdateItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    [self moveItemAtIndexPath:obj.indexPathBeforeUpdate toIndexPath:obj.indexPathAfterUpdate];
+                }];
+                
+            } completion:^(BOOL finished) {
+                if (animationFinishCallback) {
+                    animationFinishCallback();
+                }
             }];
-            
-        } completion:^(BOOL finished) {
-            if (dataChangeFinishCallback) {
-                dataChangeFinishCallback();
-            }
-        }];
-    }
+        }
 
+}
+
+
+- (void)hd_reloadWithSection:(NSInteger)section
+                oldData:(NSArray<id<HDListViewDifferProtocol>>*)oldArr
+                newData:(NSArray<id<HDListViewDifferProtocol>>*)newArr
+   sourceDataChangeCode:(void(^)(NSArray<id<HDListViewDifferProtocol>>* newArr))sourceDataChangeCode
+animationFinishCallback:(nullable void(^)(void))animationFinishCallback
+{
+    NSArray<id<HDListViewDifferProtocol>> * (^newArrGenerate)(void) = ^(void){
+        return newArr;
+    };
+    [self hd_reloadWithSection:section oldData:oldArr newArrGenerateCode:newArrGenerate calculateDiffFinishCb:nil sourceDataChangeCode:sourceDataChangeCode  animationFinishCallback:animationFinishCallback];
 }
 
 @end

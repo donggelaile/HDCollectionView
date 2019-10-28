@@ -14,6 +14,7 @@
 // 因此，当发现旧数组自己内部存在两个相同元素 或 新数组自己内部存在两个相同元素时，将直接调用 reloadData
 
 #import <Foundation/Foundation.h>
+#define HDDIFFER_ISOPEN_DUBUG_LOG 1
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -45,12 +46,23 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) NSArray<HDCollectionViewUpdateItem*> *moveItems;
 //是否在oldArr中存在相同元素 或 在newArr中存在相同元素
 @property (nonatomic, assign) BOOL isExistEqualItemInOldOrNewArr;
+//生成的新数组
+@property (nonatomic, strong, readonly) NSArray<id<HDListViewDifferProtocol>>* afterArr;
+
+
 
 /// 配置数据，仅支持同一 section内的数据变化
+/// @param section 哪一段
 /// @param oldArr 数组内元素遵循HDListViewDifferProtocol的旧数据数组
-/// @param newArr 数组内元素遵循HDListViewDifferProtocol的新数据数组
+/// @param newArrGenerateCode 新数组生成函数
+/// @param finishcb 计算完毕回调
+- (void)setSection:(NSInteger)section
+           oldData:(NSArray<id<HDListViewDifferProtocol>>*)oldArr
+newArrGenerateCode:(NSArray<id<HDListViewDifferProtocol>>*(^)(void))newArrGenerateCode
+     finishCalback:(nullable void(^)(void))finishcb;
+
 - (void)setSection:(NSInteger)section oldData:(NSArray<id<HDListViewDifferProtocol>>*)oldArr
-                        newData:(NSArray<id<HDListViewDifferProtocol>>*)newArr finishCalback:(void(^)(void))finishcb;
+                        newData:(NSArray<id<HDListViewDifferProtocol>>*)newArr finishCalback:(nullable void(^)(void))finishcb;
 
 
 @end

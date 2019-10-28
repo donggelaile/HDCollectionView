@@ -454,15 +454,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             NSMutableArray *newArr = secModel.sectionDataArr.mutableCopy;
             secModel.sectionDataArr = oldDataArr;
             
-            [self.collectionV hd_reloadWithSection:secModel.section oldData:oldDataArr newData:newArr sourceDataChangeCode:^{
+            [self.collectionV hd_reloadWithSection:secModel.section oldData:oldDataArr newData:newArr sourceDataChangeCode:^(NSArray<id<HDListViewDifferProtocol>> * _Nonnull newArr) {
                 
-                secModel.sectionDataArr = newArr;
+                secModel.sectionDataArr = newArr.mutableCopy;
                 
-            } dataChangeFinishCallback:^{
-                if (animationFinish) {
-                    animationFinish();
-                }
-            }];
+            } animationFinishCallback:animationFinish];
         }else{
             updateLayout();
         }
@@ -513,22 +509,25 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         
         if (animated) {
             NSMutableArray *oldDataArr = secModel.sectionDataArr.mutableCopy;
-            if (changeBlock) {
-                changeBlock(secModel);
-            }
-            updateLayout();
-            NSMutableArray *newArr = secModel.sectionDataArr.mutableCopy;
-            secModel.sectionDataArr = oldDataArr;
-            
-            [self.collectionV hd_reloadWithSection:secModel.section oldData:oldDataArr newData:newArr sourceDataChangeCode:^{
+            [self.collectionV hd_reloadWithSection:secModel.section oldData:oldDataArr newArrGenerateCode:^NSArray<id<HDListViewDifferProtocol>> * _Nonnull{
                 
-                secModel.sectionDataArr = newArr;
-                
-            } dataChangeFinishCallback:^{
-                if (animationFinish) {
-                    animationFinish();
+                if (changeBlock) {
+                    changeBlock(secModel);
                 }
-            }];
+                NSArray *newArr = secModel.sectionDataArr.mutableCopy;
+                return newArr;
+                
+            } calculateDiffFinishCb:^{
+                
+                updateLayout();
+                secModel.sectionDataArr = oldDataArr;//数据源的变更要发生在sourceDataChangeCode中，因为changeBlock()调用后更改了数据源，这里再改回来
+                
+            } sourceDataChangeCode:^(NSArray<id<HDListViewDifferProtocol>> * _Nonnull newArr) {
+                
+                secModel.sectionDataArr = newArr.mutableCopy;
+                
+            } animationFinishCallback:animationFinish];
+            
         }else{
             updateLayout();
         }
