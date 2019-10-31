@@ -9,6 +9,8 @@
 ## 现已支持diff操作
 ### 不支持diff的列表组件是木得灵魂的 ----- 鲁迅（我没说过）
 
+### 针对Swift进行了兼容，demo在[这里](https://github.com/donggelaile/HDCVSwiftTest) 
+
 单独的组件见[HDListViewDiffer](https://github.com/donggelaile/HDListViewDiffer),效果图如下：
 
 |说明 | 示例 | 说明 | 示例|
