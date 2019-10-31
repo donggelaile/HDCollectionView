@@ -136,6 +136,13 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
         return self;
     };
 }
+- (void (^)(void))hd_endConfig
+{
+    return ^(void){
+        
+    };
+}
+
 @end
 
 
@@ -368,7 +375,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>*)dataArr
 {
     HDDoSomeThingInMainQueueSyn(^{
-        self.allDataCopy = dataArr.mutableCopy;
+        if (!dataArr) {
+            self.allDataCopy = @[].mutableCopy;
+        }else{
+            self.allDataCopy = dataArr.mutableCopy;
+        }
         [self hd_autoCountAllViewsHeight];
     });
 }
@@ -741,15 +752,15 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     id<HDSectionModelProtocol> secM = _allDataArr[indexPath.section];
     [self registerWithCellClass:nil cellReuseID:nil headerClass:secM.sectionHeaderClassStr footerClass:secM.sectionFooterClassStr decorationClass:secM.decorationClassStr];
     __kindof UICollectionReusableView<HDUpdateUIProtocol> * secView = nil;
-    if ([NSClassFromString(secM.sectionHeaderClassStr) isSubclassOfClass:[UICollectionReusableView class]]  && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    if ([HDClassFromString(secM.sectionHeaderClassStr) isSubclassOfClass:[UICollectionReusableView class]]  && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
         //自定义段头
         secView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self getSupplementReuseidWithClass:secM.sectionHeaderClassStr kind:UICollectionElementKindSectionHeader] forIndexPath:indexPath];
         [secView setValue:UICollectionElementKindSectionHeader forKey:@"currentElementKind"];
-    }else if ([NSClassFromString(secM.sectionFooterClassStr) isSubclassOfClass:[UICollectionReusableView class]] && [kind isEqualToString:UICollectionElementKindSectionFooter]){
+    }else if ([HDClassFromString(secM.sectionFooterClassStr) isSubclassOfClass:[UICollectionReusableView class]] && [kind isEqualToString:UICollectionElementKindSectionFooter]){
         //自定义段尾
         secView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self getSupplementReuseidWithClass:secM.sectionFooterClassStr kind:UICollectionElementKindSectionFooter] forIndexPath:indexPath];
         [secView setValue:UICollectionElementKindSectionFooter forKey:@"currentElementKind"];
-    }else if ([NSClassFromString(secM.decorationClassStr) isSubclassOfClass:[UICollectionReusableView class]] && [kind isEqualToString:HDDecorationViewKind]){
+    }else if ([HDClassFromString(secM.decorationClassStr) isSubclassOfClass:[UICollectionReusableView class]] && [kind isEqualToString:HDDecorationViewKind]){
         //自定义装饰(一段一个)
         secView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:[self getSupplementReuseidWithClass:secM.decorationClassStr kind:HDDecorationViewKind] forIndexPath:indexPath];
         [secView setValue:HDDecorationViewKind forKey:@"currentElementKind"];
@@ -795,7 +806,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     UICollectionViewLayoutAttributes *cellAtt = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
     [(NSObject*)cellModel setValue:[NSValue valueWithCGPoint:cellAtt.frame.origin] forKey:@"cellFrameXY"];
     
-    if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
+    
+    if (![HDClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
         cellModel.cellClassStr = secM.sectionCellClassStr;
     }
     
@@ -803,7 +815,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     
     HDCollectionCell<HDUpdateUIProtocol> *cell;
     
-    if (![NSClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
+    if (![HDClassFromString(cellModel.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:hd_default_cell_class forIndexPath:indexPath];
 #ifdef DEBUG
         NSLog(@"使用了默认cell");
@@ -864,10 +876,10 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     });
     
     void(^registCell)(NSString*,NSString*,UICollectionView*,NSMapTable *) = ^(NSString*cellCls,NSString*cellReID,UICollectionView*collectionView,NSMapTable *CVMap) {
-        if (NSClassFromString(cellCls) && collectionView) {
+        if (HDClassFromString(cellCls) && collectionView) {
             dispatch_semaphore_wait(gcd_lock, DISPATCH_TIME_FOREVER);
             
-            [collectionView registerClass:NSClassFromString(cellCls) forCellWithReuseIdentifier:cellReID];
+            [collectionView registerClass:HDClassFromString(cellCls) forCellWithReuseIdentifier:cellReID];
             [CVMap setObject:@(1) forKey:cellReID];
             
             dispatch_semaphore_signal(gcd_lock);
@@ -875,11 +887,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     };
     
     void(^registHeader)(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) = ^(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) {
-        if (NSClassFromString(idFd) && collectionView) {
+        if (HDClassFromString(idFd) && collectionView) {
             dispatch_semaphore_wait(gcd_lock, DISPATCH_TIME_FOREVER);
             
             NSString *headerID = [self getSupplementReuseidWithClass:idFd kind:UICollectionElementKindSectionHeader];
-            [collectionView registerClass:NSClassFromString(idFd) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
+            [collectionView registerClass:HDClassFromString(idFd) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
             [CVMap setObject:@(1) forKey:headerID];
     
             dispatch_semaphore_signal(gcd_lock);
@@ -887,22 +899,22 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     };
     
     void(^registFooter)(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) = ^(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) {
-        if (NSClassFromString(idFd) && collectionView) {
+        if (HDClassFromString(idFd) && collectionView) {
             dispatch_semaphore_wait(gcd_lock, DISPATCH_TIME_FOREVER);
             
             NSString *footerID = [self getSupplementReuseidWithClass:idFd kind:UICollectionElementKindSectionFooter];
-            [collectionView registerClass:NSClassFromString(idFd) forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerID];
+            [collectionView registerClass:HDClassFromString(idFd) forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerID];
             [CVMap setObject:@(1) forKey:footerID];
             
             dispatch_semaphore_signal(gcd_lock);
         }
     };
     void(^registDecoration)(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) = ^(NSString*idFd,UICollectionView*collectionView,NSMapTable *CVMap) {
-        if (NSClassFromString(idFd) && collectionView) {
+        if (HDClassFromString(idFd) && collectionView) {
             dispatch_semaphore_wait(gcd_lock, DISPATCH_TIME_FOREVER);
             
             NSString *decID = [self getSupplementReuseidWithClass:idFd kind:HDDecorationViewKind];
-            [collectionView registerClass:NSClassFromString(idFd) forSupplementaryViewOfKind:HDDecorationViewKind withReuseIdentifier:decID];
+            [collectionView registerClass:HDClassFromString(idFd) forSupplementaryViewOfKind:HDDecorationViewKind withReuseIdentifier:decID];
             [CVMap setObject:@(1) forKey:decID];
             
             dispatch_semaphore_signal(gcd_lock);
@@ -1014,7 +1026,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             obj.cellSize = secModel.layout.cellSize;
         }
 
-        if (![NSClassFromString(obj.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
+        if (![HDClassFromString(obj.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
             obj.cellClassStr = secModel.sectionCellClassStr;
         }
         [obj calculateCellProperSize:secModel.isNeedCacheSubviewsFrame forceUseAutoLayout:NO];

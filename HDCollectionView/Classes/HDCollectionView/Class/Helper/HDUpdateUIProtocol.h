@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger,HDCallBackType) {
 };
 @protocol HDUpdateUIProtocol <NSObject>
 @optional
-- (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel*)cellModel;//cell实现该函数后,cell内部无需调用，将通过此函数布局并保存子view的frame
+- (void)cacheSubviewsFrameBySetLayoutWithCellModel:(__kindof id<HDCellModelProtocol>)cellModel;//cell实现该函数后,cell内部无需调用，将通过此函数布局并保存子view的frame
 - (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model;
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model;
 //对内部事件的处理

@@ -11,6 +11,7 @@
 #import "HDHeaderStopHelper.h"
 #import "HDWaterFlowLayout.h"
 #import "HDBaseLayout+Cache.h"
+#import "HDDefines.h"
 
 #define HDContinueFindCount 200
 static NSString *const HDNormalLayoutAttsKey = @"HDNormalLayoutAttsKey";
@@ -141,6 +142,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
                     break;
                 }
             }
+            break;
         }else if (att.indexPath.section>section){
             if (end == mid) {
                 end -= 1;
@@ -426,8 +428,9 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     if (att.indexPath.section>[self allDataArr].count) {
         return NO;
     }
+
     id<HDSectionModelProtocol> secModel = [self allDataArr][att.indexPath.section];
-    BOOL isWaterFlowLayout = [secModel.layout isKindOfClass:NSClassFromString(@"HDWaterFlowLayout")];
+    BOOL isWaterFlowLayout = [secModel.layout isKindOfClass:HDClassFromString(@"HDWaterFlowLayout")];
     return isWaterFlowLayout;
 }
 

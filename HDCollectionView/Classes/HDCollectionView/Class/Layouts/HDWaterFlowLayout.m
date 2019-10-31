@@ -44,7 +44,7 @@
     BOOL isVertical = layout.scrollDirection == UICollectionViewScrollDirectionVertical;
     BOOL isHaveHeader = !CGSizeEqualToSize(CGSizeZero, self.headerSize) && secModel.sectionHeaderClassStr;
     BOOL isHaveCell = secModel.sectionDataArr.count>0;
-    BOOL isHaveDecoration = [NSClassFromString(secModel.decorationClassStr) isKindOfClass:object_getClass([UICollectionReusableView class])];
+    BOOL isHaveDecoration = [HDClassFromString(secModel.decorationClassStr) isKindOfClass:object_getClass([UICollectionReusableView class])];
     BOOL isHaveFooter = !CGSizeEqualToSize(CGSizeZero, self.footerSize) && secModel.sectionFooterClassStr;
     
     //header

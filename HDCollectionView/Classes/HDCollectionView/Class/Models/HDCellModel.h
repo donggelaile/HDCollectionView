@@ -12,8 +12,10 @@
 #import "HDDefines.h"
 #import "HDListViewDiffer.h"
 
+NS_ASSUME_NONNULL_BEGIN
 @interface HDCellModel : NSObject<HDCellModelProtocol,HDListViewDifferProtocol>
 - (void)superDefaultConvertOrgModelToViewModel;
 @end
+NS_ASSUME_NONNULL_END
 
 

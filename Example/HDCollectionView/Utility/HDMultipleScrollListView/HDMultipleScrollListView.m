@@ -10,6 +10,7 @@
 #import "HDCollectionView+MultipleScroll.h"
 #import "HDMultipleScrollListSubVC.h"
 #import <objc/runtime.h>
+#import "HDDefines.h"
 
 @implementation HDMultipleScrollListViewTitleHeader
 - (void)layoutSubviews
@@ -29,7 +30,7 @@
     HDMultipleScrollListView *resultView;
     if (!resultView) {
         UIView *view = self;
-        while (view!=nil && ![view isKindOfClass:NSClassFromString(@"HDMultipleScrollListView")]) {
+        while (view!=nil && ![view isKindOfClass:HDClassFromString(@"HDMultipleScrollListView")]) {
             view = view.superview;
         }
         resultView = (HDMultipleScrollListView*)view;
@@ -105,7 +106,7 @@
     HDMultipleScrollListView *resultView;
     if (!resultView) {
         UIView *view = self;
-        while (view!=nil && ![view isKindOfClass:NSClassFromString(@"HDMultipleScrollListView")]) {
+        while (view!=nil && ![view isKindOfClass:HDClassFromString(@"HDMultipleScrollListView")]) {
             view = view.superview;
         }
         resultView = (HDMultipleScrollListView*)view;
@@ -150,7 +151,7 @@
     NSInteger curPage = self.contentCV.collectionV.contentOffset.x/self.contentCV.frame.size.width;
     if (curPage == 0) {
         if ([otherGes isKindOfClass:[UIPanGestureRecognizer class]] &&
-            [otherGes.view isKindOfClass:NSClassFromString(@"UILayoutContainerView")]) {
+            [otherGes.view isKindOfClass:HDClassFromString(@"UILayoutContainerView")]) {
             isRes = YES;
         }
     }
@@ -170,7 +171,7 @@
     HDMultipleScrollListView *resultView;
     if (!resultView) {
         UIView *view = self;
-        while (view!=nil && ![view isKindOfClass:NSClassFromString(@"HDMultipleScrollListView")]) {
+        while (view!=nil && ![view isKindOfClass:HDClassFromString(@"HDMultipleScrollListView")]) {
             view = view.superview;
         }
         resultView = (HDMultipleScrollListView*)view;
@@ -324,8 +325,8 @@
 {
     NSString *clsStr = @"HDMultipleScrollListViewTitleHeader";
     if (self.confingers.diyHeaderClsStr) {
-        Class cls = NSClassFromString(self.confingers.diyHeaderClsStr);
-        if ([cls isKindOfClass:object_getClass(NSClassFromString(clsStr))]) {
+        Class cls = HDClassFromString(self.confingers.diyHeaderClsStr);
+        if ([cls isKindOfClass:object_getClass(HDClassFromString(clsStr))]) {
             clsStr = self.confingers.diyHeaderClsStr;
         }
     }

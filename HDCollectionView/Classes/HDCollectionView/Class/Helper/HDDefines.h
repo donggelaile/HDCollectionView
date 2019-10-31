@@ -8,11 +8,18 @@
 #ifndef HDDefines_h
 #define HDDefines_h
 
+#define HDClassFromString(classString) \
+({Class c = NSClassFromString(classString);\
+if (!c) { \
+    NSString *namespace = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];\
+    c = NSClassFromString([NSString stringWithFormat:@"%@.%@", namespace, classString]);\
+}\
+c;})//代表返回c
+
 #define __hd_WeakSelf __weak typeof(self) weakSelf = self;
 
 #define hd_deviceWidth [UIScreen mainScreen].bounds.size.width
 #define hd_deviceHeight [UIScreen mainScreen].bounds.size.height
-
 
 //默认回调相关--------------------------------------------------------begin
 #define HDGetBackModelContext(backModel) (([backModel conformsToProtocol:@protocol(HDCellModelProtocol)] || [backModel conformsToProtocol:@protocol(HDSectionModelProtocol)] || [backModel isKindOfClass:[NSDictionary class]])?[backModel valueForKey:@"context"]:nil)

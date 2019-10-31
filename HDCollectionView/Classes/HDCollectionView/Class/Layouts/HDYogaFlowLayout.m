@@ -177,7 +177,7 @@
     }
 
     //decoration
-    BOOL isHaveDecoration = [NSClassFromString(secModel.decorationClassStr) isKindOfClass:object_getClass([UICollectionReusableView class])];
+    BOOL isHaveDecoration = [HDClassFromString(secModel.decorationClassStr) isKindOfClass:object_getClass([UICollectionReusableView class])];
     if (isHaveDecoration) {
 
         UICollectionViewLayoutAttributes *decorationAtt = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:HDDecorationViewKind withIndexPath:[NSIndexPath indexPathWithIndex:secModel.section]];

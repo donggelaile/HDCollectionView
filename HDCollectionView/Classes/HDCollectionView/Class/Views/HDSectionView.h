@@ -10,8 +10,8 @@
 #import "HDUpdateUIProtocol.h"
 @class HDCollectionView;
 @interface HDSectionView : UICollectionReusableView<HDUpdateUIProtocol>
-@property (nonatomic, weak, readonly) HDCollectionView *superCollectionV;
-@property (nonatomic, copy, readonly) void(^callback)(id par);
-@property (nonatomic, strong, readonly) __kindof id<HDSectionModelProtocol> hdSecModel;
-@property (nonatomic, strong, readonly) NSString *currentElementKind;
+@property (nonatomic, weak, readonly, nullable) HDCollectionView *superCollectionV;
+@property (nonatomic, copy, readonly, nonnull) void(^callback)(id _Nullable par);
+@property (nonatomic, strong, readonly, nullable) __kindof id<HDSectionModelProtocol> hdSecModel;
+@property (nonatomic, strong, readonly, nullable) NSString *currentElementKind;
 @end

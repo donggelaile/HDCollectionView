@@ -25,7 +25,7 @@
 {
     if (!_superCollectionV) {
         UIView *view = self;
-        while (view!=nil && ![view isKindOfClass:NSClassFromString(@"HDCollectionView")]) {
+        while (view!=nil && ![view isKindOfClass:HDClassFromString(@"HDCollectionView")]) {
             view = view.superview;
         }
         _superCollectionV = (HDCollectionView*)view;
@@ -78,7 +78,7 @@
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {
     [super applyLayoutAttributes:layoutAttributes];
-    if ([self.superCollectionV.collectionV.collectionViewLayout isKindOfClass:NSClassFromString(@"HDCollectionViewLayout")]) {
+    if ([self.superCollectionV.collectionV.collectionViewLayout isKindOfClass:HDClassFromString(@"HDCollectionViewLayout")]) {
         //对于系统的UICollectionViewFlowLayout 设置后反而会引起视图层级混乱，原因未知
         self.layer.zPosition = layoutAttributes.zIndex;
     }

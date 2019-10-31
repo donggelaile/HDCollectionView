@@ -56,7 +56,7 @@
 }
 - (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout
 {
-    HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[NSClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];
+    HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[HDClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];
     
     isNeedCacheSubviewsFrame = isNeedCacheSubviewsFrame && [tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)];
     

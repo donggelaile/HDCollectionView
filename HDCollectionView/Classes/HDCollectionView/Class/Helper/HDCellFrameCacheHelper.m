@@ -106,7 +106,7 @@
     NSArray *clsArr = @[@"HDCollectionView",@"UITableView",@"UICollectionView"];
     __block BOOL isListV = NO;
     [clsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([view isKindOfClass:NSClassFromString(obj)]) {
+        if ([view isKindOfClass:HDClassFromString(obj)]) {
             isListV = YES;
             *stop = YES;
         }

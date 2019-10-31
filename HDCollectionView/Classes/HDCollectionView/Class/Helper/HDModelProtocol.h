@@ -8,8 +8,8 @@
 #ifndef HDModelProtocol_h
 #define HDModelProtocol_h
 #import "YGEnums.h"
-//#import "HDCellModel.h"
-//#import "HDBaseLayout.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class HDSectionModel;
 @class HDBaseLayout;
@@ -54,7 +54,7 @@
 /**
  内部自动赋值
  */
-@property (nonatomic, strong, readonly) NSIndexPath * _Nonnull indexP;
+@property (nonatomic, strong, readonly) NSIndexPath * _Nullable indexP;
 
 /**
  开启缓存cell子view frame时内部使用
@@ -165,7 +165,7 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
 /**
  默认为section。如果对其赋值了，则可以通过该key来获取对应的sectionModel
  */
-@property (nonatomic, strong, nonnull) NSString *sectionKey;
+@property (nonatomic, strong, nullable) NSString *sectionKey;
 
 /**
  装饰view的类（仅支持 HDYogaFlowLayout及HDWaterFlowLayout）
@@ -201,3 +201,5 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
 //HDSectionModelProtocol------------------------------------------------------------------end
 
 #endif /* HDModelProtocol_h */
+
+NS_ASSUME_NONNULL_END

@@ -16,12 +16,15 @@
 #import "HDWaterFlowLayout.h"
 #import "HDDefines.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
     HDCollectionViewEventDealPolicyBySubView,//默认，让cell或sectionView自己处理
     HDCollectionViewEventDealPolicyInstead,//直接由HDCollectionView处理
     HDCollectionViewEventDealPolicyAfterSubView,//在subView处理完后，HDCollectionView再进行进一步处理
     HDCollectionViewEventDealPolicyBeforeSubView,//在子view处理之前，HDCollectionView先处理
 };
+
 
 @protocol HDInnerCollectionViewClass <NSObject>
 @optional
@@ -36,7 +39,7 @@ typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
 /**
  默认NO,是否需要header悬停,不需要悬停请不要设置为YES（如果设置的scrollDirection == UICollectionViewScrollDirectionVertical则会在左侧悬停）
  */
-@property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isNeedTopStop)(BOOL  isNeedTopStop);
+@property (nonatomic, strong, readonly)  HDCollectionViewMaker* (^hd_isNeedTopStop)(BOOL  isNeedTopStop);
 
 /**
  默认NO,是否使用基于UICollectionViewFlowLayout的布局(为YES时只支持HDBaseLayout)
@@ -51,6 +54,10 @@ typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
  */
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_isNeedAdaptScreenRotaion)(BOOL isNeedAdaptScreenRotaion);
 @property (nonatomic, strong, readonly) HDCollectionViewMaker*  (^hd_frame)(CGRect frame);
+/**
+配置结束时调用 ( 主要是在swift中调用，因为不调会有警告)
+*/
+@property (nonatomic, strong, readonly) void (^hd_endConfig)(void);
 @end
 
 @interface HDCollectionView : UIView <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,HDInnerCollectionViewClass>
@@ -58,12 +65,12 @@ typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
 /**
  全局设置HDCollectionView的默认值
  */
-+ (void)hd_globalConfigDefaultValue:(void(^)(HDCollectionViewMaker*maker))maker;
++ (void)hd_globalConfigDefaultValue:(void(^ _Nullable)(HDCollectionViewMaker*maker))maker;
 
 /**
  HDCollectionView 初始化 (配置的参数优先级高于默认值)
  */
-+ (__kindof HDCollectionView*)hd_makeHDCollectionView:(void(^)(HDCollectionViewMaker*maker))maker;
++ (__kindof HDCollectionView*)hd_makeHDCollectionView:(void(^ _Nullable)(HDCollectionViewMaker*maker))maker;
 
 #pragma mark - 公开方法
 
@@ -83,7 +90,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 /**
  一次性初始化所有数据 (完成后会回调 dataChangeFinishedCallBack)
  */
-- (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>*)dataArr;
+- (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>* _Nullable)dataArr;
 
 /**
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
@@ -95,7 +102,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
  该方法目前对于瀑布流元素的增加，内部计算是增量计算的。但对于HDYogaFlowLayout会对该段整体重新计算
  如果想增量计算HDYogaFlowLayout，使用hd_appendDataWithSecModel，新增一个新的段。
  */
-- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated animationFinishCallback:(void(^)(void))animationFinish;
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
 - (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated;
 
 /**
@@ -103,13 +110,13 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
  该方法改变已有的某个section内的数据，比如对sectionDataArr增删
  如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
  */
-- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock animationFinishCallback:(void(^)(void))animationFinish;
-- (void)hd_changeSectionModelWithKey:(NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
 
 /**
  删除某段的所有内容
  */
-- (void)hd_deleteSectionWithKey:(NSString*)sectionKey animated:(BOOL)animated;
+- (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated;
 
 /**
  某个key的ectionModel是否存在
@@ -188,3 +195,5 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
 - (instancetype)new NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END
