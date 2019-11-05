@@ -854,7 +854,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
 - (void)registerWithCellClass:(NSString*)cellClassStr cellReuseID:(NSString*)cellID headerClass:(NSString*)headerClassStr footerClass:(NSString*)footerClassStr decorationClass:(NSString*)decorationClassStr
 {
-    if ((!cellClassStr && !headerClassStr && !footerClassStr) ||
+    if ((!cellClassStr && !headerClassStr && !footerClassStr && !decorationClassStr) ||
         !self.collectionV) {
         return ;
     }
