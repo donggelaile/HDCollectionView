@@ -191,6 +191,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     if (rect.size.height <= 1) {
         rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, self.collectionView.frame.size.height);
     }
+
     if (cachedAttributes.count<=0) {
         return @[];
     }
@@ -425,7 +426,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     if (!att) {
         return NO;
     }
-    if (att.indexPath.section>[self allDataArr].count) {
+    if (att.indexPath.section>=[self allDataArr].count) {
         return NO;
     }
 

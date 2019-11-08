@@ -408,15 +408,16 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 [self addOneSection:secModel];
                 [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
             }
+            
         };
         
         if (animated) {
             //这里是插入一个段
-            updateLayout();//动画前需要先计算要展示view的frame,这里将secModel添加到了数据源
             [self.collectionV performBatchUpdates:^{
+                updateLayout();
                 [self.collectionV insertSections:[NSIndexSet indexSetWithIndex:self.allDataArr.count-1]];
             } completion:^(BOOL finished) {
-                [self.collectionV reloadData];
+
             }];
 
         }else{
@@ -441,36 +442,38 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             };
         }
         
+        __block NSArray *finalAddItemArr = itemArr;
+        if (secModel.isNeedAutoCountCellHW) {
+            id<HDSectionModelProtocol> copy = [(NSObject*)secModel copy];
+            copy.sectionDataArr = itemArr.mutableCopy;
+            [self hd_autoCountCellsHeight:copy isAll:NO type:HDDataChangeAppendCellModel animationImp:animationImp finishCallback:^{
+                finalAddItemArr = copy.sectionDataArr;
+            }];
+        }
+        
         void(^updateLayout)(void) = ^(){
-            if (secModel.isNeedAutoCountCellHW) {
-                id<HDSectionModelProtocol> copy = [(NSObject*)secModel copy];
-                copy.sectionDataArr = itemArr.mutableCopy;
-                [self hd_autoCountCellsHeight:copy isAll:NO type:HDDataChangeAppendCellModel animationImp:animationImp finishCallback:^{
-                    [secModel.sectionDataArr addObjectsFromArray:copy.sectionDataArr];
-                    [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-                    [self reloadSectionAfter:secModel.section];
-                }];
-            }else{
-                [secModel.sectionDataArr addObjectsFromArray:itemArr];
-                [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-                [self reloadSectionAfter:secModel.section];
+            
+            [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+            [self reloadSectionAfter:secModel.section];
+            if (!secModel.isNeedAutoCountCellHW) {
                 [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel reloadDataImp:animationImp];
             }
+            
         };
-        
         
         if (animated) {
             NSMutableArray *oldDataArr = secModel.sectionDataArr.mutableCopy;
-            updateLayout();
             NSMutableArray *newArr = secModel.sectionDataArr.mutableCopy;
-            secModel.sectionDataArr = oldDataArr;
+            [newArr addObjectsFromArray:finalAddItemArr];
             
             [self.collectionV hd_reloadWithSection:secModel.section oldData:oldDataArr newData:newArr sourceDataChangeCode:^(NSArray<id<HDListViewDifferProtocol>> * _Nonnull newArr) {
                 
                 secModel.sectionDataArr = newArr.mutableCopy;
+                updateLayout();
                 
             } animationFinishCallback:animationFinish];
         }else{
+            [secModel.sectionDataArr addObjectsFromArray:finalAddItemArr];
             updateLayout();
         }
         
@@ -517,7 +520,6 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             }
         };
         
-        
         if (animated) {
             NSMutableArray *oldDataArr = secModel.sectionDataArr.mutableCopy;
             [self.collectionV hd_reloadWithSection:secModel.section oldData:oldDataArr newArrGenerateCode:^NSArray<id<HDListViewDifferProtocol>> * _Nonnull{
@@ -530,12 +532,12 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 
             } calculateDiffFinishCb:^{
                 
-                updateLayout();
                 secModel.sectionDataArr = oldDataArr;//数据源的变更要发生在sourceDataChangeCode中，因为changeBlock()调用后更改了数据源，这里再改回来
                 
             } sourceDataChangeCode:^(NSArray<id<HDListViewDifferProtocol>> * _Nonnull newArr) {
                 
                 secModel.sectionDataArr = newArr.mutableCopy;
+                updateLayout();
                 
             } animationFinishCallback:animationFinish];
             
@@ -567,27 +569,32 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             nextSecM = self.allDataArr[secModel.section+1];
         }
         secIndex = [self.allDataArr indexOfObject:secModel];
-        if (secIndex != NSNotFound) {
-            [self.allDataArr removeObjectAtIndex:secIndex];
-        }
-        [self.allSecDict removeObjectForKey:sectionKey];
         
         void (^animationImp)(void) = nil;
         if (animated) {
             animationImp = ^(){
-                [self.collectionV performBatchUpdates:^{
-                    [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
-                } completion:^(BOOL finished) {
-                    [self.collectionV reloadData];
-                }];
+
             };
         }
         
+        void(^updateLayout)(void) = ^(){
+            [self updateSecitonModelDict:NO];
+            [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+            [self reloadSectionAfter:secIndex];
+            [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
+        };
         
-        [self updateSecitonModelDict:NO];
-        [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-        [self reloadSectionAfter:secIndex];
-        [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
+        [self.collectionV performBatchUpdates:^{
+            if (secIndex != NSNotFound) {
+                [self.allDataArr removeObjectAtIndex:secIndex];
+            }
+            [self.allSecDict removeObjectForKey:sectionKey];
+            updateLayout();
+            
+            [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
+        } completion:^(BOOL finished) {
+            [self.collectionV reloadData];
+        }];
     });
 }
 - (BOOL)hd_sectionModelExist:(NSString *)sectionKey
