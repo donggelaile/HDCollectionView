@@ -56,53 +56,55 @@
 }
 - (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout
 {
-    HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[HDClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];
-    
-    isNeedCacheSubviewsFrame = isNeedCacheSubviewsFrame && [tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)];
-    
-    if (isNeedCacheSubviewsFrame) {
-        [tempCell setCacheKeysIfNeed];
-    }
-    if ([tempCell respondsToSelector:@selector(superUpdateCellUI:callback:)]) {
-        [tempCell superUpdateCellUI:self callback:nil];
-    }
-    if ([tempCell respondsToSelector:@selector(updateCellUI:)]) {
-        [tempCell updateCellUI:self];
-    }
-    
-    if (isNeedCacheSubviewsFrame) {
-        if ([tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
-            [tempCell cacheSubviewsFrameBySetLayoutWithCellModel:self];
+    @autoreleasepool {
+        HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[HDClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];
+        
+        isNeedCacheSubviewsFrame = isNeedCacheSubviewsFrame && [tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)];
+        
+        if (isNeedCacheSubviewsFrame) {
+            [tempCell setCacheKeysIfNeed];
         }
-    }
-    
-    BOOL isUsehdSizeThatFits = [tempCell respondsToSelector:@selector(hdSizeThatFits:)] && !isForceUseAutoLayout;
-    if (isUsehdSizeThatFits) {
-        CGSize fitSize = self.cellSize;
-        if ([tempCell respondsToSelector:@selector(hdSizeThatFits:)]) {
-            fitSize = [tempCell hdSizeThatFits:CGSizeMake(self.cellSize.width, self.cellSize.height)];
+        if ([tempCell respondsToSelector:@selector(superUpdateCellUI:callback:)]) {
+            [tempCell superUpdateCellUI:self callback:nil];
         }
-        if (fitSize.height>0 && fitSize.width>0) {
-            self.cellSize = fitSize;
+        if ([tempCell respondsToSelector:@selector(updateCellUI:)]) {
+            [tempCell updateCellUI:self];
         }
-    }else{
-        if ([tempCell respondsToSelector:@selector(superAutoLayoutDefaultSet:)]) {
-            [tempCell superAutoLayoutDefaultSet:self];
+        
+        if (isNeedCacheSubviewsFrame) {
+            if ([tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
+                [tempCell cacheSubviewsFrameBySetLayoutWithCellModel:self];
+            }
         }
-        CGSize fitSize = [tempCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        if (fitSize.height>0 && fitSize.width>0) {
-            self.cellSize = fitSize;
+        
+        BOOL isUsehdSizeThatFits = [tempCell respondsToSelector:@selector(hdSizeThatFits:)] && !isForceUseAutoLayout;
+        if (isUsehdSizeThatFits) {
+            CGSize fitSize = self.cellSize;
+            if ([tempCell respondsToSelector:@selector(hdSizeThatFits:)]) {
+                fitSize = [tempCell hdSizeThatFits:CGSizeMake(self.cellSize.width, self.cellSize.height)];
+            }
+            if (fitSize.height>0 && fitSize.width>0) {
+                self.cellSize = fitSize;
+            }
+        }else{
+            if ([tempCell respondsToSelector:@selector(superAutoLayoutDefaultSet:)]) {
+                [tempCell superAutoLayoutDefaultSet:self];
+            }
+            CGSize fitSize = [tempCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+            if (fitSize.height>0 && fitSize.width>0) {
+                self.cellSize = fitSize;
+            }
         }
-    }
-    tempCell.contentView.frame = CGRectMake(0, 0, self.cellSize.width, self.cellSize.height);
-    
-    if (isNeedCacheSubviewsFrame) {
-        NSLayoutConstraint *heightCons = [NSLayoutConstraint constraintWithItem:tempCell.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.cellSize.height];
-        heightCons.priority = UILayoutPriorityDefaultLow;
-        [NSLayoutConstraint activateConstraints:@[heightCons]];
-        if ([tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
-            [tempCell.contentView layoutIfNeeded];
-            _subviewsFrame = [HDCellFrameCacheHelper copySubViewsFrame:tempCell];
+        tempCell.contentView.frame = CGRectMake(0, 0, self.cellSize.width, self.cellSize.height);
+        
+        if (isNeedCacheSubviewsFrame) {
+            NSLayoutConstraint *heightCons = [NSLayoutConstraint constraintWithItem:tempCell.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.cellSize.height];
+            heightCons.priority = UILayoutPriorityDefaultLow;
+            [NSLayoutConstraint activateConstraints:@[heightCons]];
+            if ([tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
+                [tempCell.contentView layoutIfNeeded];
+                _subviewsFrame = [HDCellFrameCacheHelper copySubViewsFrame:tempCell];
+            }
         }
     }
     return self.cellSize;
