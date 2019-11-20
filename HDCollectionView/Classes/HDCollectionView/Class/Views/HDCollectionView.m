@@ -32,7 +32,36 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     if (multiGesCallBack) {
         return multiGesCallBack(gestureRecognizer,otherGestureRecognizer);
     }else{
-        //默认不响应其他手势
+        if (![gestureRecognizer isKindOfClass:UIPanGestureRecognizer.class]) {
+            return NO;
+        }
+        
+        //这里默认处理横向滑动的父scrollView手势以及横向全屏返回手势
+        BOOL isScrollToLeftEdge = self.contentOffset.x <= 1 - self.contentInset.left;
+        BOOL isScrollToRightEdge = self.contentOffset.x >= self.contentSize.width + self.contentInset.right - 1 - self.frame.size.width;
+        CGPoint translationP = [(UIPanGestureRecognizer*)gestureRecognizer translationInView:self];
+
+        BOOL isScrollToEdge  = (isScrollToLeftEdge && translationP.x>0) || (isScrollToRightEdge && translationP.x<0);
+        if (isScrollToEdge) {
+            BOOL isHXScrollView = NO;
+            if ([otherGestureRecognizer.view isKindOfClass:UIScrollView.class]) {
+                UIScrollView *scView = (UIScrollView*)otherGestureRecognizer.view;
+                if (scView.contentSize.width>scView.frame.size.width+scView.contentInset.left+scView.contentInset.right) {
+                    isHXScrollView = YES;
+                }
+            }
+            //如果碰到了横向滚动的scrollView,则返回YES
+            if (isHXScrollView) {
+                self.bounces = NO;
+                return YES;
+            }
+            //如果碰到了全屏返回手势，则返回YES
+            if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] &&
+                [otherGestureRecognizer.view isKindOfClass:NSClassFromString(@"UILayoutContainerView")]) {
+                self.bounces = NO;
+                return YES;
+            }
+        }
         return NO;
     }
 }

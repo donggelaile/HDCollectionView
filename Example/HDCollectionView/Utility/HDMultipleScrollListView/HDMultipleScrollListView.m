@@ -139,24 +139,10 @@
         }
         [self addSubview:self.contentCV];
     }
-    __hd_WeakSelf
-    [self.contentCV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
-        return [weakSelf dealFullScrrenBackGesture:otherGesture];
-    }];
+
     return self;
 }
-- (BOOL)dealFullScrrenBackGesture:(UIGestureRecognizer*)otherGes
-{
-    BOOL isRes = NO;
-    NSInteger curPage = self.contentCV.collectionV.contentOffset.x/self.contentCV.frame.size.width;
-    if (curPage == 0) {
-        if ([otherGes isKindOfClass:[UIPanGestureRecognizer class]] &&
-            [otherGes.view isKindOfClass:HDClassFromString(@"UILayoutContainerView")]) {
-            isRes = YES;
-        }
-    }
-    return isRes;
-}
+
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
     id<HDSectionModelProtocol> firstSec = [self.contentCV.innerAllData firstObject];
