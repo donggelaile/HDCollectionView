@@ -10,8 +10,6 @@
 #import "HDCollectionView+MultipleScroll.h"
 #import "HDMultipleScrollListSubVC.h"
 #import <objc/runtime.h>
-#import "HDDefines.h"
-
 @implementation HDMultipleScrollListViewTitleHeader
 - (void)layoutSubviews
 {
@@ -45,27 +43,29 @@
 @end
 
 @implementation HDMultipleScrollListViewContentCell
-- (void)updateCellUI:(__kindof HDCellModel *)model
+- (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     [self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
-    HDMultipleScrollListSubVC <HDMultipleScrollListViewScrollViewDidScroll>*VC = model.orgData;
+    
+    id <HDMultipleScrollListViewScrollViewDidScroll>VC = model.orgData;
     __weak typeof(self) weakSelf = self;
-    if ([VC isKindOfClass:[UIViewController class]] && [VC respondsToSelector:@selector(HDMultipleScrollListViewScrollViewDidScroll:)]) {
+    if ([VC respondsToSelector:@selector(HDMultipleScrollListViewScrollViewDidScroll:)]) {
         [VC HDMultipleScrollListViewScrollViewDidScroll:^(UIScrollView * _Nonnull sc) {
             if ([sc isKindOfClass:[UIScrollView class]]) {
                 [weakSelf hd_setSubScrollViewDidScrollCallback:sc];
             }
         }];
-        VC.view.frame = self.bounds;
-        [self.contentView addSubview:VC.view];
     }
-    if ([VC isKindOfClass:[HDMultipleScrollListSubVC class]]) {
-        //监听主HDCollectionView的滑动回调
-        HDMultipleScrollListView *rootView = [self rootView];
-        [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH]];
+    if ([VC respondsToSelector:@selector(HDMultipleScrollListViewSubVCView)]) {
+        [VC HDMultipleScrollListViewSubVCView].frame = self.bounds;
+        [self.contentView addSubview:[VC HDMultipleScrollListViewSubVCView]];
     }
+
+    //监听主HDCollectionView的滑动回调
+    HDMultipleScrollListView *rootView = [self rootView];
+    [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH]];
 }
 - (void)hd_setSubScrollViewDidScrollCallback:(UIScrollView *)sc
 {
@@ -74,11 +74,23 @@
     [mainHDCV setCurrentSubSc:sc];
     CGFloat topH = [self topH];
     
+//    if (sc.contentOffset.y>0) {
+//        mainRealSc.contentOffset = CGPointMake(mainRealSc.contentOffset.x, topH);
+//    }
+    
     if (mainRealSc.contentOffset.y < topH) {
-        sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+        if (mainRealSc.contentOffset.y<=10) {
+            if (sc.contentOffset.y-sc.contentInset.top>0) {
+                sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+            }
+        }else{
+            sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+        }
+        
     }else{
         mainRealSc.contentOffset = CGPointMake(mainRealSc.contentOffset.x, topH);
     }
+    
 }
 - (UIScrollView*)mainScrollV
 {
@@ -130,13 +142,14 @@
             maker
             .hd_scrollDirection(UICollectionViewScrollDirectionHorizontal);
         }];
-        self.contentCV.collectionV.pagingEnabled = YES;
-        self.contentCV.collectionV.bounces = NO;
         if (@available(iOS 11.0, *)) {
             _contentCV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         } else {
             // Fallback on earlier versions
         }
+        self.contentCV.collectionV.pagingEnabled = YES;
+        self.contentCV.collectionV.bounces = NO;
+        self.contentCV.collectionV.showsHorizontalScrollIndicator = NO;
         [self addSubview:self.contentCV];
     }
 
@@ -145,7 +158,7 @@
 
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    id<HDSectionModelProtocol> firstSec = [self.contentCV.innerAllData firstObject];
+    HDSectionModel *firstSec = [self.contentCV.innerAllData firstObject];
     if (!firstSec.sectionDataArr.count) {
         [self.contentCV hd_setAllDataArr:model.headerObj];
     }
@@ -175,6 +188,14 @@
 
 #pragma mark - configer
 @implementation HDMultipleScrollListConfiger
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.defaultSelectIndex = 0;
+    }
+    return self;
+}
 @end
 
 @interface HDMultipleScrollListView()
@@ -219,6 +240,7 @@
         _jxTitle = [[JXCategoryTitleView alloc] init];
         _jxTitle.indicators = @[self.jxLineView];
         _jxTitle.backgroundColor = [UIColor whiteColor];
+        _jxTitle.contentScrollViewClickTransitionAnimationEnabled = NO;
     }
     return _jxTitle;
 }
@@ -301,36 +323,36 @@
     [self.finalSecArr addObjectsFromArray:self.confingers.topSecArr];
     [self addMiddleData];
     [self.mainCollecitonV hd_setAllDataArr:self.finalSecArr];
+    self.jxTitle.defaultSelectedIndex = self.confingers.defaultSelectIndex;
 }
 - (void)addMiddleData
 {
     [self.finalSecArr addObject:[self HDMultipleScrollListViewTitleHeaderSec]];
     [self.finalSecArr addObject:[self HDMultipleScrollListViewContentHeaderSec]];
 }
-- (id<HDSectionModelProtocol>)HDMultipleScrollListViewTitleHeaderSec
+- (HDSectionModel*)HDMultipleScrollListViewTitleHeaderSec
 {
     NSString *clsStr = @"HDMultipleScrollListViewTitleHeader";
     if (self.confingers.diyHeaderClsStr) {
-        Class cls = HDClassFromString(self.confingers.diyHeaderClsStr);
-        if ([cls isKindOfClass:object_getClass(HDClassFromString(clsStr))]) {
+        if ([HDClassFromString(self.confingers.diyHeaderClsStr) isKindOfClass:object_getClass(HDClassFromString(clsStr))]) {
             clsStr = self.confingers.diyHeaderClsStr;
         }
     }
-    id<HDSectionModelProtocol> titleSec = [self normalSecWithCellModelArr:nil headerSize:self.confingers.titleContentSize headerClsStr:clsStr autoCountCellH:NO];
+    HDSectionModel *titleSec = [self normalSecWithCellModelArr:nil headerSize:self.confingers.titleContentSize headerClsStr:clsStr autoCountCellH:NO];
     titleSec.headerObj = self.confingers.titles;;
     titleSec.headerTopStopType = self.confingers.isHeaderNeedStop?HDHeaderStopOnTopTypeAlways:HDHeaderStopOnTopTypeNone;
     return titleSec;
 }
 
-- (id<HDSectionModelProtocol>)HDMultipleScrollListViewContentHeaderSec
+- (HDSectionModel*)HDMultipleScrollListViewContentHeaderSec
 {
-    id<HDSectionModelProtocol> secModel = [self normalSecWithCellModelArr:@[].mutableCopy headerSize:[self realContentSize] headerClsStr:@"HDMultipleScrollListViewContentHeader" autoCountCellH:NO];
+    HDSectionModel *secModel = [self normalSecWithCellModelArr:@[].mutableCopy headerSize:[self realContentSize] headerClsStr:@"HDMultipleScrollListViewContentHeader" autoCountCellH:NO];
     secModel.headerObj = @[[self realContentSec]];
     secModel.headerTopStopType = HDHeaderStopOnTopTypeAlways;
     
     return secModel;
 }
-- (id<HDSectionModelProtocol>)realContentSec
+- (HDSectionModel *)realContentSec
 {
     //该段cell数据源
     static NSInteger index = 0;
@@ -352,7 +374,7 @@
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     
     //该段的所有数据封装
-    id<HDSectionModelProtocol> secModel = [HDSectionModel new];
+    HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionDataArr           = cellModelArr;
     secModel.layout                   = layout;
     return secModel;
@@ -366,7 +388,7 @@
     }
 }
 
-- (id<HDSectionModelProtocol>)normalSecWithCellModelArr:(NSArray*)cellModelArr headerSize:(CGSize)headerSize headerClsStr:(NSString*)headerClsStr autoCountCellH:(BOOL)autoCountCellH
+- (HDSectionModel*)normalSecWithCellModelArr:(NSArray*)cellModelArr headerSize:(CGSize)headerSize headerClsStr:(NSString*)headerClsStr autoCountCellH:(BOOL)autoCountCellH
 {
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
@@ -374,7 +396,7 @@
     layout.headerSize    = headerSize;
     
     //该段的所有数据封装
-    id<HDSectionModelProtocol> secModel = [HDSectionModel new];
+    HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionHeaderClassStr    = headerClsStr;
     secModel.isNeedAutoCountCellHW    = autoCountCellH;
     secModel.sectionDataArr           = cellModelArr.mutableCopy;

@@ -9,7 +9,7 @@
 #import "HDCollectionView.h"
 static char * _Nonnull HDMUltipleCurrentSubScrollKey = "HDMUltipleCurrentSubScrollKey";
 NS_ASSUME_NONNULL_BEGIN
-
+static char * _Nonnull mianCVMaxOffsetYKey = "mianCVMaxOffsetYKey";
 @interface HDCollectionView(MultipleScroll)
 @property (nonatomic, weak) UIScrollView *currentSubSc;
 - (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH;

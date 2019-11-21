@@ -38,6 +38,21 @@
         if (weakS.collectionV.contentOffset.y < topH) {
             [weakS dealAllSubScrollViewScrollEnabled:weakContentV];
         }
+        
+        //对子vc数据量过少的情况做限制，限制主VC的滑动范围
+        CGFloat mainMaxOffsetY = [objc_getAssociatedObject(subSc, mianCVMaxOffsetYKey) integerValue];
+        if (mainMaxOffsetY == 0) {
+            mainMaxOffsetY = NSUIntegerMax;
+        }
+        if (mainMaxOffsetY == -1) {
+            mainMaxOffsetY = 0;
+        }
+        if (scrollView.contentOffset.y != topH) {
+            NSInteger wantY = (NSInteger)MIN(mainMaxOffsetY, scrollView.contentOffset.y);
+            if (wantY != (NSInteger)scrollView.contentOffset.y) {
+                scrollView.contentOffset = CGPointMake(0, wantY);
+            }
+        }
 
     }];
 
@@ -54,15 +69,17 @@
         [queue removeObjectAtIndex:0];
         //子view入队
         [queue addObjectsFromArray:firstView.subviews];
-        
+
         if ([firstView isKindOfClass:[UICollectionView class]] || [firstView isKindOfClass:[UITableView class]]){
             UIScrollView *sc = (UIScrollView *)firstView;
             if (sc.contentSize.height>sc.frame.size.height) {
-                sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+                if (sc.contentOffset.y-sc.contentInset.top>0) {
+                    sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+                }
             }
         }
-        
     }
+    
 }
 
 /*

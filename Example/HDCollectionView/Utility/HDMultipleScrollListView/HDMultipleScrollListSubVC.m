@@ -8,6 +8,9 @@
 
 #import "HDMultipleScrollListSubVC.h"
 #import "HDMultipleScrollListMainVC.h"
+#import "HDCollectionView+MultipleScroll.h"
+#import <objc/runtime.h>
+
 @interface HDMultipleScrollListSubVC ()<HDMultipleScrollListViewScrollViewDidScroll>
 {
     void (^scrollCallBack)(UIScrollView*);
@@ -16,6 +19,14 @@
 
 @implementation HDMultipleScrollListSubVC
 @synthesize collectionV = _collectionV;
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.gapOfBottomWhenSmallData = 20;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUp];
@@ -27,7 +38,7 @@
         maker.hd_isNeedTopStop(YES);
     }];
     _collectionV.collectionV.showsVerticalScrollIndicator = NO;
-        
+    
     [self.collectionV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
         if ([otherGesture.view isKindOfClass:[UICollectionView class]]) {
             UICollectionView *cv = (UICollectionView*)otherGesture.view;
@@ -46,11 +57,15 @@
     CGFloat safeBottom = 0;
     if (@available(iOS 11.0, *)) {
         safeBottom = [[UIApplication sharedApplication].delegate window].safeAreaInsets.bottom;
+        self.collectionV.collectionV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
         // Fallback on earlier versions
     }
     self.collectionV.collectionV.contentInset = UIEdgeInsetsMake(0, 0, safeBottom, 0);
+    
     [self.view addSubview:self.collectionV];
+    
 }
 - (void)viewDidLayoutSubviews
 {
@@ -60,11 +75,37 @@
 
 - (void)scDicScroll:(UIScrollView*)sc
 {
+    HDMultipleScrollListMainVC *mainVC = [self mainVC];
+    if (mainVC && self.isNeedBottomGap) {
+        CGRect lastSecRect = [[(HDSectionModel*)[self.collectionV.innerAllData lastObject] secProperRect] CGRectValue];
+        CGFloat maxMainVCOffsetY = CGRectGetMaxY(lastSecRect) + [self topH] - mainVC.multipleSc.mainCollecitonV.frame.size.height;
+        objc_setAssociatedObject(sc, mianCVMaxOffsetYKey, @(MAX(-1, (NSInteger)maxMainVCOffsetY)), OBJC_ASSOCIATION_RETAIN);
+    }
+    
     if (scrollCallBack) {
         scrollCallBack(sc);
     }
 }
+- (HDMultipleScrollListMainVC*)mainVC
+{
+    if ([self.parentViewController isKindOfClass:[HDMultipleScrollListMainVC class]]) {
+        return (HDMultipleScrollListMainVC*)self.parentViewController;
+    }
+    return nil;
+}
+- (CGFloat)topH
+{
+    HDMultipleScrollListView *rootView = [self mainVC].multipleSc;
+    UIScrollView *mainRealSc = rootView.mainCollecitonV.collectionV;
+    UIView *viewCell = self.view.superview.superview;
+    CGFloat topH = [viewCell convertRect:viewCell.frame toView:mainRealSc].origin.y;
+    return topH+self.gapOfBottomWhenSmallData;
+}
 - (void)HDMultipleScrollListViewScrollViewDidScroll:(nonnull void (^)(UIScrollView * _Nonnull))ScrollCallback {
     scrollCallBack = ScrollCallback;
+}
+- (UIView *)HDMultipleScrollListViewSubVCView
+{
+    return self.view;
 }
 @end

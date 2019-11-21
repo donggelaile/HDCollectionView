@@ -31,16 +31,20 @@
     }];
 
 }
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.multipleSc.frame = self.view.bounds;
+}
 - (void)configFinish:(HDMultipleScrollListConfiger*)configer
 {
     [configer.controllers enumerateObjectsUsingBlock:^(UIViewController<HDMultipleScrollListViewScrollViewDidScroll> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self addChildViewController:obj];
     }];
 }
-- (void)viewWillLayoutSubviews
+- (UIView *)HDMultipleScrollListViewSubVCView
 {
-    [super viewWillLayoutSubviews];
-    self.multipleSc.frame = self.view.bounds;
+    return self.view;
 }
 - (void)dealloc
 {

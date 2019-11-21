@@ -57,7 +57,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
             }
             //如果碰到了全屏返回手势，则返回YES
             if ([otherGestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]] &&
-                [otherGestureRecognizer.view isKindOfClass:NSClassFromString(@"UILayoutContainerView")]) {
+                [otherGestureRecognizer.view isKindOfClass:HDClassFromString(@"UILayoutContainerView")]) {
                 self.bounces = NO;
                 return YES;
             }

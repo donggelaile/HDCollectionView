@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HDMultipleScrollListSubVC : UIViewController
 @property (nonatomic, strong, readonly) HDCollectionView *collectionV;
-//子类如果设置了collectionV hd_setScrollViewDidScrollCallback，需要在回调中先调[super scDicScroll:sc]
-- (void)scDicScroll:(UIScrollView*)sc;
+@property (nonatomic, assign) BOOL isNeedBottomGap;//默认NO
+@property (nonatomic, assign) NSInteger gapOfBottomWhenSmallData;//子vc数据较少时底部间距，isNeedBottomGap为YES时生效
+
 @end
 
 NS_ASSUME_NONNULL_END
