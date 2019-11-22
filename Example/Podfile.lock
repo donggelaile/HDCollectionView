@@ -1,5 +1,5 @@
 PODS:
-  - HDCollectionView (0.4.1):
+  - HDCollectionView (0.5.0):
     - HDListViewDiffer
     - Yoga (~> 1.9.0)
   - HDListViewDiffer (0.2.0)
@@ -25,7 +25,7 @@ DEPENDENCIES:
   - YYModel (~> 1.0.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - HDListViewDiffer
     - JXCategoryView
     - Masonry
@@ -41,7 +41,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HDCollectionView: 9e32fb3a963762abed1e22e19e1d21c9c5b17d7f
+  HDCollectionView: 93efb0d57bda8461ba251f27d2a9379f6b357c59
   HDListViewDiffer: f1ab8168cfbaddcb93fd57aebeb03a98e7612c46
   JXCategoryView: 72560616347270d34c2e717cc08030e6218d7eda
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -54,4 +54,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5d904fb7ed13c87cc95ce5f0a4318def2f807624
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4
