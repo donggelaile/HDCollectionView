@@ -10,6 +10,7 @@
 #import "HDCollectionCell.h"
 #import "HDCellFrameCacheHelper.h"
 #import <objc/runtime.h>
+#import "NSObject+HDCopy.h"
 
 @implementation HDCellModel
 
@@ -42,6 +43,23 @@
     }
     return _reuseIdentifier;
 }
+- (BOOL)hdDiffIdentifierIsNeedAddModelHash
+{
+    return YES;
+}
+- (NSDictionary *)hdDiffIdentifierIgnorePropertys
+{
+    return @{
+             @"hash":@(YES),
+             @"superclass":@(YES),
+             @"description":@(YES),
+             @"debugDescription":@(YES),
+             @"cellSizeCb":@(YES),
+             @"indexP":@(YES),
+             @"cellFrameXY":@(YES),
+             @"secModel":@(YES)
+             };
+}
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     
@@ -52,8 +70,10 @@
 }
 - (NSString *)hdDiffIdentifier
 {
-    return @(self.hash).stringValue;
+    //默认实现为综合HDCellModel的部分属性值及orgData的属性值
+    return [self hdObjectIDByPropertys];
 }
+
 - (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout
 {
     @autoreleasepool {

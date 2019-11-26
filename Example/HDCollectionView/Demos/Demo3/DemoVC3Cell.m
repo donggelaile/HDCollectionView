@@ -11,7 +11,6 @@
 //#import "UIView+gesture.h"
 #import "Masonry.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
 #import "DemoVC3.h"
 
 @interface DemoVC3Cell()

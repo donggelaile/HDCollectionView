@@ -109,6 +109,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
  如果仅仅是向secModel新增cellModel，使用 hd_appendDataWithCellModelArr方法
  该方法改变已有的某个section内的数据，比如对sectionDataArr增删
  如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
+ 想要刷新一个或几个cell的UI时，调用此方法
  */
 - (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
 - (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;

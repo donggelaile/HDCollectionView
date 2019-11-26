@@ -390,6 +390,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)hd_reloadAll
 {
+    [self.allDataArr enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj.sectionDataArr enumerateObjectsUsingBlock:^(id<HDCellModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            obj.isConvertedToVM = NO;
+        }];
+    }];
     [self hd_setAllDataArr:self.allDataArr];
 }
 #pragma mark - allCallBack

@@ -85,10 +85,14 @@
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
-    
+    //刷新当前cell的UI
     [listV hd_changeSectionModelWithKey:cellM.secModel.sectionKey animated:YES changingIn:^(HDSectionModel *secModel) {
-        [secModel.sectionDataArr removeObject:cellM];
-//        cellM.cellSize = CGSizeMake(cellM.cellSize.height+5, cellM.cellSize.height+5);
+        
+        cellM.orgData = @(arc4random()%1000).stringValue;
+        CGFloat cellW = MIN(hd_deviceWidth-30, cellM.cellSize.height+15);
+        CGFloat cellH = MIN(300, cellM.cellSize.height+15);
+        
+        cellM.cellSize = CGSizeMake(cellW,cellH);
     }];
 }
 - (void)clickHeader:(HDSectionModel*)secM
