@@ -55,8 +55,8 @@
     }
     
     NSMutableArray *randomArr = @[].mutableCopy;
-
-    for (int i=0; i<7; i++) {
+    
+    for (int i=0; i<10; i++) {
         BOOL random = arc4random()%2;
         HDSectionModel *sec;
         if (random) {
@@ -64,6 +64,10 @@
         }else{
             sec = [self makeYogaSec];
         }
+        
+        //穿插1拖N、N拖1
+        [randomArr addObject:[self make1TNOrNT1SecModel]];
+        
         [randomArr addObject:sec];
     }    
     
@@ -92,29 +96,32 @@
 {
     HDSectionModel *sec = [self makeSecModel];
     
-    NSInteger type = 2;
-    sec.headerTopStopType = type;
     return sec;
 }
 - (HDSectionModel*)makeYogaSec
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 40;
+    UIEdgeInsets secInset = UIEdgeInsetsMake(30, 30, 30, 30);
+    CGFloat vhGap = 5;
+    NSInteger cellCount = 20;
+    NSInteger columCount = arc4random()%5+2;
+    CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
+    
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = @(i).stringValue;
-        model.cellSize     = CGSizeMake(140, 50);
+        model.cellSize     = CGSizeMake(cellW, 50);
         model.cellClassStr = @"DemoVC6Cell";
         [cellModelArr addObject:model];
     }
     
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(30, 30, 30, 30);
+    layout.secInset      = secInset;
     layout.justify       = arc4random()%YGJustifyCount;
-    layout.verticalGap   = 10;
-    layout.horizontalGap = 10;
+    layout.verticalGap   = vhGap;
+    layout.horizontalGap = vhGap;
     layout.headerSize    = CGSizeMake(self.view.frame.size.width, 50);
     layout.footerSize    = CGSizeMake(self.view.frame.size.width, 50);
     layout.decorationMargin = UIEdgeInsetsMake(20, 20, 20, 20);
@@ -125,7 +132,7 @@
     secModel.sectionFooterClassStr = @"DemoVC6Footer";
     secModel.headerObj             = nil;
     secModel.footerObj             = nil;
-    secModel.headerTopStopType     = arc4random()%2+1;
+    secModel.headerTopStopType     = arc4random()%2;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
     secModel.decorationClassStr    = @"DemoVC6DecorationView";
@@ -137,7 +144,7 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 50;
+    NSInteger cellCount = 20;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
@@ -156,14 +163,15 @@
     layout.footerSize    = CGSizeMake(self.view.frame.size.width, 50);
     layout.columnRatioArr = @[@1,@2,@1,@2];
     layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
+    layout.isFirstAddAtRightOrBottom = YES;
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionHeaderClassStr = @"DemoVC6Header";
     secModel.sectionFooterClassStr = @"DemoVC6Footer";
-    secModel.headerObj             = nil;
+    secModel.headerObj             = @"这个瀑布流是从右边开始摆放的";
     secModel.footerObj             = nil;
-    secModel.headerTopStopType     = arc4random()%2+1;
+    secModel.headerTopStopType     = arc4random()%2;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
     secModel.decorationClassStr    = @"DemoVC6DecorationView";
@@ -171,6 +179,72 @@
 
     return secModel;
 }
+// 一拖N,N拖一  其实就是个计算好的瀑布流布局...
+- (HDSectionModel*)make1TNOrNT1SecModel
+{
+    //该段cell数据源
+    
+    NSMutableArray *cellModelArr = @[].mutableCopy;
+    
+    
+    CGFloat oneHeight = 150;
+    //一
+    void(^add1)(void) = ^(void){
+        HDCellModel *model = [HDCellModel new];
+        model.orgData      = @"0";
+        model.cellSize     = CGSizeMake(0, oneHeight);
+        model.cellClassStr = @"DemoVC6Cell";
+        [cellModelArr addObject:model];
+    };
+    
+    //N
+    void(^addN)(void) = ^(void){
+        NSInteger n = (arc4random()%3+2);
+        CGFloat nHeight = oneHeight/n;
+        for (int i=0; i<n; i++) {
+            HDCellModel *model = [HDCellModel new];
+            model.orgData      = @(i+1).stringValue;
+            model.cellSize     = CGSizeMake(0, nHeight);
+            model.cellClassStr = @"DemoVC6Cell";
+            [cellModelArr addObject:model];
+        }
+    };
+
+    BOOL isNeedAddFromRight = NO;
+    if (arc4random()%2) {
+        //1拖N是从左开始先布局的瀑布流
+    }else{
+        isNeedAddFromRight = YES;
+        //N拖1是从右开始先布局的瀑布流
+    }
+    
+    add1();
+    addN();
+    
+    //该段layout
+    HDWaterFlowLayout *layout = [HDWaterFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
+    layout.secInset      = UIEdgeInsetsMake(30, 30, 30, 30);
+    layout.headerSize    = CGSizeMake(self.view.frame.size.width, 50);
+    layout.footerSize    = CGSizeMake(self.view.frame.size.width, 50);
+    layout.columnRatioArr = @[@2,@1];
+    layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
+    layout.isFirstAddAtRightOrBottom = isNeedAddFromRight;
+    
+    //该段的所有数据封装
+    HDSectionModel *secModel = [HDSectionModel new];
+    secModel.sectionHeaderClassStr = @"DemoVC6Header";
+    secModel.sectionFooterClassStr = @"DemoVC6Footer";
+    secModel.headerObj             = nil;
+    secModel.footerObj             = nil;
+    secModel.headerTopStopType     = arc4random()%2;
+    secModel.sectionDataArr        = cellModelArr;
+    secModel.layout                = layout;
+    secModel.decorationClassStr    = @"DemoVC6DecorationView";
+    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
+
+    return secModel;
+}
+
 - (void)clickCell:(HDCellModel*)cellM
 {
 //    NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);

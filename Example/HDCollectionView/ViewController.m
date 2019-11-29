@@ -71,7 +71,7 @@
 }
 - (HDSectionModel*)makeSecModel
 {
-    NSArray *demoName = @[@"简单使用",@"多段随机悬浮/对齐",@"自动算高/上拉加载/横竖屏支持",@"纵向夹杂横向",@"横向滑动/悬浮",@"瀑布流/装饰view",@"瀑布流加载更多",@"汽车之家demo",@"QQ联系人demo",@"多scrollview混合滑动"];
+    NSArray *demoName = @[@"简单使用",@"多段随机悬浮/对齐",@"自动算高/上拉加载/横竖屏支持",@"纵向夹杂横向",@"横向滑动/悬浮",@"瀑布流/装饰view/一拖N/N拖一",@"瀑布流加载更多",@"汽车之家demo",@"QQ联系人demo",@"多scrollview混合滑动"];
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = demoName.count;

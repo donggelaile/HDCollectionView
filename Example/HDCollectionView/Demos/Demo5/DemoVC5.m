@@ -139,6 +139,7 @@
     layout.footerSize    = CGSizeMake(40, collecitonViewH);
     layout.columnRatioArr = @[@1,@1,@1,@1];
     layout.decorationMargin = UIEdgeInsetsMake(10, 10, 10, 10);
+    layout.isFirstAddAtRightOrBottom = arc4random()%2;
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];

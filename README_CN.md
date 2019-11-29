@@ -4,7 +4,7 @@
 ![](https://img.shields.io/badge/language-objectiveC-green.svg)
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
-[相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
+# [相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
 
 ## 现已支持diff操作
 ### 不支持diff的列表组件是木得灵魂的 ----- 鲁迅（我没说过）
@@ -30,7 +30,9 @@
 |cell中间对齐| <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnv5cv8oj30ku0byglp.jpg" width="375" height="auto"> | cell左对齐 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnw0784sj30ku0bydfy.jpg" width="375" height="auto"> |
 |cell两端对齐 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnwfghwqj30ku0bydfz.jpg" width="375" height="auto"> | cell右对齐 |  <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnwtjl14j30km0c23ym.jpg" width="375" height="auto"> |
 | 纵向夹杂横向 |  <img src="https://i.loli.net/2019/06/12/5d00b3789d7e575580.gif" width="375" height="auto"> | 横向悬浮 |  <img src="https://i.loli.net/2019/06/12/5d00b37bd968d77225.gif" width="375" height="auto"> |
-| 汽车之家 |  <img src="https://i.loli.net/2019/06/12/5d00b37f68d3377556.gif" width="375" height="auto"> | QQ联系人 |  <img src="https://i.loli.net/2019/06/12/5d00b37a42abf21786.gif" width="375" height="auto"> |
+| 1拖N/N拖1 | <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9enkcob6ug30850f7u0x.gif" width="375" height="auto"> | 汽车之家 | <img src="https://i.loli.net/2019/06/12/5d00b37f68d3377556.gif" width="375" height="auto"> |
+| QQ 联系人 | <img src= "https://i.loli.net/2019/06/12/5d00b37a42abf21786.gif" width="375" height="auto"> |  |
+
 
 ## 简述
 HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本上可以实现目前常见的各种滑动布局。

@@ -26,7 +26,6 @@
 }
 - (void)demo1
 {
-
     self.view.backgroundColor = [UIColor whiteColor];
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
         maker.hd_frame(self.view.bounds)
@@ -37,7 +36,7 @@
     
     HDSectionModel *sec1 = [self makeSecModel];
     
-    [listV hd_setAllDataArr:@[sec1].mutableCopy];
+    [listV hd_setAllDataArr:@[sec1]];
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {

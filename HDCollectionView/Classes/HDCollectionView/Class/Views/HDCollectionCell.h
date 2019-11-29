@@ -6,6 +6,9 @@
 //  Copyright © 2018年 chd. All rights reserved.
 //
 
+// cell的子view建议全部添加到cell.contentView上，而非直接加在cell上
+// 否则使用autoLayout计算自适应高度时可能会不对
+
 #import <UIKit/UIKit.h>
 #import "HDUpdateUIProtocol.h"
 #import "HDDefines.h"

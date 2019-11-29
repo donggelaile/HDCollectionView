@@ -46,7 +46,11 @@
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
+    if ([model.headerObj isKindOfClass:[NSString class]]) {
+        _title.text = model.headerObj;
+    }else{
+        _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
+    }
 }
 - (void)clickSelf{
     self.callback(self.hdSecModel);

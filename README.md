@@ -28,7 +28,8 @@ For more results, please download demo to test yourself.
 |cell center alignment| <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnv5cv8oj30ku0byglp.jpg" width="375" height="auto"> | cell left aligned | <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnw0784sj30ku0bydfy.jpg" width="375" height="auto"> |
 |cell justification | <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnwfghwqj30ku0bydfz.jpg" width="375" height="auto"> | cell right alignment | <img src="https://tva1.sinaimg.cn/large/006y8mN6gy1g6gnwtjl14j30km0c23ym.jpg" width="375" height="auto"> |
 | Vertical inclusion horizontal | <img src="https://i.loli.net/2019/06/12/5d00b3789d7e575580.gif" width="375" height="auto"> | Horizontal suspension | <img src="https://i.loli.net/2019/06/12/5d00b37bd968d77225.gif" width="375" height="auto"> |
-| Car Home | <img src="https://i.loli.net/2019/06/12/5d00b37f68d3377556.gif" width="375" height="auto"> | QQ Contact | <img src= "https://i.loli.net/2019/06/12/5d00b37a42abf21786.gif" width="375" height="auto"> |
+| one - N | <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g9enkcob6ug30850f7u0x.gif" width="375" height="auto"> | Car Home | <img src="https://i.loli.net/2019/06/12/5d00b37f68d3377556.gif" width="375" height="auto"> |
+| QQ Contact | <img src= "https://i.loli.net/2019/06/12/5d00b37a42abf21786.gif" width="375" height="auto"> |  |
 
 ## Brief
 HDCollectionView is used to quickly build an efficient and flexible listView component, which basically realizes various layouts that are common at present.

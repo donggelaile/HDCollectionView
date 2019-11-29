@@ -268,17 +268,34 @@
     }];
 
 }
+
+//这里在横向滑动时是最小宽度的位置
 - (NSInteger)minColumnHeightIndex
 {
     NSInteger minIndex = 0;
     CGFloat nowMinH = CGFLOAT_MAX;
-    for (int i=0;i<columnHeightArr.count;i++) {
-        NSNumber*columH = columnHeightArr[i];
-        if ([columH floatValue]<nowMinH) {
-            minIndex = i;
-            nowMinH = [columH floatValue];
+    if (self.isFirstAddAtRightOrBottom) {
+        minIndex = self.columnRatioArr.count-1;
+    }
+    
+    if (self.isFirstAddAtRightOrBottom) {
+        for (int i=(int)(self.columnRatioArr.count-1);i>=0;i--) {
+            NSNumber*columH = columnHeightArr[i];
+            if ([columH floatValue]<nowMinH) {
+                minIndex = i;
+                nowMinH = [columH floatValue];
+            }
+        }
+    }else{
+        for (int i=0;i<columnHeightArr.count;i++) {
+            NSNumber*columH = columnHeightArr[i];
+            if ([columH floatValue]<nowMinH) {
+                minIndex = i;
+                nowMinH = [columH floatValue];
+            }
         }
     }
+    
     return minIndex;
 }
 - (CGFloat)minColumnHeight

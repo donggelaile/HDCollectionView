@@ -19,7 +19,7 @@
     //发起网络请求、处理后返回(这里省略）
     
     NSMutableArray *randomArr = @[].mutableCopy;
-    for (int i=0; i<20; i++) {
+    for (int i=0; i<100; i++) {
         BOOL random = arc4random()%2;
         HDSectionModel *sec;
         if (i == 5 || i == 9) {
@@ -47,7 +47,7 @@
     NSInteger cellCount = 15;
     CGFloat vhGap = 10;
     UIEdgeInsets secInset = UIEdgeInsetsMake(30, 10, 30, 10);
-    NSInteger columCount = 4;
+    NSInteger columCount = arc4random()%4+3;
     CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
     
     for (int i =0; i<cellCount; i++) {
@@ -105,7 +105,15 @@
     layout.horizontalGap = 10;
     layout.headerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);//CGSizeMake(50, collecitonViewH);//CGSizeMake(self.view.frame.size.width, 50)
     layout.footerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    layout.columnRatioArr = @[@1,@1,@1];
+    
+    NSMutableArray *columnRatioArr = @[].mutableCopy;
+    NSInteger columnCount = arc4random()%4+2;//2 --- 5列
+    for (int i=0; i<columnCount; i++) {
+        //每列宽度所占比例
+        [columnRatioArr addObject:@(arc4random()%2+2)];
+    }
+    
+    layout.columnRatioArr = columnRatioArr;
     layout.decorationMargin = UIEdgeInsetsMake(5, 5, 5, 5);
     
     //该段的所有数据封装
