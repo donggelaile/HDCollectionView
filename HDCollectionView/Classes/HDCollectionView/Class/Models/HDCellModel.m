@@ -12,6 +12,92 @@
 #import <objc/runtime.h>
 #import "NSObject+HDCopy.h"
 
+@interface HDCellModelChainMaker ()
+@property (nonatomic, strong) NSMutableDictionary *allValues;
+@property (nonatomic, copy) NSString *diyCellModelClassStr;
+@end
+
+@implementation HDCellModelChainMaker
+
+- (NSMutableDictionary *)allValues
+{
+    if (!_allValues) {
+        _allValues = @{}.mutableCopy;
+    }
+    return _allValues;
+}
+- (__kindof id<HDCellModelProtocol>)hd_generateObj
+{
+    id<HDCellModelProtocol> model;
+    if (self.diyCellModelClassStr) {
+        if (HDClassFromString(self.diyCellModelClassStr)) {
+            id tempModel = HDClassFromString(self.diyCellModelClassStr);
+            if ([tempModel conformsToProtocol:@protocol(HDCellModelProtocol)]) {
+                model = tempModel;
+            }
+        }
+    }else{
+        model = [HDCellModel new];
+    }
+    
+    [self.allValues enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [(NSObject*)model setValue:obj forKey:key];
+    }];
+    return model;
+}
+
+- (HDCellModelChainMaker * _Nonnull (^)(id _Nullable))hd_orgData
+{
+    return ^(id orgData){
+        if (orgData) {
+            self.allValues[@"orgData"] = orgData;
+        }
+        return self;
+    };
+}
+- (HDCellModelChainMaker * _Nonnull (^)(CGSize))hd_cellSize
+{
+    return ^(CGSize cellSize){
+        self.allValues[@"cellSize"] = [NSValue valueWithCGSize:cellSize];
+        return self;
+    };
+}
+- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_cellClassStr
+{
+    return ^(NSString* cellClassStr){
+        if (cellClassStr) {
+            self.allValues[@"cellClassStr"] = cellClassStr;
+        }
+        return self;
+    };
+}
+- (HDCellModelChainMaker * _Nonnull (^)(UIEdgeInsets))hd_margain
+{
+    return ^(UIEdgeInsets margain){
+        self.allValues[@"margain"] = [NSValue valueWithUIEdgeInsets:margain];
+        return self;
+    };
+}
+- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_reuseIdentifier
+{
+    return ^(NSString* reuseIdentifier){
+        if (reuseIdentifier) {
+            self.allValues[@"reuseIdentifier"] = reuseIdentifier;
+        }
+        return self;
+    };
+}
+- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_diyCellModelClassStr
+{
+    return ^(NSString* diyCellModelClassStr){
+        self.diyCellModelClassStr = diyCellModelClassStr;
+        return self;
+    };
+}
+
+@end 
+
+
 @implementation HDCellModel
 
 @synthesize secModel        = _secModel;

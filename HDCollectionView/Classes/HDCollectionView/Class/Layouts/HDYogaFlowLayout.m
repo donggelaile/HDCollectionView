@@ -13,6 +13,39 @@
 #import "HDYogaCalculateHelper.h"
 #import <objc/runtime.h>
 
+@implementation HDYogaFlowLayoutChainMaker
+@dynamic hd_headerSize,hd_footerSize,hd_cellSize,hd_secInset,hd_verticalGap,hd_horizontalGap;
+
+- (Class)hd_generateLayoutClass
+{
+    return [HDYogaFlowLayout class];
+}
+
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGJustify))hd_justify
+{
+    return ^(YGJustify justify){
+        self.allValues[@"justify"] = @(justify);
+        return self;
+    };
+}
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGAlign))hd_align
+{
+    return ^(YGAlign align){
+        self.allValues[@"align"] = @(align);
+        return self;
+    };
+}
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_decorationMargin
+{
+    return ^(UIEdgeInsets decorationMargin){
+        self.allValues[@"decorationMargin"] = [NSValue valueWithUIEdgeInsets:decorationMargin];
+        return self;
+    };
+}
+
+@end
+
+
 @interface HDFlowLayoutSecModel : NSObject<HDYogaSecProtocol>
 
 @end

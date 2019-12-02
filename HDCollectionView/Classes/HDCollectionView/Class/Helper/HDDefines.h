@@ -8,6 +8,13 @@
 #ifndef HDDefines_h
 #define HDDefines_h
 
+//     !!!  使用链式语法创建对象时，最后一定要调用 hd_generateObj  !!!
+#define HDMakeSecModelChain [HDSectionModelChainMaker new]
+#define HDMakeCellModelChain [HDCellModelChainMaker new]
+#define HDMakeBaseLayoutChain [HDBaseLayoutChainMaker new]
+#define HDMakeWaterFlowLayoutChain [HDWaterFlowLayoutChainMaker new]
+#define HDMakeYogaFlowLayoutChain [HDYogaFlowLayoutChainMaker new]
+
 #define HDClassFromString(classString) \
 ({Class c = NSClassFromString(classString);\
 if (!c) { \

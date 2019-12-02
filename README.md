@@ -38,6 +38,7 @@ HDCollectionView is used to quickly build an efficient and flexible listView com
 * Data driven, flexible additions and deletions, no need to manually register any views
 * Efficiently find the set of attributes that the current screen needs to display, without fear of oversized data
 * Based on [Yoga](https://github.com/facebook/yoga)(flexbox), it implements streaming layout and can completely replace the system's flowLayout
+* chain makers support
 * Customizable waterfall flow layout for each row/column, waterfall stream loading more data for incremental calculation
 * Support for specifying any of the header segments to float, permanently float / laterally slide the left suspension
 * Support cell height automatic calculation / cache, support AutoLayout calculation or hdSizeThatFits way to return
@@ -98,10 +99,36 @@ secModel.layout = layout;
 ```
 How to add: Copy the above code to any Xcode file -> select the above code -> right click -> select Create Code Snippet -> fill in title and completion shortCut -> restart Xcode. Then just hit the completion stubCut anywhere in Xcode.
 
+When you create obj, you can also use chain makers, just like
+```
+HDCellModel *model = HDMakeCellModelChain
+.hd_orgData(@(i).stringValue)
+.hd_cellSize(CGSizeMake(self.view.frame.size.width/2, 50))
+.hd_cellClassStr(@"DemoVC1Cell")
+.hd_generateObj;
+
+HDYogaFlowLayout *layout = HDMakeYogaFlowLayoutChain
+.hd_secInset(UIEdgeInsetsZero)
+.hd_justify(YGJustifySpaceBetween)
+.hd_headerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+.hd_footerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+.hd_generateObj;
+
+HDSectionModel *secModel = HDMakeSecModelChain
+.hd_sectionHeaderClassStr(@"DemoVC1Header")
+.hd_headerTopStopType(HDHeaderStopOnTopTypeNone)
+.hd_sectionDataArr(cellModelArr)
+.hd_layout(layout)
+.hd_generateObj;
+
+```
+see more info in DemoVC4
+
 3, set the data
 ```
 [listV hd_setAllDataArr:@[secModel]];
 ```
+
 Well, the shelf that takes a normal sliding list in the future only needs to be done in one minute, and the rest is to implement the cell.
 
 ## Requirements

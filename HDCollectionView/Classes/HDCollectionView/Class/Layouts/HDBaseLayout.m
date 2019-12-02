@@ -9,6 +9,76 @@
 #import "HDBaseLayout.h"
 #import "NSObject+HDCopy.h"
 #import "HDModelProtocol.h"
+
+@interface HDBaseLayoutChainMaker ()
+@property (nonatomic, strong) NSMutableDictionary *allValues;
+@end
+
+@implementation HDBaseLayoutChainMaker
+- (NSMutableDictionary *)allValues
+{
+    if (!_allValues) {
+        _allValues = @{}.mutableCopy;
+    }
+    return _allValues;
+}
+- (Class)hd_generateLayoutClass
+{
+    return [HDBaseLayout class];
+}
+- (__kindof HDBaseLayout*)hd_generateObj
+{
+    HDBaseLayout* layout = [[self hd_generateLayoutClass] new];
+    [self.allValues enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [layout setValue:obj forKey:key];
+    }];
+    return layout;
+}
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_headerSize
+{
+    return ^(CGSize headerSize){
+        self.allValues[@"headerSize"] = [NSValue valueWithCGSize:headerSize];
+        return self;
+    };
+}
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_footerSize
+{
+    return ^(CGSize footerSize){
+        self.allValues[@"footerSize"] = [NSValue valueWithCGSize:footerSize];
+        return self;
+    };
+}
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_cellSize
+{
+    return ^(CGSize cellSize){
+        self.allValues[@"cellSize"] = [NSValue valueWithCGSize:cellSize];
+        return self;
+    };
+}
+- (HDBaseLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_secInset
+{
+    return ^(UIEdgeInsets secInset){
+        self.allValues[@"secInset"] = [NSValue valueWithUIEdgeInsets:secInset];
+        return self;
+    };
+}
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGFloat))hd_verticalGap
+{
+    return ^(CGFloat verticalGap){
+        self.allValues[@"verticalGap"] = @(verticalGap);
+        return self;
+    };
+}
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGFloat))hd_horizontalGap
+{
+    return ^(CGFloat horizontalGap){
+        self.allValues[@"horizontalGap"] = @(horizontalGap);
+        return self;
+    };
+}
+
+@end
+
 @interface HDBaseLayout()
 @end
 

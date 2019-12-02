@@ -44,6 +44,7 @@ HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本�
 * 数据驱动，灵活增删，无需手动注册任何view
 * 高效查找当前屏幕需要展示的属性集合，无惧超大数据
 * 基于[Yoga](https://github.com/facebook/yoga)(flexbox),实现了流式布局，完全可以替代系统的flowLayout
+* 需要用到的类都支持链式语法初始化
 * 可自定义每行/每列 所占比例的瀑布流布局、瀑布流加载更多数据为增量计算
 * 支持指定任一 header 段内悬浮、永久悬浮/ 横向滑动左部悬浮
 * 支持cell高度自动计算/缓存,支持AutoLayout计算或hdSizeThatFits方式返回
@@ -130,10 +131,35 @@ secModel.layout                   = layout;
 ```
 如何添加：拷贝以上代码到Xcode任意文件中->选中以上代码->右击->选择Create Code Snippet ->填写title及completion shortCut ->重启Xcode。然后就在Xcode任意位置打刚刚的completion shortCut。
 
+如果你更喜欢链式语法，那么以上的对象均可以由链式语法来初始化。示例如下：
+```
+HDCellModel *model = HDMakeCellModelChain
+.hd_orgData(@(i).stringValue)
+.hd_cellSize(CGSizeMake(self.view.frame.size.width/2, 50))
+.hd_cellClassStr(@"DemoVC1Cell")
+.hd_generateObj;
+
+HDYogaFlowLayout *layout = HDMakeYogaFlowLayoutChain
+.hd_secInset(UIEdgeInsetsZero)
+.hd_justify(YGJustifySpaceBetween)
+.hd_headerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+.hd_footerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+.hd_generateObj;
+
+HDSectionModel *secModel = HDMakeSecModelChain
+.hd_sectionHeaderClassStr(@"DemoVC1Header")
+.hd_headerTopStopType(HDHeaderStopOnTopTypeNone)
+.hd_sectionDataArr(cellModelArr)
+.hd_layout(layout)
+.hd_generateObj;
+```
+具体链式方法使用见DemoVC4
+
 3、设置数据
 ```
 [listV hd_setAllDataArr:@[secModel]];
 ```
+
 嗯，以后搭一个普通滑动列表的架子只需要在一分钟之内搞定，剩下的事就是去实现cell了。
 
 ### 5、一些其他布局

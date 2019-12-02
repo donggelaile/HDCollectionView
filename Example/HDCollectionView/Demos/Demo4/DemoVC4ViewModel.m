@@ -51,34 +51,35 @@
     CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
     
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
-        model.orgData      = @(i).stringValue;
-        model.cellSize     = CGSizeMake(cellW, 50);
-        model.cellClassStr = @"DemoVC4Cell";
+        HDCellModel *model = HDMakeCellModelChain
+        .hd_orgData(@(i).stringValue)
+        .hd_cellSize(CGSizeMake(cellW, 50))
+        .hd_cellClassStr(@"DemoVC4Cell")
+        .hd_generateObj;//最后一定要调用hd_generateObj
         [cellModelArr addObject:model];
     }
     
     //该段layout
-    HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = secInset;
-    layout.justify       = arc4random()%YGJustifyCount;
-    layout.verticalGap   = vhGap;
-    layout.horizontalGap = vhGap;
-    layout.headerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    layout.footerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    layout.decorationMargin = UIEdgeInsetsMake(5, 5, 5, 5);
+    HDYogaFlowLayout *layout = HDMakeYogaFlowLayoutChain
+    .hd_secInset(secInset)
+    .hd_justify(arc4random()%YGJustifyCount)
+    .hd_verticalGap(vhGap)
+    .hd_horizontalGap(vhGap)
+    .hd_headerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+    .hd_footerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+    .hd_decorationMargin(UIEdgeInsetsMake(5, 5, 5, 5))
+    .hd_generateObj;
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
-    secModel.sectionHeaderClassStr = @"DemoVC4Header";
-    secModel.sectionFooterClassStr = @"DemoVC4Footer";
-    secModel.headerObj             = nil;
-    secModel.footerObj             = nil;
-    secModel.headerTopStopType     = ABS(arc4random() & 1);
-    secModel.sectionDataArr        = cellModelArr;
-    secModel.layout                = layout;
-    secModel.decorationClassStr    = @"DemoVC4DecorationView";
-    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
+    HDSectionModel *secModel = HDMakeSecModelChain
+    .hd_sectionHeaderClassStr(@"DemoVC4Header")
+    .hd_sectionFooterClassStr(@"DemoVC4Footer")
+    .hd_headerTopStopType(ABS(arc4random() & 1))
+    .hd_sectionDataArr(cellModelArr)
+    .hd_layout(layout)
+    .hd_decorationClassStr(@"DemoVC4DecorationView")
+    .hd_decorationObj([UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1])
+    .hd_generateObj;
     
     return secModel;
 }
@@ -90,22 +91,17 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 10;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
-        model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
-        model.cellSize     = CGSizeMake(0, arc4random()%200 + 100);
-        model.cellClassStr = @"DemoVC4Cell";
-        //        model.whRatio = ((arc4random() & 1024)+50)/1024.0f+1;
+        
+        HDCellModel *model = HDMakeCellModelChain
+        .hd_orgData([NSString stringWithFormat:@"%@",@(i+1)])
+        .hd_cellSize(CGSizeMake(0, arc4random()%200 + 100))
+        .hd_cellClassStr(@"DemoVC4Cell")
+        .hd_generateObj;
+        
         [cellModelArr addObject:model];
     }
     
     //该段layout
-    HDWaterFlowLayout *layout = [HDWaterFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(20, 20, 20, 20);
-    layout.verticalGap   = 10;
-    layout.horizontalGap = 10;
-    layout.headerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);//CGSizeMake(50, collecitonViewH);//CGSizeMake(self.view.frame.size.width, 50)
-    layout.footerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    
     NSMutableArray *columnRatioArr = @[].mutableCopy;
     NSInteger columnCount = arc4random()%4+2;//2 --- 5列
     for (int i=0; i<columnCount; i++) {
@@ -113,20 +109,26 @@
         [columnRatioArr addObject:@(arc4random()%2+2)];
     }
     
-    layout.columnRatioArr = columnRatioArr;
-    layout.decorationMargin = UIEdgeInsetsMake(5, 5, 5, 5);
+    HDWaterFlowLayout *layout = HDMakeWaterFlowLayoutChain
+    .hd_secInset(UIEdgeInsetsMake(20, 20, 20, 20))
+    .hd_verticalGap(10)
+    .hd_horizontalGap(10)
+    .hd_headerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+    .hd_footerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+    .hd_columnRatioArr(columnRatioArr)
+    .hd_decorationMargin(UIEdgeInsetsMake(5, 5, 5, 5))
+    .hd_generateObj;
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
-    secModel.sectionHeaderClassStr = @"DemoVC4Header";
-    secModel.sectionFooterClassStr = @"DemoVC4Footer";
-    secModel.headerObj             = nil;
-    secModel.footerObj             = nil;
-    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNormal;
-    secModel.sectionDataArr        = cellModelArr;
-    secModel.layout                = layout;
-    secModel.decorationClassStr    = @"DemoVC4DecorationView";
-    secModel.decorationObj = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
+    HDSectionModel *secModel = HDMakeSecModelChain
+    .hd_sectionHeaderClassStr(@"DemoVC4Header")
+    .hd_sectionFooterClassStr(@"DemoVC4Footer")
+    .hd_headerTopStopType(HDHeaderStopOnTopTypeNormal)
+    .hd_sectionDataArr(cellModelArr)
+    .hd_layout(layout)
+    .hd_decorationClassStr(@"DemoVC4DecorationView")
+    .hd_decorationObj([UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1])
+    .hd_generateObj;
     
     return secModel;
 }
@@ -144,33 +146,35 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 1;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
-        model.orgData      = [self HXHDInner_DataArr];
-        model.cellSize     = CGSizeMake([UIScreen mainScreen].bounds.size.width, 170);
-        model.cellClassStr = @"DemoVC4Cell2";
+        
+        HDCellModel *model = HDMakeCellModelChain
+        .hd_orgData([self HXHDInner_DataArr])
+        .hd_cellSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 170))
+        .hd_cellClassStr(@"DemoVC4Cell2")
         //赋值一个不会重复的reuseIdentifier，让其与其他cell不会产生复用(此类cell较少时适用)
-        model.reuseIdentifier = [NSString stringWithFormat:@"DemoVC4Cell2_%@",@(idx)];
+        .hd_reuseIdentifier([NSString stringWithFormat:@"DemoVC4Cell2_%@",@(idx)])
+        .hd_generateObj;
+        
         idx ++;
         [cellModelArr addObject:model];
     }
     
     //该段layout
-    HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(0, 0, 0, 0);
-    layout.justify       = YGJustifySpaceBetween;
-    layout.verticalGap   = 0;
-    layout.horizontalGap = 0;
-    layout.headerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-    layout.footerSize    = CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
+    HDYogaFlowLayout *layout = HDMakeYogaFlowLayoutChain
+    .hd_secInset(UIEdgeInsetsZero)
+    .hd_justify(YGJustifySpaceBetween)
+    .hd_headerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+    .hd_footerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))
+    .hd_generateObj;
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
-    secModel.sectionHeaderClassStr = @"DemoVC4Header";
-    secModel.sectionFooterClassStr = @"DemoVC4Footer";
-    secModel.headerTopStopType        = HDHeaderStopOnTopTypeNormal;
-    secModel.isNeedAutoCountCellHW    = NO;
-    secModel.sectionDataArr           = cellModelArr;
-    secModel.layout                   = layout;
+    HDSectionModel *secModel = HDMakeSecModelChain
+    .hd_sectionHeaderClassStr(@"DemoVC4Header")
+    .hd_sectionFooterClassStr(@"DemoVC4Footer")
+    .hd_headerTopStopType(HDHeaderStopOnTopTypeNormal)
+    .hd_sectionDataArr(cellModelArr)
+    .hd_layout(layout)
+    .hd_generateObj;
     
     return secModel;
 }
@@ -188,26 +192,28 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 100;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
-        model.orgData      = nil;
-        model.cellSize     = CGSizeMake(150, 150);
-        model.cellClassStr = @"DemoVC4Cell2InnerCell";
+        
+        HDCellModel *model = HDMakeCellModelChain
+        .hd_cellSize(CGSizeMake(150, 150))
+        .hd_cellClassStr(@"DemoVC4Cell2InnerCell")
+        .hd_generateObj;
+        
         [cellModelArr addObject:model];
     }
     
     //该段layout
-    HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(10, 10, 10, 10);
-    layout.justify       = YGJustifySpaceBetween;
-    layout.verticalGap   = 0;
-    layout.horizontalGap = 20;
+    HDYogaFlowLayout *layout = HDMakeYogaFlowLayoutChain
+    .hd_secInset(UIEdgeInsetsMake(10, 10, 10, 10))
+    .hd_justify(YGJustifySpaceBetween)
+    .hd_horizontalGap(20)
+    .hd_generateObj;
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
-    secModel.headerTopStopType        = HDHeaderStopOnTopTypeNone;
-    secModel.isNeedAutoCountCellHW    = NO;
-    secModel.sectionDataArr           = cellModelArr;
-    secModel.layout                   = layout;
+    HDSectionModel *secModel = HDMakeSecModelChain
+    .hd_headerTopStopType(HDHeaderStopOnTopTypeNone)
+    .hd_sectionDataArr(cellModelArr)
+    .hd_layout(layout)
+    .hd_generateObj;
     
     return secModel;
 }

@@ -9,6 +9,162 @@
 #import "HDSectionModel.h"
 #import "HDDefines.h"
 #import "NSObject+HDCopy.h"
+
+@interface HDSectionModelChainMaker ()
+@property (nonatomic, strong) NSMutableDictionary *allValues;
+@property (nonatomic, copy) NSString *diySectionModelClassStr;
+@end
+
+@implementation HDSectionModelChainMaker
+
+- (NSMutableDictionary *)allValues
+{
+    if (!_allValues) {
+        _allValues = @{}.mutableCopy;
+    }
+    return _allValues;
+}
+- (__kindof id<HDSectionModelProtocol>)hd_generateObj
+{
+    id<HDSectionModelProtocol> model;
+    if (self.diySectionModelClassStr) {
+        if (HDClassFromString(self.diySectionModelClassStr)) {
+            id tempModel = HDClassFromString(self.diySectionModelClassStr);
+            if ([tempModel conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
+                model = tempModel;
+            }
+        }
+    }else{
+        model = [HDSectionModel new];
+    }
+    
+    [self.allValues enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        [(NSObject*)model setValue:obj forKey:key];
+    }];
+    return model;
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_sectionHeaderClassStr
+{
+    return ^(NSString *sectionHeaderClassStr){
+        if (sectionHeaderClassStr) {
+            self.allValues[@"sectionHeaderClassStr"] = sectionHeaderClassStr;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_sectionFooterClassStr
+{
+    return ^(NSString *sectionFooterClassStr){
+        if (sectionFooterClassStr) {
+            self.allValues[@"sectionFooterClassStr"] = sectionFooterClassStr;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_sectionCellClassStr
+{
+    return ^(NSString *sectionCellClassStr){
+        if (sectionCellClassStr) {
+            self.allValues[@"sectionCellClassStr"] = sectionCellClassStr;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(id  _Nullable))hd_headerObj
+{
+    return ^(id headerObj){
+        if (headerObj) {
+            self.allValues[@"headerObj"] = headerObj;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(id  _Nullable))hd_footerObj
+{
+    return ^(id footerObj){
+        if (footerObj) {
+            self.allValues[@"footerObj"] = footerObj;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(BOOL ))hd_isNeedAutoCountCellHW
+{
+    return ^(BOOL isNeedAutoCountCellHW){
+        self.allValues[@"isNeedAutoCountCellHW"] = @(isNeedAutoCountCellHW);
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(BOOL ))hd_isNeedCacheSubviewsFrame
+{
+    return ^(BOOL isNeedCacheSubviewsFrame){
+        self.allValues[@"isNeedCacheSubviewsFrame"] = @(isNeedCacheSubviewsFrame);
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(HDHeaderStopOnTopType headerTopStopType))hd_headerTopStopType
+{
+    return ^(HDHeaderStopOnTopType headerTopStopType){
+        self.allValues[@"headerTopStopType"] = @(headerTopStopType);
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(NSMutableArray<id<HDCellModelProtocol>> * _Nonnull))hd_sectionDataArr
+{
+    return ^(NSMutableArray<id<HDCellModelProtocol>> *sectionDataArr){
+        if (sectionDataArr) {
+            self.allValues[@"sectionDataArr"] = sectionDataArr;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(__kindof HDBaseLayout * _Nonnull))hd_layout
+{
+    return ^(HDBaseLayout *layout){
+        if (layout) {
+            self.allValues[@"layout"] = layout;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_sectionKey
+{
+    return ^(NSString *sectionKey){
+        if (sectionKey) {
+            self.allValues[@"sectionKey"] = sectionKey;
+        }
+        return self;
+    };
+}
+
+- (HDSectionModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_decorationClassStr
+{
+    return ^(NSString *decorationClassStr){
+        if (decorationClassStr) {
+            self.allValues[@"decorationClassStr"] = decorationClassStr;
+        }
+        return self;
+    };
+}
+- (HDSectionModelChainMaker * _Nonnull (^)(id _Nullable))hd_decorationObj
+{
+    return ^(id decorationObj){
+        if (decorationObj) {
+            self.allValues[@"decorationObj"] = decorationObj;
+        }
+        return self;
+    };
+}
+
+- (HDSectionModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_diySectionModelClassStr
+{
+    return ^(NSString *diySectionModelClassStr){
+        self.diySectionModelClassStr = diySectionModelClassStr;
+        return self;
+    };
+}
+@end
+
 @implementation HDSectionModel
 
 @synthesize sectionHeaderClassStr    = _sectionHeaderClassStr;

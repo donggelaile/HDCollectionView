@@ -12,6 +12,41 @@
 #import <objc/runtime.h>
 #import "HDBaseLayout+Cache.h"
 
+@implementation HDWaterFlowLayoutChainMaker
+@dynamic hd_headerSize,hd_footerSize,hd_cellSize,hd_secInset,hd_verticalGap,hd_horizontalGap;
+
+- (Class)hd_generateLayoutClass
+{
+    return [HDWaterFlowLayout class];
+}
+
+- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(NSArray<NSNumber *> * _Nonnull))hd_columnRatioArr
+{
+    return ^(NSArray<NSNumber *> *columnRatioArr){
+        if (columnRatioArr) {
+            self.allValues[@"columnRatioArr"] = columnRatioArr;
+        }
+        return self;
+    };
+}
+
+- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_decorationMargin
+{
+    return ^(UIEdgeInsets decorationMargin){
+        self.allValues[@"decorationMargin"] = [NSValue valueWithUIEdgeInsets:decorationMargin];
+        return self;
+    };
+}
+- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(BOOL))hd_isFirstAddAtRightOrBottom
+{
+        return ^(BOOL isFirstAddAtRightOrBottom){
+        self.allValues[@"isFirstAddAtRightOrBottom"] = @(isFirstAddAtRightOrBottom);
+        return self;
+    };
+}
+@end
+
+
 @interface HDWaterFlowLayout()
 {
     NSMutableArray *columnHeightArr;

@@ -50,35 +50,56 @@
 }
 - (HDSectionModel*)makeSecModel
 {
-
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 10;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
-        model.orgData      = @(i).stringValue;
-        model.cellSize     = CGSizeMake(self.view.frame.size.width/2, 50);
-        model.cellClassStr = @"DemoVC1Cell";
+//        HDCellModel *model = [HDCellModel new];
+//        model.orgData      = @(i).stringValue;
+//        model.cellSize     = CGSizeMake(self.view.frame.size.width/2, 50);
+//        model.cellClassStr = @"DemoVC1Cell";
+        HDCellModel *model = HDMakeCellModelChain
+        .hd_orgData(@(i).stringValue)
+        .hd_cellSize(CGSizeMake(self.view.frame.size.width/2, 50))
+        .hd_cellClassStr(@"DemoVC1Cell")
+        .hd_generateObj;
+        
         [cellModelArr addObject:model];
     }
     
     //该段layout
-    HDBaseLayout *layout = [HDBaseLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
-    layout.secInset      = UIEdgeInsetsMake(10, 0, 10, 0);
-    layout.verticalGap   = 10;
-    layout.horizontalGap = 0;
-    layout.headerSize    = CGSizeMake(self.view.frame.size.width, 100);
-    layout.footerSize    = CGSizeMake(0, 0);
+//    HDBaseLayout *layout = [HDBaseLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
+//    layout.secInset      = UIEdgeInsetsMake(10, 0, 10, 0);
+//    layout.verticalGap   = 10;
+//    layout.horizontalGap = 0;
+//    layout.headerSize    = CGSizeMake(self.view.frame.size.width, 100);
+//    layout.footerSize    = CGSizeMake(0, 0);
+    HDBaseLayout *layout = HDMakeBaseLayoutChain
+    .hd_secInset(UIEdgeInsetsMake(10, 0, 10, 0))
+    .hd_verticalGap(10)
+    .hd_headerSize(CGSizeMake(self.view.frame.size.width, 100))
+    .hd_footerSize(CGSizeMake(0, 0))
+    .hd_generateObj;
     
     //该段的所有数据封装
-    HDSectionModel *secModel = [HDSectionModel new];
-    secModel.sectionHeaderClassStr = @"DemoVC1Header";
-    secModel.sectionFooterClassStr = nil;
-    secModel.headerObj             = nil;
-    secModel.footerObj             = nil;
-    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
-    secModel.sectionDataArr        = cellModelArr;
-    secModel.layout                = layout;
+    
+    //链式语法创建
+    HDSectionModel *secModel = HDMakeSecModelChain
+    .hd_sectionHeaderClassStr(@"DemoVC1Header")
+    .hd_headerTopStopType(HDHeaderStopOnTopTypeNone)
+    .hd_sectionDataArr(cellModelArr)
+    .hd_layout(layout)
+    .hd_generateObj;
+    
+    //普通方式创建
+//    HDSectionModel *secModel = [HDSectionModel new];
+//    secModel.sectionHeaderClassStr = @"DemoVC1Header";
+//    secModel.sectionFooterClassStr = nil;
+//    secModel.headerObj             = nil;
+//    secModel.footerObj             = nil;
+//    secModel.headerTopStopType     = HDHeaderStopOnTopTypeNone;
+//    secModel.sectionDataArr        = cellModelArr;
+//    secModel.layout                = layout;
     return secModel;
 }
 - (void)clickCell:(HDCellModel*)cellM
