@@ -215,18 +215,6 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
         thingsToDo();
     }
 }
-    
-void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
-    if (mode == NSRunLoopCommonModes) {
-        if (thingsToDo) {
-            thingsToDo();
-        }
-    }else{
-        dispatch_async(dispatch_get_main_queue(), ^{
-           [HDCollectionView performSelector:@selector(doSomeThing:) withObject:thingsToDo afterDelay:0 inModes:@[mode]];
-        });
-    }
-}
 
 void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 {
@@ -1090,11 +1078,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     if (finishCb) {
         par[hd_inner_count_cellH_back_key] = finishCb;
     }
-    if (isAll) {
-        [self hd_realCountCellsH:par];
-    }else{
-        [self hd_realCountCellsH:par];
-    }
+    [self hd_realCountCellsH:par];
 }
 -(void)hd_dataChangeFinishedCallBack:(void (^)(HDDataChangeType))finishCallback
 {
