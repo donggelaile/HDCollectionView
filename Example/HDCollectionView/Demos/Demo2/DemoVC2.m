@@ -67,7 +67,9 @@
         }
     }    
     
-    [listV hd_setAllDataArr:randomArr];
+    HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+        [listV hd_setAllDataArr:randomArr];
+    });
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {

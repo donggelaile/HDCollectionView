@@ -82,6 +82,8 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
     HDDataChangeChangeSec,
 };
 
+void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
+
 /*
     important/important/important
     所有的数据更改都应该在以下提供的接口中进行，不要直接对某个数组增删元素，变更后无需调用 reloadData（内部会调用）

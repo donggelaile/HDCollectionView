@@ -215,6 +215,18 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
         thingsToDo();
     }
 }
+    
+void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
+    if (mode == NSRunLoopCommonModes) {
+        if (thingsToDo) {
+            thingsToDo();
+        }
+    }else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [HDCollectionView performSelector:@selector(doSomeThing:) withObject:thingsToDo afterDelay:0 inModes:@[mode]];
+        });
+    }
+}
 
 void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 {

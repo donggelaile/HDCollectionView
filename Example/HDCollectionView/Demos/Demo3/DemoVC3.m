@@ -58,30 +58,33 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     }
     
     [listV.collectionV.mj_footer beginRefreshing];
-
-    
-    __weak typeof(self) weakS = self;
-    
-    [listV hd_dataChangeFinishedCallBack:^(HDDataChangeType changeType){
-        [weakS countDataFinish];
-    }];
     
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
         
     }];
 }
-- (void)countDataFinish
-{
-    [listV.collectionV.mj_footer endRefreshing];
-}
+
 - (void)loadData
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSInteger repeatCount = 1;
-        while (repeatCount) {
-            [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:YES];
-            repeatCount--;
-        }
+        /*
+         可以将 hd_appendDataWithSecModel 放到 NSDefaultRunLoopMode中。因为hd_appendDataWithSecModel中包含该段cell的布局计算,是耗时操作
+         此时如果列表在滑动(即在 UITrackingRunLoopMode时), HDDoSomeThingInMode中的代码将暂时不会执行，直至滑动结束
+         也就是说，手指一直拖着屏幕不离开。那么就一直不会刷新。
+         这么做的原因是: 如果数据回来立即刷新(直接调用append函数)，此时列表正在滑动的话将出现短暂的卡顿
+        */
+        
+        //比如直接这样, 代码默认是在 NSRunLoopCommonModes 中运行
+//        [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:YES];
+//        [listV.collectionV.mj_footer endRefreshing];
+        
+        HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+            //其实里面的代码最终还是在主线程执行，只是此时已经不再滑动列表了。
+            [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:NO];
+            [listV.collectionV.mj_footer endRefreshing];//注意结束刷新也要放到里面
+        });
+        
+
     });
 }
 
