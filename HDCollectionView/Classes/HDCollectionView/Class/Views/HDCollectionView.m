@@ -52,7 +52,10 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
             }
             //如果碰到了横向滚动的scrollView,则返回YES
             if (isHXScrollView) {
-                self.bounces = NO;
+                //当前列表也是横向的，则禁止当前列表的bounces属性。因为此时会内外同时滑动。
+                if (self.contentSize.width>self.frame.size.width+self.contentInset.left+self.contentInset.right) {
+                    self.bounces = NO;
+                }
                 return YES;
             }
             //如果碰到了全屏返回手势，则返回YES
