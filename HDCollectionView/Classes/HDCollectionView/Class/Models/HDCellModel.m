@@ -31,9 +31,9 @@
     id<HDCellModelProtocol> model;
     if (self.diyCellModelClassStr) {
         if (HDClassFromString(self.diyCellModelClassStr)) {
-            id tempModel = HDClassFromString(self.diyCellModelClassStr);
-            if ([tempModel conformsToProtocol:@protocol(HDCellModelProtocol)]) {
-                model = tempModel;
+            id tempModelCls = HDClassFromString(self.diyCellModelClassStr);
+            if ([tempModelCls conformsToProtocol:@protocol(HDCellModelProtocol)]) {
+                model = [tempModelCls new];
             }
         }
     }else{

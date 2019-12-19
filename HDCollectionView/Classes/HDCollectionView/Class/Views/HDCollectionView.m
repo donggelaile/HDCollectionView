@@ -876,7 +876,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
     //这里先设置frame的原因是后面的函数可能需要用到子view的frame
     //使用isNeedCacheSubviewsFrame时isNeedAutoCountCellHW必须为YES
-    if (secM.isNeedAutoCountCellHW&&secM.isNeedCacheSubviewsFrame) {
+    if ((secM.isNeedAutoCountCellHW&&secM.isNeedCacheSubviewsFrame)||cellModel.subviewsFrame) {
         if ([cell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
             [cell setCacheKeysIfNeed];
             [HDCellFrameCacheHelper resetViewSubviewFrame:cell subViewFrame:cellModel.subviewsFrame];

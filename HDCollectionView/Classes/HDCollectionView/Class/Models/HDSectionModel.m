@@ -29,9 +29,9 @@
     id<HDSectionModelProtocol> model;
     if (self.diySectionModelClassStr) {
         if (HDClassFromString(self.diySectionModelClassStr)) {
-            id tempModel = HDClassFromString(self.diySectionModelClassStr);
-            if ([tempModel conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
-                model = tempModel;
+            id tempModelCls = HDClassFromString(self.diySectionModelClassStr);
+            if ([tempModelCls conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
+                model = [tempModelCls new];
             }
         }
     }else{
