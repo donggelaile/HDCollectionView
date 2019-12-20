@@ -42,14 +42,14 @@ HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本�
 
 ### 2、使用HDCollectionView来搭建滑动列表有哪些优势？
 * 数据驱动，灵活增删，无需手动注册任何view
-* 高效查找当前屏幕需要展示的属性集合，无惧超大数据
-* 基于[Yoga](https://github.com/facebook/yoga)(flexbox),实现了流式布局，完全可以替代系统的flowLayout
+* **高效查找当前屏幕需要展示的属性集合，无惧超大数据**
+* **基于[Yoga](https://github.com/facebook/yoga)(flexbox),实现了流式布局，完全可以替代系统的flowLayout**
 * 需要用到的类都支持链式语法初始化
 * 可自定义每行/每列 所占比例的瀑布流布局、瀑布流加载更多数据为增量计算
 * 支持指定任一 header 段内悬浮、永久悬浮/ 横向滑动左部悬浮
 * 支持cell高度自动计算/缓存,支持AutoLayout计算或hdSizeThatFits方式返回
 * 轻松添加decorationView(装饰view)
-* 每段可使用不同布局(比如第1段使用常规布局，第2段使用瀑布流布局，参考淘宝首页)
+* **每段(section)可使用不同布局。(注意这里是用一个collectionView实现分段布局)**
 * 支持缓存cell所有子view的frame
 * 统一cell/header/footer/decoration回调，统一UI更新
 * 横纵向滑动支持
