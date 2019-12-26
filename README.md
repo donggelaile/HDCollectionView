@@ -6,6 +6,10 @@
 
 [中文详细说明](https://github.com/donggelaile/HDCollectionView/blob/master/README_CN.md)
 
+[相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
+
+如果图片挂了，搬个梯子就好了。(或者看[这里](https://juejin.im/post/5d50c664f265da03e71ae6a6))
+
 ## now supports diff operation
 ## Compatible with Swift, demo at [here](https://github.com/donggelaile/HDCVSwiftTest)
 
