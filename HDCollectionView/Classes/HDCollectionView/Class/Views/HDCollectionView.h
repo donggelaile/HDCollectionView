@@ -122,7 +122,7 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 - (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated;
 
 /**
- 某个key的ectionModel是否存在
+ 某个key的sectionModel是否存在
  */
 - (BOOL)hd_sectionModelExist:(NSString*)sectionKey;
 

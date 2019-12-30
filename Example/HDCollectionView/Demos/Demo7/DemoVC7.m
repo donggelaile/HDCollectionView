@@ -60,13 +60,6 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
-    __weak typeof(listV) weakListV = listV;
-    [listV hd_dataChangeFinishedCallBack:^(HDDataChangeType changeType) {
-//        [weakListV hd_reloadData];
-        [weakListV.collectionV.mj_footer endRefreshing];
-    }];
-    
-//    __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
         
     }];
@@ -77,13 +70,15 @@
 - (void)loadRandomSec
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (![self->listV hd_sectionModelExist:@"0"]) {
-            HDSectionModel* sec = [self makeWaterSecModel];
-            [self->listV hd_appendDataWithSecModel:sec animated:NO];
-        }else{
-            [self->listV hd_appendDataWithCellModelArr:[self waterCellModelArr] sectionKey:@"0" animated:NO];
-        }
-        
+        HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+            if (![self->listV hd_sectionModelExist:@"0"]) {
+                HDSectionModel* sec = [self makeWaterSecModel];
+                [self->listV hd_appendDataWithSecModel:sec animated:NO];
+            }else{
+                [self->listV hd_appendDataWithCellModelArr:[self waterCellModelArr] sectionKey:@"0" animated:NO];
+            }
+            [self->listV.collectionV.mj_footer endRefreshing];
+        });
     });
 }
 

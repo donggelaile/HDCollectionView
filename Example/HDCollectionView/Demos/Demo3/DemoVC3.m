@@ -79,7 +79,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
 //        [listV.collectionV.mj_footer endRefreshing];
         
         HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
-            //其实里面的代码最终还是在主线程执行，只是此时已经不再滑动列表了。
+            //其实里面的代码最终还是在主线程执行，只是此时用户已经不再滑动列表了。
             [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:NO];
             [listV.collectionV.mj_footer endRefreshing];//注意结束刷新也要放到里面
         });

@@ -44,9 +44,5 @@
     newsize = CGSizeMake((newsize.width), (newsize.height+20));
     return newsize;
 }
-- (CGSize)sizeThatFits:(CGSize)size
-{
-    return [super sizeThatFits:size];
-}
-//yum install -y wget && wget --no-check-certificate -O shadowsocks-libev_CN.sh https://raw.githubusercontent.com/uxh/shadowsocks_bash/master/shadowsocks-libev_CN.sh && bash shadowsocks-libev_CN.sh
+
 @end

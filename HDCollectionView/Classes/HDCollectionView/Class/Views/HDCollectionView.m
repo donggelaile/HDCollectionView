@@ -413,6 +413,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>*)dataArr
 {
     HDDoSomeThingInMainQueueSyn(^{
+        self.allSecDict = nil;
         if (!dataArr) {
             self.allDataCopy = @[].mutableCopy;
         }else{
@@ -667,7 +668,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     }
     NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regex options:kNilOptions error:nil];
     NSRange firstMatchR = [regExp rangeOfFirstMatchInString:oriStr options:kNilOptions range:NSMakeRange(0, oriStr.length)];
-    return firstMatchR.location != NSNotFound && firstMatchR.length != 0;
+    return firstMatchR.location != NSNotFound && firstMatchR.length == oriStr.length;
 }
 - (void)addOneSection:(id<HDSectionModelProtocol>)section
 {

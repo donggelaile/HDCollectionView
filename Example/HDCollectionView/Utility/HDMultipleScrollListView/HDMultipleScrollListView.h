@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface HDMultipleScrollListConfiger : NSObject
-@property (nonatomic, strong, nullable) NSMutableArray <HDSectionModel*> *topSecArr;
+@property (nonatomic, strong, nullable) NSMutableArray <HDSectionModel*> *topSecArr;//注意，这里面的secModel不支持设置悬浮
 @property (nonatomic, strong) NSMutableArray <UIViewController<HDMultipleScrollListViewScrollViewDidScroll> *> *controllers;
 @property (nonatomic, strong) NSMutableArray <NSString*> *titles;
 @property (nonatomic, assign) CGSize titleContentSize;//标题滑动列表的大小
