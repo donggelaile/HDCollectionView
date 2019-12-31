@@ -257,7 +257,7 @@
 {
     if (!_mainCollecitonV) {
         _mainCollecitonV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-            maker.hd_isNeedTopStop(YES);
+
         }];
 //        _mainCollecitonV.collectionV.bounces = NO;
         _mainCollecitonV.collectionV.showsVerticalScrollIndicator = NO;

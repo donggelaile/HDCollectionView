@@ -14,6 +14,7 @@
 @interface HDMultipleScrollListSubVC ()<HDMultipleScrollListViewScrollViewDidScroll>
 {
     void (^scrollCallBack)(UIScrollView*);
+    void (^hd_cvConfiger)(HDCollectionViewMaker *);
 }
 @end
 
@@ -27,6 +28,16 @@
     }
     return self;
 }
+- (void)hd_setCvConfiger:(void (^)(HDCollectionViewMaker * _Nonnull))hdcvConfiger
+{
+    if (hdcvConfiger) {
+        hd_cvConfiger = hdcvConfiger;
+    }else{
+        hdcvConfiger = ^(HDCollectionViewMaker*maker){
+
+        };
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUp];
@@ -34,9 +45,7 @@
 - (void)setUp
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _collectionV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-        maker.hd_isNeedTopStop(YES);
-    }];
+    _collectionV = [HDCollectionView hd_makeHDCollectionView:hd_cvConfiger];
     _collectionV.collectionV.showsVerticalScrollIndicator = NO;
     
     [self.collectionV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {

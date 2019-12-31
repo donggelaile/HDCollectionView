@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray <NSString*> *titles;
 @property (nonatomic, assign) CGSize titleContentSize;//标题滑动列表的大小
 @property (nonatomic, assign) NSInteger defaultSelectIndex;//默认选中第0个
-@property (nonatomic, assign) BOOL isHeaderNeedStop;
+@property (nonatomic, assign) BOOL isHeaderNeedStop;//横向title是否悬浮。这里的悬浮是通过控制主scrollView的contentOffset实现的
 @property (nonatomic, copy) NSString *diyHeaderClsStr;//需要自定义header时设置该参数,必须继承自 HDMultipleScrollListViewTitleHeader
 @end
 
