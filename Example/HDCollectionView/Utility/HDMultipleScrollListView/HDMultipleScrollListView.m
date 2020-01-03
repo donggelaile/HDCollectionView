@@ -279,10 +279,9 @@
                 scrollView.contentOffset = CGPointZero;
             }
         }];
+        [self addSubview:_mainCollecitonV];
+        _mainCollecitonV.collectionV.bounces = NO;
     }
-    [self addSubview:_mainCollecitonV];
-    _mainCollecitonV.collectionV.bounces = NO;
-
     return _mainCollecitonV;
 }
 - (void)layoutSubviews
@@ -365,7 +364,6 @@
         model.orgData      = vc;
         model.cellSize     = [self realContentSize];
         model.cellClassStr = @"HDMultipleScrollListViewContentCell";
-        model.reuseIdentifier = [NSString stringWithFormat:@"HDMultipleScrollListViewContentCell_%zd",index];
         [cellModelArr addObject:model];
         index ++;
     }
