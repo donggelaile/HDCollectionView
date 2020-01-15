@@ -43,6 +43,14 @@
 @end
 
 @implementation HDMultipleScrollListViewContentCell
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    id <HDMultipleScrollListViewScrollViewDidScroll>VC = self.hdModel.orgData;
+    if ([VC respondsToSelector:@selector(HDMultipleScrollListViewSubVCView)]) {
+        [VC HDMultipleScrollListViewSubVCView].frame = self.bounds;
+    }
+}
 - (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     [self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
