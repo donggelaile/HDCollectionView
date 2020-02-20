@@ -437,6 +437,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         }
         
         void(^updateLayout)(void) = ^(){
+            [(NSObject*)secModel setValue:@(self.allDataArr.count) forKey:@"section"];
             if (secModel.isNeedAutoCountCellHW) {
                 [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeAppendSec animationImp:animationImp finishCallback:^{
                     [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
@@ -1065,6 +1066,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 //    __block CGFloat cellFitH = 0;
     [cellModelArr enumerateObjectsUsingBlock:^(id<HDCellModelProtocol> _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [(NSObject*)obj setValue:[NSIndexPath indexPathForItem:idx inSection:secModel.section] forKey:@"indexP"];
+        [(NSObject*)obj setValue:secModel forKey:@"secModel"];
         if (obj.cellSizeCb) {
             obj.cellSize = obj.cellSizeCb();
         }
