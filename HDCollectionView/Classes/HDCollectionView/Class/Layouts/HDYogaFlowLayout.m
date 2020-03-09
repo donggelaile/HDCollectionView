@@ -12,6 +12,7 @@
 #import "HDCellModel.h"
 #import "HDYogaCalculateHelper.h"
 #import <objc/runtime.h>
+#import "HDBaseLayout+Cache.h"
 
 @implementation HDYogaFlowLayoutChainMaker
 @dynamic hd_headerSize,hd_footerSize,hd_cellSize,hd_secInset,hd_verticalGap,hd_horizontalGap;
@@ -76,7 +77,7 @@
 
 
 @interface HDYogaFlowLayout()
-
+@property (nonatomic, strong) UICollectionViewLayoutAttributes *decorationAtt;
 @end
 
 @implementation HDYogaFlowLayout
@@ -217,18 +218,30 @@
         CGRect orgFrame = [finalCountDic[HDFinalDecorationFrmaeKey] CGRectValue];
         decorationAtt.frame = CGRectMake(orgFrame.origin.x+decorationXY.x, orgFrame.origin.y+decorationXY.y, orgFrame.size.width, orgFrame.size.height);
         decorationAtt.zIndex = HDDecorationViewDefaultZindex;
-        [atts addObject:decorationAtt];
         
         if (!isHaveCell) {
             decorationAtt.frame = CGRectZero;
         }
+        //        [atts addObject:decorationAtt];
+        self.decorationAtt = decorationAtt;
     }
     
     [(NSObject*)secModel setValue:[NSValue valueWithCGRect:sectionSize] forKey:@"secProperRect"];
+    self.cacheAtts = atts;
     return atts;
 }
 - (id)valueForUndefinedKey:(NSString *)key
 {
     return nil;
+}
+
+#pragma mark 查找当前显示att
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+{
+    NSMutableArray *arr = [super layoutAttributesForElementsInRect:rect scrollDirection:scrollDirection];
+    if (self.decorationAtt) {
+        [arr addObject:self.decorationAtt];
+    }
+    return arr;
 }
 @end

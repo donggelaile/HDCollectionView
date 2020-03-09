@@ -18,7 +18,7 @@
 {
     return objc_getAssociatedObject(self, &HDMUltipleCurrentSubScrollKey);
 }
-- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH
+- (void)hd_autoDealScrollViewDidScrollEvent:(UIView*)subScrollContentView topH:(CGFloat)topH callback:(nonnull void (^)(UIScrollView * _Nonnull))didScrollCb
 {
     if (!subScrollContentView) {
         return;
@@ -27,13 +27,17 @@
     __weak typeof(subScrollContentView) weakContentV = subScrollContentView;
     
     [self hd_setScrollViewDidScrollCallback:^(UIScrollView *scrollView) {
+        if (didScrollCb) {
+            didScrollCb(scrollView);
+        }
         if ((NSInteger)scrollView.contentInset.top == HDMainDefaultTopEdge) {
             CGFloat fitY = MAX(0, weakS.collectionV.contentOffset.y);
-            scrollView.contentOffset = CGPointMake(0, fitY);
+            [weakS setScrollView:scrollView ContentOffset:CGPointMake(0, fitY)];
         }
         UIScrollView *subSc = weakS.currentSubSc;
         if (subSc.contentOffset.y>0) {
-            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, topH);
+//            scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, topH);
+            [weakS setScrollView:scrollView ContentOffset:CGPointMake(scrollView.contentOffset.x, topH)];
         }
         if (weakS.collectionV.contentOffset.y < topH) {
             [weakS dealAllSubScrollViewScrollEnabled:weakContentV];
@@ -50,14 +54,20 @@
         if (scrollView.contentOffset.y != topH) {
             NSInteger wantY = (NSInteger)MIN(mainMaxOffsetY, scrollView.contentOffset.y);
             if (wantY != (NSInteger)scrollView.contentOffset.y) {
-                scrollView.contentOffset = CGPointMake(0, wantY);
+//                scrollView.contentOffset = CGPointMake(0, wantY);
+                [weakS setScrollView:scrollView ContentOffset:CGPointMake(0, wantY)];
             }
         }
 
     }];
 
 }
-
+- (void)setScrollView:(UIScrollView*)sc ContentOffset:(CGPoint)newOffset
+{
+    if (ABS(newOffset.y-sc.contentOffset.y)>0.01||ABS(newOffset.x-sc.contentOffset.x)>0.01) {
+        sc.contentOffset = newOffset;
+    }
+}
 - (void)dealAllSubScrollViewScrollEnabled:(UIView*)scrollContent
 {
     //层次遍历sc
@@ -69,17 +79,23 @@
         [queue removeObjectAtIndex:0];
         //子view入队
         [queue addObjectsFromArray:firstView.subviews];
+        
+        if ([firstView isKindOfClass:HDMultipleScrollListView.class]) {
+            break;
+        }
 
         if ([firstView isKindOfClass:[UICollectionView class]] || [firstView isKindOfClass:[UITableView class]]){
             UIScrollView *sc = (UIScrollView *)firstView;
             if (sc.contentSize.height>sc.frame.size.height) {
                 if (sc.contentOffset.y-sc.contentInset.top>0) {
-                    sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+//                    sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+                    [self setScrollView:sc ContentOffset:CGPointMake(0, -sc.contentInset.top)];
                 }
             }
         }
+
     }
-    
+
 }
 
 /*

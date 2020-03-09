@@ -60,7 +60,7 @@ HDCollectionView每段的信息都包含在HDSectionModel中，更改对应信�
 为什么说HDCollectionView会高效查找当前需要显示的属性集合？首先HDCollectionView基于UICollectionViewLayout实现了HDCollectionViewLayout，而一旦基于UICollectionViewLayout就要自行重写
 ```- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect```
 
-该函数需要返回的是当前rect内需要展示的属性数据集合,如果说此处我们直接返回所有数据的话，表面上看不会有什么问题。但是当数据量特别大的时候(大于2W，6s真机),此时滑动列表将明显卡顿。很明显系统在拿到这个数组后还要搞事情，如果这里返回的是一个会不断变大的数组，即使系统只是简单的遍历也会变的耗时。因此此处必须返回对应的集合。HDCollectionView最终通过二分查找找到了相关集合并返回，其中还包含瀑布流布局的二分查找及递归搜索，详细查找过程见HDCollectionViewLayout文件。
+该函数需要返回的是当前rect内需要展示的属性数据集合,如果说此处我们直接返回所有数据的话，表面上看不会有什么问题。但是当数据量特别大的时候(大于2W，6s真机),此时滑动列表将明显卡顿。很明显系统在拿到这个数组后还要搞事情，如果这里返回的是一个会不断变大的数组，即使系统只是简单的遍历也会变的耗时。因此此处必须返回对应的集合。HDCollectionView最终通过二分查找找到了相关集合并返回，详细查找过程见HDCollectionViewLayout文件。
 #### 3.3、基于[Yoga](https://github.com/facebook/yoga)的流式布局
 Yoga是facebook对flexbox的C++实现。既然是继承UICollectionViewLayout重写布局，流式布局肯定要重新实现，而用flexbox来做普通流式布局最合适不过了。这里将Yoga与UICollectionView的布局相结合，可以轻松实现一些系统布局无法实现的效果。比如说元素整体左对齐、右对齐、居中对齐等。这使得HDCollectionView无论是做普通布局还是类似标签云的布局都将相当轻松。
 #### 3.4、瀑布流

@@ -165,17 +165,22 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
 {
     NSArray *Atts = [section.layout getAttsWithLayout:self sectionModel:section currentStart:currentStart isFirstSec:isFirst];
     [Atts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        BOOL isDecorationAtt = [obj.representedElementKind isEqualToString:HDDecorationViewKind];
-        //装饰view会破坏cachedAttributes的有序性，所以不添加
-        if (!isDecorationAtt) {
-            [self->cachedAttributes addObject:obj];
-        }
-        //字典中会缓存所有属性
+        [self->cachedAttributes addObject:obj];
+        
         NSString *cacheKey = [self getCacheKeyByKind:obj.representedElementKind indexPath:obj.indexPath];
         if (cacheKey) {
             [self->cacheDicAtts setValue:obj forKey:cacheKey];
         }
     }];
+    
+    HDBaseLayout *layout = section.layout;
+    if ([layout respondsToSelector:@selector(decorationAtt)]) {
+        UICollectionViewLayoutAttributes *decorationAtt = layout.decorationAtt;
+        NSString *cacheKey = [self getCacheKeyByKind:decorationAtt.representedElementKind indexPath:decorationAtt.indexPath];
+        if (decorationAtt) {
+            [cacheDicAtts setValue:decorationAtt forKey:cacheKey];
+        }
+    }
 }
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
@@ -195,12 +200,27 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     if (cachedAttributes.count<=0) {
         return @[];
     }
-    //这里使用二分查找 找到当前需要显示的atts（如果直接返回 cachedAttributes，当数据量很大时，将会产生严重卡顿）
-    NSMutableArray *finalAtts = [self allVisableAttsForRect:rect];
+    
+    //基类layout(指HDCollectionViewLayout)只负责查找当前有哪些段(section),在当前rect显示。
+    //具体每段内需要显示哪些LayoutAttributes由对应段的layout(HDBaseLayout或其子类)自己负责
+    NSArray *secModelArr = [self allDataArr];
+    NSMutableArray *finalAtts = @[].mutableCopy;
+    NSArray *allVisibleSections = [self _findAllVisibleSectionsInRect:rect secModelArr:secModelArr];
+    for (NSInteger i=0; i<allVisibleSections.count; i++) {
+        NSInteger section = [allVisibleSections[i] integerValue];
+        if (section<secModelArr.count) {
+            id<HDSectionModelProtocol>secModel = secModelArr[section];
+            if ([secModel.layout respondsToSelector:@selector(layoutAttributesForElementsInRect: scrollDirection:)]) {
+                [finalAtts addObjectsFromArray:[secModel.layout layoutAttributesForElementsInRect:rect scrollDirection:self.scrollDirection]];
+            }
+        }
+    }
+    
     //对需要悬停的header进行拷贝、修改、替换
     if (isNeedTopStop) {
         finalAtts = [HDHeaderStopHelper getAdjustAttArrWith:finalAtts allSectionData:[self allDataArr] layout:self scollDirection:self.scrollDirection];
     }
+    
     return finalAtts;
 }
 
@@ -217,277 +237,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
 {
     return CGSizeMake(MAX(currentStart->x, self.collectionView.frame.size.width), MAX(currentStart->y, self.collectionView.frame.size.height));
 }
-- (NSMutableArray *)allVisableAttsForRect:(CGRect)rect
-{
-    NSDictionary *tempResult = [self normalBinarySearch:rect start:0 end:cachedAttributes.count-1];//前闭后闭
-    NSMutableArray <UICollectionViewLayoutAttributes*>*result = @[].mutableCopy;
-    //atts1存储的是当前可视区域所有 除瀑布流以外的 属性
-    NSMutableArray *atts1 = tempResult[HDNormalLayoutAttsKey];
-    [result addObjectsFromArray:atts1];
-    
-    //单独进行瀑布流布局的查找,因为整体上瀑布流的indexPath对应的frame并不是排好序的(但是每列/纵向 或 每行/横向 是按序的)
-    //waterFlowSetions存放的是可见范围内的瀑布流有哪些段
-    NSArray *waterFlowSetions = [tempResult[HDWaterFlowSectionKey] allValues];
-    NSMutableArray *att2 = [self findWaterFlowAtts:waterFlowSetions rect:rect];
-    [result addObjectsFromArray:att2];
-    
-    //进行decorationView的添加 (为了减小二分查找代码复杂度 ,decorationView的属性没有放在cachedAttributes中)
-    [[tempResult[HDVisiableSecitonsKey] allKeys]enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSString *cacheKey = [self getCacheKeyByKind:HDDecorationViewKind indexPath:[NSIndexPath indexPathWithIndex:[obj integerValue]]];
-        UICollectionViewLayoutAttributes *decAtt = (UICollectionViewLayoutAttributes*)self->cacheDicAtts[cacheKey];
-        if (decAtt) {
-            [result addObject:decAtt];
-        }
-    }];
-    
-    return result;
-}
-#pragma mark - 查找可见范围内 某些段内的瀑布流属性数组
-- (NSMutableArray*)findWaterFlowAtts:(NSArray*)sections rect:(CGRect)rect
-{
-    NSMutableArray *result = @[].mutableCopy;
-    [sections enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        HDWaterFlowLayout *layout = obj.layout;
-        if ([layout isKindOfClass:[HDWaterFlowLayout class]]) {
-            [layout.columnAtts enumerateObjectsUsingBlock:^(NSArray<UICollectionViewLayoutAttributes *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [result addObjectsFromArray:[self oneColumnAtts:rect columnAtts:obj]];
-            }];
-        }
-    }];
-    return result;
-}
-//某列/行 内的可见属性数组
-- (NSMutableArray*)oneColumnAtts:(CGRect)rect columnAtts:(NSArray*)columnAtts
-{
-    NSMutableArray *result = @[].mutableCopy;
-    NSInteger firstFind = [self binarySearch:0 end:columnAtts.count-1 rect:rect inAtts:columnAtts];
-    if (firstFind == -1) {
-        return result;
-    }
-    //第一个
-    [result addObject:columnAtts[firstFind]];
-    //前
-    for (NSInteger i=firstFind-1; i>=0; i--) {
-        UICollectionViewLayoutAttributes *att = columnAtts[i];
-        if ([self isRectIntersectsRect:att.frame rect2:rect]) {
-            [result addObject:att];
-        }else{
-            break;
-        }
-    }
-    //后
-    for (NSInteger i=firstFind+1; i<columnAtts.count; i++) {
-        UICollectionViewLayoutAttributes *att = columnAtts[i];
-        if ([self isRectIntersectsRect:att.frame rect2:rect]) {
-            [result addObject:att];
-        }else{
-            break;
-        }
-    }
-    return result;
-}
 
-#pragma mark - 找到可视区域内所有的 非瀑布流 && 非装饰view 的属性数组 /所有的瀑布流段 /当前展示的包含哪些段
-- (NSDictionary *)normalBinarySearch:(CGRect)rect start:(NSInteger)start end:(NSInteger)end
-{
-    NSMutableArray *finalAtts = @[].mutableCopy;//最终返回的当前区域的atts数组（不包含瀑布流的及装饰view任何一个att）
-    NSMutableDictionary *waterFlowSections = @{}.mutableCopy;//当前找到的atts包含哪些段的瀑布流
-    NSMutableDictionary *allSections = @{}.mutableCopy;//当前显示区域包含哪些段
-    NSDictionary *result = @{HDNormalLayoutAttsKey:finalAtts,HDWaterFlowSectionKey:waterFlowSections,HDVisiableSecitonsKey:allSections};
-    if (end<start) {
-        return result;
-    }
-    
-    //合并递归子结果
-    void (^mergeSubResult)(NSDictionary*) = ^(NSDictionary*subResDic){
-        //合并属性数组
-        [finalAtts addObjectsFromArray:subResDic[HDNormalLayoutAttsKey]];
-        //合并可见瀑布流
-        [subResDic[HDWaterFlowSectionKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            waterFlowSections[key] = obj;
-        }];
-        //合并可见section
-        [subResDic[HDVisiableSecitonsKey] enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            allSections[key] = @(1);
-        }];
-        
-    };
-    
-    //添加一个att
-    BOOL (^addNormalAtt)(UICollectionViewLayoutAttributes*,HDAttSearchType,NSInteger) = ^(UICollectionViewLayoutAttributes* att,HDAttSearchType type,NSInteger index){
-        //瀑布流不添加，因为在cachedAttributes中，它们的frame.orign不是与indexPath成正比的
-        BOOL isWaterAtt = [self isWaterFlowAtt:att];
-        BOOL isNeedAdd = !isWaterAtt;
-        allSections[@(att.indexPath.section).stringValue] = @(1);
-        if (isNeedAdd) {
-            //对于 瀑布流，查找结束后单独处理
-            [finalAtts addObject:att];
-        }else{
-            //添加过程中遇到了 瀑布流, 那么认为本次查找为无效查找，继续分段查找。
-            
-            //保存可见瀑布流
-            if (att.indexPath.section < [self allDataArr].count) {
-                id<HDSectionModelProtocol> secModel = [self allDataArr][att.indexPath.section];
-                waterFlowSections[@(secModel.section).stringValue] = secModel;
-            }
-            
-            //跳过该段 瀑布流可视区域内可能还有常规布局，所以继续递归搜索
-            if (type == HDAttSearchFirst) {
-                NSDictionary *resDic = [self normalBinarySearch:rect start:start end:index-1];
-                mergeSubResult(resDic);
-                
-                NSDictionary *resDic2 = [self normalBinarySearch:rect start:index+1 end:end];
-                mergeSubResult(resDic2);
-            }
-            else if (type == HDAttSearchFront) {
-                NSDictionary *resDic = [self normalBinarySearch:rect start:start end:index-1];
-                mergeSubResult(resDic);
-            }else if(type == HDAttSearchBehind){
-                NSDictionary *resDic = [self normalBinarySearch:rect start:index+1 end:end];
-                mergeSubResult(resDic);
-            }
-        }
-        return isNeedAdd;
-    };
-    
-    
-    NSInteger firstFind = [self binarySearch:start end:end rect:rect inAtts:cachedAttributes];
-    if (firstFind == -1) {
-        //-1代表没有找到，可能已经超出可视范围
-        return result;
-    }
-    UICollectionViewLayoutAttributes *firstAtt = cachedAttributes[firstFind];
-    
-    //添加第一个找到的att
-    if (!addNormalAtt(firstAtt,HDAttSearchFirst,firstFind)) {
-        return result;
-    }
-    
-    //向前查找
-    BOOL isFrontStop = NO;
-    for (NSInteger i=firstFind-1; i>=0; i--) {
-        UICollectionViewLayoutAttributes *att = cachedAttributes[i];
-        UICollectionViewLayoutAttributes *nextAtt = cachedAttributes[i+1];
-        if (![self isRectIntersectsRect:att.frame rect2:rect lastOrNextAttRect:nextAtt.frame]) {
-            //找到临界点后再向前找几个
-            NSInteger continuFindCount = HDContinueFindCount;
-            for (NSInteger j=i-1; j>=0; j--) {
-                UICollectionViewLayoutAttributes *att2 = cachedAttributes[j];
-                UICollectionViewLayoutAttributes *nextAtt2 = cachedAttributes[j+1];
-                if ([self isRectIntersectsRect:att2.frame rect2:rect lastOrNextAttRect:nextAtt2.frame]) {
-                    isFrontStop = !addNormalAtt(att2,HDAttSearchFirst,j);
-                }
-                continuFindCount--;
-                if (continuFindCount<=0 || isFrontStop) {
-                    break;
-                }
-            }
-            break;
-        }else{
-            //遇到了瀑布流就不需要继续了，因为addNormalAtt函数会对其后的数据重新分段查找
-            isFrontStop = !addNormalAtt(att,HDAttSearchFront,i);
-        }
-        if (isFrontStop) {
-            break;
-        }
-    }
-    
-    //向后查找
-    BOOL isBehindStop = NO;
-    for (NSInteger i=firstFind+1; i<cachedAttributes.count; i++) {
-        UICollectionViewLayoutAttributes *att = cachedAttributes[i];
-        UICollectionViewLayoutAttributes *lastAtt = cachedAttributes[i-1];
-        if (![self isRectIntersectsRect:att.frame rect2:rect lastOrNextAttRect:lastAtt.frame]) {
-            NSInteger continuFindCount = HDContinueFindCount;
-            for (NSInteger j=i+1; j<cachedAttributes.count; j++) {
-                UICollectionViewLayoutAttributes *att2 = cachedAttributes[j];
-                UICollectionViewLayoutAttributes *lastAtt2 = cachedAttributes[j-1];
-                if ([self isRectIntersectsRect:att2.frame rect2:rect lastOrNextAttRect:lastAtt2.frame]) {
-                    isBehindStop = !addNormalAtt(att2,HDAttSearchBehind,j);
-                }
-                continuFindCount--;
-                if (continuFindCount<=0 || isBehindStop) {
-                    break;
-                }
-            }
-            break;
-        }else{
-            isBehindStop = !addNormalAtt(att,HDAttSearchBehind,i);
-        }
-        if (isBehindStop) {
-            break;
-        }
-    }
-    
-    return result;
-}
-- (BOOL)isWaterFlowAtt:(UICollectionViewLayoutAttributes*)att
-{
-    if (!att) {
-        return NO;
-    }
-    if (att.indexPath.section>=[self allDataArr].count) {
-        return NO;
-    }
-
-    id<HDSectionModelProtocol> secModel = [self allDataArr][att.indexPath.section];
-    BOOL isWaterFlowLayout = [secModel.layout isKindOfClass:HDClassFromString(@"HDWaterFlowLayout")];
-    return isWaterFlowLayout;
-}
-
-//找到任意一个出现在rect内的位置
-- (NSInteger)binarySearch:(NSInteger)start end:(NSInteger)end rect:(CGRect)rect inAtts:(NSArray*)atts
-{
-    if (end<start) {
-        return -1;
-    }
-    NSInteger first = -1;
-    while (start<=end) {
-        NSInteger mid = (start + end)/2;
-        if (mid<atts.count) {
-            UICollectionViewLayoutAttributes *att = atts[mid];
-            if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                if (CGRectGetMinY(att.frame)>CGRectGetMaxY(rect)) {
-                    if (end == mid) {
-                        end -= 1;
-                    }else{
-                        end = mid;
-                    }
-                }else if (CGRectGetMaxY(att.frame)<CGRectGetMinY(rect)){
-                    if (start == mid) {
-                        start += 1;
-                    }else{
-                        start = mid;
-                    }
-                }else{
-                    first = mid;
-                    break;
-                }
-            }else{
-                if (CGRectGetMinX(att.frame)>CGRectGetMaxX(rect)) {
-                    if (end == mid) {
-                        end -= 1;
-                    }else{
-                        end = mid;
-                    }
-                }else if (CGRectGetMaxX(att.frame)<CGRectGetMinX(rect)){
-                    if (start == mid) {
-                        start += 1;
-                    }else{
-                        start = mid;
-                    }
-                }else{
-                    first = mid;
-                    break;
-                }
-            }
-        }else{
-            break;
-        }
-    }
-    
-    return first;
-}
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     BOOL result = !CGSizeEqualToSize(newBounds.size, self.collectionView.bounds.size);
@@ -510,37 +260,83 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
     }
     return cacheKey;
 }
-- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect
-{
-    return [self isRectIntersectsRect:attRect rect2:visualRect lastOrNextAttRect:CGRectNull];
-}
 
-- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect lastOrNextAttRect:(CGRect)lnRect
+- (NSArray*)_findAllVisibleSectionsInRect:(CGRect)rect secModelArr:(NSArray*)secModelArr
 {
-    BOOL orgResutlt = CGRectIntersectsRect(attRect,visualRect);
-    
-    BOOL criticalPoint = NO;
-    NSInteger pointH = 1;
-    //临界点，当CGRectGetMinY(rect1) == CGRectGetMaxY(rect2) 也认为是相交的。因为二分查找时，相等也认为是相交
-    if ([self scrollDirection] == UICollectionViewScrollDirectionVertical) {
-        criticalPoint = (ABS(CGRectGetMinY(attRect) - CGRectGetMaxY(visualRect))<pointH) || (ABS(CGRectGetMinY(visualRect) - CGRectGetMaxY(attRect))<pointH);
-    }else{
-        criticalPoint = (ABS(CGRectGetMinX(attRect) - CGRectGetMaxX(visualRect))<pointH) || (ABS(CGRectGetMinX(visualRect) - CGRectGetMaxX(attRect))<pointH);
-    }
-    
-    BOOL isLastNextOneLine = NO;
-    if (!CGRectIsNull(lnRect)) {
-        //当传入其临近att的frame时，同一行/列 的则认为在查找范围内
-        BOOL isNextInVisualRect = [self isRectIntersectsRect:lnRect rect2:visualRect];
-        BOOL isSameLine = NO;
-        if ([self scrollDirection] == UICollectionViewScrollDirectionVertical) {
-            isSameLine = CGRectUnion(attRect, lnRect).size.height<(attRect.size.height+lnRect.size.height);
-        }else{
-            isSameLine = CGRectUnion(attRect, lnRect).size.width<(attRect.size.width+lnRect.size.width);
+    NSMutableArray *result = @[].mutableCopy;
+    NSInteger firstFindSection = [self _binarySearchFirstVisibleSection:0 end:secModelArr.count-1 secModelArr:secModelArr inRect:rect];
+    if (firstFindSection != -1) {
+        [result addObject:@(firstFindSection)];
+        
+        //向前边的section查找
+        for (NSInteger i=firstFindSection-1; i>=0; i--) {
+            id<HDSectionModelProtocol>secModel = secModelArr[i];
+            if (CGRectIntersectsRect(secModel.secProperRect.CGRectValue,rect)) {
+                [result insertObject:@(i) atIndex:0];
+            }
         }
-        isLastNextOneLine = isSameLine && isNextInVisualRect;
+        
+        //向前边的section查找
+        for (NSInteger i=firstFindSection+1; i<secModelArr.count; i++) {
+            id<HDSectionModelProtocol>secModel = secModelArr[i];
+            if (CGRectIntersectsRect(secModel.secProperRect.CGRectValue,rect)) {
+                [result addObject:@(i)];
+            }
+        }
+    }
+    return result;
+}
+- (NSInteger)_binarySearchFirstVisibleSection:(NSInteger)start end:(NSInteger)end secModelArr:(NSArray*)secModelArr inRect:(CGRect)rect
+{
+    if (end<start) {
+        return -1;
+    }
+    NSInteger firstFind = -1;
+    while (start<=end) {
+        NSInteger mid = (start + end)/2;
+        if (mid<secModelArr.count) {
+            id<HDSectionModelProtocol>secModel = secModelArr[mid];
+            CGRect currentSectionRect = secModel.secProperRect.CGRectValue;
+            if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                if (CGRectGetMinY(currentSectionRect)>CGRectGetMaxY(rect)) {
+                    if (end == mid) {
+                        end -= 1;
+                    }else{
+                        end = mid;
+                    }
+                }else if (CGRectGetMaxY(currentSectionRect)<CGRectGetMinY(rect)){
+                    if (start == mid) {
+                        start += 1;
+                    }else{
+                        start = mid;
+                    }
+                }else{
+                    firstFind = mid;
+                    break;
+                }
+            }else{
+                if (CGRectGetMinX(currentSectionRect)>CGRectGetMaxX(rect)) {
+                    if (end == mid) {
+                        end -= 1;
+                    }else{
+                        end = mid;
+                    }
+                }else if (CGRectGetMaxX(currentSectionRect)<CGRectGetMinX(rect)){
+                    if (start == mid) {
+                        start += 1;
+                    }else{
+                        start = mid;
+                    }
+                }else{
+                    firstFind = mid;
+                    break;
+                }
+            }
+        }else{
+            break;
+        }
     }
     
-    return orgResutlt || criticalPoint || isLastNextOneLine;
+    return firstFind;
 }
 @end

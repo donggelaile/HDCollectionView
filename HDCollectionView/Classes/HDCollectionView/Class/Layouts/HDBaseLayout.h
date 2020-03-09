@@ -47,6 +47,11 @@ NS_ASSUME_NONNULL_BEGIN
  回调方式获取footerSize,优先级最高（一般需要适配横竖屏时使用,内部必须弱引用self）
  */
 @property (nonatomic, copy) CGSize(^footerSizeCb)(void);
+
+//二分查找atts数组中第一个在rect内元素的位置(外部一般无需调用，基于HDBaseLayout自定义layout可参考)
+- (NSInteger)binarySearch:(NSInteger)start end:(NSInteger)end rect:(CGRect)rect inAtts:(NSArray*)atts;
+//两个rect是否相交
+- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect;
 @end
 
 NS_ASSUME_NONNULL_END

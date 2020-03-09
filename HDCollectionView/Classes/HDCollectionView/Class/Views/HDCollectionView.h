@@ -18,6 +18,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define HDCVScrollViewDidScrollNotificationName  @"HDCVScrollViewDidScrollNotificationName"
+
 typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
     HDCollectionViewEventDealPolicyBySubView,//默认，让cell或sectionView自己处理
     HDCollectionViewEventDealPolicyInstead,//直接由HDCollectionView处理
@@ -119,8 +121,8 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 /**
  删除某段的所有内容
  */
+- (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
 - (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated;
-
 /**
  某个key的sectionModel是否存在
  */
@@ -168,7 +170,6 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 //contentSize发生变化的回调(当数据源较少时，可用于获取colletionView合适的大小)
 - (void)hd_setContentSizeChangeCallBack:(void(^)(CGSize newContentSize))contentSizeChangeCallBack;
 
-
 //滑动事件的相关回调
 - (void)hd_setScrollViewDidScrollCallback:(void(^)(UIScrollView *scrollView))callback;
 - (void)hd_setScrollViewWillBeginDraggingCallback:(void(^)(UIScrollView *scrollView))callback;
@@ -192,6 +193,8 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 @property (nonatomic, assign, readonly) UICollectionViewScrollDirection scrollDirection;
 @property (nonatomic, assign, readonly) BOOL isNeedAdaptScreenRotaion;
 @property (nonatomic, assign, readonly) BOOL isInnerDataEmpty;//内部数据是否为空
+@property (nonatomic, assign, readonly) BOOL isDeletingSection;
+@property (nonatomic, assign, readonly) BOOL isAppendingSection;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

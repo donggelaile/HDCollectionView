@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isNeedBottomGap;//默认NO
 @property (nonatomic, assign) NSInteger gapOfBottomWhenSmallData;//子vc数据较少时底部间距，isNeedBottomGap为YES时生效
 - (void)hd_setCvConfiger:(void(^)(HDCollectionViewMaker* maker))hdcvConfiger;
+
 @end
 
 NS_ASSUME_NONNULL_END

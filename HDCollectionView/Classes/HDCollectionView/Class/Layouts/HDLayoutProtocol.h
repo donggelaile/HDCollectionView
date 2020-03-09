@@ -13,7 +13,9 @@
 @protocol HDLayoutProtocol <NSObject>
 
 @optional
+- (UICollectionViewLayoutAttributes*)decorationAtt;
 @required
 - (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart;
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection;
 @end
 #endif /* HDLayoutProtocol_h */

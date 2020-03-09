@@ -28,6 +28,7 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
 
 @implementation HDInnerCollectionView
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    ;
     BOOL(^multiGesCallBack)(UIGestureRecognizer*ges1,UIGestureRecognizer*ges2) = [self.superview valueForKeyPath:@"multiGesCallBack"];
     if (multiGesCallBack) {
         return multiGesCallBack(gestureRecognizer,otherGestureRecognizer);
@@ -189,7 +190,9 @@ static char * hd_default_colletionView_maker = "hd_default_colletionView_maker";
     void (^scWillBeginDraggingCallback)(UIScrollView *sc);
     void (^scDidEndDraggingCallback)(UIScrollView *sc,BOOL slowDown);
     void (^scDidEndDeceleratingCallback)(UIScrollView *sc);
+    void (^hdChangeDataFailedCallback)(void);
     UIInterfaceOrientation lastOrientation;
+    BOOL isChangingLayout;
     BOOL isObserveContentSize;
 }
 @property (nonatomic, strong) NSMutableArray *allDataCopy;
@@ -331,7 +334,6 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         [self addSubview:_collectionV];
     }
     _collectionV.backgroundColor = [UIColor clearColor];
-    
     return _collectionV;
 }
 - (Class)HDInnerCollectionViewClass
@@ -429,6 +431,10 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         if (!secModel) {
             return;
         }
+        self->_isAppendingSection = YES;
+        if (self.allDataArr.count == 0) {
+            [self layoutIfNeeded];
+        }
         void (^animationImp)(void) = nil;
         if (animated) {
             animationImp = ^(){
@@ -446,6 +452,9 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             }else{
                 [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
                 [self addOneSection:secModel];
+                
+            }
+            if (!animated) {
                 [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
             }
             
@@ -457,11 +466,13 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 updateLayout();
                 [self.collectionV insertSections:[NSIndexSet indexSetWithIndex:self.allDataArr.count-1]];
             } completion:^(BOOL finished) {
-
+                self->_isAppendingSection = NO;
+                [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
             }];
 
         }else{
             updateLayout();
+            self->_isAppendingSection = NO;
         }
         
 
@@ -495,7 +506,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             
             [self updateHDColltionViewDataType:HDDataChangeAppendCellModel start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
             [self reloadSectionAfter:secModel.section];
-            if (!secModel.isNeedAutoCountCellHW) {
+            if (!animated) {
                 [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel reloadDataImp:animationImp];
             }
             
@@ -511,7 +522,12 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 secModel.sectionDataArr = newArr.mutableCopy;
                 updateLayout();
                 
-            } animationFinishCallback:animationFinish];
+            } animationFinishCallback:^{
+                [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel reloadDataImp:animationImp];
+                if (animationFinish) {
+                    animationFinish();
+                }
+            }];
         }else{
             [secModel.sectionDataArr addObjectsFromArray:finalAddItemArr];
             updateLayout();
@@ -556,6 +572,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 secModel.layout.needUpdate = YES;
                 [self updateHDColltionViewDataType:HDDataChangeChangeSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
                 [self reloadSectionAfter:secModel.section];
+            }
+            if (!animated) {
                 [self hd_dataDealFinishCallback:HDDataChangeChangeSec reloadDataImp:animationImp];
             }
         };
@@ -579,7 +597,12 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 secModel.sectionDataArr = newArr.mutableCopy;
                 updateLayout();
                 
-            } animationFinishCallback:animationFinish];
+            } animationFinishCallback:^{
+                [self hd_dataDealFinishCallback:HDDataChangeChangeSec reloadDataImp:animationImp];
+                if (animationFinish) {
+                    animationFinish();
+                }
+            }];
             
         }else{
             updateLayout();
@@ -591,23 +614,18 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 {
     [self hd_changeSectionModelWithKey:sectionKey animated:animated changingIn:changeBlock animationFinishCallback:nil];
 }
-- (void)hd_deleteSectionWithKey:(NSString *)sectionKey animated:(BOOL)animated
+- (void)hd_deleteSectionWithKey:(NSString *)sectionKey animated:(BOOL)animated animationFinishCallback:(void (^ _Nullable)(void))animationFinish
 {
     HDDoSomeThingInMainQueueSyn(^{
-        if (!sectionKey) {
+        if (!sectionKey || self->_isDeletingSection) {
             return;
         }
         id<HDSectionModelProtocol> secModel = self.allSecDict[sectionKey];
         if (!secModel) {
             return;
         }
-        
-        id<HDSectionModelProtocol> nextSecM = nil;
-        NSInteger secIndex = 0;
-        
-        if (self.allDataArr.count>secModel.section+1) {
-            nextSecM = self.allDataArr[secModel.section+1];
-        }
+        self->_isAppendingSection = YES;
+        NSInteger secIndex = NSNotFound;
         secIndex = [self.allDataArr indexOfObject:secModel];
         
         void (^animationImp)(void) = nil;
@@ -618,24 +636,46 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         }
         
         void(^updateLayout)(void) = ^(){
-            [self updateSecitonModelDict:NO];
-            [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
-            [self reloadSectionAfter:secIndex];
-            [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
+            if (secIndex!=NSNotFound) {
+                [self updateSecitonModelDict:NO];
+                [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
+                [self reloadSectionAfter:secIndex];
+            }
+            if (!animated) {
+                [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
+            }
         };
         
-        [self.collectionV performBatchUpdates:^{
+        if (animated) {
             if (secIndex != NSNotFound) {
                 [self.allDataArr removeObjectAtIndex:secIndex];
             }
             [self.allSecDict removeObjectForKey:sectionKey];
             updateLayout();
             
-            [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
-        } completion:^(BOOL finished) {
-            [self.collectionV reloadData];
-        }];
+            [self.collectionV performBatchUpdates:^{
+                [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
+            } completion:^(BOOL finished) {
+                [self.collectionV reloadData];
+                self->_isAppendingSection = NO;
+                if (animationFinish) {
+                    animationFinish();
+                }
+                [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
+            }];
+        }else{
+            if (secIndex != NSNotFound) {
+                [self.allDataArr removeObjectAtIndex:secIndex];
+            }
+            [self.allSecDict removeObjectForKey:sectionKey];
+            updateLayout();
+            self->_isAppendingSection = NO;
+        }
     });
+}
+- (void)hd_deleteSectionWithKey:(NSString *)sectionKey animated:(BOOL)animated
+{
+    [self hd_deleteSectionWithKey:sectionKey animated:animated animationFinishCallback:nil]; 
 }
 - (BOOL)hd_sectionModelExist:(NSString *)sectionKey
 {
@@ -759,6 +799,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     if (scDidScrollCallback) {
         scDidScrollCallback(scrollView);
     }
+    //这个用的地方比较多，所以单独做成通知了
+    [[NSNotificationCenter defaultCenter] postNotificationName:HDCVScrollViewDidScrollNotificationName object:self];
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
@@ -796,7 +838,10 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    id<HDSectionModelProtocol> secM = _allDataArr[indexPath.section];
+    id<HDSectionModelProtocol> secM;
+    if (indexPath.section < _allDataArr.count) {
+        secM = _allDataArr[indexPath.section];
+    }
     [self registerWithCellClass:nil cellReuseID:nil headerClass:secM.sectionHeaderClassStr footerClass:secM.sectionFooterClassStr decorationClass:secM.decorationClassStr];
     __kindof UICollectionReusableView<HDUpdateUIProtocol> * secView = nil;
     if ([HDClassFromString(secM.sectionHeaderClassStr) isSubclassOfClass:[UICollectionReusableView class]]  && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
@@ -1039,19 +1084,12 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 - (void)hd_realCountCellsH:(NSDictionary*)pars
 {
     void(^innerFinishCallBack)(void)  = pars[hd_inner_count_cellH_back_key];
-    void(^animationBlock)(void) = pars[hd_inner_animation_imp_key];
     id<HDSectionModelProtocol> secModel = pars[hd_secmodel_key];
-    BOOL isAll = [pars[hd_is_all_key] boolValue];
-    HDDataChangeType type = [pars[hd_data_finished_type_key] integerValue];
     
     void(^executeFinish)(void) = ^(void){
         //内部回调 通知某个setion计算完成
         if (innerFinishCallBack) {
             innerFinishCallBack();
-        }
-        //1、当需要的是只计算单个section的时候才调用该回调，用于通知外部完成计算 2、所有的setion计算完成回调在setAlldata完成之后
-        if (!isAll) {
-            [self hd_dataDealFinishCallback:type reloadDataImp:animationBlock];
         }
     };
     if (!secModel.isNeedAutoCountCellHW) {
@@ -1147,6 +1185,10 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     }
     self.contentSizeChangeCallBack = contentSizeChangeCallBack;
 }
+- (void)hd_setChagneDataAndLayoutFailedCallback:(void (^)(void))failedBlock
+{
+    hdChangeDataFailedCallback = failedBlock;
+}
 - (void)hd_setScrollViewDidScrollCallback:(void (^)(UIScrollView *))callback
 {
     scDidScrollCallback = callback;
@@ -1206,6 +1248,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     if (isObserveContentSize) {
         [self.collectionV removeObserver:self forKeyPath:@"contentSize"];
     }
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 @end
 

@@ -92,6 +92,18 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
     start->x = self.cacheEnd.x + offsetXY.x;
     start->y = self.cacheEnd.y + offsetXY.y;
     
+    //更新decoration
+    if ([self respondsToSelector:@selector(decorationAtt)]) {
+        UICollectionViewLayoutAttributes *decorationAtt = self.decorationAtt;
+        if (decorationAtt) {
+            CGRect newFrame = CGRectMake(decorationAtt.frame.origin.x+offsetXY.x, decorationAtt.frame.origin.y+offsetXY.y, decorationAtt.frame.size.width, decorationAtt.frame.size.height);
+            decorationAtt.frame = newFrame;
+        }
+    }
+    
+    //更新secM.secProperRect
+    CGRect orgSecRect = secM.secProperRect.CGRectValue;
+    [(NSObject*)secM setValue:[NSValue valueWithCGRect:CGRectMake(self.cacheStart.x, self.cacheStart.y, orgSecRect.size.width, orgSecRect.size.height)] forKey:@"secProperRect"];
     return self.cacheAtts;
 }
 

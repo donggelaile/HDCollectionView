@@ -12,6 +12,7 @@
 
 #import "HDAssociationManager.h"
 #import "HDCellFrameCacheHelper.h"
+#import "HDCollectionView+HDHelper.h"
 #import "HDDefines.h"
 #import "HDHeaderStopHelper.h"
 #import "HDModelProtocol.h"

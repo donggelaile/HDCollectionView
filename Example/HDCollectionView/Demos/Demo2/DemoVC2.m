@@ -7,8 +7,10 @@
 //
 
 #import "DemoVC2.h"
-#import "HDCollectionView.h"
 #import "Masonry.h"
+#import <HDCollectionView/HDCollectionView.h>
+#import <HDCollectionView/HDCollectionView+HDHelper.h>
+
 @interface DemoVC2 ()
 {
     HDCollectionView *listV;
@@ -50,27 +52,36 @@
         }];
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    
-    //大量数据测试 2W
-    NSMutableArray *randomArr = @[].mutableCopy;
-    for (int i=0; i<200; i++) {
-        if (arc4random()%2) {
-            HDSectionModel *sec = [self makeCellSizeRandomSecModel];
-            sec.headerObj = @(i).stringValue;
-            sec.headerTopStopType = arc4random()%2;
-            [randomArr addObject:sec];
-        }else{
-            HDSectionModel *sec = [self makeSecModel];
-            sec.headerObj = @(i).stringValue;
-            sec.headerTopStopType = arc4random()%2;
-            [randomArr addObject:sec];
+    CGFloat scWidth = [UIScreen mainScreen].bounds.size.width;
+    //大量数据测试
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSMutableArray *randomArr = @[].mutableCopy;
+        for (int i=0; i<5000; i++) {
+            if (arc4random()%2) {
+                HDSectionModel *sec = [self makeCellSizeRandomSecModel:scWidth];
+                sec.headerObj = @(i).stringValue;
+                sec.footerObj = @(i).stringValue;
+                sec.headerTopStopType = arc4random()%2;
+                [randomArr addObject:sec];
+            }else{
+                HDSectionModel *sec = [self makeSecModel:scWidth];
+                sec.headerObj = @(i).stringValue;
+                sec.footerObj = @(i).stringValue;
+                sec.headerTopStopType = arc4random()%2;
+                [randomArr addObject:sec];
+            }
         }
-    }    
-    
-    HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
-        [listV hd_setAllDataArr:randomArr];
+        dispatch_async(dispatch_get_main_queue(), ^{
+                [listV hd_setAllDataArrSlowly:randomArr preloadOffset:3000 currentCalculateSectionFinishCallback:^(NSInteger curSection) {
+                        NSLog(@"正在计算第%zd段布局",curSection);
+                }];
+            //  [listV hd_setAllDataArr:randomArr];//对比一次计算所有数据
+        });
     });
     
+
+
+        
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
         if (type == HDCellCallBack) {
@@ -83,7 +94,7 @@
     }];
 
 }
-- (HDSectionModel*)makeSecModel
+- (HDSectionModel*)makeSecModel:(CGFloat)screenWidth
 {
     CGFloat minItemCap = 15;
     NSInteger columnCount = arc4random()%3+3;
@@ -92,11 +103,11 @@
     
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 100;
+    NSInteger cellCount = 30;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
-        model.cellSize     = CGSizeMake((self.view.frame.size.width-secInsect.left-secInsect.right-(columnCount-1)*minItemCap)/columnCount, 150);
+        model.cellSize     = CGSizeMake((screenWidth-secInsect.left-secInsect.right-(columnCount-1)*minItemCap)/columnCount, 20);
         model.cellClassStr = @"DemoVC2Cell";
         [cellModelArr addObject:model];
     }
@@ -104,11 +115,11 @@
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];
     layout.secInset = UIEdgeInsetsMake(10, 10, 10, 10);
-    layout.justify = arc4random()%6;
+    layout.justify = YGJustifySpaceBetween;
     layout.verticalGap = 10;
     layout.horizontalGap = minItemCap;
-    layout.headerSize = CGSizeMake(self.view.frame.size.width, 50);
-    layout.footerSize = CGSizeMake(self.view.frame.size.width, 50);
+    layout.headerSize = CGSizeMake(screenWidth, 50);
+    layout.footerSize = CGSizeMake(screenWidth, 50);
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];
@@ -123,13 +134,13 @@
     return secModel;
 }
 
-- (HDSectionModel*)makeCellSizeRandomSecModel
+- (HDSectionModel*)makeCellSizeRandomSecModel:(CGFloat)scWidth
 {
     CGFloat minItemCap = 15;
     
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 100;
+    NSInteger cellCount = 30;
     for (int i =0; i<cellCount; i++) {
         
         CGFloat randomW = arc4random()%200+40;
@@ -148,8 +159,8 @@
     layout.justify = arc4random()%6;
     layout.verticalGap = 10;
     layout.horizontalGap = minItemCap;
-    layout.headerSize = CGSizeMake(self.view.frame.size.width, 50);
-    layout.footerSize = CGSizeMake(self.view.frame.size.width, 50);
+    layout.headerSize = CGSizeMake(scWidth, 50);
+    layout.footerSize = CGSizeMake(scWidth, 50);
     
     //该段的所有数据封装
     HDSectionModel *secModel = [HDSectionModel new];
@@ -172,13 +183,14 @@
 }
 - (void)clickHeader:(HDSectionModel*)secM
 {
-    [listV hd_deleteSectionWithKey:secM.sectionKey animated:YES];
-    NSLog(@"点击了段头_%zd",secM.section);
+    [listV hd_deleteSectionWithKey:secM.sectionKey animated:NO];
+//    NSLog(@"点击了段头_%zd",secM.section);
 }
 - (void)clickFooter:(HDSectionModel*)secM
 {
     NSLog(@"点击了段尾_%zd",secM.section);
-    [listV hd_appendDataWithSecModel:[self makeSecModel] animated:YES];
+    CGFloat scWidth = [UIScreen mainScreen].bounds.size.width;
+    [listV hd_appendDataWithSecModel:[self makeSecModel:scWidth] animated:NO];
 }
 - (void)dealloc
 {

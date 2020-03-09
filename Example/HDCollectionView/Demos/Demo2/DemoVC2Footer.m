@@ -43,7 +43,7 @@
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    _title.text = [NSString stringWithFormat:@"这是段尾---%@",@(model.section)];
+    _title.text = [NSString stringWithFormat:@"这是段尾---%@",model.footerObj];
 }
 - (void)clickSelf{
     self.callback(self.hdSecModel);

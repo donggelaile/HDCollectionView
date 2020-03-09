@@ -10,7 +10,6 @@
 #import "HDMultipleScrollListMainVC.h"
 #import "HDCollectionView+MultipleScroll.h"
 #import <objc/runtime.h>
-
 @interface HDMultipleScrollListSubVC ()<HDMultipleScrollListViewScrollViewDidScroll>
 {
     void (^scrollCallBack)(UIScrollView*);
@@ -20,6 +19,17 @@
 
 @implementation HDMultipleScrollListSubVC
 @synthesize collectionV = _collectionV;
+- (void)hd_setCvConfiger:(void (^)(HDCollectionViewMaker * _Nonnull))hdcvConfiger
+{
+    if (hdcvConfiger) {
+        hd_cvConfiger = hdcvConfiger;
+    }else{
+        hdcvConfiger = ^(HDCollectionViewMaker*maker){
+            maker.hd_isNeedTopStop(YES);
+        };
+    }
+}
+
 - (instancetype)init
 {
     self = [super init];
@@ -27,16 +37,6 @@
         self.gapOfBottomWhenSmallData = 20;
     }
     return self;
-}
-- (void)hd_setCvConfiger:(void (^)(HDCollectionViewMaker * _Nonnull))hdcvConfiger
-{
-    if (hdcvConfiger) {
-        hd_cvConfiger = hdcvConfiger;
-    }else{
-        hdcvConfiger = ^(HDCollectionViewMaker*maker){
-
-        };
-    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

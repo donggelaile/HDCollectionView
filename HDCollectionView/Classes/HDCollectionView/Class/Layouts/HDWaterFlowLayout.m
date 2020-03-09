@@ -52,7 +52,9 @@
     NSMutableArray *columnHeightArr;
     NSMutableArray *columAttsArr;
 }
+@property (nonatomic, strong) UICollectionViewLayoutAttributes *decorationAtt;
 @end
+
 
 @implementation HDWaterFlowLayout
 
@@ -150,10 +152,7 @@
     
     NSInteger cellStartIndex = 0;
     if (!isNeedUpdateAll) {
-        //不需要更新缓存时将decorationView及footerView的att移除（后面会重新添加）
-        if (isHaveDecoration) {
-            [self.cacheAtts removeLastObject];
-        }
+        //不需要更新缓存时将footerView的att移除（后面会重新添加）
         if (isHaveFooter) {
             [self.cacheAtts removeLastObject];
             UICollectionViewLayoutAttributes *footer = [self->columAttsArr[0] lastObject];
@@ -271,7 +270,8 @@
         }
         decorationAtt.frame = CGRectMake(decorationXY.x+self.decorationMargin.left, decorationXY.y+self.decorationMargin.top, cellBgSize.width-self.decorationMargin.left-self.decorationMargin.right, cellBgSize.height-self.decorationMargin.top-self.decorationMargin.bottom);
         decorationAtt.zIndex = HDDecorationViewDefaultZindex;
-        [atts addObject:decorationAtt];
+//        [atts addObject:decorationAtt];
+        self.decorationAtt = decorationAtt;
 
         if (!isHaveCell) {
             decorationAtt.frame = CGRectZero;
@@ -348,4 +348,53 @@
 {
     return columAttsArr;
 }
+
+
+#pragma mark 查找当前显示att
+
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection
+{
+    [self setValue:@(scrollDirection) forKey:@"scrollDirection"];
+    NSMutableArray *result = @[].mutableCopy;
+    [self.columnAtts enumerateObjectsUsingBlock:^(NSArray<UICollectionViewLayoutAttributes *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [result addObjectsFromArray:[self oneColumnAtts:rect columnAtts:obj]];
+    }];
+    
+    if (self.decorationAtt) {
+        [result addObject:self.decorationAtt];
+    }
+    return result;
+}
+
+//某列/行 内的可见属性数组
+- (NSMutableArray*)oneColumnAtts:(CGRect)rect columnAtts:(NSArray*)columnAtts
+{
+    NSMutableArray *result = @[].mutableCopy;
+    NSInteger firstFind = [self binarySearch:0 end:columnAtts.count-1 rect:rect inAtts:columnAtts];
+    if (firstFind == -1) {
+        return result;
+    }
+    //第一个
+    [result addObject:columnAtts[firstFind]];
+    //前
+    for (NSInteger i=firstFind-1; i>=0; i--) {
+        UICollectionViewLayoutAttributes *att = columnAtts[i];
+        if ([self isRectIntersectsRect:att.frame rect2:rect]) {
+            [result addObject:att];
+        }else{
+            break;
+        }
+    }
+    //后
+    for (NSInteger i=firstFind+1; i<columnAtts.count; i++) {
+        UICollectionViewLayoutAttributes *att = columnAtts[i];
+        if ([self isRectIntersectsRect:att.frame rect2:rect]) {
+            [result addObject:att];
+        }else{
+            break;
+        }
+    }
+    return result;
+}
+
 @end

@@ -10,6 +10,7 @@
 #import "HDCollectionView+MultipleScroll.h"
 #import "HDMultipleScrollListSubVC.h"
 #import <objc/runtime.h>
+
 @implementation HDMultipleScrollListViewTitleHeader
 - (void)layoutSubviews
 {
@@ -18,10 +19,11 @@
         [self insertSubview:self.rootView.jxTitle atIndex:0];
     }
     self.rootView.jxTitle.frame = self.bounds;
+    [self.rootView setValue:self forKey:@"headerView"];
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    
+    [self.rootView setValue:self forKey:@"headerView"];
 }
 - (HDMultipleScrollListView *)rootView
 {
@@ -73,8 +75,14 @@
 
     //监听主HDCollectionView的滑动回调
     HDMultipleScrollListView *rootView = [self rootView];
-    [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH]];
+    __weak typeof(rootView) weakRootV = rootView;
+    [rootView.mainCollecitonV hd_autoDealScrollViewDidScrollEvent:self.superCollectionV topH:[self topH] callback:^(UIScrollView * _Nonnull sc) {
+        if ([weakRootV.delegate respondsToSelector:@selector(mainScrollViewOrContentScDidScroll:)]) {
+            [weakRootV.delegate mainScrollViewOrContentScDidScroll:sc];
+        }
+    }];
 }
+
 - (void)hd_setSubScrollViewDidScrollCallback:(UIScrollView *)sc
 {
     UIScrollView *mainRealSc = [self mainScrollV];
@@ -89,16 +97,34 @@
     if (mainRealSc.contentOffset.y < topH) {
         if (mainRealSc.contentOffset.y<=10) {
             if (sc.contentOffset.y-sc.contentInset.top>0) {
-                sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+//                sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+                if (ABS(sc.contentInset.top - HDMainDefaultTopEdge)<=0.01) {
+                    [self setScrollView:sc ContentOffset:CGPointMake(0, 0)];
+                }else{
+                    [self setScrollView:sc ContentOffset:CGPointMake(0, -sc.contentInset.top)];
+                }
             }
         }else{
-            sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+//            sc.contentOffset = CGPointMake(0, -sc.contentInset.top);
+            if (ABS(sc.contentInset.top - HDMainDefaultTopEdge)<=0.01) {
+                [self setScrollView:sc ContentOffset:CGPointMake(0, 0)];
+            }else{
+                [self setScrollView:sc ContentOffset:CGPointMake(0, -sc.contentInset.top)];
+            }
         }
         
     }else{
-        mainRealSc.contentOffset = CGPointMake(mainRealSc.contentOffset.x, topH);
+//        mainRealSc.contentOffset = CGPointMake(mainRealSc.contentOffset.x, topH);
+        [self setScrollView:mainRealSc ContentOffset:CGPointMake(mainRealSc.contentOffset.x, topH)];
     }
     
+}
+
+- (void)setScrollView:(UIScrollView*)sc ContentOffset:(CGPoint)newOffset
+{
+    if (ABS(newOffset.y-sc.contentOffset.y)>0.01||ABS(newOffset.x-sc.contentOffset.x)>0.01) {
+        sc.contentOffset = newOffset;
+    }
 }
 - (UIScrollView*)mainScrollV
 {
@@ -164,14 +190,49 @@
     return self;
 }
 
+- (BOOL)dealFullScrrenBackGesture:(UIGestureRecognizer*)otherGes
+{
+    BOOL isScrollToLeft = self.contentCV.collectionV.contentOffset.x <= 1 - self.contentCV.collectionV.contentInset.left;
+    BOOL isScrollToRight = self.contentCV.collectionV.contentOffset.x >= self.contentCV.collectionV.contentSize.width + self.contentCV.collectionV.contentInset.right - 1;
+    BOOL isScrollToEdge  = isScrollToLeft || isScrollToRight;
+    if (isScrollToEdge) {
+        BOOL isHXScrollView = NO;
+        if ([otherGes.view isKindOfClass:UIScrollView.class]) {
+            UIScrollView *scView = (UIScrollView*)otherGes.view;
+            if (scView.contentSize.width>scView.frame.size.width+scView.contentInset.left+scView.contentInset.right) {
+                isHXScrollView = YES;
+            }
+        }
+        //如果碰到了横向滚动的scrollView,则返回YES
+        if (isHXScrollView) {
+            return YES;
+        }
+        //如果碰到了全屏返回手势，则返回YES
+        if ([otherGes isKindOfClass:[UIPanGestureRecognizer class]] &&
+            [otherGes.view isKindOfClass:HDClassFromString(@"UILayoutContainerView")]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    HDSectionModel *firstSec = [self.contentCV.innerAllData firstObject];
-    if (!firstSec.sectionDataArr.count) {
-        [self.contentCV hd_setAllDataArr:model.headerObj];
-    }
+//    HDSectionModel *firstSec = [self.contentCV.innerAllData firstObject];
+    [self.contentCV hd_setAllDataArr:model.headerObj];
     [self rootView].jxTitle.contentScrollView = self.contentCV.collectionV;
-
+    [[self rootView] setValue:self.contentCV forKey:@"horizontalContentCV"];
+    
+    __weak typeof(self) weakS = self;
+    [self.contentCV hd_setScrollViewDidScrollCallback:^(UIScrollView * _Nonnull scrollView) {
+        [weakS scDidScroll:scrollView];
+    }];
+}
+- (void)scDidScroll:(UIScrollView*)sc
+{
+    if ([[self rootView].delegate respondsToSelector:@selector(hxContentScDidScroll:)]) {
+        [[self rootView].delegate hxContentScDidScroll:sc];
+    }
 }
 - (HDMultipleScrollListView*)rootView
 {
@@ -196,6 +257,7 @@
 
 #pragma mark - configer
 @implementation HDMultipleScrollListConfiger
+ 
 - (instancetype)init
 {
     self = [super init];
@@ -218,6 +280,7 @@
 {
     CGRect lastViewFrame;
 }
+@synthesize horizontalContentCV = _horizontalContentCV, headerView = _headerView;
 @synthesize mainCollecitonV = _mainCollecitonV,jxTitle = _jxTitle, jxLineView = _jxLineView, confingers = _confingers;
 - (instancetype)init
 {
@@ -227,6 +290,7 @@
     lastViewFrame = CGRectZero;
     return self;
 }
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -265,7 +329,7 @@
 {
     if (!_mainCollecitonV) {
         _mainCollecitonV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
-
+            maker.hd_isNeedTopStop(NO);
         }];
 //        _mainCollecitonV.collectionV.bounces = NO;
         _mainCollecitonV.collectionV.showsVerticalScrollIndicator = NO;
@@ -287,9 +351,19 @@
                 scrollView.contentOffset = CGPointZero;
             }
         }];
-        [self addSubview:_mainCollecitonV];
         _mainCollecitonV.collectionV.bounces = NO;
+        [_mainCollecitonV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
+            if ([otherGesture.view isKindOfClass:[UICollectionView class]]) {
+                UICollectionView *cv = (UICollectionView*)otherGesture.view;
+                if (cv.contentSize.width > cv.frame.size.width) {
+                    return NO;//不同时响应横向滑动的手势
+                }
+            }
+            return YES;//响应最底层的mainSc
+        }];
+         [self addSubview:_mainCollecitonV];
     }
+
     return _mainCollecitonV;
 }
 - (void)layoutSubviews
@@ -303,6 +377,7 @@
 }
 - (void)configWithConfiger:(void (^)(HDMultipleScrollListConfiger * _Nonnull configer))config
 {
+    _confingers = nil;
     HDMultipleScrollListConfiger *configer = [HDMultipleScrollListConfiger new];
     if (config) {
         config(configer);
@@ -331,6 +406,7 @@
     [self addMiddleData];
     [self.mainCollecitonV hd_setAllDataArr:self.finalSecArr];
     self.jxTitle.defaultSelectedIndex = self.confingers.defaultSelectIndex;
+    [self.jxTitle reloadData];
 }
 - (void)addMiddleData
 {
@@ -341,7 +417,8 @@
 {
     NSString *clsStr = @"HDMultipleScrollListViewTitleHeader";
     if (self.confingers.diyHeaderClsStr) {
-        if ([HDClassFromString(self.confingers.diyHeaderClsStr) isKindOfClass:object_getClass(HDClassFromString(clsStr))]) {
+        Class cls = HDClassFromString(self.confingers.diyHeaderClsStr);
+        if ([cls isKindOfClass:object_getClass(HDClassFromString(clsStr))]) {
             clsStr = self.confingers.diyHeaderClsStr;
         }
     }
