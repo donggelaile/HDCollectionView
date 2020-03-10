@@ -276,7 +276,7 @@ typedef NS_ENUM(NSInteger,HDAttSearchType) {
             }
         }
         
-        //向前边的section查找
+        //向后边的section查找
         for (NSInteger i=firstFindSection+1; i<secModelArr.count; i++) {
             id<HDSectionModelProtocol>secModel = secModelArr[i];
             if (CGRectIntersectsRect(secModel.secProperRect.CGRectValue,rect)) {
