@@ -86,7 +86,7 @@
 {
     HDMultipleScrollListMainVC *mainVC = [self mainVC];
     if (mainVC && self.isNeedBottomGap) {
-        CGRect lastSecRect = [[(HDSectionModel*)[self.collectionV.innerAllData lastObject] secProperRect] CGRectValue];
+        CGRect lastSecRect = [[(HDSectionModel*)[self.multipleSc.mainCollecitonV.innerAllData lastObject] secProperRect] CGRectValue];
         CGFloat maxMainVCOffsetY = CGRectGetMaxY(lastSecRect) + [self topH] - mainVC.multipleSc.mainCollecitonV.frame.size.height;
         objc_setAssociatedObject(sc, mianCVMaxOffsetYKey, @(MAX(-1, (NSInteger)maxMainVCOffsetY)), OBJC_ASSOCIATION_RETAIN);
     }
