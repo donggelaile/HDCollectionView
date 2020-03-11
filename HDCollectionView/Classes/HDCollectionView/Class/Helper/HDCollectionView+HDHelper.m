@@ -63,6 +63,7 @@ static char *HDCalculateSectionFinishCbKey;
     self.slowlyDataArr = dataArr.mutableCopy;
     self.currentLoadSec = 0;
     self.preloadOffset = preloadOffset;
+    self.collectionV.contentOffset = CGPointZero;
     
     self.CalculateSectionFinishCb = callback;
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hd_scrollViewDidScroll:) name:HDCVScrollViewDidScrollNotificationName object:nil];
@@ -70,12 +71,10 @@ static char *HDCalculateSectionFinishCbKey;
     
     __weak typeof(self) weakSelf = self;
     [self hd_dataChangeFinishedCallBack:^(HDDataChangeType changeType) {
-        if (changeType != HDDataChangeAppendSec) {
+        if (changeType == HDDataChangeDeleteSec || changeType == HDDataChangeChangeSec) {
             [weakSelf loadSectionIfNeeded:callback];
         }
     }];
-
-
 }
 - (void)hd_scrollViewDidScroll:(NSNotification*)noti
 {
