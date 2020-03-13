@@ -1,5 +1,5 @@
 PODS:
-  - HDCollectionView (0.5.7):
+  - HDCollectionView (0.6.1):
     - HDListViewDiffer
     - Yoga (~> 1.9.0)
   - HDListViewDiffer (0.2.0)
@@ -10,7 +10,11 @@ PODS:
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
-  - SJAttributesFactory (2.0.5)
+  - SJAttributesFactory (2.1.1):
+    - SJAttributesFactory/Deprecated (= 2.1.1)
+    - SJAttributesFactory/UIKitText (= 2.1.1)
+  - SJAttributesFactory/Deprecated (2.1.1)
+  - SJAttributesFactory/UIKitText (2.1.1)
   - Yoga (1.9.0)
   - YYModel (1.0.4)
 
@@ -41,14 +45,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HDCollectionView: d1ad29be3dc19bcbd015998c19cc9b276b314092
+  HDCollectionView: 237bd42a71af0c133e0767146722accdbb38e7c7
   HDListViewDiffer: f1ab8168cfbaddcb93fd57aebeb03a98e7612c46
   JXCategoryView: 72560616347270d34c2e717cc08030e6218d7eda
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
   SDAutoLayout: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
-  SJAttributesFactory: d5b670fd0930928ac1c6fb0b06653f92fefd640c
+  SJAttributesFactory: 16cd39e6c0e538933db05ddc06d23c8608b13216
   Yoga: aaae8abea68951f60bee05f6277d3eed90bb91bb
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 

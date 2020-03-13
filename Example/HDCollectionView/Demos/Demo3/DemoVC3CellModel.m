@@ -7,7 +7,7 @@
 //
 
 #import "DemoVC3CellModel.h"
-#import "SJAttributeWorker.h"
+
 @implementation DemoVC3CellModel
 +(DemoVC3CellModel *)randomModel
 {
@@ -19,30 +19,34 @@
         NSString *right = @"关键词:瀑布,海底,湖泊,热液,洞穴";
         
         DemoVC3CellModel *model = [DemoVC3CellModel new];
-        model.title = sj_makeAttributesString(^(SJAttributeWorker * _Nonnull make) {
+        {
             NSInteger randomStart = arc4random()%title.length;
             NSString *random = [NSString stringWithFormat:@"%@",[title substringWithRange:NSMakeRange(randomStart, title.length-randomStart)]];
-            make.append(random).textColor([UIColor blackColor]).font([UIFont systemFontOfSize:18]).lineSpacing(3);
-        });
-        
-        model.detail = sj_makeAttributesString(^(SJAttributeWorker * _Nonnull make) {
+            model.title = random;
+        }
+        {
             NSInteger randomStart = arc4random()%detail.length;
             NSString *random = [NSString stringWithFormat:@"%@",[detail substringWithRange:NSMakeRange(randomStart, detail.length-randomStart)]];
-            make.append(random).textColor([UIColor grayColor]).font([UIFont systemFontOfSize:16]).lineSpacing(3).alignment(NSTextAlignmentJustified);
-        });
-        model.leftText = sj_makeAttributesString(^(SJAttributeWorker * _Nonnull make) {
+            model.detail = random;
+        }
+        {
             NSInteger randomStart = arc4random()%left.length;
             NSString *random = [NSString stringWithFormat:@"%@",[left substringWithRange:NSMakeRange(randomStart, left.length-randomStart)]];
-            make.append(random).textColor([UIColor lightGrayColor]).font([UIFont systemFontOfSize:14]);
-        });
-        model.rightText = sj_makeAttributesString(^(SJAttributeWorker * _Nonnull make) {
+            model.leftText = random;
+        }
+        
+        {
             NSInteger randomStart = arc4random()%right.length;
             NSString *random = [NSString stringWithFormat:@"%@",[right substringWithRange:NSMakeRange(randomStart, right.length-randomStart)]];
-            make.append(random).textColor([UIColor cyanColor]).font([UIFont systemFontOfSize:14]).lineBreakMode(NSLineBreakByTruncatingTail);
-        });
-        if (arc4random()%2 == 0) {
-            model.imageUrl = @"http://c.hiphotos.baidu.com/image/pic/item/2e2eb9389b504fc22f9b0558eedde71191ef6da3.jpg";
+            model.rightText = random;
         }
+        
+        {
+            if (arc4random()%2 == 0) {
+                model.imageUrl = @"http://c.hiphotos.baidu.com/image/pic/item/2e2eb9389b504fc22f9b0558eedde71191ef6da3.jpg";
+            }
+        }
+        
         return model;
     }
 }

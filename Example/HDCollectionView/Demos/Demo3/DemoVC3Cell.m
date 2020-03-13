@@ -7,7 +7,7 @@
 //
 
 #import "DemoVC3Cell.h"
-#import "DemoVC3CellModel.h"
+#import "DemoVC3CellVM.h"
 //#import "UIView+gesture.h"
 #import "Masonry.h"
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -63,7 +63,7 @@
 }
 - (void)setLayoutWithModel:(HDCellModel*)cellModel
 {
-    DemoVC3CellModel *cellM = cellModel.orgData;
+    DemoVC3CellVM *cellM = [self viewModel];
     [self.titleL mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.top.mas_equalTo(10);
@@ -130,6 +130,13 @@
      */
     [self setLayoutWithModel:cellModel];
 }
+- (DemoVC3CellVM*)viewModel
+{
+    if ([self.hdModel isKindOfClass:DemoVC3CellVM.class]) {
+        return self.hdModel;
+    }
+    return nil;
+}
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     uint64_t dispatch_benchmark(size_t count, void (^block)(void));//GCD私有API
@@ -141,16 +148,14 @@
         double time1 = ns/(pow(10, 6));
         printf("重建约束消耗时间为%f毫秒\n",time1);
     }
-    //这里的示例相当于将DemoVC3CellModel与cell进行了绑定，后期适配其他model会变得困难
-    //更好的适配方式见 QQDemo2 ，QQDemoFriendCell绑定的将是一个viewModel。后期很容易让容易cell适配不同原始model
-    DemoVC3CellModel *cellM = model.orgData;
-    self.titleL.attributedText = cellM.title;
-    self.detailL.attributedText = cellM.detail;
-    self.bottomLeft.attributedText = cellM.leftText;
-    self.bottomRight.attributedText = cellM.rightText;
-    self.rightImageV.hidden = !cellM.imageUrl;
-    if (cellM.imageUrl) {
-        [self.rightImageV sd_setImageWithURL:[NSURL URLWithString:cellM.imageUrl]];
+
+    self.titleL.attributedText = [self viewModel].title;
+    self.detailL.attributedText = [self viewModel].detail;
+    self.bottomLeft.attributedText = [self viewModel].leftText;
+    self.bottomRight.attributedText = [self viewModel].rightText;
+    self.rightImageV.hidden = ![self viewModel].imageUrl;
+    if ([self viewModel].imageUrl) {
+        [self.rightImageV sd_setImageWithURL:[self viewModel].imageUrl];
     }
     
 }

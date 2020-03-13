@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28890182241B207100406FE8 /* DemoVC3CellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28890181241B207100406FE8 /* DemoVC3CellVM.m */; };
 		28AC5E0D235ED6F300657ACE /* NSArray+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */; };
 		28AC5E10235FF9E300657ACE /* DemoVC4DecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */; };
 		28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */; };
@@ -109,6 +110,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28890180241B207100406FE8 /* DemoVC3CellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC3CellVM.h; sourceTree = "<group>"; };
+		28890181241B207100406FE8 /* DemoVC3CellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoVC3CellVM.m; sourceTree = "<group>"; };
 		28AC5E0B235ED6F300657ACE /* NSArray+HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDHelper.h"; sourceTree = "<group>"; };
 		28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDHelper.m"; sourceTree = "<group>"; };
 		28AC5E0E235FF9E300657ACE /* DemoVC4DecorationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC4DecorationView.h; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				6696B2942272B4AE007FDFE4 /* DemoVC3.m */,
 				6696B2932272B4AE007FDFE4 /* DemoVC3Cell.h */,
 				6696B2982272B4AE007FDFE4 /* DemoVC3Cell.m */,
+				28890180241B207100406FE8 /* DemoVC3CellVM.h */,
+				28890181241B207100406FE8 /* DemoVC3CellVM.m */,
 				6696B2952272B4AE007FDFE4 /* DemoVC3Header.h */,
 				6696B2902272B4AE007FDFE4 /* DemoVC3Header.m */,
 				6696B2962272B4AE007FDFE4 /* DemoVC3Footer.h */,
@@ -913,6 +918,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66B6B7FB22844CCB009FECF1 /* DemoVC4Cell.m in Sources */,
+				28890182241B207100406FE8 /* DemoVC3CellVM.m in Sources */,
 				6696B2FF2272B4AE007FDFE4 /* AHCHeader.m in Sources */,
 				6696B2E42272B4AE007FDFE4 /* DemoVC2Header.m in Sources */,
 				6635BBE22293AB2E0037EE0A /* HDMultipleScrollListMainVC.m in Sources */,

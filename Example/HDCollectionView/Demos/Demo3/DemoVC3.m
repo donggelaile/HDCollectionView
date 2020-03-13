@@ -9,6 +9,7 @@
 #import "DemoVC3.h"
 #import "HDCollectionView.h"
 #import "DemoVC3CellModel.h"
+#import "DemoVC3CellVM.h"
 #import <MJRefresh/MJRefresh.h>
 #import "Masonry.h"
 extern BOOL isDemo3OpenSubviewFrameCache;
@@ -94,7 +95,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 10;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        DemoVC3CellVM *model = [DemoVC3CellVM new];
         model.orgData      = [DemoVC3CellModel randomModel];
         model.cellClassStr = @"DemoVC3Cell";
         __weak typeof(listV) weakV = listV;

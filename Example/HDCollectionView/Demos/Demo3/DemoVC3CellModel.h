@@ -11,10 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DemoVC3CellModel : NSObject
-@property (nonatomic, strong) NSMutableAttributedString *title;
-@property (nonatomic, strong) NSMutableAttributedString *detail;
-@property (nonatomic, strong) NSMutableAttributedString *leftText;
-@property (nonatomic, strong) NSMutableAttributedString *rightText;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *detail;
+@property (nonatomic, strong) NSString *leftText;
+@property (nonatomic, strong) NSString *rightText;
 @property (nonatomic, strong) NSString *imageUrl;
 + (DemoVC3CellModel*)randomModel;
 @end
