@@ -56,7 +56,6 @@ HDCollectionView is used to quickly build an efficient and flexible listView com
 ```ruby
 Pod 'HDCollectionView'
 ```
-#### and open use_frameworks!
 Can't find, please execute ```pod repo update ``` first.
 
 ### 3, how to use
