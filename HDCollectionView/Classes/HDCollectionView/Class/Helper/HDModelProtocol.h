@@ -7,7 +7,7 @@
 
 #ifndef HDModelProtocol_h
 #define HDModelProtocol_h
-#import "YGEnums.h"
+#import <yoga/YGEnums.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

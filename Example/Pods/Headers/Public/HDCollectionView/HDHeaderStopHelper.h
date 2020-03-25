@@ -1,0 +1,1 @@
+../../../../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDHeaderStopHelper.h

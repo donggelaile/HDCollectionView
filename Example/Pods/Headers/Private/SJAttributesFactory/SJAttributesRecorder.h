@@ -1,0 +1,1 @@
+../../../SJAttributesFactory/SJAttributesFactory/Deprecated/SJAttributesRecorder.h

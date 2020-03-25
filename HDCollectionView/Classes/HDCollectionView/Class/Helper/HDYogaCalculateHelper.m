@@ -7,8 +7,8 @@
 //
 
 #import "HDYogaCalculateHelper.h"
-#import "Yoga.h"
-#import "YGMacros.h"
+#import <yoga/Yoga.h>
+#import <yoga/YGMacros.h>
 
 @interface HDYogaNode : NSObject
 @property (nonatomic, assign, readonly) YGNodeRef yogaNode;

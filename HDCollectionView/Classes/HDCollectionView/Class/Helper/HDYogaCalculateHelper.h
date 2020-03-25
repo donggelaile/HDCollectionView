@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YGEnums.h"
+#import <yoga/YGEnums.h>
 #import <UIKit/UIKit.h>
 
 static NSString * _Nonnull const HDYogaItemTypeKey = @"HDYogaItemTypeKey";

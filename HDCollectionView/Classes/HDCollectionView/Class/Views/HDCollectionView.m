@@ -13,7 +13,7 @@
 #import "HDDefines.h"
 #import "HDCollectionViewLayout.h"
 #import "HDBaseLayout+Cache.h"
-#import "UICollectionView+HDDiffReload.h"
+#import <HDListViewDiffer/UICollectionView+HDDiffReload.h>
 #import <objc/runtime.h>
 
 static NSString *const hd_secmodel_key = @"hd_secmodel_key";

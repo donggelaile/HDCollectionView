@@ -1,0 +1,1 @@
+../../../../../HDCollectionView/Classes/HDCollectionView/Class/Models/HDSectionModel.h

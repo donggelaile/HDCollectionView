@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "HDModelProtocol.h"
 #import "HDDefines.h"
-#import "HDListViewDiffer.h"
+#import <HDListViewDiffer/HDListViewDiffer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

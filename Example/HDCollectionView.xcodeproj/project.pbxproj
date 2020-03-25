@@ -12,6 +12,7 @@
 		28AC5E10235FF9E300657ACE /* DemoVC4DecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */; };
 		28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */; };
 		28FE5C1222FD536E007FD9AA /* QQDemoFriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FE5C1122FD536E007FD9AA /* QQDemoFriendModel.m */; };
+		5284E2174305973E130A1A0D /* libPods-HDCollectionView_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 152738F8EF324C9E26B5D9C5 /* libPods-HDCollectionView_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -95,8 +96,7 @@
 		66F90C01229E68090043C06D /* HDNewsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F90C00229E68090043C06D /* HDNewsCollectionView.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A3C898388FB2862BF9EE7C94 /* Pods_HDCollectionView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A05714CCF68C1CA11548CB84 /* Pods_HDCollectionView_Tests.framework */; };
-		B358BCB1AAB3211AB8815BEF /* Pods_HDCollectionView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A59C08DD2ABECAE07CC4F07 /* Pods_HDCollectionView_Example.framework */; };
+		E551E89E7A435A940F220A4A /* libPods-HDCollectionView_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9650030A3963DD1E8B44D156 /* libPods-HDCollectionView_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +110,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		152738F8EF324C9E26B5D9C5 /* libPods-HDCollectionView_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HDCollectionView_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		280DA6C8242B01D1007CCB90 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		28890180241B207100406FE8 /* DemoVC3CellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC3CellVM.h; sourceTree = "<group>"; };
 		28890181241B207100406FE8 /* DemoVC3CellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoVC3CellVM.m; sourceTree = "<group>"; };
 		28AC5E0B235ED6F300657ACE /* NSArray+HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDHelper.h"; sourceTree = "<group>"; };
@@ -121,7 +123,6 @@
 		28FE5C1022FD536E007FD9AA /* QQDemoFriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QQDemoFriendModel.h; sourceTree = "<group>"; };
 		28FE5C1122FD536E007FD9AA /* QQDemoFriendModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QQDemoFriendModel.m; sourceTree = "<group>"; };
 		3EA6CFB47225E3A04727A23D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		5A59C08DD2ABECAE07CC4F07 /* Pods_HDCollectionView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDCollectionView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B164F0C9815D3C73EF62558 /* Pods-HDCollectionView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Tests/Pods-HDCollectionView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C63DD97A3232C4B959CA8B5 /* Pods-HDCollectionView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Tests/Pods-HDCollectionView_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* HDCollectionView_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HDCollectionView_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,7 +281,7 @@
 		66F90C00229E68090043C06D /* HDNewsCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDNewsCollectionView.m; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A05714CCF68C1CA11548CB84 /* Pods_HDCollectionView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDCollectionView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9650030A3963DD1E8B44D156 /* libPods-HDCollectionView_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HDCollectionView_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB48EFB2670617F4F818C679 /* HDCollectionView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HDCollectionView.podspec; path = ../HDCollectionView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EAE00B5FB900A928516BFCB5 /* Pods-HDCollectionView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F22A251054DFB4159FFB0778 /* Pods-HDCollectionView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -295,7 +296,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				B358BCB1AAB3211AB8815BEF /* Pods_HDCollectionView_Example.framework in Frameworks */,
+				5284E2174305973E130A1A0D /* libPods-HDCollectionView_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +307,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				A3C898388FB2862BF9EE7C94 /* Pods_HDCollectionView_Tests.framework in Frameworks */,
+				E551E89E7A435A940F220A4A /* libPods-HDCollectionView_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,12 +349,13 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				280DA6C8242B01D1007CCB90 /* libc++.tbd */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				5A59C08DD2ABECAE07CC4F07 /* Pods_HDCollectionView_Example.framework */,
-				A05714CCF68C1CA11548CB84 /* Pods_HDCollectionView_Tests.framework */,
+				152738F8EF324C9E26B5D9C5 /* libPods-HDCollectionView_Example.a */,
+				9650030A3963DD1E8B44D156 /* libPods-HDCollectionView_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -738,7 +740,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				AF95701D901F5A252BD0CAE1 /* [CP] Embed Pods Frameworks */,
+				C0E0E5D9392C55A0BFE0F2E9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -852,40 +854,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF95701D901F5A252BD0CAE1 /* [CP] Embed Pods Frameworks */ = {
+		C0E0E5D9392C55A0BFE0F2E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/HDCollectionView/HDCollectionView.framework",
-				"${BUILT_PRODUCTS_DIR}/HDListViewDiffer/HDListViewDiffer.framework",
-				"${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework",
-				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
-				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
-				"${BUILT_PRODUCTS_DIR}/SDAutoLayout/SDAutoLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SJAttributesFactory/SJAttributesFactory.framework",
-				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
-				"${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HDCollectionView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HDListViewDiffer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JXCategoryView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDAutoLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SJAttributesFactory.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/yoga.framework",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D48E183BB8D34081BBF191BA /* [CP] Check Pods Manifest.lock */ = {
