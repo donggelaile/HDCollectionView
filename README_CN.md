@@ -46,7 +46,7 @@ HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本�
 * **基于[Yoga](https://github.com/facebook/yoga)(flexbox),实现了流式布局，完全可以替代系统的flowLayout**
 * 需要用到的类都支持链式语法初始化
 * 可自定义每行/每列 所占比例的瀑布流布局、瀑布流加载更多数据为增量计算
-* 支持指定任一 header 段内悬浮、永久悬浮/ 横向滑动左部悬浮
+* 支持指定任一 header 段内悬浮、永久悬浮/ 横向滑动左部悬浮、支持悬浮偏移量设置
 * 支持cell高度自动计算/缓存,支持AutoLayout计算或hdSizeThatFits方式返回
 * 轻松添加decorationView(装饰view)
 * **每段(section)可使用不同布局。(注意这里是用一个collectionView实现分段布局)**
@@ -58,7 +58,9 @@ HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本�
 HDCollectionView每段的信息都包含在HDSectionModel中，更改对应信息即会在UI上做出相应变更。系统的collectionView对信息的收集散落在多个delegate及dataSource的回调中，这体现了接口分离的设计原则。但是对我们来说也有很多不便之处。其一，每次使用collectionView无疑要创建N多相同的方法来实现相关代理。这并不是最难受的，最难受的是你在各个返回函数的写了一些判断逻辑或一些硬编码。当这个页面需要改动，比如在某个位置插入一个新的样式。此时的修改就会让你如履薄冰，你要到每个回调中去更改相应的逻辑，而且要保证完全对应。如果当时搞的是硬编码的话，此时的修改无疑相当蛋疼。而对于HDCollectionView来说，你只需要在相应的HDSectionModel对应位置中加入新的HDCellModel即可。HDSectionModel将散落的信息收集到了一起，一改则全改，让你在同一时间关注更少的信息，维护明显更加轻松。
 #### 3.2、高效查找
 为什么说HDCollectionView会高效查找当前需要显示的属性集合？首先HDCollectionView基于UICollectionViewLayout实现了HDCollectionViewLayout，而一旦基于UICollectionViewLayout就要自行重写
-```- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect```
+```
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
+```
 
 该函数需要返回的是当前rect内需要展示的属性数据集合,如果说此处我们直接返回所有数据的话，表面上看不会有什么问题。但是当数据量特别大的时候(大于2W，6s真机),此时滑动列表将明显卡顿。很明显系统在拿到这个数组后还要搞事情，如果这里返回的是一个会不断变大的数组，即使系统只是简单的遍历也会变的耗时。因此此处必须返回对应的集合。HDCollectionView最终通过二分查找找到了相关集合并返回，详细查找过程见HDCollectionViewLayout文件。
 #### 3.3、基于[Yoga](https://github.com/facebook/yoga)的流式布局
@@ -67,8 +69,13 @@ Yoga是facebook对flexbox的C++实现。既然是继承UICollectionViewLayout重
 相比于只支持设置列数/行数的瀑布流，HDCollectionView实现了支持指定每列/行比例的瀑布流。更为重要的是，当你上拉加载更多的时候，对于瀑布流的布局计算是增量的。也就是只会计算新增的那部分数据的布局，这对加载大列表瀑布流的性能是有直接影响的。而目前我看到好多开源瀑布流都是重新计算所有数据，这在加载大量数据时无疑会带来性能问题。
 #### 3.5、header悬浮
 首先，实现header悬浮的原理必然是在滑动时实时计算header需要的frame新值。这样的话就要求
-```- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds```
-函数必须返回YES，而一旦此处返回YES，只要一产生滑动就会调用```- (void)prepareLayout```函数。显然在prepareLayout需要判断是否使用缓存数据，如果直接重新计算所有布局的话，那在header悬浮的情况下将产生大量无用的重复计算并且数据量大时卡顿随即产生。为了保持在支持悬浮情况下的高效滑动，HDCollectionView在此处做了缓存判断。随后会调用layoutAttributesForElementsInRect函数，基于上面提到的二分查找，使得HDCollectionView在支持悬浮且超长数据列表情况下的滑动性能依然表现👌。此外，HDCollectionView的header悬浮支持指定任意一个header悬浮或者不悬浮，悬浮的模式分为两种，一种随着该段cell及footer的滑出一起滑出，另一种则为永久悬浮在顶部。最终看起来就像2级悬浮，实现效果类似qq应用中的好友/群聊/设备..栏为永久悬浮，而下面的好友分类header则为普通悬浮。
+```
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+```
+函数必须返回YES，而一旦此处返回YES，只要一产生滑动就会调用
+```- (void)prepareLayout
+```
+函数。显然在prepareLayout需要判断是否使用缓存数据，如果直接重新计算所有布局的话，那在header悬浮的情况下将产生大量无用的重复计算并且数据量大时卡顿随即产生。为了保持在支持悬浮情况下的高效滑动，HDCollectionView在此处做了缓存判断。随后会调用layoutAttributesForElementsInRect函数，基于上面提到的二分查找，使得HDCollectionView在支持悬浮且超长数据列表情况下的滑动性能依然表现👌。此外，HDCollectionView的header悬浮支持指定任意一个header悬浮或者不悬浮，悬浮的模式分为两种，一种随着该段cell及footer的滑出一起滑出，另一种则为永久悬浮在顶部。最终看起来就像2级悬浮，实现效果类似qq应用中的好友/群聊/设备..栏为永久悬浮，而下面的好友分类header则为普通悬浮。
 #### 3.6、关于cell自动算高
 当设置某段需要自动算高时，内部在刷新页面前会默认先判断cell是否实现了hdSizeThatFit，实现则以此来决定宽高。否则使用autoLayout计算需要的高度。这里没有使用系统的sizeThatFit来获取高度的原因是当支持悬浮时，滑动就会调用cell的sizeThatFit函数，可能会带来性能问题。
 #### 3.7、关于添加decorationView

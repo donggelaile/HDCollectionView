@@ -68,6 +68,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly)  HDSectionModelChainMaker* (^hd_headerTopStopType)(HDHeaderStopOnTopType headerTopStopType);
 
 /**
+ 默认0，header悬浮偏移量 (第0段不建议自定义该值)
+*/
+@property (nonatomic, strong, readonly)  HDSectionModelChainMaker* (^hd_headerTopStopOffset)(NSInteger headerTopStopOffset);
+
+/**
  默认会初始化一个可变空数组,用于存放所有子model(初始化完毕后，不要直接增删元素。需要增删请使用HDCollectionView提供的接口)
 */
 @property (nonatomic, strong, readonly)  HDSectionModelChainMaker* (^hd_sectionDataArr)(NSMutableArray<id<HDCellModelProtocol>>* sectionDataArr);

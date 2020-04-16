@@ -36,7 +36,8 @@
                 model = [tempModelCls new];
             }
         }
-    }else{
+    }
+    if (!model) {
         model = [HDCellModel new];
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280535322447ED1100BE0249 /* README_CN.md in Resources */ = {isa = PBXBuildFile; fileRef = 280535312447ED1100BE0249 /* README_CN.md */; };
 		28890182241B207100406FE8 /* DemoVC3CellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28890181241B207100406FE8 /* DemoVC3CellVM.m */; };
 		28AC5E0D235ED6F300657ACE /* NSArray+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */; };
 		28AC5E10235FF9E300657ACE /* DemoVC4DecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */; };
@@ -111,6 +112,7 @@
 
 /* Begin PBXFileReference section */
 		152738F8EF324C9E26B5D9C5 /* libPods-HDCollectionView_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HDCollectionView_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		280535312447ED1100BE0249 /* README_CN.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README_CN.md; path = ../README_CN.md; sourceTree = "<group>"; };
 		280DA6C8242B01D1007CCB90 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		28890180241B207100406FE8 /* DemoVC3CellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC3CellVM.h; sourceTree = "<group>"; };
 		28890181241B207100406FE8 /* DemoVC3CellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoVC3CellVM.m; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				AB48EFB2670617F4F818C679 /* HDCollectionView.podspec */,
 				F22B999EDC75B021786F5BF8 /* README.md */,
+				280535312447ED1100BE0249 /* README_CN.md */,
 				3EA6CFB47225E3A04727A23D /* LICENSE */,
 			);
 			name = "Podspec Metadata";
@@ -814,6 +817,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				280535322447ED1100BE0249 /* README_CN.md in Resources */,
 				6696B2F82272B4AE007FDFE4 /* carInfo.geojson in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,

@@ -100,11 +100,11 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
                                                           atIndexPath:[NSIndexPath indexPathForItem:0 inSection:obj.section]];
             header = [header copy];
             [AllRectAtts addObject:header];
-            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection];
+            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset];
         }else{
             NSInteger orgAttIndex = [objc_getAssociatedObject(header, HDUICollectionViewLayoutAttributesIndexKey) integerValue];
             header = [header copy];//必须copy，不破坏初始计算值，不copy会导致无法正确归位
-            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection];
+            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset];
             if (orgAttIndex<AllRectAtts.count) {
                 [AllRectAtts replaceObjectAtIndex:orgAttIndex withObject:header];
             }
@@ -114,7 +114,7 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     
     return AllRectAtts;
 }
-+ (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes secLastAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes topOffset:(CGFloat *)offset topStopType:(HDHeaderStopOnTopType)stopType section:(NSInteger)section layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection
++ (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes secLastAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes topOffset:(CGFloat *)offset topStopType:(HDHeaderStopOnTopType)stopType section:(NSInteger)section layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection secOffset:(NSInteger)secOffset
 {
     if (stopType == HDHeaderStopOnTopTypeNone) {
         return;
@@ -126,10 +126,10 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     CGFloat contentOffsetXY = 0;//当前横向或纵向的偏移量
     CGFloat sectionMaxXY = 0;//当前header能最大到达的偏移量（HDHeaderStopOnTopTypeAlways不受此限制）
     if (isVertical) {
-        contentOffsetXY = CGRectGetMinY(currentBounds) + *offset;
+        contentOffsetXY = CGRectGetMinY(currentBounds) + *offset + secOffset;
         sectionMaxXY = CGRectGetMaxY(lastCellAttributes.frame) - CGRectGetHeight(attributes.frame);
     }else{
-        contentOffsetXY = CGRectGetMinX(currentBounds) + *offset;
+        contentOffsetXY = CGRectGetMinX(currentBounds) + *offset + secOffset;
         sectionMaxXY = CGRectGetMaxX(lastCellAttributes.frame) - CGRectGetWidth(attributes.frame);
     }
     
@@ -140,10 +140,10 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     if (stopType == HDHeaderStopOnTopTypeAlways) {
         //总是悬停的header总与当前偏移量对齐或是其原本位置
         if (isVertical) {
-            *offset += CGRectGetHeight(attributes.frame);
+            *offset = *offset + CGRectGetHeight(attributes.frame) + secOffset;
             originY = MAX(contentOffsetXY, attributes.frame.origin.y);
         }else{
-            *offset += CGRectGetWidth(attributes.frame);
+            *offset = *offset + CGRectGetWidth(attributes.frame) + secOffset;
             originX = MAX(contentOffsetXY, attributes.frame.origin.x);
         }
         

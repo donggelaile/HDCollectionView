@@ -34,7 +34,8 @@
                 model = [tempModelCls new];
             }
         }
-    }else{
+    }
+    if (!model) {
         model = [HDSectionModel new];
     }
     
@@ -109,6 +110,14 @@
         return self;
     };
 }
+- (HDSectionModelChainMaker * _Nonnull (^)(NSInteger))hd_headerTopStopOffset
+{
+    return ^(NSInteger headerTopStopOffset){
+        self.allValues[@"headerTopStopOffset"] = @(headerTopStopOffset);
+        return self;
+    };
+}
+
 - (HDSectionModelChainMaker * _Nonnull (^)(NSMutableArray<id<HDCellModelProtocol>> * _Nonnull))hd_sectionDataArr
 {
     return ^(NSMutableArray<id<HDCellModelProtocol>> *sectionDataArr){
@@ -176,6 +185,7 @@
 @synthesize isNeedAutoCountCellHW    = _isNeedAutoCountCellHW;
 @synthesize isNeedCacheSubviewsFrame = _isNeedCacheSubviewsFrame;
 @synthesize headerTopStopType        = _headerTopStopType;
+@synthesize headerTopStopOffset      = _headerTopStopOffset;
 @synthesize sectionDataArr           = _sectionDataArr;
 @synthesize layout                   = _layout;
 @synthesize sectionKey               = _sectionKey;
@@ -191,6 +201,7 @@
     self = [super init];
     if (self) {
         self.headerTopStopType = HDHeaderStopOnTopTypeNone;
+        self.headerTopStopOffset = 0;
         self.sectionDataArr = @[].mutableCopy;
         self.isNeedAutoCountCellHW = NO;
         self.isNeedCacheSubviewsFrame = NO;
