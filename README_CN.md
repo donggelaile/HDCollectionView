@@ -73,7 +73,9 @@ Yoga是facebook对flexbox的C++实现。既然是继承UICollectionViewLayout重
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 ```
 函数必须返回YES，而一旦此处返回YES，只要一产生滑动就会调用
-```- (void)prepareLayout
+
+```
+- (void)prepareLayout
 ```
 函数。显然在prepareLayout需要判断是否使用缓存数据，如果直接重新计算所有布局的话，那在header悬浮的情况下将产生大量无用的重复计算并且数据量大时卡顿随即产生。为了保持在支持悬浮情况下的高效滑动，HDCollectionView在此处做了缓存判断。随后会调用layoutAttributesForElementsInRect函数，基于上面提到的二分查找，使得HDCollectionView在支持悬浮且超长数据列表情况下的滑动性能依然表现👌。此外，HDCollectionView的header悬浮支持指定任意一个header悬浮或者不悬浮，悬浮的模式分为两种，一种随着该段cell及footer的滑出一起滑出，另一种则为永久悬浮在顶部。最终看起来就像2级悬浮，实现效果类似qq应用中的好友/群聊/设备..栏为永久悬浮，而下面的好友分类header则为普通悬浮。
 #### 3.6、关于cell自动算高
