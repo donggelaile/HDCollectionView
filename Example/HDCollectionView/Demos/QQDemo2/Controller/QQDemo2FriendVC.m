@@ -19,6 +19,13 @@
     }
     return _viewModel;
 }
+//重写父类的配置方法
+- (void (^)(HDCollectionViewMaker * _Nonnull))hd_collectionViewConfiger
+{
+    return ^(HDCollectionViewMaker*maker){
+        maker.hd_isNeedTopStop(YES);
+    };
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionV.backgroundColor = [UIColor whiteColor];
