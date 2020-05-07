@@ -104,7 +104,7 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     UIEdgeInsets secInset = UIEdgeInsetsMake(30, 30, 30, 30);
     CGFloat vhGap = 5;
-    NSInteger cellCount = 20;
+    NSInteger cellCount = 5;
     NSInteger columCount = arc4random()%5+2;
     CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
     
@@ -130,7 +130,7 @@
     HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionHeaderClassStr = @"DemoVC6Header";
     secModel.sectionFooterClassStr = @"DemoVC6Footer";
-    secModel.headerObj             = nil;
+    secModel.headerObj             = @(arc4random()).stringValue;
     secModel.footerObj             = nil;
     secModel.headerTopStopType     = arc4random()%2;
     secModel.sectionDataArr        = cellModelArr;
@@ -169,7 +169,7 @@
     HDSectionModel *secModel = [HDSectionModel new];
     secModel.sectionHeaderClassStr = @"DemoVC6Header";
     secModel.sectionFooterClassStr = @"DemoVC6Footer";
-    secModel.headerObj             = @"这个瀑布流是从右边开始摆放的";
+    secModel.headerObj             = @(arc4random()).stringValue;
     secModel.footerObj             = nil;
     secModel.headerTopStopType     = arc4random()%2;
     secModel.sectionDataArr        = cellModelArr;
@@ -259,6 +259,7 @@
 - (void)clickFooter:(HDSectionModel*)secM
 {
     NSLog(@"点击了段尾_%zd",secM.section);
+    [listV hd_insertDataWithSecModel:[self make1TNOrNT1SecModel] atIndex:0 animated:NO];
 }
 /*
 #pragma mark - Navigation

@@ -18,12 +18,6 @@ static NSString *const HDNormalLayoutAttsKey = @"HDNormalLayoutAttsKey";
 static NSString *const HDWaterFlowSectionKey = @"HDWaterFlowSectionKey";
 static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
 
-typedef NS_ENUM(NSInteger,HDAttSearchType) {
-    HDAttSearchFirst,
-    HDAttSearchFront,
-    HDAttSearchBehind,
-};
-
 @implementation HDCollectionViewLayout
 {
     CGFloat contentX;

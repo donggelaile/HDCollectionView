@@ -1,17 +1,17 @@
 //
-//  DemoVC1Header.m
+//  DemoVC2Footer.m
 //  HDCollectionView
 //
 //  Created by HaoDong chen on 2018/12/18.
 //  Copyright © 2018 CHD. All rights reserved.
 //
 
-#import "DemoVC1Header.h"
+#import "DemoVC1Footer.h"
 #import "UIView+gesture.h"
-@interface DemoVC1Header()
+@interface DemoVC1Footer()
 @property (nonatomic, strong) UILabel *title;
 @end
-@implementation DemoVC1Header
+@implementation DemoVC1Footer
 -(UILabel *)title
 {
     if (!_title) {
@@ -19,7 +19,7 @@
         _title.font = [UIFont systemFontOfSize:20];
         _title.textColor = [UIColor orangeColor];
         _title.textAlignment = NSTextAlignmentCenter;
-
+        
     }
     return _title;
 }
@@ -38,18 +38,14 @@
     [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
         [weakS clickSelf];
     }];
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     return self;
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    _title.text = [NSString stringWithFormat:@"这是段头---%@",model.headerObj];
+    _title.text = [NSString stringWithFormat:@"这是段尾---%@",model.footerObj];
 }
 - (void)clickSelf{
-    //无需此判断
-//    if (self.callback) {
-//        self.callback(self.hdSecModel);
-//    }
     self.callback(self.hdSecModel);
 }
 @end

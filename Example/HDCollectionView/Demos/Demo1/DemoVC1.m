@@ -29,7 +29,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker){
         maker.hd_frame(self.view.bounds)
-        .hd_isUseSystemFlowLayout(YES);
+        .hd_isUseSystemFlowLayout(YES);//设置为YES后将会使用系统的UICollectionViewFlowLayout
     }];
     
     [self.view addSubview:listV];
@@ -44,6 +44,8 @@
             [weakS clickCell:backModel];
         }else if (type == HDSectionHeaderCallBack){
             [weakS clickHeader:backModel];
+        }else if (type == HDSectionFooterCallBack){
+            [weakS clickFooter:backModel];
         }
     }];
 
@@ -52,7 +54,7 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 10;
+    NSInteger cellCount = arc4random()%10;
     for (int i =0; i<cellCount; i++) {
 //        HDCellModel *model = [HDCellModel new];
 //        model.orgData      = @(i).stringValue;
@@ -74,11 +76,13 @@
 //    layout.horizontalGap = 0;
 //    layout.headerSize    = CGSizeMake(self.view.frame.size.width, 100);
 //    layout.footerSize    = CGSizeMake(0, 0);
+    
+    //当 isUseSystemFlowLayout == YES 时，每个section将仅仅支持 HDBaseLayout
     HDBaseLayout *layout = HDMakeBaseLayoutChain
     .hd_secInset(UIEdgeInsetsMake(10, 0, 10, 0))
     .hd_verticalGap(10)
-    .hd_headerSize(CGSizeMake(self.view.frame.size.width, 100))
-    .hd_footerSize(CGSizeMake(0, 0))
+    .hd_headerSize(CGSizeMake(self.view.frame.size.width, 50))
+    .hd_footerSize(CGSizeMake(self.view.frame.size.width, 50))
     .hd_generateObj;
     
     //该段的所有数据封装
@@ -86,6 +90,9 @@
     //链式语法创建
     HDSectionModel *secModel = HDMakeSecModelChain
     .hd_sectionHeaderClassStr(@"DemoVC1Header")
+    .hd_sectionFooterClassStr(@"DemoVC1Footer")
+    .hd_footerObj(@(arc4random()%1000000))
+    .hd_headerObj(@(arc4random()%1000000))
     .hd_headerTopStopType(HDHeaderStopOnTopTypeNone)
     .hd_sectionDataArr(cellModelArr)
     .hd_layout(layout)
@@ -122,6 +129,11 @@
     [listV hd_changeSectionModelWithKey:secM.sectionKey animated:YES changingIn:^(id<HDSectionModelProtocol> secModel) {
         secM.sectionDataArr = [secM.sectionDataArr shuffle].mutableCopy;
     }];
+}
+- (void)clickFooter:(HDSectionModel*)secM
+{
+    HDSectionModel *newSec = [self makeSecModel];
+    [listV hd_insertDataWithSecModel:newSec atIndex:0 animated:YES];
 }
 /*
 #pragma mark - Navigation

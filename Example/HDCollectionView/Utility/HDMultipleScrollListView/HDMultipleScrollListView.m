@@ -353,6 +353,10 @@
         }];
         _mainCollecitonV.collectionV.bounces = NO;
         [_mainCollecitonV hd_setShouldRecognizeSimultaneouslyWithGestureRecognizer:^BOOL(UIGestureRecognizer *selfGestture, UIGestureRecognizer *otherGesture) {
+            if (![otherGesture isKindOfClass:UIPanGestureRecognizer.class] ||
+                ![selfGestture isKindOfClass:UIPanGestureRecognizer.class]) {
+                return NO;
+            }
             if ([otherGesture.view isKindOfClass:[UICollectionView class]]) {
                 UICollectionView *cv = (UICollectionView*)otherGesture.view;
                 if (cv.contentSize.width > cv.frame.size.width) {

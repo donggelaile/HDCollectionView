@@ -431,7 +431,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         if (!secModel) {
             return;
         }
-        self->_isAppendingSection = YES;
+        self->_isAppendingOrInsertingSection = YES;
         if (self.allDataArr.count == 0) {
             [self layoutIfNeeded];
         }
@@ -447,12 +447,11 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             if (secModel.isNeedAutoCountCellHW) {
                 [self hd_autoCountCellsHeight:secModel isAll:NO type:HDDataChangeAppendSec animationImp:animationImp finishCallback:^{
                     [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
-                    [self addOneSection:secModel];
+                    [self insertOneSection:secModel atIndex:NSIntegerMax];
                 }];
             }else{
                 [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
-                [self addOneSection:secModel];
-                
+                [self insertOneSection:secModel atIndex:NSIntegerMax];
             }
             if (!animated) {
                 [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
@@ -466,16 +465,106 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 updateLayout();
                 [self.collectionV insertSections:[NSIndexSet indexSetWithIndex:self.allDataArr.count-1]];
             } completion:^(BOOL finished) {
-                self->_isAppendingSection = NO;
+                self->_isAppendingOrInsertingSection = NO;
                 [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
             }];
 
         }else{
             updateLayout();
-            self->_isAppendingSection = NO;
+            self->_isAppendingOrInsertingSection = NO;
+        }
+    });
+}
+
+- (void)hd_insertDataWithSecModel:(id<HDSectionModelProtocol>)secModel atIndex:(NSInteger)index animated:(BOOL)animated
+{
+    //后期 hd_appendDataWithSecModel的实现 也会切换到 _innerInsertSecModel 方法
+    [self _innerInsertSecModel:secModel type:HDDataChangeInsertSec atIndex:index animated:animated];
+}
+- (void)_innerInsertSecModel:(id<HDSectionModelProtocol>)secModel type:(HDDataChangeType)type atIndex:(NSInteger)index animated:(BOOL)animated
+{
+    HDDoSomeThingInMainQueueSyn(^{
+        if (!secModel) {
+            return;
+        }
+        self->_isAppendingOrInsertingSection = YES;
+        if (self.allDataArr.count == 0) {
+            [self layoutIfNeeded];
+        }
+        void (^animationImp)(void) = nil;
+        if (animated) {
+            animationImp = ^(){
+                //这块只是让 animationImp 不为空
+            };
         }
         
+        NSValue *finalStart = nil;
+        if (index <= 0) {
+            finalStart = [NSValue valueWithCGPoint:CGPointZero];
+        }else if (index >= self.allDataArr.count){
+            //append 到最后,布局起点坐标无需更新
+        }else{
+            //插入到哪个section的后面，起点就是那个section的结尾
+            //找到前面的那个section
+            HDSectionModel *frontSec = nil;
+            if (index-1<self.allDataArr.count) {
+                frontSec = self.allDataArr[index-1];
+            }
+            if (!frontSec) {
+                finalStart = [NSValue valueWithCGPoint:CGPointZero];
+            }else{
+                finalStart = [NSValue valueWithCGPoint:frontSec.layout.cacheEnd];
+                secModel.layout.cacheStart = finalStart.CGPointValue;
+            }
+        }
+        
+        NSInteger finalInsertIndex = [self getFinalIndexWithArr:self.allDataArr wantInsertIndex:index];
+        void(^updateLayout)(void) = ^(){
+            [(NSObject*)secModel setValue:@(finalInsertIndex) forKey:@"section"];
+            
+            if (secModel.isNeedAutoCountCellHW) {
+                [self hd_autoCountCellsHeight:secModel isAll:NO type:type animationImp:animationImp finishCallback:^{
+                    [self updateHDColltionViewDataType:type start:finalStart];
+                    [self insertOneSection:secModel atIndex:index];
+                }];
+            }else{
+                [self updateHDColltionViewDataType:type start:finalStart];
+                [self insertOneSection:secModel atIndex:index];
+                
+            }
+            if (!animated) {
+                [self hd_dataDealFinishCallback:type reloadDataImp:animationImp];
+            }
+            
+        };
+        
+        if (animated) {
+            //这里是插入一个段
+            [self.collectionV performBatchUpdates:^{
+                updateLayout();
+                [self.collectionV insertSections:[NSIndexSet indexSetWithIndex:finalInsertIndex]];
+            } completion:^(BOOL finished) {
+                self->_isAppendingOrInsertingSection = NO;
+                [self hd_dataDealFinishCallback:type reloadDataImp:animationImp];
+                
+                /*
+                   经过测试当使用系统的UICollectionViewFlowLayout时，performBatchUpdates 方法对header/footer/cell的刷新都正常
+                   但是使用HDCollectionViewLayout时，
+                   performBatchUpdates没有统计到header/footer的变化(它们没有动画，也可能没刷新)，所以这里需要整体重新刷新
+                   具体可以对比demo1的footer点击 和 demo6的footer点击
+                   目前尚不清楚系统 UICollectionViewFlowLayout 是如何处理header/footer的，如果有知道的同学，请告知下。。。
+                   综上，建议使用 HDCollectionViewLayout 时，animated 参数传NO
+                 */
+                if (![self.collectionV.collectionViewLayout isKindOfClass:UICollectionViewFlowLayout.class]) {
+                    [self hd_reloadData];
+                }
+            }];
 
+        }else{
+            updateLayout();
+            self->_isAppendingOrInsertingSection = NO;
+        }
+        
     });
 }
 - (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>> *)itemArr sectionKey:(NSString *)sectionKey animated:(BOOL)animated animationFinishCallback:(void (^)(void))animationFinish
@@ -624,7 +713,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         if (!secModel) {
             return;
         }
-        self->_isAppendingSection = YES;
+        self->_isDeletingSection = YES;
         NSInteger secIndex = NSNotFound;
         secIndex = [self.allDataArr indexOfObject:secModel];
         
@@ -657,7 +746,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
             } completion:^(BOOL finished) {
                 [self.collectionV reloadData];
-                self->_isAppendingSection = NO;
+                self->_isDeletingSection = NO;
                 if (animationFinish) {
                     animationFinish();
                 }
@@ -669,7 +758,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             }
             [self.allSecDict removeObjectForKey:sectionKey];
             updateLayout();
-            self->_isAppendingSection = NO;
+            self->_isDeletingSection = NO;
         }
     });
 }
@@ -711,12 +800,32 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
     NSRange firstMatchR = [regExp rangeOfFirstMatchInString:oriStr options:kNilOptions range:NSMakeRange(0, oriStr.length)];
     return firstMatchR.location != NSNotFound && firstMatchR.length == oriStr.length;
 }
-- (void)addOneSection:(id<HDSectionModelProtocol>)section
+- (NSInteger)getFinalIndexWithArr:(NSMutableArray*)arr wantInsertIndex:(NSInteger)index
 {
-    [self.allDataArr addObject:section];
+    NSInteger finalIndex = 0;
+    if (index <= 0) {
+        finalIndex = 0;
+    }else if (index >= arr.count){
+        finalIndex = arr.count;
+    }else{
+        finalIndex = index;
+    }
+    return finalIndex;
+}
+- (void)insertOneSection:(id<HDSectionModelProtocol>)section atIndex:(NSInteger)index
+{
+    NSInteger reloadBeginIndex = [self getFinalIndexWithArr:self.allDataArr wantInsertIndex:index];
+    if (index <= 0) {
+        [self.allDataArr insertObject:section atIndex:0];
+    }else if (index >= self.allDataArr.count){
+        [self.allDataArr addObject:section];
+    }else{
+        [self.allDataArr insertObject:section atIndex:index];
+    }
+    
     [self updateSecitonModelDict:NO];
     section.layout.needUpdate = YES;
-    [self reloadSectionAfter:self.allDataArr.count-1];
+    [self reloadSectionAfter:reloadBeginIndex];
 }
 
 - (void)reloadSectionAfter:(NSInteger)sectionIndex

@@ -98,9 +98,11 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
             //对于已经不再可视范围内的，需要重新获取。重新获取的属性，其原来的frame等属性不能被改，所以必须copy一份
             header = [layout layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                           atIndexPath:[NSIndexPath indexPathForItem:0 inSection:obj.section]];
-            header = [header copy];
-            [AllRectAtts addObject:header];
-            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset];
+            if (header) {
+                header = [header copy];
+                [AllRectAtts addObject:header];
+                [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset];
+            }
         }else{
             NSInteger orgAttIndex = [objc_getAssociatedObject(header, HDUICollectionViewLayoutAttributesIndexKey) integerValue];
             header = [header copy];//必须copy，不破坏初始计算值，不copy会导致无法正确归位

@@ -52,6 +52,7 @@ HDCollectionView是用于快速搭建高效灵活的滑动列表组件，基本�
 * **每段(section)可使用不同布局。(注意这里是用一个collectionView实现分段布局)**
 * 支持缓存cell所有子view的frame
 * 统一cell/header/footer/decoration回调，统一UI更新
+* 兼容系统UICollectionViewFlowLayout
 * 横纵向滑动支持
 ### 3、详细描述
 ####  3.1、数据驱动

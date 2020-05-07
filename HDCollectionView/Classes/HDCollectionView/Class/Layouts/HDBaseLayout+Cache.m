@@ -48,13 +48,15 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
         }
         return arr;
     };
-    
 
     switch (layout.HDDataChangeType) {
         case HDDataChangeSetAll:
             result = calculateLayout();
             break;
         case HDDataChangeAppendSec:
+            result = calculateOrUpdateXYOnly();
+            break;
+        case HDDataChangeInsertSec:
             result = calculateOrUpdateXYOnly();
             break;
         case HDDataChangeAppendCellModel:
@@ -95,9 +97,11 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
     //更新decoration
     if ([self respondsToSelector:@selector(decorationAtt)]) {
         UICollectionViewLayoutAttributes *decorationAtt = self.decorationAtt;
+        
         if (decorationAtt) {
             CGRect newFrame = CGRectMake(decorationAtt.frame.origin.x+offsetXY.x, decorationAtt.frame.origin.y+offsetXY.y, decorationAtt.frame.size.width, decorationAtt.frame.size.height);
             decorationAtt.frame = newFrame;
+            decorationAtt.indexPath = [NSIndexPath indexPathWithIndex:secM.section];
         }
     }
     

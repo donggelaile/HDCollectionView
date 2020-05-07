@@ -79,6 +79,7 @@ typedef NS_ENUM(NSInteger,HDCollectionViewEventDealPolicy) {
 typedef NS_ENUM(NSInteger,HDDataChangeType){
     HDDataChangeSetAll,
     HDDataChangeAppendSec,
+    HDDataChangeInsertSec,
     HDDataChangeAppendCellModel,
     HDDataChangeDeleteSec,
     HDDataChangeChangeSec,
@@ -100,6 +101,14 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
  */
 - (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel animated:(BOOL)animated;
+
+/**
+插入一个secModel到指定位置
+ index <= 0 插入到首段
+ index >= allDataArr.count 添加到最后一段
+ 0 < index < allDataArr.count 插入到index段的前面
+ */
+- (void)hd_insertDataWithSecModel:(id<HDSectionModelProtocol>)secModel atIndex:(NSInteger)index animated:(BOOL)animated;
 
 /**
  向某个段内增加cell/默认的sectionKey是第几段
@@ -194,7 +203,7 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 @property (nonatomic, assign, readonly) BOOL isNeedAdaptScreenRotaion;
 @property (nonatomic, assign, readonly) BOOL isInnerDataEmpty;//内部数据是否为空
 @property (nonatomic, assign, readonly) BOOL isDeletingSection;
-@property (nonatomic, assign, readonly) BOOL isAppendingSection;
+@property (nonatomic, assign, readonly) BOOL isAppendingOrInsertingSection;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;

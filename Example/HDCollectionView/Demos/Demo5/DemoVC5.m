@@ -13,6 +13,7 @@
 @interface DemoVC5 ()
 {
     CGFloat collecitonViewH;
+    HDCollectionView *listV;
 }
 @end
 
@@ -30,7 +31,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     collecitonViewH = 350;
-    HDCollectionView *listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
+    listV = [HDCollectionView hd_makeHDCollectionView:^(HDCollectionViewMaker *maker) {
         maker
         .hd_isNeedTopStop(YES)
         .hd_isUseSystemFlowLayout(NO)

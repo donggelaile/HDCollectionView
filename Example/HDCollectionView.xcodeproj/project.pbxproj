@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		280535322447ED1100BE0249 /* README_CN.md in Resources */ = {isa = PBXBuildFile; fileRef = 280535312447ED1100BE0249 /* README_CN.md */; };
 		28890182241B207100406FE8 /* DemoVC3CellVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28890181241B207100406FE8 /* DemoVC3CellVM.m */; };
+		2889DDD6245AD386006C8670 /* DemoVC1Footer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2889DDD5245AD386006C8670 /* DemoVC1Footer.m */; };
 		28AC5E0D235ED6F300657ACE /* NSArray+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */; };
 		28AC5E10235FF9E300657ACE /* DemoVC4DecorationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AC5E0F235FF9E300657ACE /* DemoVC4DecorationView.m */; };
 		28E4B543230263A700BEBC34 /* QQDemo2FriendVCVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 28E4B542230263A700BEBC34 /* QQDemo2FriendVCVM.m */; };
@@ -116,6 +117,8 @@
 		280DA6C8242B01D1007CCB90 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		28890180241B207100406FE8 /* DemoVC3CellVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC3CellVM.h; sourceTree = "<group>"; };
 		28890181241B207100406FE8 /* DemoVC3CellVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoVC3CellVM.m; sourceTree = "<group>"; };
+		2889DDD4245AD386006C8670 /* DemoVC1Footer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoVC1Footer.h; sourceTree = "<group>"; };
+		2889DDD5245AD386006C8670 /* DemoVC1Footer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoVC1Footer.m; sourceTree = "<group>"; };
 		28AC5E0B235ED6F300657ACE /* NSArray+HDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+HDHelper.h"; sourceTree = "<group>"; };
 		28AC5E0C235ED6F300657ACE /* NSArray+HDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+HDHelper.m"; sourceTree = "<group>"; };
 		28AC5E0E235FF9E300657ACE /* DemoVC4DecorationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoVC4DecorationView.h; sourceTree = "<group>"; };
@@ -663,6 +666,8 @@
 				6696B2CA2272B4AE007FDFE4 /* DemoVC1Cell.m */,
 				6696B2C92272B4AE007FDFE4 /* DemoVC1Header.h */,
 				6696B2C72272B4AE007FDFE4 /* DemoVC1Header.m */,
+				2889DDD4245AD386006C8670 /* DemoVC1Footer.h */,
+				2889DDD5245AD386006C8670 /* DemoVC1Footer.m */,
 			);
 			path = Demo1;
 			sourceTree = "<group>";
@@ -969,6 +974,7 @@
 				66F90BFE229E66F70043C06D /* NewsDetailDemoVC.m in Sources */,
 				664305452292E1A800E29603 /* QQDemo2VC.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				2889DDD6245AD386006C8670 /* DemoVC1Footer.m in Sources */,
 				6696B3102272B4C4007FDFE4 /* ViewController.m in Sources */,
 				6696B2EE2272B4AE007FDFE4 /* DemoVC3.m in Sources */,
 				6696B3202272B76C007FDFE4 /* YYFPSLabel.m in Sources */,
