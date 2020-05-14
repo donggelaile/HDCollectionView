@@ -453,10 +453,6 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
                 [self insertOneSection:secModel atIndex:NSIntegerMax];
             }
-            if (!animated) {
-                [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
-            }
-            
         };
         
         if (animated) {
@@ -472,6 +468,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         }else{
             updateLayout();
             self->_isAppendingOrInsertingSection = NO;
+            [self hd_dataDealFinishCallback:HDDataChangeAppendSec reloadDataImp:animationImp];
         }
     });
 }
@@ -530,12 +527,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             }else{
                 [self updateHDColltionViewDataType:type start:finalStart];
                 [self insertOneSection:secModel atIndex:index];
-                
             }
-            if (!animated) {
-                [self hd_dataDealFinishCallback:type reloadDataImp:animationImp];
-            }
-            
         };
         
         if (animated) {
@@ -563,6 +555,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
         }else{
             updateLayout();
             self->_isAppendingOrInsertingSection = NO;
+            [self hd_dataDealFinishCallback:type reloadDataImp:animationImp];
         }
         
     });
@@ -730,9 +723,6 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
                 [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
                 [self reloadSectionAfter:secIndex];
             }
-            if (!animated) {
-                [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
-            }
         };
         
         if (animated) {
@@ -745,8 +735,8 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             [self.collectionV performBatchUpdates:^{
                 [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
             } completion:^(BOOL finished) {
-                [self.collectionV reloadData];
                 self->_isDeletingSection = NO;
+                [self.collectionV reloadData];
                 if (animationFinish) {
                     animationFinish();
                 }
@@ -759,6 +749,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
             [self.allSecDict removeObjectForKey:sectionKey];
             updateLayout();
             self->_isDeletingSection = NO;
+            [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
         }
     });
 }

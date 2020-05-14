@@ -13,18 +13,11 @@
 #import "HDBaseLayout+Cache.h"
 #import "HDDefines.h"
 
-#define HDContinueFindCount 200
-static NSString *const HDNormalLayoutAttsKey = @"HDNormalLayoutAttsKey";
-static NSString *const HDWaterFlowSectionKey = @"HDWaterFlowSectionKey";
-static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
-
 @implementation HDCollectionViewLayout
 {
-    CGFloat contentX;
-    CGFloat contentY;
     BOOL isNeedTopStop;
-    NSMutableArray *cachedAttributes;//所有属性缓存(不包含装饰view)
-    NSMutableDictionary *cacheDicAtts;//所有属性字典缓存, 与cachedAttributes中的obj是同一个obj
+    BOOL isNeedReloadAll;
+    NSMutableDictionary *cacheDicAtts;//所有属性字典缓存
     CGPoint *currentStart;
     CGPoint realCurrentStart;
 }
@@ -40,7 +33,7 @@ static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
 }
 - (void)resetData
 {
-    cachedAttributes = @[].mutableCopy;
+    isNeedReloadAll = YES;
     cacheDicAtts = @{}.mutableCopy;
     realCurrentStart = CGPointZero;
     currentStart = &realCurrentStart;
@@ -62,8 +55,9 @@ static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
     [super prepareLayout];
     [self invalidateLayout];
     
-    if (cachedAttributes.count == 0) {
+    if (isNeedReloadAll) {
         [self reloadAll];
+        isNeedReloadAll = NO;
     }
 }
 - (void)setAllNeedUpdate
@@ -78,17 +72,10 @@ static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
 - (void)reloadSetionAfter:(NSInteger)sectionIndex
 {
     //前一段布局改变后，会影响其后的所有布局，该段后面的都要刷新
-    if (sectionIndex == 0) {
-        [cachedAttributes removeAllObjects];
-    }else{
-        NSInteger firstAttIndex = [self findFirstSetionAttIndex:sectionIndex];
-        cachedAttributes = [cachedAttributes subarrayWithRange:NSMakeRange(0, firstAttIndex)].mutableCopy;
-        
-        if (firstAttIndex == 0 || cachedAttributes.count == 0) {
-            sectionIndex = 0;
-        }
-    }
     //刷新重新添加
+    if (sectionIndex<0 || isNeedReloadAll) {
+        sectionIndex = 0;
+    }
     for (NSInteger i=sectionIndex; i<[self allDataArr].count; i++) {
         id<HDSectionModelProtocol> sec = [self allDataArr][i];
         
@@ -105,61 +92,12 @@ static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
     currentStart->x = lastSec.layout.cacheEnd.x;
     currentStart->y = lastSec.layout.cacheEnd.y;
     
-    
-}
-//找到某段内第一个att在cachedAttributes数组中的位置
-- (NSInteger)findFirstSetionAttIndex:(NSInteger)section
-{
-    NSInteger start = 0;
-    NSInteger end = cachedAttributes.count-1;
-    NSInteger result = cachedAttributes.count;//未找到（返回需要删除的起始位置，未找到返回末尾位置）
-
-    BOOL isStop = NO;
-    while (start<=end) {
-        if (isStop) {
-            break;
-        }
-        NSInteger mid = (start+end)/2;
-        UICollectionViewLayoutAttributes *att = cachedAttributes[mid];
-        if (att.indexPath.section == section) {
-            result = mid;
-            for (NSInteger j=mid-1; j>=0; j--) {
-                UICollectionViewLayoutAttributes *frontAtt = cachedAttributes[j];
-                if (frontAtt.indexPath.section == section) {
-                    result = j;
-                    if (result <= 0) {
-                        isStop = YES;
-                        break;
-                    }
-                }else{
-                    isStop = YES;
-                    break;
-                }
-            }
-            break;
-        }else if (att.indexPath.section>section){
-            if (end == mid) {
-                end -= 1;
-            }else{
-                end = mid;
-            }
-        }else if (att.indexPath.section<section){
-            if (start == mid) {
-                start += 1;
-            }else{
-                start = mid;
-            }
-        }
-    
-    }
-    return result;
 }
 
 - (void)addOneSection:(id<HDSectionModelProtocol>)section isFirst:(BOOL)isFirst
 {
     NSArray *Atts = [section.layout getAttsWithLayout:self sectionModel:section currentStart:currentStart isFirstSec:isFirst];
     [Atts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes* obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self->cachedAttributes addObject:obj];
         
         NSString *cacheKey = [self getCacheKeyByKind:obj.representedElementKind indexPath:obj.indexPath];
         if (cacheKey) {
@@ -189,10 +127,6 @@ static NSString *const HDVisiableSecitonsKey = @"HDVisiableSecitonsKey";
     }
     if (rect.size.height <= 1) {
         rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, self.collectionView.frame.size.height);
-    }
-
-    if (cachedAttributes.count<=0) {
-        return @[];
     }
     
     //基类layout(指HDCollectionViewLayout)只负责查找当前有哪些段(section),在当前rect显示。
