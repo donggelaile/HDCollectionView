@@ -234,14 +234,14 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void)){
     }
 }
 
-void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
+void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
 {
     if ([NSThread currentThread].isMainThread) {
         if (thingsToDo) {
             thingsToDo();
         }
     }else{
-        dispatch_sync(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             if (thingsToDo) {
                 thingsToDo();
             }
@@ -414,7 +414,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 #pragma mark - dataSet
 - (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>*)dataArr
 {
-    HDDoSomeThingInMainQueueSyn(^{
+    HDDoSomeThingInMainQueue(^{
         self.allSecDict = nil;
         if (!dataArr) {
             self.allDataCopy = @[].mutableCopy;
@@ -427,7 +427,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 
 - (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol> )secModel animated:(BOOL)animated
 {
-    HDDoSomeThingInMainQueueSyn(^{
+    HDDoSomeThingInMainQueue(^{
         if (!secModel) {
             return;
         }
@@ -480,7 +480,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)_innerInsertSecModel:(id<HDSectionModelProtocol>)secModel type:(HDDataChangeType)type atIndex:(NSInteger)index animated:(BOOL)animated
 {
-    HDDoSomeThingInMainQueueSyn(^{
+    HDDoSomeThingInMainQueue(^{
         if (!secModel) {
             return;
         }
@@ -562,7 +562,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>> *)itemArr sectionKey:(NSString *)sectionKey animated:(BOOL)animated animationFinishCallback:(void (^)(void))animationFinish
 {
-    HDDoSomeThingInMainQueueSyn(^{
+    HDDoSomeThingInMainQueue(^{
         id<HDSectionModelProtocol> secModel = self.allSecDict[sectionKey];
         if (![(NSObject*)secModel conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
             return;
@@ -623,7 +623,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish
 {
-    HDDoSomeThingInMainQueueSyn(^{
+    HDDoSomeThingInMainQueue(^{
         if (!sectionKey) {
             return;
         }
@@ -698,7 +698,7 @@ void HDDoSomeThingInMainQueueSyn(void(^thingsToDo)(void))
 }
 - (void)hd_deleteSectionWithKey:(NSString *)sectionKey animated:(BOOL)animated animationFinishCallback:(void (^ _Nullable)(void))animationFinish
 {
-    HDDoSomeThingInMainQueueSyn(^{
+    HDDoSomeThingInMainQueue(^{
         if (!sectionKey || self->_isDeletingSection) {
             return;
         }
