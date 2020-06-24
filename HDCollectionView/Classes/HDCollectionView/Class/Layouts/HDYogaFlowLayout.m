@@ -29,6 +29,13 @@
         return self;
     };
 }
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(BOOL))hd_reverseRowOrColumn
+{
+    return ^(BOOL reverseRowOrColumn){
+        self.allValues[@"reverseRowOrColumn"] = [NSNumber numberWithBool:reverseRowOrColumn];
+        return self;
+    };
+}
 - (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGAlign))hd_align
 {
     return ^(YGAlign align){
@@ -94,6 +101,7 @@
         self.footerSize = CGSizeZero;
         self.verticalGap = 0;
         self.horizontalGap = 0;
+        self.reverseRowOrColumn = NO;
 
     }
     return self;
@@ -104,9 +112,9 @@
     __block CGRect sectionSize = CGRectMake(cStart->x, cStart->y, 0, 0);
     
     HDFlowLayoutSecModel *secM = [HDFlowLayoutSecModel new];
-    YGFlexDirection fd = YGFlexDirectionRow;
+    YGFlexDirection fd = self.reverseRowOrColumn?YGFlexDirectionRowReverse:YGFlexDirectionRow;
     if (layout.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-        fd = YGFlexDirectionColumn;
+        fd = self.reverseRowOrColumn?YGFlexDirectionColumnReverse:YGFlexDirectionColumn;
     }
 
     secM.superViewSize = layout.collectionView.superview.frame.size;

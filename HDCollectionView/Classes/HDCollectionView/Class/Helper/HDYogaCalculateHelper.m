@@ -75,7 +75,7 @@ void YGSetSize(YGNodeRef node, CGSize size){
     YGAlign secAlign = sec.align;
     YGFlexDirection secFlexD = sec.flexDirection;
 
-    //初始化根节点，对应collectionView
+    //初始化根节点，对应collectionView的某个section
     HDYogaNode* rootNode = [HDYogaNode defaultNode];
     YGNodeStyleSetFlexDirection(rootNode.yogaNode, YGFlexDirectionRow);
     YGNodeStyleSetJustifyContent(rootNode.yogaNode, YGJustifyFlexStart);
@@ -119,7 +119,7 @@ void YGSetSize(YGNodeRef node, CGSize size){
         } 
         
         /*
-         因为cell间的间距是由cellNode设置margain的left及top实现的：(YGSetMargain(subNode.yogaNode, UIEdgeInsetsMake(mTop, mLeft, margin.bottom, margin.right)); 149行)
+         因为cell间的间距是由cellNode设置margain的left及top实现的：(YGSetMargain(subNode.yogaNode, UIEdgeInsetsMake(mTop, mLeft, margin.bottom, margin.right)); 153行)
          因此需要对cell的父node设置整体偏移，否则段内左间距及顶部间距将变为secInset与verticalGap/horizontalGap之和
          */
         YGSetMargain(helpNode.yogaNode, UIEdgeInsetsMake(-sec.verticalGap, -sec.horizontalGap, 0, 0));
