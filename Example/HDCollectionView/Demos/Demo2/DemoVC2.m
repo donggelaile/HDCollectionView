@@ -73,7 +73,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
                 [listV hd_setAllDataArrSlowly:randomArr preloadOffset:3000 currentCalculateSectionFinishCallback:^(NSInteger curSection) {
-                        NSLog(@"正在计算第%zd段布局",curSection);
+                        NSLog(@"第%zd段布局计算完毕",curSection);
                 }];
             //  [listV hd_setAllDataArr:randomArr];//对比一次计算所有数据
         });
@@ -183,14 +183,14 @@
 }
 - (void)clickHeader:(HDSectionModel*)secM
 {
-    [listV hd_deleteSectionWithKey:secM.sectionKey animated:NO];
+    [listV hd_deleteSectionWithKey:secM.sectionKey animated:YES];
 //    NSLog(@"点击了段头_%zd",secM.section);
 }
 - (void)clickFooter:(HDSectionModel*)secM
 {
     NSLog(@"点击了段尾_%zd",secM.section);
     CGFloat scWidth = [UIScreen mainScreen].bounds.size.width;
-    [listV hd_appendDataWithSecModel:[self makeSecModel:scWidth] animated:NO];
+    [listV hd_appendSecSlowly:[self makeSecModel:scWidth]];
 }
 - (void)dealloc
 {

@@ -718,21 +718,19 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         }
         
         void(^updateLayout)(void) = ^(){
-            if (secIndex!=NSNotFound) {
+            [self.allSecDict removeObjectForKey:sectionKey];
+            if (secIndex != NSNotFound) {
+                [self.allDataArr removeObjectAtIndex:secIndex];
                 [self updateSecitonModelDict:NO];
                 [self updateHDColltionViewDataType:HDDataChangeDeleteSec start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
                 [self reloadSectionAfter:secIndex];
             }
+            
         };
         
         if (animated) {
-            if (secIndex != NSNotFound) {
-                [self.allDataArr removeObjectAtIndex:secIndex];
-            }
-            [self.allSecDict removeObjectForKey:sectionKey];
-            updateLayout();
-            
             [self.collectionV performBatchUpdates:^{
+                updateLayout();
                 [self.collectionV deleteSections:[NSIndexSet indexSetWithIndex:secIndex]];
             } completion:^(BOOL finished) {
                 self->_isDeletingSection = NO;
@@ -743,10 +741,6 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
                 [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
             }];
         }else{
-            if (secIndex != NSNotFound) {
-                [self.allDataArr removeObjectAtIndex:secIndex];
-            }
-            [self.allSecDict removeObjectForKey:sectionKey];
             updateLayout();
             self->_isDeletingSection = NO;
             [self hd_dataDealFinishCallback:HDDataChangeDeleteSec reloadDataImp:animationImp];
