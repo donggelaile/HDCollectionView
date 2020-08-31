@@ -4,6 +4,31 @@
 ![](https://img.shields.io/badge/language-objectiveC-green.svg)
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
+* [HDCollectionView](#hdcollectionview)
+   * [简述](#简述)
+      * [1、为什么创建这个库?](#1为什么创建这个库)
+      * [2、使用HDCollectionView来搭建滑动列表有哪些优势？](#2使用hdcollectionview来搭建滑动列表有哪些优势)
+      * [3、详细描述](#3详细描述)
+         * [3.1、数据驱动](#31数据驱动)
+         * [3.2、高效查找](#32高效查找)
+         * [3.3、基于<a href="https://github.com/facebook/yoga">Yoga</a>的流式布局](#33基于yoga的流式布局)
+         * [3.4、瀑布流](#34瀑布流)
+         * [3.5、header悬浮](#35header悬浮)
+         * [3.6、关于cell自动算高](#36关于cell自动算高)
+         * [3.7、关于添加decorationView](#37关于添加decorationview)
+         * [3.8、每段可以使用不同的布局](#38每段可以使用不同的布局)
+         * [3.9、cell子view frame缓存](#39cell子view-frame缓存)
+         * [3.10、统一回调](#310统一回调)
+         * [3.11、横纵向滑动支持](#311横纵向滑动支持)
+      * [4、安装](#4安装)
+      * [5、一些其他布局](#5一些其他布局)
+            * [其他使用详情参见源码及demo,源码API已经做了尽量多的注释](#其他使用详情参见源码及demo源码api已经做了尽量多的注释)
+      * [6、其它](#6其它)
+   * [Requirements](#requirements)
+   * [License](#license)
+   
+TOC Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 # [相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
 
 ## 现已支持diff操作

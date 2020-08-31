@@ -4,6 +4,16 @@
 ![](https://img.shields.io/badge/language-objectiveC-green.svg)
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
+* [HDCollectionView](#hdcollectionview)
+   * [Brief](#brief)
+      * [1. What are the advantages of using HDCollectionView to build a sliding list?](#1-what-are-the-advantages-of-using-hdcollectionview-to-build-a-sliding-list)
+      * [2, installation](#2-installation)
+      * [3, how to use](#3-how-to-use)
+   * [Requirements](#requirements)
+   * [License](#license)
+   
+TOC Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
 [中文详细说明](https://github.com/donggelaile/HDCollectionView/blob/master/README_CN.md)
 
 [相关文章](https://juejin.im/post/5d50c664f265da03e71ae6a6)
