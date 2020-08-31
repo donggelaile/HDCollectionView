@@ -6,9 +6,9 @@
 
 * [HDCollectionView](#hdcollectionview)
    * [Brief](#brief)
-      * [1. What are the advantages of using HDCollectionView to build a sliding list?](#1-what-are-the-advantages-of-using-hdcollectionview-to-build-a-sliding-list)
-      * [2, installation](#2-installation)
-      * [3, how to use](#3-how-to-use)
+      * [1. features](#1-what-are-the-advantages-of-using-hdcollectionview-to-build-a-sliding-list)
+      * [2. installation](#2-installation)
+      * [3. how to use](#3-how-to-use)
    * [Requirements](#requirements)
    * [License](#license)
    
