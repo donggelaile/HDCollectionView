@@ -59,6 +59,12 @@ static char *HDCalculateSectionFinishCbKey;
 
 - (void)hd_setAllDataArrSlowly:(NSArray<id<HDSectionModelProtocol>> *)dataArr preloadOffset:(NSInteger)preloadOffset currentCalculateSectionFinishCallback:(nullable void (^)(NSInteger))callback
 {
+    if ([self.collectionV.collectionViewLayout isKindOfClass:UICollectionViewFlowLayout.class]) {
+        // 使用系统flowLayout时不支持渐进加载
+        [self hd_setAllDataArr:dataArr];
+        return;;
+    }
+    
     [self hd_setAllDataArr:@[]];
     self.slowlyDataArr = dataArr.mutableCopy;
     self.currentLoadSec = 0;

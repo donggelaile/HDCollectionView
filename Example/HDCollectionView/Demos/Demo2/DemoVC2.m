@@ -56,7 +56,7 @@
     //大量数据测试
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableArray *randomArr = @[].mutableCopy;
-        for (int i=0; i<5000; i++) {
+        for (int i=0; i<1000; i++) {
             if (arc4random()%2) {
                 HDSectionModel *sec = [self makeCellSizeRandomSecModel:scWidth];
                 sec.headerObj = @(i).stringValue;
@@ -75,7 +75,7 @@
                 [listV hd_setAllDataArrSlowly:randomArr preloadOffset:3000 currentCalculateSectionFinishCallback:^(NSInteger curSection) {
                         NSLog(@"第%zd段布局计算完毕",curSection);
                 }];
-            //  [listV hd_setAllDataArr:randomArr];//对比一次计算所有数据
+//              [listV hd_setAllDataArr:randomArr];//对比一次计算所有数据
         });
     });
     
@@ -103,7 +103,7 @@
     
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 30;
+    NSInteger cellCount = 20;
     for (int i =0; i<cellCount; i++) {
         HDCellModel *model = [HDCellModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
@@ -140,7 +140,7 @@
     
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 30;
+    NSInteger cellCount = 20;
     for (int i =0; i<cellCount; i++) {
         
         CGFloat randomW = arc4random()%200+40;

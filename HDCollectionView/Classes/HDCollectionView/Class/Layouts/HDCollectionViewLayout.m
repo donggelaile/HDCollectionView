@@ -201,6 +201,8 @@
             id<HDSectionModelProtocol>secModel = secModelArr[i];
             if (CGRectIntersectsRect(secModel.secProperRect.CGRectValue,rect)) {
                 [result insertObject:@(i) atIndex:0];
+            }else{
+                break;
             }
         }
         
@@ -209,6 +211,8 @@
             id<HDSectionModelProtocol>secModel = secModelArr[i];
             if (CGRectIntersectsRect(secModel.secProperRect.CGRectValue,rect)) {
                 [result addObject:@(i)];
+            }else{
+                break;
             }
         }
     }

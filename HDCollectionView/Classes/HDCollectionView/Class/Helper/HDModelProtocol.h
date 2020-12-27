@@ -198,7 +198,7 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
 @property (nonatomic, strong, nullable) id otherParameter;
 
 /**
- 该段section整体合适的frame
+ 该段section整体合适的frame (isUseSystemFlowLayout为YES时HDSectionModel该属性返回nil)
  */
 @property (nonatomic, strong, readonly, nullable) NSValue* secProperRect;
 

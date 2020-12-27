@@ -47,10 +47,9 @@
     NSInteger cellCount = 15;
     CGFloat vhGap = 10;
     UIEdgeInsets secInset = UIEdgeInsetsMake(30, 10, 30, 10);
-    NSInteger columCount = arc4random()%4+3;
-    CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
     
     for (int i =0; i<cellCount; i++) {
+        CGFloat cellW = arc4random()%100+40;
         HDCellModel *model = HDMakeCellModelChain
         .hd_orgData(@(i).stringValue)
         .hd_cellSize(CGSizeMake(cellW, 50))

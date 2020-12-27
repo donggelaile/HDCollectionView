@@ -67,7 +67,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
 
 - (void)loadData
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         /*
          可以将 hd_appendDataWithSecModel 放到 NSDefaultRunLoopMode中。因为hd_appendDataWithSecModel中包含该段cell的布局计算,是耗时操作
          此时如果列表在滑动(即在 UITrackingRunLoopMode时), HDDoSomeThingInMode中的代码将暂时不会执行，直至滑动结束
@@ -94,7 +94,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 10;
+    NSInteger cellCount = 50;
     for (int i =0; i<cellCount; i++) {
         DemoVC3CellVM *model = [DemoVC3CellVM new];
         model.orgData      = [DemoVC3CellModel randomModel];

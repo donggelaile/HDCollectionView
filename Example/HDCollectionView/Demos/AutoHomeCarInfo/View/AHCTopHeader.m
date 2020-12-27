@@ -127,7 +127,7 @@
     self.lineBg.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.lineBg.layer.borderWidth = 1/[UIScreen mainScreen].scale;
     __block CGFloat cx = 0;
-    [model.sectionDataArr enumerateObjectsUsingBlock:^(HDCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [model.sectionDataArr enumerateObjectsUsingBlock:^(id<HDCellModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
         cx += obj.cellSize.width;
         if (idx<model.sectionDataArr.count-1) {
             UIView *line = [[UIView alloc] initWithFrame:CGRectMake(cx+offsetX, 0, 1/[UIScreen mainScreen].scale, obj.cellSize.height)];
