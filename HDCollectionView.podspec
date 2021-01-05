@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HDCollectionView'
-  s.version          = '0.6.8'
+  s.version          = '0.6.9'
   s.summary          = '快速构建灵活易用滑动列表的第三方库'
 
 # This description is used to generate tags and improve search results.
@@ -40,6 +40,6 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.libraries = 'c++'
-  s.dependency 'Yoga', '~> 1.9.0'
+  s.dependency 'Yoga', '~> 1.14.0'
   s.dependency 'HDListViewDiffer'
 end

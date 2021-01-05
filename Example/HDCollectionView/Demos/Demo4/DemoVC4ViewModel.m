@@ -61,7 +61,7 @@
     //该段layout
     HDYogaFlowLayout *layout = HDMakeYogaFlowLayoutChain
     .hd_secInset(secInset)
-    .hd_justify(arc4random()%YGJustifyCount)
+    .hd_justify(arc4random()%6)
     .hd_verticalGap(vhGap)
     .hd_horizontalGap(vhGap)
     .hd_headerSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 50))

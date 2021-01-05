@@ -161,14 +161,13 @@ void YGSetSize(YGNodeRef node, CGSize size){
 
     CGSize calculateSize = rootSize;
     if (scrollD == UICollectionViewScrollDirectionVertical) {
-        calculateSize = CGSizeMake(calculateSize.width, CGFLOAT_MAX);
+        calculateSize = CGSizeMake(calculateSize.width, NAN);
     }else{
-        calculateSize = CGSizeMake(CGFLOAT_MAX, calculateSize.height);
+        calculateSize = CGSizeMake(NAN, calculateSize.height);
     }
     
     //父view大小计算
-
-YGNodeCalculateLayout(rootNode.yogaNode,calculateSize.width,calculateSize.height,YGNodeStyleGetDirection(rootNode.yogaNode));
+    YGNodeCalculateLayout(rootNode.yogaNode,calculateSize.width,calculateSize.height,YGNodeStyleGetDirection(rootNode.yogaNode));
     NSMutableArray *result = @[].mutableCopy;
     
     //添加heder point

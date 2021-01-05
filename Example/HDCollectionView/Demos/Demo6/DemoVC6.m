@@ -119,7 +119,7 @@
     //该段layout
     HDYogaFlowLayout *layout = [HDYogaFlowLayout new];//isUseSystemFlowLayout为YES时只支持HDBaseLayout
     layout.secInset      = secInset;
-    layout.justify       = arc4random()%YGJustifyCount;
+    layout.justify       = arc4random()%6;
     layout.verticalGap   = vhGap;
     layout.horizontalGap = vhGap;
     layout.headerSize    = CGSizeMake(self.view.frame.size.width, 50);
