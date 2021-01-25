@@ -33,10 +33,8 @@
     }];
     
     [self.view addSubview:listV];
-    
-    HDSectionModel *sec1 = [self makeSecModel];
-    
-    [listV hd_setAllDataArr:@[sec1]];
+        
+    [self appendRandomSecs];
     
     __weak typeof(self) weakS = self;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
@@ -132,10 +130,22 @@
 }
 - (void)clickFooter:(HDSectionModel*)secM
 {
-    HDSectionModel *newSec = [self makeSecModel];
-    //这里仅当hd_isUseSystemFlowLayout为YES时，animated参数可以传YES
-    //因为目前HDCollectionViewLayout 对header/footer的动画支持不太好
-    [listV hd_insertDataWithSecModel:newSec atIndex:0 animated:YES];
+//    HDSectionModel *newSec = [self makeSecModel];
+//    //这里仅当hd_isUseSystemFlowLayout为YES时，animated参数可以传YES
+//    //因为目前HDCollectionViewLayout 对header/footer的动画支持不太好
+//    [listV hd_insertDataWithSecModel:newSec atIndex:0 animated:YES];
+    
+    [self appendRandomSecs];
+}
+
+- (void)appendRandomSecs
+{
+    NSInteger addSecCount = arc4random()%5 + 2;
+    NSMutableArray *addSecs = @[].mutableCopy;
+    for (int i=0; i < addSecCount; i++) {
+        [addSecs addObject:[self makeSecModel]];
+    }
+    [listV hd_appendDataWithSecModelArr:addSecs animated:YES];
 }
 /*
 #pragma mark - Navigation

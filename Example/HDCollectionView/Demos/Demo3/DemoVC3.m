@@ -82,7 +82,8 @@ extern BOOL isDemo3OpenSubviewFrameCache;
         HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
             //其实里面的代码最终还是在主线程执行，只是此时用户已经不再滑动列表了。
 //            [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:NO];
-            [self->listV hd_insertDataWithSecModel:[self makeSecModel] atIndex:NSIntegerMax animated:NO];
+            NSArray *secArr = @[[self makeSecModel],[self makeSecModel]];
+            [self->listV hd_appendDataWithSecModelArr:secArr animated:YES];
             [listV.collectionV.mj_footer endRefreshing];//注意结束刷新也要放到里面
         });
         
@@ -94,7 +95,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 50;
+    NSInteger cellCount = 5;
     for (int i =0; i<cellCount; i++) {
         DemoVC3CellVM *model = [DemoVC3CellVM new];
         model.orgData      = [DemoVC3CellModel randomModel];

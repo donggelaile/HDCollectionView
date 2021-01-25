@@ -1,1 +1,0 @@
-../../../../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDScrollJoinView.h

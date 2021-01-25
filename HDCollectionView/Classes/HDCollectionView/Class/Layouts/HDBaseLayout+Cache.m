@@ -62,6 +62,9 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
         case HDDataChangeAppendCellModel:
             result = calculateOrUpdateXYOnly();
             break;
+        case HDDataChangeAppendSecs:
+            result = calculateOrUpdateXYOnly();
+            break;
         case HDDataChangeDeleteSec:
             result = updateAttXY();
             break;

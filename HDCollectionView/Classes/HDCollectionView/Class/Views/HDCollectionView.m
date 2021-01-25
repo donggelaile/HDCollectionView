@@ -477,6 +477,54 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     });
 }
 
+- (void)hd_appendDataWithSecModelArr:(NSArray<id<HDSectionModelProtocol>> *)secModels animated:(BOOL)animated
+{
+    HDDoSomeThingInMainQueue(^{
+        if (![secModels isKindOfClass:NSArray.class]) {
+            return;
+        }
+        self->_isAppendingOrInsertingSection = YES;
+        NSMutableArray<id<HDSectionModelProtocol>> *filterSecArr = @[].mutableCopy;
+        [secModels enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
+                [filterSecArr addObject:obj];
+            }
+        }];
+        if (self.allDataArr.count == 0) {
+            [self layoutIfNeeded];
+        }
+        NSInteger insertBeginIndex = self.allDataArr.count;
+        void(^updateLayout)(void) = ^(){
+            [filterSecArr enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> _Nonnull secModel, NSUInteger idx, BOOL * _Nonnull stop) {
+                [(NSObject*)secModel setValue:@(self.allDataArr.count) forKey:@"section"];
+                if (secModel.isNeedAutoCountCellHW) {
+                    [self hd_autoCountCellsHeight:secModel];
+                }
+            }];
+            [self updateHDColltionViewDataType:HDDataChangeAppendSecs start:nil];
+            [self appendSections:secModels];
+        };
+        
+        if (animated) {
+            [self.collectionV performBatchUpdates:^{
+                updateLayout();
+                NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(insertBeginIndex, filterSecArr.count)];
+                [self.collectionV insertSections:indexSet];
+            } completion:^(BOOL finished) {
+                self->_isAppendingOrInsertingSection = NO;
+                [self hd_dataDealFinishCallback:HDDataChangeAppendSecs animated:animated];
+            }];
+
+        }else{
+            updateLayout();
+            self->_isAppendingOrInsertingSection = NO;
+            [self hd_dataDealFinishCallback:HDDataChangeAppendSecs];
+        }
+        
+        
+    });
+}
+
 - (void)hd_insertDataWithSecModel:(id<HDSectionModelProtocol>)secModel atIndex:(NSInteger)index animated:(BOOL)animated
 {
     HDDoSomeThingInMainQueue(^{
@@ -770,6 +818,18 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     return finalIndex;
 }
 
+//添加多段到数据源并更新布局
+- (void)appendSections:(NSArray<id<HDSectionModelProtocol>>*)sections
+{
+    NSInteger reloadBeginIndex = self.allDataArr.count;
+    [sections enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.allDataArr addObject:obj];
+    }];
+    [self updateSecitonModelDict:YES];
+    [self reloadSectionAfter:reloadBeginIndex];
+}
+
+//添加某段数据到数据源并更新其布局
 - (void)insertOneSection:(id<HDSectionModelProtocol>)section atIndex:(NSInteger)index
 {
     NSInteger reloadBeginIndex = [self getFinalIndexWithArr:self.allDataArr wantInsertIndex:index];

@@ -1,8 +1,8 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/HDCollectionView
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/HDListViewDiffer" "${PODS_CONFIGURATION_BUILD_DIR}/Yoga"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/HDCollectionView" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/HDCollectionView" "${PODS_ROOT}/Headers/Public/HDListViewDiffer" "${PODS_ROOT}/Headers/Public/Yoga"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_ROOT}/Headers/Public/yoga/Yoga.modulemap"
+OTHER_LDFLAGS = $(inherited) -l"c++"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}

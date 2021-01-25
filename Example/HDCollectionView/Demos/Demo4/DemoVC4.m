@@ -65,7 +65,7 @@
     
     [self.viewModel loadData:^(BOOL success, id  _Nonnull res) {
         if (success) {
-            [listV hd_setAllDataArr:res];
+            [listV hd_appendDataWithSecModelArr:res animated:NO];
         }else{
             //error
         }

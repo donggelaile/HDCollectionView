@@ -83,6 +83,7 @@ typedef NS_ENUM(NSInteger,HDDataChangeType){
     HDDataChangeAppendCellModel,
     HDDataChangeDeleteSec,
     HDDataChangeChangeSec,
+    HDDataChangeAppendSecs,
 };
 
 void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
@@ -94,11 +95,13 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 
 /**
  一次性初始化所有数据 (完成后会回调 dataChangeFinishedCallBack)
+ 更适合用来重置所有数据
  */
 - (void)hd_setAllDataArr:(NSArray<id<HDSectionModelProtocol>>* _Nullable)dataArr;
 
 /**
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
+ 该方法在数据源为空或者不为空时均可调用
  */
 - (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel animated:(BOOL)animated;
 
@@ -107,8 +110,15 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
  index <= 0 插入到首段
  index >= allDataArr.count 添加到最后一段
  0 < index < allDataArr.count 插入到index段的前面
+ 该方法在数据源为空或者不为空时均可调用
  */
 - (void)hd_insertDataWithSecModel:(id<HDSectionModelProtocol>)secModel atIndex:(NSInteger)index animated:(BOOL)animated;
+
+/**
+添加多个secModel (完成后会回调 dataChangeFinishedCallBack)
+ 该方法在数据源为空或者不为空时均可调用
+ */
+- (void)hd_appendDataWithSecModelArr:(NSArray<id<HDSectionModelProtocol>>*)secModels animated:(BOOL)animated;
 
 /**
  向某个段内增加cell/默认的sectionKey是第几段

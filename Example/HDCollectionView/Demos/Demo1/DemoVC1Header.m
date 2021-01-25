@@ -43,7 +43,7 @@
 }
 - (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
 {
-    _title.text = [NSString stringWithFormat:@"这是段头---%@",model.headerObj];
+    _title.text = [NSString stringWithFormat:@"这是段头---%@",@(model.section)];
 }
 - (void)clickSelf{
     //无需此判断
