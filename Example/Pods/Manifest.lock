@@ -1,5 +1,5 @@
 PODS:
-  - HDCollectionView (0.6.9):
+  - HDCollectionView (0.7.0):
     - HDListViewDiffer
     - Yoga (~> 1.14.0)
   - HDListViewDiffer (0.2.0)
@@ -45,7 +45,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HDCollectionView: 8b938ece9a82b207631d4afa111d88ddacfa7a52
+  HDCollectionView: 6890ac48b7203bfe417422dbeced74347a596db9
   HDListViewDiffer: f1ab8168cfbaddcb93fd57aebeb03a98e7612c46
   JXCategoryView: 72560616347270d34c2e717cc08030e6218d7eda
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
