@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HDBaseLayout.h"
-#import "YGEnums.h"
+#import <yoga/YGEnums.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDYogaFlowLayoutChainMaker : HDBaseLayoutChainMaker

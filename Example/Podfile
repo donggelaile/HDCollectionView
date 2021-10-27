@@ -2,6 +2,10 @@ use_frameworks!
 
 platform :ios, '8.0'
 
+install! 'cocoapods',
+        :generate_multiple_pod_projects => true,
+        :incremental_installation => true
+
 target 'HDCollectionView_Example' do
   pod 'HDCollectionView', :path => '../'
 

@@ -130,13 +130,9 @@
      */
     [self setLayoutWithModel:cellModel];
 }
-- (DemoVC3CellVM*)viewModel
-{
-    if ([self.hdModel isKindOfClass:DemoVC3CellVM.class]) {
-        return self.hdModel;
-    }
-    return nil;
-}
+
+HDCellVMGetter(DemoVC3CellVM)
+
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     uint64_t dispatch_benchmark(size_t count, void (^block)(void));//GCD私有API

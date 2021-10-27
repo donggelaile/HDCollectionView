@@ -1,0 +1,658 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		005EBD9DB43FBD7397BB04D622E4E453 /* HDWaterFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = E66E32A4F6F1E3D508AB1998FA821589 /* HDWaterFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		017E59A307AAB02CD35525AB3427ED05 /* HDYogaCalculateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2644BEF05FCF7AA39DA0AB486CC93957 /* HDYogaCalculateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		030E058C6995C1102F68F4D230A019DE /* HDCollectionView+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A9192D5A67E6AB19CE9076F4378B29 /* HDCollectionView+HDHelper.m */; };
+		1507EA92A4064CB2C327F82A08FF5E4C /* HDModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = DE110807B968F51429BB8A45152FEF92 /* HDModelProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		152F9AC1A9F1EA11616C4E9E723BBF46 /* HDBaseLayout+Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AFC2FCA8992AFE7AB517EEF0FE848CA /* HDBaseLayout+Cache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		15A93CFD34FC81924C4B081AADC19243 /* HDYogaFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B28AA3990025D649B619D585C1D81B0 /* HDYogaFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E59762D2A06D1902689F363B8E97882 /* HDSectionModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 708252E0D2754C375CA4D36B89997198 /* HDSectionModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28D0202D5FF4AA8602D71B06E61E25E7 /* HDBaseLayout+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBFF908108CFC4E8FC7DD789969730 /* HDBaseLayout+Cache.m */; };
+		2C3811047ECC8C6A7D58E4ECE5165DBF /* HDYogaFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB92E50AEED7C210D424473134A3A4A /* HDYogaFlowLayout.m */; };
+		2C6D507BF02CB687F773C113AF42F117 /* HDAssociationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0DBB10C4A98A0A142E662DA6B26726 /* HDAssociationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		37C2BF830B86736E7D5F0D7841CBA118 /* HDSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B96A28E579E8B5A7E0A097B7148D65E /* HDSectionModel.m */; };
+		466AEF8F551A4D92CAA56987778340E7 /* NSObject+HDCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = FCDBE75BE38CAF1174A4CB4E03754621 /* NSObject+HDCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47AC7D94A580074B197CDF9A1F5D1105 /* HDAssociationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB78B66FFB8E64387E533575A6D55C9 /* HDAssociationManager.m */; };
+		4944F2742272D169815A0AC8514A3A8D /* NSObject+HDCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0FC883C983C04A1D10C073A2B8FD62 /* NSObject+HDCopy.m */; };
+		4B0F12C7FB083C410D3C8826360EC0BB /* HDYogaCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A73141F799C559BF97773555E60571F1 /* HDYogaCalculateHelper.m */; };
+		62F28BAE92006AAD56EF3E1010FCC391 /* HDCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 757D87C42C36470E37F43CCB14E2FAB9 /* HDCollectionView.m */; };
+		660EC425FBC92DD90ED96880CB498F52 /* HDCellFrameCacheHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DF13553E4C5BB58EB6DD682BD8F0C45 /* HDCellFrameCacheHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		681EBD53D8C16F1B4C94D3807A7F5B84 /* HDCollectionView+HDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD95E10D5058BC19FA961360529CA18 /* HDCollectionView+HDHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F8E1F7344B1AD2D5F9D7E552C9522DF /* HDWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C981B3CDC4A22E921EA6D0BA55B649 /* HDWaterFlowLayout.m */; };
+		6FE66B432719BC2DE1CB6CF9C83926A6 /* HDCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A67CF76879C011638859ABF76A12F5 /* HDCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		72222025B7C6482194F633C874656352 /* HDCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 134B847195FE842C3364A8DE38B90F2F /* HDCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77A49E9B40F8650742419C93E3E044B4 /* HDListViewDiffer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B95626F89E0C5315E727BE529212F25 /* HDListViewDiffer.framework */; };
+		7B879775DFE5B08FAE5AE5FF1CBD4C88 /* HDCollectionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CB84B75BEE2B5FC32B5E01D7B7A4B98 /* HDCollectionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BC1D5D2EF6E3B092E59D0A6C6C4B6A5 /* HDSectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 924333837800CA4569613311A6AD7948 /* HDSectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7F4C2CFE771315678B5E91455E5A75A7 /* HDLayoutProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 850B7FA7A897DBD4E525B351968F057C /* HDLayoutProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80AF273AC44511BDA2CDD712B7F7311B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09E7D9C8E7380E0704BB605532C1DF99 /* Foundation.framework */; };
+		86A2C99B8238D04F65BE76A74A7E731D /* HDCellModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7246857CB0F845DADBFF23350BF8953E /* HDCellModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8787CF40B3D99AFE6D9E40C173186E09 /* HDScrollJoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD491CF4F1E23879E2049F861CBFF2 /* HDScrollJoinView.m */; };
+		8A60E6D6E2554708474EC0113D2709DC /* HDUpdateUIProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 25C35AEAA6364E4C77034B32B0DFDC0B /* HDUpdateUIProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8E1A5393322D306313E4CD33C6437458 /* HDBaseLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0679E52ED8CC8930B66134951EFE966D /* HDBaseLayout.m */; };
+		94223C5D56B0B2F24BCEE24A7F8668B5 /* HDScrollJoinView.h in Headers */ = {isa = PBXBuildFile; fileRef = CA71148E85288797029A89CD14F45672 /* HDScrollJoinView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9BDDAEBB27C9A60BFA8040C83357FFF9 /* HDCollectionView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F201F1C65DDD6BD910F5205DCE3575 /* HDCollectionView-dummy.m */; };
+		9BE52B185B0669A1AAAAA8D45DB31F61 /* HDCellFrameCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFBB58F806D29C88CBF597192EA523 /* HDCellFrameCacheHelper.m */; };
+		A30EA349CD5AF1822A2F85C3980959FA /* HDCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA28C6845B77A877EF9DEE7E0079B7 /* HDCollectionCell.m */; };
+		AD95B27C78EA3F40CA35FC4D0C03EDC9 /* HDCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6292C9EBDEEAFD6D0054228F385748 /* HDCollectionViewLayout.m */; };
+		ADCEB8815E29F46BB1AB29DAF4C16002 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFA4739547AAE95C7FE4B4A9D4467F5 /* yoga.framework */; };
+		B41F600CA8003091FC8E98BCFB9FBC89 /* HDCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC3A51D86CC3CFE0DAFFAF5B62FBBAB /* HDCellModel.m */; };
+		B75A1B37475E1FC8A6014BD2B2DA4269 /* HDCollectionView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30438FC6DBE2286CE275F3661CC99BF5 /* HDCollectionView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B769D67986F706600AB269908CB1B4AB /* HDCollectionViewFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 59648BC24406BA69CC3E3EFF7E1F61B7 /* HDCollectionViewFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2B8C1FB3B30208F8951BD2C89C73489 /* HDHeaderStopHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF9A77B08E4D41BC5BCA8D814C5BE9F /* HDHeaderStopHelper.m */; };
+		C923CDFDCE58CCCF99C5F61412BD3135 /* HDSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3CE3CE3A6833573B1549C88ACF711 /* HDSectionView.m */; };
+		D109949CFB5CF6412665BAFC8711E31E /* HDHeaderStopHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = AFDFD26FF3169F3701F9E545E63B0772 /* HDHeaderStopHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DCDBC8716AB00E960244845B97BADB25 /* HDCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD28487C1367032F05CC33B035414B4 /* HDCollectionViewFlowLayout.m */; };
+		F74B8C2EBA6C7103CFFD6349067E8A6D /* HDBaseLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 56E93B4D4E2E0A8A63294A00A30F7787 /* HDBaseLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FCDBD9A36B88077D4E0CCD01F280CE0C /* HDDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D9EE37A397A42DE6C8524B9AF51EE34C /* HDDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		018BDFEEDBD2CCEB720F3420712975F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DAC770F4F9CB4B90FA6D40BA31144AF /* Yoga.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
+			remoteInfo = Yoga;
+		};
+		FA5B90A8B98CF63339850E25BC12B12B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B87E7A7BFE3E7ECEC888695F8B6B6625;
+			remoteInfo = HDListViewDiffer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05FF8838F07A789FC086B5F528A88B97 /* HDCollectionView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HDCollectionView.modulemap; sourceTree = "<group>"; };
+		0679E52ED8CC8930B66134951EFE966D /* HDBaseLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDBaseLayout.m; sourceTree = "<group>"; };
+		09E7D9C8E7380E0704BB605532C1DF99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		0B28AA3990025D649B619D585C1D81B0 /* HDYogaFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDYogaFlowLayout.h; sourceTree = "<group>"; };
+		0CF9A77B08E4D41BC5BCA8D814C5BE9F /* HDHeaderStopHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDHeaderStopHelper.m; sourceTree = "<group>"; };
+		0CFA4739547AAE95C7FE4B4A9D4467F5 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10C981B3CDC4A22E921EA6D0BA55B649 /* HDWaterFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDWaterFlowLayout.m; sourceTree = "<group>"; };
+		134B847195FE842C3364A8DE38B90F2F /* HDCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCollectionViewLayout.h; sourceTree = "<group>"; };
+		20F201F1C65DDD6BD910F5205DCE3575 /* HDCollectionView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HDCollectionView-dummy.m"; sourceTree = "<group>"; };
+		2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HDCollectionView.framework; path = HDCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		25C35AEAA6364E4C77034B32B0DFDC0B /* HDUpdateUIProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDUpdateUIProtocol.h; sourceTree = "<group>"; };
+		2644BEF05FCF7AA39DA0AB486CC93957 /* HDYogaCalculateHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDYogaCalculateHelper.h; sourceTree = "<group>"; };
+		2ACF44A8C7F3EEC7272C304284FCDB8E /* HDCollectionView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HDCollectionView-prefix.pch"; sourceTree = "<group>"; };
+		30438FC6DBE2286CE275F3661CC99BF5 /* HDCollectionView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HDCollectionView-umbrella.h"; sourceTree = "<group>"; };
+		32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = HDListViewDiffer; path = HDListViewDiffer.xcodeproj; sourceTree = "<group>"; };
+		3815E2AB1B467CD8C73AF22E3A1E60CB /* HDCollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HDCollectionView.debug.xcconfig; sourceTree = "<group>"; };
+		3BC3CE3CE3A6833573B1549C88ACF711 /* HDSectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDSectionView.m; sourceTree = "<group>"; };
+		3BD95E10D5058BC19FA961360529CA18 /* HDCollectionView+HDHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HDCollectionView+HDHelper.h"; sourceTree = "<group>"; };
+		3C60BAD15E509A5B5A804AB7A019F6A8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		3DAC770F4F9CB4B90FA6D40BA31144AF /* Yoga */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Yoga; path = Yoga.xcodeproj; sourceTree = "<group>"; };
+		56E93B4D4E2E0A8A63294A00A30F7787 /* HDBaseLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDBaseLayout.h; sourceTree = "<group>"; };
+		59648BC24406BA69CC3E3EFF7E1F61B7 /* HDCollectionViewFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		5B96A28E579E8B5A7E0A097B7148D65E /* HDSectionModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDSectionModel.m; sourceTree = "<group>"; };
+		5C3F29137380875506ACA01F5D81329C /* HDCollectionView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = HDCollectionView.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		5F6292C9EBDEEAFD6D0054228F385748 /* HDCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDCollectionViewLayout.m; sourceTree = "<group>"; };
+		6AFC2FCA8992AFE7AB517EEF0FE848CA /* HDBaseLayout+Cache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HDBaseLayout+Cache.h"; sourceTree = "<group>"; };
+		6DF13553E4C5BB58EB6DD682BD8F0C45 /* HDCellFrameCacheHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCellFrameCacheHelper.h; sourceTree = "<group>"; };
+		708252E0D2754C375CA4D36B89997198 /* HDSectionModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDSectionModel.h; sourceTree = "<group>"; };
+		7246857CB0F845DADBFF23350BF8953E /* HDCellModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCellModel.h; sourceTree = "<group>"; };
+		757D87C42C36470E37F43CCB14E2FAB9 /* HDCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDCollectionView.m; sourceTree = "<group>"; };
+		7AFD491CF4F1E23879E2049F861CBFF2 /* HDScrollJoinView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDScrollJoinView.m; sourceTree = "<group>"; };
+		84CFBB58F806D29C88CBF597192EA523 /* HDCellFrameCacheHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDCellFrameCacheHelper.m; sourceTree = "<group>"; };
+		850B7FA7A897DBD4E525B351968F057C /* HDLayoutProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDLayoutProtocol.h; sourceTree = "<group>"; };
+		8B95626F89E0C5315E727BE529212F25 /* HDListViewDiffer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HDListViewDiffer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CDA28C6845B77A877EF9DEE7E0079B7 /* HDCollectionCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDCollectionCell.m; sourceTree = "<group>"; };
+		8E0FC883C983C04A1D10C073A2B8FD62 /* NSObject+HDCopy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+HDCopy.m"; sourceTree = "<group>"; };
+		8FD28487C1367032F05CC33B035414B4 /* HDCollectionViewFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		924333837800CA4569613311A6AD7948 /* HDSectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDSectionView.h; sourceTree = "<group>"; };
+		9ACBFF908108CFC4E8FC7DD789969730 /* HDBaseLayout+Cache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HDBaseLayout+Cache.m"; sourceTree = "<group>"; };
+		9CB84B75BEE2B5FC32B5E01D7B7A4B98 /* HDCollectionCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCollectionCell.h; sourceTree = "<group>"; };
+		A73141F799C559BF97773555E60571F1 /* HDYogaCalculateHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDYogaCalculateHelper.m; sourceTree = "<group>"; };
+		AEB78B66FFB8E64387E533575A6D55C9 /* HDAssociationManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDAssociationManager.m; sourceTree = "<group>"; };
+		AFDFD26FF3169F3701F9E545E63B0772 /* HDHeaderStopHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDHeaderStopHelper.h; sourceTree = "<group>"; };
+		BDC3A51D86CC3CFE0DAFFAF5B62FBBAB /* HDCellModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDCellModel.m; sourceTree = "<group>"; };
+		C0A67CF76879C011638859ABF76A12F5 /* HDCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCollectionView.h; sourceTree = "<group>"; };
+		C5A9192D5A67E6AB19CE9076F4378B29 /* HDCollectionView+HDHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HDCollectionView+HDHelper.m"; sourceTree = "<group>"; };
+		CA71148E85288797029A89CD14F45672 /* HDScrollJoinView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDScrollJoinView.h; sourceTree = "<group>"; };
+		CA9B313EB085A54F6B48E53008BB6860 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D0BCBDD1678D57FC7EAA9BD07BACE02A /* HDCollectionView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "HDCollectionView-Info.plist"; sourceTree = "<group>"; };
+		D9EE37A397A42DE6C8524B9AF51EE34C /* HDDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDDefines.h; sourceTree = "<group>"; };
+		DE110807B968F51429BB8A45152FEF92 /* HDModelProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDModelProtocol.h; sourceTree = "<group>"; };
+		E66E32A4F6F1E3D508AB1998FA821589 /* HDWaterFlowLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDWaterFlowLayout.h; sourceTree = "<group>"; };
+		ECB92E50AEED7C210D424473134A3A4A /* HDYogaFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDYogaFlowLayout.m; sourceTree = "<group>"; };
+		EE0DBB10C4A98A0A142E662DA6B26726 /* HDAssociationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDAssociationManager.h; sourceTree = "<group>"; };
+		F059D1397531D1EE4AB3C88CB81DB726 /* HDCollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = HDCollectionView.release.xcconfig; sourceTree = "<group>"; };
+		FCDBE75BE38CAF1174A4CB4E03754621 /* NSObject+HDCopy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSObject+HDCopy.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		746FFBBBF5634FCC5EB9FC8903D7BA53 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80AF273AC44511BDA2CDD712B7F7311B /* Foundation.framework in Frameworks */,
+				77A49E9B40F8650742419C93E3E044B4 /* HDListViewDiffer.framework in Frameworks */,
+				ADCEB8815E29F46BB1AB29DAF4C16002 /* yoga.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0554007551D2D5E9AC1F27847B589BA4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CB84B75BEE2B5FC32B5E01D7B7A4B98 /* HDCollectionCell.h */,
+				8CDA28C6845B77A877EF9DEE7E0079B7 /* HDCollectionCell.m */,
+				C0A67CF76879C011638859ABF76A12F5 /* HDCollectionView.h */,
+				757D87C42C36470E37F43CCB14E2FAB9 /* HDCollectionView.m */,
+				CA71148E85288797029A89CD14F45672 /* HDScrollJoinView.h */,
+				7AFD491CF4F1E23879E2049F861CBFF2 /* HDScrollJoinView.m */,
+				924333837800CA4569613311A6AD7948 /* HDSectionView.h */,
+				3BC3CE3CE3A6833573B1549C88ACF711 /* HDSectionView.m */,
+			);
+			name = Views;
+			path = HDCollectionView/Classes/HDCollectionView/Class/Views;
+			sourceTree = "<group>";
+		};
+		48A4490987BF5AE3BE583BCE80247CF0 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				09E7D9C8E7380E0704BB605532C1DF99 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		519B7C4A555F7EF9890028E8A5C19D8D /* HDCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				7F5A611A7B33EE94C35381FDF93CB391 /* Helper */,
+				90BF05C084EFECF12C506AF5C388B8AA /* Layouts */,
+				7121405051812C3745C8E2EC822C77D0 /* Models */,
+				A563D0E433B09E61412917BD12DEFDD7 /* Pod */,
+				D85FF9CCA2FFA93928B8AD4DED6CA490 /* Support Files */,
+				0554007551D2D5E9AC1F27847B589BA4 /* Views */,
+			);
+			name = HDCollectionView;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		70E0074616F12F8691376D534BEE1A8B = {
+			isa = PBXGroup;
+			children = (
+				C4F9A835A4CE5DEB01897997696265E3 /* Dependencies */,
+				8475333681A61ACE728036DB3E9D045E /* Frameworks */,
+				519B7C4A555F7EF9890028E8A5C19D8D /* HDCollectionView */,
+				734BBF6DAA8DBFE3DDC481704C7F9502 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7121405051812C3745C8E2EC822C77D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7246857CB0F845DADBFF23350BF8953E /* HDCellModel.h */,
+				BDC3A51D86CC3CFE0DAFFAF5B62FBBAB /* HDCellModel.m */,
+				708252E0D2754C375CA4D36B89997198 /* HDSectionModel.h */,
+				5B96A28E579E8B5A7E0A097B7148D65E /* HDSectionModel.m */,
+			);
+			name = Models;
+			path = HDCollectionView/Classes/HDCollectionView/Class/Models;
+			sourceTree = "<group>";
+		};
+		734BBF6DAA8DBFE3DDC481704C7F9502 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F5A611A7B33EE94C35381FDF93CB391 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				EE0DBB10C4A98A0A142E662DA6B26726 /* HDAssociationManager.h */,
+				AEB78B66FFB8E64387E533575A6D55C9 /* HDAssociationManager.m */,
+				6DF13553E4C5BB58EB6DD682BD8F0C45 /* HDCellFrameCacheHelper.h */,
+				84CFBB58F806D29C88CBF597192EA523 /* HDCellFrameCacheHelper.m */,
+				3BD95E10D5058BC19FA961360529CA18 /* HDCollectionView+HDHelper.h */,
+				C5A9192D5A67E6AB19CE9076F4378B29 /* HDCollectionView+HDHelper.m */,
+				D9EE37A397A42DE6C8524B9AF51EE34C /* HDDefines.h */,
+				AFDFD26FF3169F3701F9E545E63B0772 /* HDHeaderStopHelper.h */,
+				0CF9A77B08E4D41BC5BCA8D814C5BE9F /* HDHeaderStopHelper.m */,
+				DE110807B968F51429BB8A45152FEF92 /* HDModelProtocol.h */,
+				25C35AEAA6364E4C77034B32B0DFDC0B /* HDUpdateUIProtocol.h */,
+				2644BEF05FCF7AA39DA0AB486CC93957 /* HDYogaCalculateHelper.h */,
+				A73141F799C559BF97773555E60571F1 /* HDYogaCalculateHelper.m */,
+				FCDBE75BE38CAF1174A4CB4E03754621 /* NSObject+HDCopy.h */,
+				8E0FC883C983C04A1D10C073A2B8FD62 /* NSObject+HDCopy.m */,
+			);
+			name = Helper;
+			path = HDCollectionView/Classes/HDCollectionView/Class/Helper;
+			sourceTree = "<group>";
+		};
+		8475333681A61ACE728036DB3E9D045E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B95626F89E0C5315E727BE529212F25 /* HDListViewDiffer.framework */,
+				0CFA4739547AAE95C7FE4B4A9D4467F5 /* yoga.framework */,
+				48A4490987BF5AE3BE583BCE80247CF0 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		90BF05C084EFECF12C506AF5C388B8AA /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				56E93B4D4E2E0A8A63294A00A30F7787 /* HDBaseLayout.h */,
+				0679E52ED8CC8930B66134951EFE966D /* HDBaseLayout.m */,
+				6AFC2FCA8992AFE7AB517EEF0FE848CA /* HDBaseLayout+Cache.h */,
+				9ACBFF908108CFC4E8FC7DD789969730 /* HDBaseLayout+Cache.m */,
+				59648BC24406BA69CC3E3EFF7E1F61B7 /* HDCollectionViewFlowLayout.h */,
+				8FD28487C1367032F05CC33B035414B4 /* HDCollectionViewFlowLayout.m */,
+				134B847195FE842C3364A8DE38B90F2F /* HDCollectionViewLayout.h */,
+				5F6292C9EBDEEAFD6D0054228F385748 /* HDCollectionViewLayout.m */,
+				850B7FA7A897DBD4E525B351968F057C /* HDLayoutProtocol.h */,
+				E66E32A4F6F1E3D508AB1998FA821589 /* HDWaterFlowLayout.h */,
+				10C981B3CDC4A22E921EA6D0BA55B649 /* HDWaterFlowLayout.m */,
+				0B28AA3990025D649B619D585C1D81B0 /* HDYogaFlowLayout.h */,
+				ECB92E50AEED7C210D424473134A3A4A /* HDYogaFlowLayout.m */,
+			);
+			name = Layouts;
+			path = HDCollectionView/Classes/HDCollectionView/Class/Layouts;
+			sourceTree = "<group>";
+		};
+		A563D0E433B09E61412917BD12DEFDD7 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				5C3F29137380875506ACA01F5D81329C /* HDCollectionView.podspec */,
+				3C60BAD15E509A5B5A804AB7A019F6A8 /* LICENSE */,
+				CA9B313EB085A54F6B48E53008BB6860 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		C4F9A835A4CE5DEB01897997696265E3 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer */,
+				3DAC770F4F9CB4B90FA6D40BA31144AF /* Yoga */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		D85FF9CCA2FFA93928B8AD4DED6CA490 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				05FF8838F07A789FC086B5F528A88B97 /* HDCollectionView.modulemap */,
+				20F201F1C65DDD6BD910F5205DCE3575 /* HDCollectionView-dummy.m */,
+				D0BCBDD1678D57FC7EAA9BD07BACE02A /* HDCollectionView-Info.plist */,
+				2ACF44A8C7F3EEC7272C304284FCDB8E /* HDCollectionView-prefix.pch */,
+				30438FC6DBE2286CE275F3661CC99BF5 /* HDCollectionView-umbrella.h */,
+				3815E2AB1B467CD8C73AF22E3A1E60CB /* HDCollectionView.debug.xcconfig */,
+				F059D1397531D1EE4AB3C88CB81DB726 /* HDCollectionView.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/HDCollectionView";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F59C949AB0C5C8532EC5CE58E86ECF19 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C6D507BF02CB687F773C113AF42F117 /* HDAssociationManager.h in Headers */,
+				152F9AC1A9F1EA11616C4E9E723BBF46 /* HDBaseLayout+Cache.h in Headers */,
+				F74B8C2EBA6C7103CFFD6349067E8A6D /* HDBaseLayout.h in Headers */,
+				660EC425FBC92DD90ED96880CB498F52 /* HDCellFrameCacheHelper.h in Headers */,
+				86A2C99B8238D04F65BE76A74A7E731D /* HDCellModel.h in Headers */,
+				7B879775DFE5B08FAE5AE5FF1CBD4C88 /* HDCollectionCell.h in Headers */,
+				681EBD53D8C16F1B4C94D3807A7F5B84 /* HDCollectionView+HDHelper.h in Headers */,
+				B75A1B37475E1FC8A6014BD2B2DA4269 /* HDCollectionView-umbrella.h in Headers */,
+				6FE66B432719BC2DE1CB6CF9C83926A6 /* HDCollectionView.h in Headers */,
+				B769D67986F706600AB269908CB1B4AB /* HDCollectionViewFlowLayout.h in Headers */,
+				72222025B7C6482194F633C874656352 /* HDCollectionViewLayout.h in Headers */,
+				FCDBD9A36B88077D4E0CCD01F280CE0C /* HDDefines.h in Headers */,
+				D109949CFB5CF6412665BAFC8711E31E /* HDHeaderStopHelper.h in Headers */,
+				7F4C2CFE771315678B5E91455E5A75A7 /* HDLayoutProtocol.h in Headers */,
+				1507EA92A4064CB2C327F82A08FF5E4C /* HDModelProtocol.h in Headers */,
+				94223C5D56B0B2F24BCEE24A7F8668B5 /* HDScrollJoinView.h in Headers */,
+				1E59762D2A06D1902689F363B8E97882 /* HDSectionModel.h in Headers */,
+				7BC1D5D2EF6E3B092E59D0A6C6C4B6A5 /* HDSectionView.h in Headers */,
+				8A60E6D6E2554708474EC0113D2709DC /* HDUpdateUIProtocol.h in Headers */,
+				005EBD9DB43FBD7397BB04D622E4E453 /* HDWaterFlowLayout.h in Headers */,
+				017E59A307AAB02CD35525AB3427ED05 /* HDYogaCalculateHelper.h in Headers */,
+				15A93CFD34FC81924C4B081AADC19243 /* HDYogaFlowLayout.h in Headers */,
+				466AEF8F551A4D92CAA56987778340E7 /* NSObject+HDCopy.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		C1B7F81766C71DC32A28F8F245553E0F /* HDCollectionView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B12A43BE25A2F71F51E81E845FD6D91 /* Build configuration list for PBXNativeTarget "HDCollectionView" */;
+			buildPhases = (
+				F59C949AB0C5C8532EC5CE58E86ECF19 /* Headers */,
+				414D81992AF26DEB7D86C3D3ADDC47A7 /* Sources */,
+				746FFBBBF5634FCC5EB9FC8903D7BA53 /* Frameworks */,
+				688FE57FCA54B1A9F7267579A02F079A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				352523CA0A2DE146591E6A6521AC0C06 /* PBXTargetDependency */,
+				034B66F6D0306705415238B69DD4C618 /* PBXTargetDependency */,
+			);
+			name = HDCollectionView;
+			productName = HDCollectionView;
+			productReference = 2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C13EFA8FDE4A0E5FF3D0D99D3D3CF2D1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4F665DF3E864490685FD2A64013D71CC /* Build configuration list for PBXProject "HDCollectionView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 70E0074616F12F8691376D534BEE1A8B;
+			productRefGroup = 734BBF6DAA8DBFE3DDC481704C7F9502 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProjectRef = 3DAC770F4F9CB4B90FA6D40BA31144AF /* Yoga */;
+				},
+				{
+					ProjectRef = 32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				C1B7F81766C71DC32A28F8F245553E0F /* HDCollectionView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		688FE57FCA54B1A9F7267579A02F079A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		414D81992AF26DEB7D86C3D3ADDC47A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47AC7D94A580074B197CDF9A1F5D1105 /* HDAssociationManager.m in Sources */,
+				28D0202D5FF4AA8602D71B06E61E25E7 /* HDBaseLayout+Cache.m in Sources */,
+				8E1A5393322D306313E4CD33C6437458 /* HDBaseLayout.m in Sources */,
+				9BE52B185B0669A1AAAAA8D45DB31F61 /* HDCellFrameCacheHelper.m in Sources */,
+				B41F600CA8003091FC8E98BCFB9FBC89 /* HDCellModel.m in Sources */,
+				A30EA349CD5AF1822A2F85C3980959FA /* HDCollectionCell.m in Sources */,
+				030E058C6995C1102F68F4D230A019DE /* HDCollectionView+HDHelper.m in Sources */,
+				9BDDAEBB27C9A60BFA8040C83357FFF9 /* HDCollectionView-dummy.m in Sources */,
+				62F28BAE92006AAD56EF3E1010FCC391 /* HDCollectionView.m in Sources */,
+				DCDBC8716AB00E960244845B97BADB25 /* HDCollectionViewFlowLayout.m in Sources */,
+				AD95B27C78EA3F40CA35FC4D0C03EDC9 /* HDCollectionViewLayout.m in Sources */,
+				C2B8C1FB3B30208F8951BD2C89C73489 /* HDHeaderStopHelper.m in Sources */,
+				8787CF40B3D99AFE6D9E40C173186E09 /* HDScrollJoinView.m in Sources */,
+				37C2BF830B86736E7D5F0D7841CBA118 /* HDSectionModel.m in Sources */,
+				C923CDFDCE58CCCF99C5F61412BD3135 /* HDSectionView.m in Sources */,
+				6F8E1F7344B1AD2D5F9D7E552C9522DF /* HDWaterFlowLayout.m in Sources */,
+				4B0F12C7FB083C410D3C8826360EC0BB /* HDYogaCalculateHelper.m in Sources */,
+				2C3811047ECC8C6A7D58E4ECE5165DBF /* HDYogaFlowLayout.m in Sources */,
+				4944F2742272D169815A0AC8514A3A8D /* NSObject+HDCopy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		034B66F6D0306705415238B69DD4C618 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Yoga;
+			targetProxy = 018BDFEEDBD2CCEB720F3420712975F2 /* PBXContainerItemProxy */;
+		};
+		352523CA0A2DE146591E6A6521AC0C06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = HDListViewDiffer;
+			targetProxy = FA5B90A8B98CF63339850E25BC12B12B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		5C555C62BD652B9AD13B2E7F1CD0AB33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3815E2AB1B467CD8C73AF22E3A1E60CB /* HDCollectionView.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HDCollectionView/HDCollectionView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HDCollectionView/HDCollectionView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HDCollectionView/HDCollectionView.modulemap";
+				PRODUCT_MODULE_NAME = HDCollectionView;
+				PRODUCT_NAME = HDCollectionView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A4719B4329288AA865DB5BBB34E099FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		CC3627390D5F6EFC7FAD7896FCDD4239 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F059D1397531D1EE4AB3C88CB81DB726 /* HDCollectionView.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HDCollectionView/HDCollectionView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HDCollectionView/HDCollectionView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HDCollectionView/HDCollectionView.modulemap";
+				PRODUCT_MODULE_NAME = HDCollectionView;
+				PRODUCT_NAME = HDCollectionView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E6B8EF9AD5A812CB62E9312D5088708A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F665DF3E864490685FD2A64013D71CC /* Build configuration list for PBXProject "HDCollectionView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6B8EF9AD5A812CB62E9312D5088708A /* Debug */,
+				A4719B4329288AA865DB5BBB34E099FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B12A43BE25A2F71F51E81E845FD6D91 /* Build configuration list for PBXNativeTarget "HDCollectionView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C555C62BD652B9AD13B2E7F1CD0AB33 /* Debug */,
+				CC3627390D5F6EFC7FAD7896FCDD4239 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C13EFA8FDE4A0E5FF3D0D99D3D3CF2D1 /* Project object */;
+}

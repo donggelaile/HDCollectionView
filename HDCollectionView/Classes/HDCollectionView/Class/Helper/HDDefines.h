@@ -15,6 +15,16 @@
 #define HDMakeWaterFlowLayoutChain [HDWaterFlowLayoutChainMaker new]
 #define HDMakeYogaFlowLayoutChain [HDYogaFlowLayoutChainMaker new]
 
+//cell获取对应的viewModel
+#define HDCellVMGetter(vmClsStr) \
+- (vmClsStr*)viewModel \
+{\
+if ([self.hdModel isKindOfClass:[vmClsStr class]]) {\
+return self.hdModel;\
+}\
+return nil;\
+}
+
 #define HDClassFromString(classString) \
 ({Class c = NSClassFromString(classString);\
 if (!c) { \

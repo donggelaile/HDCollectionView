@@ -26,6 +26,7 @@
     return self;
 }
 
+
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
 }

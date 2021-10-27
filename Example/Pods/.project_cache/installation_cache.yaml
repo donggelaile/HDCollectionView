@@ -1,0 +1,151 @@
+BUILD_CONFIGURATIONS:
+  Debug: :debug
+  Release: :release
+CACHE_KEYS:
+  HDCollectionView:
+    BUILD_SETTINGS_CHECKSUM:
+      HDCollectionView:
+        :debug: 3560ec631220132825e2fcb287138e70
+        :release: 3560ec631220132825e2fcb287138e70
+    CHECKSUM: aa813a050565a1b7da04d2dffd9a303304690ecc
+    FILES:
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDAssociationManager.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDAssociationManager.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDCellFrameCacheHelper.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDCellFrameCacheHelper.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDCollectionView+HDHelper.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDCollectionView+HDHelper.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDDefines.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDHeaderStopHelper.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDHeaderStopHelper.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDModelProtocol.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDUpdateUIProtocol.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDYogaCalculateHelper.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDYogaCalculateHelper.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/NSObject+HDCopy.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/NSObject+HDCopy.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDBaseLayout+Cache.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDBaseLayout+Cache.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDBaseLayout.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDBaseLayout.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDCollectionViewFlowLayout.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDCollectionViewFlowLayout.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDCollectionViewLayout.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDCollectionViewLayout.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDLayoutProtocol.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDWaterFlowLayout.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDWaterFlowLayout.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDYogaFlowLayout.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Layouts/HDYogaFlowLayout.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Models/HDCellModel.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Models/HDCellModel.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Models/HDSectionModel.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Models/HDSectionModel.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDCollectionCell.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDCollectionCell.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDCollectionView.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDCollectionView.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDScrollJoinView.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDScrollJoinView.m"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDSectionView.h"
+      - "../../HDCollectionView/Classes/HDCollectionView/Class/Views/HDSectionView.m"
+      - "../../LICENSE"
+      - "../../README.md"
+    PROJECT_NAME: HDCollectionView
+    SPECS:
+      - HDCollectionView (0.7.1)
+  HDListViewDiffer:
+    BUILD_SETTINGS_CHECKSUM:
+      HDListViewDiffer:
+        :debug: 9d8aa1b226719df2fbf6372776bdf42a
+        :release: 9d8aa1b226719df2fbf6372776bdf42a
+    CHECKSUM: f1ab8168cfbaddcb93fd57aebeb03a98e7612c46
+    PROJECT_NAME: HDListViewDiffer
+    SPECS:
+      - HDListViewDiffer (0.2.0)
+  JXCategoryView:
+    BUILD_SETTINGS_CHECKSUM:
+      JXCategoryView:
+        :debug: 62c759a237653c4e5ed914f9867658df
+        :release: 62c759a237653c4e5ed914f9867658df
+    CHECKSUM: 72560616347270d34c2e717cc08030e6218d7eda
+    PROJECT_NAME: JXCategoryView
+    SPECS:
+      - JXCategoryView (1.3.4)
+  Masonry:
+    BUILD_SETTINGS_CHECKSUM:
+      Masonry:
+        :debug: 912a1fdb67d0fa3f7bf57722013f7e31
+        :release: 912a1fdb67d0fa3f7bf57722013f7e31
+    CHECKSUM: 678fab65091a9290e40e2832a55e7ab731aad201
+    PROJECT_NAME: Masonry
+    SPECS:
+      - Masonry (1.1.0)
+  MJRefresh:
+    BUILD_SETTINGS_CHECKSUM:
+      MJRefresh:
+        :debug: 2f12f6ed2a208df7437e4e29e1226ad0
+        :release: 2f12f6ed2a208df7437e4e29e1226ad0
+    CHECKSUM: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+    PROJECT_NAME: MJRefresh
+    SPECS:
+      - MJRefresh (3.1.16)
+  Pods-HDCollectionView_Example:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: 0ba311912d5710636bf53946909d56fc
+      Release: 0ba311912d5710636bf53946909d56fc
+  Pods-HDCollectionView_Tests:
+    BUILD_SETTINGS_CHECKSUM:
+      Debug: c11ef3decfe7fc63250b001b6f091f2a
+      Release: c11ef3decfe7fc63250b001b6f091f2a
+  SDAutoLayout:
+    BUILD_SETTINGS_CHECKSUM:
+      SDAutoLayout:
+        :debug: a9068b7ccca45326001dad7a55ad1c3f
+        :release: a9068b7ccca45326001dad7a55ad1c3f
+    CHECKSUM: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
+    PROJECT_NAME: SDAutoLayout
+    SPECS:
+      - SDAutoLayout (2.1.9)
+  SDWebImage:
+    BUILD_SETTINGS_CHECKSUM:
+      SDWebImage:
+        :debug: b6853932037b3f523998d5de1ed4a82e
+        :release: b6853932037b3f523998d5de1ed4a82e
+    CHECKSUM: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+    PROJECT_NAME: SDWebImage
+    SPECS:
+      - SDWebImage (4.4.6)
+      - SDWebImage/Core (4.4.6)
+  SJAttributesFactory:
+    BUILD_SETTINGS_CHECKSUM:
+      SJAttributesFactory:
+        :debug: cd3034a85f837d0f89e295bb6548f02c
+        :release: cd3034a85f837d0f89e295bb6548f02c
+    CHECKSUM: 16cd39e6c0e538933db05ddc06d23c8608b13216
+    PROJECT_NAME: SJAttributesFactory
+    SPECS:
+      - SJAttributesFactory (2.1.1)
+      - SJAttributesFactory/Deprecated (2.1.1)
+      - SJAttributesFactory/UIKitText (2.1.1)
+  Yoga:
+    BUILD_SETTINGS_CHECKSUM:
+      Yoga:
+        :debug: 681724de416152b6f58c0b70cea57abf
+        :release: 681724de416152b6f58c0b70cea57abf
+    CHECKSUM: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+    PROJECT_NAME: Yoga
+    SPECS:
+      - Yoga (1.14.0)
+  YYModel:
+    BUILD_SETTINGS_CHECKSUM:
+      YYModel:
+        :debug: 75bae97674fcd729adc8442a083f228f
+        :release: 75bae97674fcd729adc8442a083f228f
+    CHECKSUM: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+    PROJECT_NAME: YYModel
+    SPECS:
+      - YYModel (1.0.4)
+OBJECT_VERSION: 46
+PLUGINS:
+  {}
