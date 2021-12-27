@@ -228,8 +228,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FC34B8CD0C9C29EB6AA297D9873766A /* MJRefresh-umbrella.h in Headers */,
 				D8BDCB91720976759BFF815B437A6374 /* MJRefresh.h in Headers */,
+				0FC34B8CD0C9C29EB6AA297D9873766A /* MJRefresh-umbrella.h in Headers */,
 				39C0AE2C3DA84290AB416F11FDE6B6DB /* MJRefreshAutoFooter.h in Headers */,
 				269F30FF3378BB382AC8E73DF13EF988 /* MJRefreshAutoGifFooter.h in Headers */,
 				EECFB1A400DBC309D365B3978349A904 /* MJRefreshAutoNormalFooter.h in Headers */,
@@ -279,8 +279,8 @@
 		3B10AF78032EF059DE917055F34E9117 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 3C89D7681CC38E9662853C5EFE32E911 /* Build configuration list for PBXProject "MJRefresh" */;
 			compatibilityVersion = "Xcode 3.2";

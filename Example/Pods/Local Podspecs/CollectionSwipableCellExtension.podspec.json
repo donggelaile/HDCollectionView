@@ -1,0 +1,23 @@
+{
+  "name": "CollectionSwipableCellExtension",
+  "version": "0.0.5",
+  "license": "MIT",
+  "summary": "It is the extension for UICollectionView and UITableView which appends buttons to a cell and shows them on cell swiping.",
+  "homepage": "https://github.com/KosyanMedia/CollectionSwipableCellExtension",
+  "authors": {
+    "KosyanMedia": "info@jetradar.com"
+  },
+  "source": {
+    "git": "https://github.com/KosyanMedia/CollectionSwipableCellExtension.git",
+    "tag": "0.0.5"
+  },
+  "swift_versions": "5.0",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": [
+    "Library/*.swift",
+    "Library/Private/*.swift"
+  ],
+  "swift_version": "5.0"
+}

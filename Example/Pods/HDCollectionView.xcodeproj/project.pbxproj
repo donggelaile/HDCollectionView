@@ -308,14 +308,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C6D507BF02CB687F773C113AF42F117 /* HDAssociationManager.h in Headers */,
-				152F9AC1A9F1EA11616C4E9E723BBF46 /* HDBaseLayout+Cache.h in Headers */,
 				F74B8C2EBA6C7103CFFD6349067E8A6D /* HDBaseLayout.h in Headers */,
+				152F9AC1A9F1EA11616C4E9E723BBF46 /* HDBaseLayout+Cache.h in Headers */,
 				660EC425FBC92DD90ED96880CB498F52 /* HDCellFrameCacheHelper.h in Headers */,
 				86A2C99B8238D04F65BE76A74A7E731D /* HDCellModel.h in Headers */,
 				7B879775DFE5B08FAE5AE5FF1CBD4C88 /* HDCollectionCell.h in Headers */,
+				6FE66B432719BC2DE1CB6CF9C83926A6 /* HDCollectionView.h in Headers */,
 				681EBD53D8C16F1B4C94D3807A7F5B84 /* HDCollectionView+HDHelper.h in Headers */,
 				B75A1B37475E1FC8A6014BD2B2DA4269 /* HDCollectionView-umbrella.h in Headers */,
-				6FE66B432719BC2DE1CB6CF9C83926A6 /* HDCollectionView.h in Headers */,
 				B769D67986F706600AB269908CB1B4AB /* HDCollectionViewFlowLayout.h in Headers */,
 				72222025B7C6482194F633C874656352 /* HDCollectionViewLayout.h in Headers */,
 				FCDBD9A36B88077D4E0CCD01F280CE0C /* HDDefines.h in Headers */,
@@ -362,8 +362,8 @@
 		C13EFA8FDE4A0E5FF3D0D99D3D3CF2D1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4F665DF3E864490685FD2A64013D71CC /* Build configuration list for PBXProject "HDCollectionView" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -407,14 +407,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				47AC7D94A580074B197CDF9A1F5D1105 /* HDAssociationManager.m in Sources */,
-				28D0202D5FF4AA8602D71B06E61E25E7 /* HDBaseLayout+Cache.m in Sources */,
 				8E1A5393322D306313E4CD33C6437458 /* HDBaseLayout.m in Sources */,
+				28D0202D5FF4AA8602D71B06E61E25E7 /* HDBaseLayout+Cache.m in Sources */,
 				9BE52B185B0669A1AAAAA8D45DB31F61 /* HDCellFrameCacheHelper.m in Sources */,
 				B41F600CA8003091FC8E98BCFB9FBC89 /* HDCellModel.m in Sources */,
 				A30EA349CD5AF1822A2F85C3980959FA /* HDCollectionCell.m in Sources */,
+				62F28BAE92006AAD56EF3E1010FCC391 /* HDCollectionView.m in Sources */,
 				030E058C6995C1102F68F4D230A019DE /* HDCollectionView+HDHelper.m in Sources */,
 				9BDDAEBB27C9A60BFA8040C83357FFF9 /* HDCollectionView-dummy.m in Sources */,
-				62F28BAE92006AAD56EF3E1010FCC391 /* HDCollectionView.m in Sources */,
 				DCDBC8716AB00E960244845B97BADB25 /* HDCollectionViewFlowLayout.m in Sources */,
 				AD95B27C78EA3F40CA35FC4D0C03EDC9 /* HDCollectionViewLayout.m in Sources */,
 				C2B8C1FB3B30208F8951BD2C89C73489 /* HDHeaderStopHelper.m in Sources */,

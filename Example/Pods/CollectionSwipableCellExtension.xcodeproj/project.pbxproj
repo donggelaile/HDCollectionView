@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		041257D21522B6CAB19D81459F818649 /* CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E352F129757176050128C2307B4F9 /* CollectionSwipableCellExtension.swift */; };
+		20773617D37BA411CC6FE4979373A7D0 /* CollectionSwipableCellOneButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457A4B0AAB0E26F14C260DE19EBD8F66 /* CollectionSwipableCellOneButtonLayout.swift */; };
+		24E60810CB032FF07B09774C72538AE3 /* SwipableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D704633EEB42EA1E926E7FF737CFA3 /* SwipableCollection.swift */; };
+		38FEBDEA942A68F3F429BEFE270FDC65 /* CollectionSwipableCellExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BD4794C963DA1B3173BDD9334C743455 /* CollectionSwipableCellExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		46E9E1350080658669BF058C512EF373 /* CollectionSwipableCellExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE44D02FF5AD24B9D70F8FDEDAA4C09 /* CollectionSwipableCellExtension-dummy.m */; };
+		4CBF63108C5B7423A15FA3527ECB29F7 /* SwipableCellLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EAABF3C221C4560B92F0E559F42C2 /* SwipableCellLayouter.swift */; };
+		7CDF61CDB942B64097478B7AAD8E708E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22FFE3938CAF3EBAD10D5F221E36FC4 /* Foundation.framework */; };
+		7E469D06A496DF5EFCBA2623C7B152E0 /* SwipableUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA9670257A9C5D1475C173AE839DE /* SwipableUITableView.swift */; };
+		8782072B2B60ADEA4D681428A22DF549 /* SwipableUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CB5FF9C2DB31CC6AEE0E7F15E79C /* SwipableUICollectionView.swift */; };
+		9EDE9DA369FBE423E6889336047F3BB0 /* CollectionSwipableCellHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C694A5D9A6287C52AE1EEE5F810B67 /* CollectionSwipableCellHandler.swift */; };
+		BE9D83D61298E2DEA31362C05C208B60 /* UITableViewCell+CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A3011C2539366110881D67A761F /* UITableViewCell+CollectionSwipableCellExtension.swift */; };
+		D797DDE5F71FE67BCCEAEC56E2576794 /* UICollectionViewCell+CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B7F86D5F79BE8702A84A66D2DAAC3 /* UICollectionViewCell+CollectionSwipableCellExtension.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11D704633EEB42EA1E926E7FF737CFA3 /* SwipableCollection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableCollection.swift; path = Library/Private/SwipableCollection.swift; sourceTree = "<group>"; };
+		233B7F86D5F79BE8702A84A66D2DAAC3 /* UICollectionViewCell+CollectionSwipableCellExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UICollectionViewCell+CollectionSwipableCellExtension.swift"; path = "Library/UICollectionViewCell+CollectionSwipableCellExtension.swift"; sourceTree = "<group>"; };
+		24B1220D44A6D7D2241F66B5D5408995 /* CollectionSwipableCellExtension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CollectionSwipableCellExtension-Info.plist"; sourceTree = "<group>"; };
+		2E3E352F129757176050128C2307B4F9 /* CollectionSwipableCellExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionSwipableCellExtension.swift; path = Library/CollectionSwipableCellExtension.swift; sourceTree = "<group>"; };
+		32E90B92773512661BA3F804866ED660 /* CollectionSwipableCellExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CollectionSwipableCellExtension-prefix.pch"; sourceTree = "<group>"; };
+		3D33CB5FF9C2DB31CC6AEE0E7F15E79C /* SwipableUICollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableUICollectionView.swift; path = Library/Private/SwipableUICollectionView.swift; sourceTree = "<group>"; };
+		3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CollectionSwipableCellExtension.framework; path = CollectionSwipableCellExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		457A4B0AAB0E26F14C260DE19EBD8F66 /* CollectionSwipableCellOneButtonLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionSwipableCellOneButtonLayout.swift; path = Library/CollectionSwipableCellOneButtonLayout.swift; sourceTree = "<group>"; };
+		49CCA9670257A9C5D1475C173AE839DE /* SwipableUITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableUITableView.swift; path = Library/Private/SwipableUITableView.swift; sourceTree = "<group>"; };
+		4D5EAABF3C221C4560B92F0E559F42C2 /* SwipableCellLayouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableCellLayouter.swift; path = Library/Private/SwipableCellLayouter.swift; sourceTree = "<group>"; };
+		59A50A3011C2539366110881D67A761F /* UITableViewCell+CollectionSwipableCellExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITableViewCell+CollectionSwipableCellExtension.swift"; path = "Library/UITableViewCell+CollectionSwipableCellExtension.swift"; sourceTree = "<group>"; };
+		7F88A75A7A1111BD6DD016F0630FA5A9 /* CollectionSwipableCellExtension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CollectionSwipableCellExtension.modulemap; sourceTree = "<group>"; };
+		810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CollectionSwipableCellExtension.debug.xcconfig; sourceTree = "<group>"; };
+		BD4794C963DA1B3173BDD9334C743455 /* CollectionSwipableCellExtension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CollectionSwipableCellExtension-umbrella.h"; sourceTree = "<group>"; };
+		C0C694A5D9A6287C52AE1EEE5F810B67 /* CollectionSwipableCellHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionSwipableCellHandler.swift; path = Library/Private/CollectionSwipableCellHandler.swift; sourceTree = "<group>"; };
+		C22FFE3938CAF3EBAD10D5F221E36FC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		DDE44D02FF5AD24B9D70F8FDEDAA4C09 /* CollectionSwipableCellExtension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CollectionSwipableCellExtension-dummy.m"; sourceTree = "<group>"; };
+		DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CollectionSwipableCellExtension.release.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AAF3BF0FE1633103C68ED7E36F7BB19 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CDF61CDB942B64097478B7AAD8E708E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7FEF29455FB946A4C509219455E02000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F284F71EB46C4BBD34EFE4B5E6172B98 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86DC5284BF627EACC1994DF2DB9497C7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A7F1562293044217C1ECCCB1E4C60B02 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F88A75A7A1111BD6DD016F0630FA5A9 /* CollectionSwipableCellExtension.modulemap */,
+				DDE44D02FF5AD24B9D70F8FDEDAA4C09 /* CollectionSwipableCellExtension-dummy.m */,
+				24B1220D44A6D7D2241F66B5D5408995 /* CollectionSwipableCellExtension-Info.plist */,
+				32E90B92773512661BA3F804866ED660 /* CollectionSwipableCellExtension-prefix.pch */,
+				BD4794C963DA1B3173BDD9334C743455 /* CollectionSwipableCellExtension-umbrella.h */,
+				810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */,
+				DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CollectionSwipableCellExtension";
+			sourceTree = "<group>";
+		};
+		E4E4B3BA0A93E665446C64ECFA4ABD24 /* CollectionSwipableCellExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2E3E352F129757176050128C2307B4F9 /* CollectionSwipableCellExtension.swift */,
+				C0C694A5D9A6287C52AE1EEE5F810B67 /* CollectionSwipableCellHandler.swift */,
+				457A4B0AAB0E26F14C260DE19EBD8F66 /* CollectionSwipableCellOneButtonLayout.swift */,
+				4D5EAABF3C221C4560B92F0E559F42C2 /* SwipableCellLayouter.swift */,
+				11D704633EEB42EA1E926E7FF737CFA3 /* SwipableCollection.swift */,
+				3D33CB5FF9C2DB31CC6AEE0E7F15E79C /* SwipableUICollectionView.swift */,
+				49CCA9670257A9C5D1475C173AE839DE /* SwipableUITableView.swift */,
+				233B7F86D5F79BE8702A84A66D2DAAC3 /* UICollectionViewCell+CollectionSwipableCellExtension.swift */,
+				59A50A3011C2539366110881D67A761F /* UITableViewCell+CollectionSwipableCellExtension.swift */,
+				A7F1562293044217C1ECCCB1E4C60B02 /* Support Files */,
+			);
+			name = CollectionSwipableCellExtension;
+			path = CollectionSwipableCellExtension;
+			sourceTree = "<group>";
+		};
+		F1A173D37E3CB8461FA04A1C1AB9344A = {
+			isa = PBXGroup;
+			children = (
+				E4E4B3BA0A93E665446C64ECFA4ABD24 /* CollectionSwipableCellExtension */,
+				7FEF29455FB946A4C509219455E02000 /* Frameworks */,
+				86DC5284BF627EACC1994DF2DB9497C7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F284F71EB46C4BBD34EFE4B5E6172B98 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				C22FFE3938CAF3EBAD10D5F221E36FC4 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9DEA750B073668E90B81A94C78B28EFE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38FEBDEA942A68F3F429BEFE270FDC65 /* CollectionSwipableCellExtension-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2C2337EEFD8728661144FB96E731946C /* CollectionSwipableCellExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F72EA0EB65C611977B4F04EE6DCC9B9F /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */;
+			buildPhases = (
+				9DEA750B073668E90B81A94C78B28EFE /* Headers */,
+				C0715B5396177F8A993AD990286E629E /* Sources */,
+				6AAF3BF0FE1633103C68ED7E36F7BB19 /* Frameworks */,
+				82DEF93DD670806EB0D43B6430964619 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CollectionSwipableCellExtension;
+			productName = CollectionSwipableCellExtension;
+			productReference = 3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15925E5C50761C1ADA22FF5451A293D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = B26E538716B600AAFE01E6391AE30F73 /* Build configuration list for PBXProject "CollectionSwipableCellExtension" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F1A173D37E3CB8461FA04A1C1AB9344A;
+			productRefGroup = 86DC5284BF627EACC1994DF2DB9497C7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C2337EEFD8728661144FB96E731946C /* CollectionSwipableCellExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82DEF93DD670806EB0D43B6430964619 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C0715B5396177F8A993AD990286E629E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				041257D21522B6CAB19D81459F818649 /* CollectionSwipableCellExtension.swift in Sources */,
+				46E9E1350080658669BF058C512EF373 /* CollectionSwipableCellExtension-dummy.m in Sources */,
+				9EDE9DA369FBE423E6889336047F3BB0 /* CollectionSwipableCellHandler.swift in Sources */,
+				20773617D37BA411CC6FE4979373A7D0 /* CollectionSwipableCellOneButtonLayout.swift in Sources */,
+				4CBF63108C5B7423A15FA3527ECB29F7 /* SwipableCellLayouter.swift in Sources */,
+				24E60810CB032FF07B09774C72538AE3 /* SwipableCollection.swift in Sources */,
+				8782072B2B60ADEA4D681428A22DF549 /* SwipableUICollectionView.swift in Sources */,
+				7E469D06A496DF5EFCBA2623C7B152E0 /* SwipableUITableView.swift in Sources */,
+				D797DDE5F71FE67BCCEAEC56E2576794 /* UICollectionViewCell+CollectionSwipableCellExtension.swift in Sources */,
+				BE9D83D61298E2DEA31362C05C208B60 /* UITableViewCell+CollectionSwipableCellExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		6688716389252471A77AF6241107E45C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		A41E3863039B28A1832FB7923FCD8FED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
+				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
+				PRODUCT_NAME = CollectionSwipableCellExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A469F24A3F3DC4D6E6D6520B28F2BC2A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
+				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
+				PRODUCT_NAME = CollectionSwipableCellExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D6C28EF025BF079C4967AB49CB8F270D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B26E538716B600AAFE01E6391AE30F73 /* Build configuration list for PBXProject "CollectionSwipableCellExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6C28EF025BF079C4967AB49CB8F270D /* Debug */,
+				6688716389252471A77AF6241107E45C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F72EA0EB65C611977B4F04EE6DCC9B9F /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A41E3863039B28A1832FB7923FCD8FED /* Debug */,
+				A469F24A3F3DC4D6E6D6520B28F2BC2A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15925E5C50761C1ADA22FF5451A293D5 /* Project object */;
+}

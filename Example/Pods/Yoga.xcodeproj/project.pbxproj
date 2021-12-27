@@ -195,9 +195,9 @@
 				0E0B867DA60854394D3B7AD0FFBB6137 /* YGNodePrint.h in Headers */,
 				DD51D2220F799A2FAE474F1A99E77850 /* YGStyle.h in Headers */,
 				82CF740BFBF40DC3DA0A069B60DAF489 /* YGValue.h in Headers */,
+				8A35F4F554F1C4AC9019FDA6B89DFDC0 /* Yoga.h in Headers */,
 				2AC021DC715E1D65B3A7D4A836308625 /* Yoga-internal.h in Headers */,
 				CC9384F19C936481BC96B3C198BAB4AE /* Yoga-umbrella.h in Headers */,
-				8A35F4F554F1C4AC9019FDA6B89DFDC0 /* Yoga.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,8 +228,8 @@
 		49E37557D68A63D4E220C2F755665AE5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = FF71D024F2EECA34B9782CDA6F8DA447 /* Build configuration list for PBXProject "Yoga" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -274,8 +274,8 @@
 				B23A6D346ECD8DA0F48039DA3F0E9FC7 /* YGNodePrint.cpp in Sources */,
 				C43202A6679A879278D9511D65420546 /* YGStyle.cpp in Sources */,
 				1173C4C77D07BD9A0D184352700DCFAC /* YGValue.cpp in Sources */,
-				05E011E95FE6F9384CA9B534566D7A56 /* Yoga-dummy.m in Sources */,
 				21FC74CA9C10FB71AC8B3DA81FD33C3A /* Yoga.cpp in Sources */,
+				05E011E95FE6F9384CA9B534566D7A56 /* Yoga-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

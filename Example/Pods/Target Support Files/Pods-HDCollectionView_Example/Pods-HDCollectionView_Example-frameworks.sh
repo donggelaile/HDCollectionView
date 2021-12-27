@@ -175,6 +175,7 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CollectionSwipableCellExtension/CollectionSwipableCellExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HDCollectionView/HDCollectionView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HDListViewDiffer/HDListViewDiffer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework"
@@ -187,6 +188,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CollectionSwipableCellExtension/CollectionSwipableCellExtension.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HDCollectionView/HDCollectionView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/HDListViewDiffer/HDListViewDiffer.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JXCategoryView/JXCategoryView.framework"

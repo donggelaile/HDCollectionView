@@ -118,8 +118,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				666999F4AB9957FBF69D2C01A61DE285 /* HDListViewDiffer-umbrella.h in Headers */,
 				0D97A4F9074150849CE260CFA5FC8739 /* HDListViewDiffer.h in Headers */,
+				666999F4AB9957FBF69D2C01A61DE285 /* HDListViewDiffer-umbrella.h in Headers */,
 				C58A172E0168FD87BF6F69C3BA5DE816 /* UICollectionView+HDDiffReload.h in Headers */,
 				F159F6F2BF943B53F4F865EF1FD9CA8F /* UITableView+HDDiffReload.h in Headers */,
 			);
@@ -152,8 +152,8 @@
 		63A6E1771045C00127F34B8CE8A0FC3F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = BDB4116090E52D42FD2914548A83439E /* Build configuration list for PBXProject "HDListViewDiffer" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,8 +188,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39CB48A75413E0DA0D69CB640141B71A /* HDListViewDiffer-dummy.m in Sources */,
 				210185DA75EBACAEF453A93D8FF81A9B /* HDListViewDiffer.m in Sources */,
+				39CB48A75413E0DA0D69CB640141B71A /* HDListViewDiffer-dummy.m in Sources */,
 				C10C851C5FB93FF76652FD7C83A384F2 /* UICollectionView+HDDiffReload.m in Sources */,
 				DD3886DA4FB5A93500F10B0FABEA388B /* UITableView+HDDiffReload.m in Sources */,
 			);

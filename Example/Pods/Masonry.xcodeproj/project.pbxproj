@@ -180,12 +180,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				81086ECD2B98EB260B949805614DB409 /* MASCompositeConstraint.h in Headers */,
-				E46687A22A7E8B323DB8B0D195262936 /* MASConstraint+Private.h in Headers */,
 				BB11C10363CEDE9D3F6DF40D3BF7657E /* MASConstraint.h in Headers */,
+				E46687A22A7E8B323DB8B0D195262936 /* MASConstraint+Private.h in Headers */,
 				B43EB354D32F83764B56A85F14DEFD8F /* MASConstraintMaker.h in Headers */,
 				2CDF8C33E4B17F8FF2ACD06A7CD932C9 /* MASLayoutConstraint.h in Headers */,
-				AC6B91DCCE6D2CCC3A8D44E91AA532F8 /* Masonry-umbrella.h in Headers */,
 				36B57BC43F747914609B75752C079376 /* Masonry.h in Headers */,
+				AC6B91DCCE6D2CCC3A8D44E91AA532F8 /* Masonry-umbrella.h in Headers */,
 				9E9CBD3CFDCE2982064D9A62E6F932E4 /* MASUtilities.h in Headers */,
 				2D9AB45BD77379DCE2272B8FD438CD6A /* MASViewAttribute.h in Headers */,
 				01BE705FE32CE7B5A122C3AF5E778A2B /* MASViewConstraint.h in Headers */,
@@ -225,8 +225,8 @@
 		2E4DC7A6941A46433CA6F61352BCF9B1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = BAA5BF6AA2862CE3FA4EBB891A8E91B8 /* Build configuration list for PBXProject "Masonry" */;
 			compatibilityVersion = "Xcode 3.2";

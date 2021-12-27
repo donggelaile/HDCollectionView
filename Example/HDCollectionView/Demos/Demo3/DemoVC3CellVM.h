@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSAttributedString *rightText;
 @property (nonatomic, strong) NSURL *imageUrl;
 @property (nonatomic, strong) NSString *someID;//跳转详情时可能使用
+@property (nonatomic, assign) BOOL isNeedSlideToDelete;
 @end
 
 NS_ASSUME_NONNULL_END

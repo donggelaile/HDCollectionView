@@ -381,8 +381,8 @@
 				6EC439EC4DA8D514F6ED401C1E582356 /* JXCategoryTitleVerticalZoomCellModel.h in Headers */,
 				4E9A9AAE38C79000FE5CDEB38B42E7F2 /* JXCategoryTitleVerticalZoomView.h in Headers */,
 				A582523B73B8EEDCE1B09BE033A65385 /* JXCategoryTitleView.h in Headers */,
-				399686D28220103B3925CCE037542E36 /* JXCategoryView-umbrella.h in Headers */,
 				B1F43845CB75E15C11247D136E922727 /* JXCategoryView.h in Headers */,
+				399686D28220103B3925CCE037542E36 /* JXCategoryView-umbrella.h in Headers */,
 				B7102C7CD661F2B6897B714C00800B02 /* JXCategoryViewAnimator.h in Headers */,
 				F8EB35E37A4CC99356A4C41C303589BF /* JXCategoryViewDefines.h in Headers */,
 				D04BF24A88406972B38ABFD04F549C32 /* UIColor+JXAdd.h in Headers */,
@@ -416,8 +416,8 @@
 		1A1CFDE0BC94CE891A3A7207C49B690D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = D9A204DA26CC5A1977509F90D4BDD807 /* Build configuration list for PBXProject "JXCategoryView" */;
 			compatibilityVersion = "Xcode 3.2";

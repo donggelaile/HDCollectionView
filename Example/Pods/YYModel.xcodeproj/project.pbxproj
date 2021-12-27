@@ -121,8 +121,8 @@
 			files = (
 				081482DBFF3B7D6372ABD85F0708FF6F /* NSObject+YYModel.h in Headers */,
 				E7EF48B6CA09395435301BC29A558BCB /* YYClassInfo.h in Headers */,
-				7CA1492800D36A606ED2D0586B9D1C6E /* YYModel-umbrella.h in Headers */,
 				912CB5E9F00EC73C14214983BC18B706 /* YYModel.h in Headers */,
+				7CA1492800D36A606ED2D0586B9D1C6E /* YYModel-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,8 +153,8 @@
 		4BED0C03B36C5405273F0239D711EB40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 292E5B4AD06C93EB143EEEEDC0BC7E10 /* Build configuration list for PBXProject "YYModel" */;
 			compatibilityVersion = "Xcode 3.2";

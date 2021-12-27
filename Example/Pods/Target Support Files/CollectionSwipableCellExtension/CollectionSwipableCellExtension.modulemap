@@ -1,0 +1,6 @@
+framework module CollectionSwipableCellExtension {
+  umbrella header "CollectionSwipableCellExtension-umbrella.h"
+
+  export *
+  module * { export * }
+}

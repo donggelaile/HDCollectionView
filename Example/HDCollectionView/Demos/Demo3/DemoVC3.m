@@ -12,11 +12,14 @@
 #import "DemoVC3CellVM.h"
 #import <MJRefresh/MJRefresh.h>
 #import "Masonry.h"
+#import <CollectionSwipableCellExtension/CollectionSwipableCellExtension-Swift.h>
+
 extern BOOL isDemo3OpenSubviewFrameCache;
-@interface DemoVC3 ()
+@interface DemoVC3 ()<CollectionSwipableCellExtensionDelegate>
 {
     HDCollectionView *listV;
     HDSectionModel *secm;
+    CollectionSwipableCellExtension *swipeExt;
 }
 @end
 
@@ -27,6 +30,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     [self demo];
     // Do any additional setup after loading the view.
 }
+
 - (void)demo
 {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -63,6 +67,16 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     [listV hd_setAllEventCallBack:^(id backModel, HDCallBackType type) {
         
     }];
+
+    // for swipe to delete
+    swipeExt = [[CollectionSwipableCellExtension alloc] initWithCollectionView:listV.collectionV];
+    swipeExt.delegate = self;
+    swipeExt.isEnabled = YES;
+    
+    [listV hd_setCellUIUpdateCallback:^(__kindof UICollectionViewCell * _Nonnull cell, NSIndexPath * _Nonnull indexP) {
+        [cell resetSwipableActions];
+    }];
+
 }
 
 - (void)loadData
@@ -100,6 +114,7 @@ extern BOOL isDemo3OpenSubviewFrameCache;
         DemoVC3CellVM *model = [DemoVC3CellVM new];
         model.orgData      = [DemoVC3CellModel randomModel];
         model.cellClassStr = @"DemoVC3Cell";
+        model.isNeedSlideToDelete = YES;
         __weak typeof(listV) weakV = listV;
         [model setCellSizeCb:^CGSize{
             //1、此方式跟 model.cellSize = CGSizeMake(self.view.frame.size.width-20, 0); 的区别是 cellSize是只获取一次，内部记录后不再变更。
@@ -134,18 +149,45 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     secModel.isNeedCacheSubviewsFrame = isDemoVC3OpenCellSubviewFrameCache;
     return secModel;
 }
+
 - (void)clickCell:(HDCellModel*)cellM
 {
     NSLog(@"点击了%zd--%zd cell",cellM.indexP.section,cellM.indexP.item);
 }
+
 - (void)clickHeader:(HDSectionModel*)secM
 {
     NSLog(@"点击了段头_%zd",secM.section);
 }
+
 - (void)clickFooter:(HDSectionModel*)secM
 {
     NSLog(@"点击了段尾_%zd",secM.section);
 }
+
+#pragma mark - CollectionSwipableCellExtensionDelegate
+- (BOOL)isSwipableWithItemAt:(NSIndexPath *)indexPath {
+    HDSectionModel *secModel = listV.innerAllData[indexPath.section];
+    DemoVC3CellVM *cellVM = (DemoVC3CellVM*)secModel.sectionDataArr[indexPath.item];
+    if ([cellVM isKindOfClass:DemoVC3CellVM.class]) {
+        return cellVM.isNeedSlideToDelete;
+    }
+    return NO;
+}
+
+- (id<CollectionSwipableCellLayout>)swipableActionsLayoutForItemAt:(NSIndexPath *)indexPath {
+    HDSectionModel *secModel = listV.innerAllData[indexPath.section];
+    CollectionSwipableCellOneButtonLayout *actionLayout = [[CollectionSwipableCellOneButtonLayout alloc] initWithButtonWidth:100 insets:UIEdgeInsetsZero direction:UIUserInterfaceLayoutDirectionLeftToRight fullOpenInset:0];
+    actionLayout.actionsView.backgroundColor = UIColor.redColor;
+    __weak typeof (listV) weakListV = listV;
+    actionLayout.action = ^{
+        [weakListV hd_changeSectionModelWithKey:secModel.sectionKey animated:YES changingIn:^(id<HDSectionModelProtocol>  _Nonnull secModel) {
+            [secModel.sectionDataArr removeObjectAtIndex:indexPath.item];
+        }];
+    };
+    return actionLayout;
+}
+
 - (void)dealloc
 {
     

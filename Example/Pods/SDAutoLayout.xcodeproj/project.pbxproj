@@ -115,8 +115,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0499D3F693C61C212F26F2ED84C8AC5D /* SDAutoLayout-umbrella.h in Headers */,
 				053C4E652C110DE0CA20F0D29A0EEAEB /* SDAutoLayout.h in Headers */,
+				0499D3F693C61C212F26F2ED84C8AC5D /* SDAutoLayout-umbrella.h in Headers */,
 				04F18F4527F45EEBB24DB0B4DBC0BD8B /* UITableView+SDAutoTableViewCellHeight.h in Headers */,
 				AF5E832438F76D34B91FDEC7FE0D6813 /* UIView+SDAutoLayout.h in Headers */,
 			);
@@ -149,8 +149,8 @@
 		AFF101AA38A9BD6E923E2463F96331AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = BCA003403A42D63F39846C6163D94038 /* Build configuration list for PBXProject "SDAutoLayout" */;
 			compatibilityVersion = "Xcode 3.2";

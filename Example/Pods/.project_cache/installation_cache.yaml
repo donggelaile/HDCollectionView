@@ -2,6 +2,18 @@ BUILD_CONFIGURATIONS:
   Debug: :debug
   Release: :release
 CACHE_KEYS:
+  CollectionSwipableCellExtension:
+    BUILD_SETTINGS_CHECKSUM:
+      CollectionSwipableCellExtension:
+        :debug: 6ee2f9c6c30cf78ae34184884354f38d
+        :release: 6ee2f9c6c30cf78ae34184884354f38d
+    CHECKOUT_OPTIONS:
+      :commit: d3d7c9ee8721562174cbd2c89f88b1d05bbc5fc0
+      :git: https://github.com/KosyanMedia/CollectionSwipableCellExtension.git
+    CHECKSUM: 7f7090dd8941be6ddc0a39bdd8f6204c2d07fe41
+    PROJECT_NAME: CollectionSwipableCellExtension
+    SPECS:
+      - CollectionSwipableCellExtension (0.0.5)
   HDCollectionView:
     BUILD_SETTINGS_CHECKSUM:
       HDCollectionView:
@@ -92,12 +104,12 @@ CACHE_KEYS:
       - MJRefresh (3.1.16)
   Pods-HDCollectionView_Example:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: 0ba311912d5710636bf53946909d56fc
-      Release: 0ba311912d5710636bf53946909d56fc
+      Debug: c333397d7410065ff1afe47e847d52ab
+      Release: c333397d7410065ff1afe47e847d52ab
   Pods-HDCollectionView_Tests:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: c11ef3decfe7fc63250b001b6f091f2a
-      Release: c11ef3decfe7fc63250b001b6f091f2a
+      Debug: 6d7f76b9ba1821bdac6d5e591371f007
+      Release: 6d7f76b9ba1821bdac6d5e591371f007
   SDAutoLayout:
     BUILD_SETTINGS_CHECKSUM:
       SDAutoLayout:

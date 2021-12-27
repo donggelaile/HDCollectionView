@@ -175,8 +175,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				73DA7435C5C7DCA917B76C3681F8253C /* NSAttributedString+SJMake.h in Headers */,
-				09F84E5A6985C53B259DBD3B6386B477 /* SJAttributesFactory-umbrella.h in Headers */,
 				4A2FAA73FD0942F08E7DCCFD75112AF7 /* SJAttributesFactory.h in Headers */,
+				09F84E5A6985C53B259DBD3B6386B477 /* SJAttributesFactory-umbrella.h in Headers */,
 				5FFB664D863CB7938D58B7C654F30C47 /* SJAttributesRecorder.h in Headers */,
 				ABA4BF673B110E1BB22741F3B1704C0D /* SJAttributeWorker.h in Headers */,
 				A9B9B1F71710AFE326B8DF64A5D3B71D /* SJUIKitAttributesDefines.h in Headers */,
@@ -215,8 +215,8 @@
 		86919D55ADE5108C602E4CA2949249C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = C92F8B56D9C961DA4D5C1A1F41E00006 /* Build configuration list for PBXProject "SJAttributesFactory" */;
 			compatibilityVersion = "Xcode 3.2";

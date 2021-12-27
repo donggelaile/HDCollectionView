@@ -1,3 +1,7 @@
+CollectionSwipableCellExtension:
+  LABEL: CollectionSwipableCellExtension
+  PROJECT_PATH: CollectionSwipableCellExtension.xcodeproj
+  UUID: 2C2337EEFD8728661144FB96E731946C
 HDCollectionView:
   LABEL: HDCollectionView
   PROJECT_PATH: HDCollectionView.xcodeproj
