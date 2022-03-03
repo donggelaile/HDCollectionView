@@ -342,7 +342,6 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         [self registerWithCellClass:hd_default_cell_class cellReuseID:hd_default_cell_class headerClass:hd_default_hf_class footerClass:hd_default_hf_class decorationClass:nil];
         [self addSubview:_collectionV];
     }
-    _collectionV.backgroundColor = [UIColor clearColor];
     return _collectionV;
 }
 - (Class)HDInnerCollectionViewClass
@@ -433,6 +432,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
             self.allDataCopy = dataArr.mutableCopy;
         }
         [self hd_autoCountAllViewsHeight];
+        [self layoutIfNeeded];
     });
 }
 

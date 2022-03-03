@@ -171,7 +171,13 @@
         id firstObjValue = firstObj.value;
         //只是对HDCellModel的属性及其orgData的属性进行遍历
         if ([firstObj.name isEqualToString:@"orgData"]) {
-            [finalID appendFormat:@"{%@:%@}",firstObj.name,[firstObjValue _innerHdObjectIDByPropertys:countedObjMap]];
+            if ([firstObjValue isKindOfClass:NSObject.class]) {
+                [finalID appendFormat:@"{%@:%@}",firstObj.name,[firstObjValue _innerHdObjectIDByPropertys:countedObjMap]];
+            }else{
+#ifdef DEBUG
+                NSLog(@"%@",@"当前 orgData 对象是 swift 中不继承 NSObject 的 class, 建议继承 HDCellModel 并重写 - (NSString *)hdDiffIdentifier");
+#endif
+            }
         }else{
             [finalID appendFormat:@"(%@:%@)",firstObj.name,firstObjValue];
         }
