@@ -87,10 +87,22 @@ NS_ASSUME_NONNULL_BEGIN
  最终cell在collectionView上的xy坐标(赋值在UI更新之后)
  */
 @property (nonatomic,strong, readonly) NSValue* _Nullable cellFrameXY;//CGPoint
+
 /**
- 根据当前配置的参数计算当前cell的大小
+ 根据当前配置的参数计算当前cell的大小, 忽视缓存
  */
-- (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout;
+- (CGSize)calculateCellProperSize:(BOOL)isForceUseAutoLayout;
+
+/**
+ 计算cell合适宽高，有缓存会直接返回
+ */
+- (CGSize)calculateCellProperSizeWhenNoCache:(BOOL)isForceUseAutoLayout;
+
+/**
+ 根据当前配置的参数计算当前cell的大小, 忽视缓存 (请调用上面的方法)
+ */
+- (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout DEPRECATED_MSG_ATTRIBUTE("请使用calculateCellProperSize计算合适宽高, isNeedCacheSubviewsFrame已废弃, 直接使用cacheSubviewsFrameBySetLayoutWithCellModel判断是否需要缓存子view frame");
+
 
 @optional
 - (void)convertOrgModelToViewModel;
@@ -141,11 +153,10 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
  */
 @property (nonatomic, assign) BOOL isNeedAutoCountCellHW;
 
-
 /**
- 默认NO,当isNeedAutoCountCellHW 为YES才会考虑该属性， 该段内cell是否需要缓存所有子view的frame(如果设置为YES,则该section内的cell需要实现cacheSubviewsFrameBySetLayoutWithCellModel函数)
+ 已废弃，后面可能直接删除
  */
-@property (nonatomic, assign) BOOL isNeedCacheSubviewsFrame;
+@property (nonatomic, assign) BOOL isNeedCacheSubviewsFrame DEPRECATED_MSG_ATTRIBUTE("已废弃, 直接根据cell是否实现cacheSubviewsFrameBySetLayoutWithCellModel来判断是否开启对应cell的子view frame缓存");
 
 /**
  默认HDHeaderStopOnTopTypeNone, 该段 段头悬停类型(HDCollectionView的isNeedTopStop为YES才会生效)

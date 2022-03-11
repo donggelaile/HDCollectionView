@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-//可设置为NO对比cellForItemAtIndexPath函数执行时间
-static BOOL isDemoVC3OpenCellSubviewFrameCache = YES;
+//可注释该宏对比cellForItemAtIndexPath函数执行时间
+//#define DemoVC3OpenCellSubviewFrameCache
 
 NS_ASSUME_NONNULL_BEGIN
 

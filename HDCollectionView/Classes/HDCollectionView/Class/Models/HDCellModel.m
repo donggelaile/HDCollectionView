@@ -161,12 +161,11 @@
     return [self hdObjectIDByPropertys];
 }
 
-- (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout
-{
+- (CGSize)calculateCellProperSize:(BOOL)isForceUseAutoLayout {
     @autoreleasepool {
         HDCollectionCell<HDUpdateUIProtocol>*tempCell = [[HDClassFromString(self.cellClassStr) alloc] initWithFrame:CGRectMake(0, 0, self.cellSize.width, self.cellSize.height)];
         
-        isNeedCacheSubviewsFrame = isNeedCacheSubviewsFrame && [tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)];
+        BOOL isNeedCacheSubviewsFrame = [tempCell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)];
         
         if (isNeedCacheSubviewsFrame) {
             [tempCell setCacheKeysIfNeed];
@@ -216,6 +215,18 @@
     }
     return self.cellSize;
 }
+
+- (CGSize)calculateCellProperSizeWhenNoCache:(BOOL)isForceUseAutoLayout {
+    if (self.isConvertedToVM && self.cellSize.width > 0 && self.cellSize.height > 0) {
+        return self.cellSize;
+    }
+    return [self calculateCellProperSize :isForceUseAutoLayout];
+}
+
+- (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout {
+    return [self calculateCellProperSize:isForceUseAutoLayout];
+}
+
 //取出当前类的所有property,然后去self.orgData中查找是否实现了对应的get方法，实现了则读取并赋值。
 - (void)superDefaultConvertOrgModelToViewModel
 {

@@ -204,7 +204,6 @@
         self.headerTopStopOffset = 0;
         self.sectionDataArr = @[].mutableCopy;
         self.isNeedAutoCountCellHW = NO;
-        self.isNeedCacheSubviewsFrame = NO;
     }
     return self;
 }

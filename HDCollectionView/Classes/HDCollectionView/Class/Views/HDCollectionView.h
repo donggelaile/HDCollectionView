@@ -103,7 +103,8 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 直接添加一个新的secModel (完成后会回调 dataChangeFinishedCallBack)
  该方法在数据源为空或者不为空时均可调用
  */
-- (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel animated:(BOOL)animated;
+- (void)hd_appendDataWithSecModel:(id<HDSectionModelProtocol>)secModel
+                         animated:(BOOL)animated;
 
 /**
 插入一个secModel到指定位置
@@ -112,21 +113,28 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
  0 < index < allDataArr.count 插入到index段的前面
  该方法在数据源为空或者不为空时均可调用
  */
-- (void)hd_insertDataWithSecModel:(id<HDSectionModelProtocol>)secModel atIndex:(NSInteger)index animated:(BOOL)animated;
+- (void)hd_insertDataWithSecModel:(id<HDSectionModelProtocol>)secModel
+                          atIndex:(NSInteger)index
+                         animated:(BOOL)animated;
 
 /**
 添加多个secModel (完成后会回调 dataChangeFinishedCallBack)
  该方法在数据源为空或者不为空时均可调用
  */
-- (void)hd_appendDataWithSecModelArr:(NSArray<id<HDSectionModelProtocol>>*)secModels animated:(BOOL)animated;
+- (void)hd_appendDataWithSecModelArr:(NSArray<id<HDSectionModelProtocol>>*)secModels
+                            animated:(BOOL)animated;
 
 /**
  向某个段内增加cell/默认的sectionKey是第几段
  该方法目前对于瀑布流元素的增加，内部计算是增量计算的。但对于HDYogaFlowLayout会对该段整体重新计算
  如果想增量计算HDYogaFlowLayout，使用hd_appendDataWithSecModel，新增一个新的段。
  */
-- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
-- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr sectionKey:(NSString*)sectionKey animated:(BOOL)animated;
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr
+                           sectionKey:(NSString*)sectionKey animated:(BOOL)animated
+              animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
+
+- (void)hd_appendDataWithCellModelArr:(NSArray<id<HDCellModelProtocol>>*)itemArr
+                           sectionKey:(NSString*)sectionKey animated:(BOOL)animated;
 
 /**
  如果仅仅是向secModel新增cellModel，使用 hd_appendDataWithCellModelArr方法
@@ -134,14 +142,35 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
  如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
  想要刷新一个或几个cell的UI时，调用此方法
  */
-- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
-- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey
+                            animated:(BOOL)animated
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+                          changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
+             animationFinishCallback:(void (^ _Nullable)(void))animationFinish;
+
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
+                            animated:(BOOL)animated
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+                          changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
+
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
+                            animated:(BOOL)animated
+                          changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock
+             animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
+
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
+                            animated:(BOOL)animated
+                          changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
 
 /**
  删除某段的所有内容
  */
-- (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
-- (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey animated:(BOOL)animated;
+- (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey
+                       animated:(BOOL)animated
+        animationFinishCallback:(void(^ _Nullable)(void))animationFinish;
+
+- (void)hd_deleteSectionWithKey:(nullable NSString*)sectionKey
+                       animated:(BOOL)animated;
 /**
  某个key的sectionModel是否存在
  */

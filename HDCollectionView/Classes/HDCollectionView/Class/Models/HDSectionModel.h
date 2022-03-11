@@ -58,9 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly)  HDSectionModelChainMaker* (^hd_isNeedAutoCountCellHW)(BOOL isNeedAutoCountCellHW);
 
 /**
- 默认NO,当isNeedAutoCountCellHW 为YES才会考虑该属性， 该段内cell是否需要缓存所有子view的frame(如果设置为YES,则该section内的cell需要实现cacheSubviewsFrameBySetLayoutWithCellModel函数)
+已废弃
 */
-@property (nonatomic, strong, readonly)  HDSectionModelChainMaker* (^hd_isNeedCacheSubviewsFrame)(BOOL isNeedCacheSubviewsFrame);
+@property (nonatomic, strong, readonly)  HDSectionModelChainMaker* (^hd_isNeedCacheSubviewsFrame)(BOOL isNeedCacheSubviewsFrame) DEPRECATED_MSG_ATTRIBUTE("已废弃, 直接根据cell是否实现cacheSubviewsFrameBySetLayoutWithCellModel来判断是否开启对应cell的子view frame缓存");
 
 /**
  默认HDHeaderStopOnTopTypeNone, 该段 段头悬停类型(HDCollectionView的isNeedTopStop为YES才会生效)

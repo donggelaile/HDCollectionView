@@ -90,16 +90,16 @@ extern BOOL isDemo3OpenSubviewFrameCache;
         */
         
         //比如直接这样, 代码默认是在 NSRunLoopCommonModes 中运行
-//        [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:YES];
-//        [listV.collectionV.mj_footer endRefreshing];
+        [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:NO];
+        [listV.collectionV.mj_footer endRefreshing];
         
-        HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
-            //其实里面的代码最终还是在主线程执行，只是此时用户已经不再滑动列表了。
-//            [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:NO];
-            NSArray *secArr = @[[self makeSecModel],[self makeSecModel]];
-            [self->listV hd_appendDataWithSecModelArr:secArr animated:YES];
-            [listV.collectionV.mj_footer endRefreshing];//注意结束刷新也要放到里面
-        });
+//        HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
+//            //其实里面的代码最终还是在主线程执行，只是此时用户已经不再滑动列表了。
+////            [self->listV hd_appendDataWithSecModel:[self makeSecModel] animated:NO];
+//            NSArray *secArr = @[[self makeSecModel],[self makeSecModel]];
+//            [self->listV hd_appendDataWithSecModelArr:secArr animated:YES];
+//            [listV.collectionV.mj_footer endRefreshing];//注意结束刷新也要放到里面
+//        });
         
 
     });
@@ -146,7 +146,6 @@ extern BOOL isDemo3OpenSubviewFrameCache;
     secModel.sectionDataArr        = cellModelArr;
     secModel.layout                = layout;
     secModel.isNeedAutoCountCellHW  = YES;
-    secModel.isNeedCacheSubviewsFrame = isDemoVC3OpenCellSubviewFrameCache;
     return secModel;
 }
 

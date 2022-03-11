@@ -47,8 +47,9 @@
     //只转换一次
     if ([model respondsToSelector:@selector(convertOrgModelToViewModel)] && !model.isConvertedToVM) {
         [model convertOrgModelToViewModel];
-        model.isConvertedToVM = YES;
     }
+    UIAlertView *view;
+    model.isConvertedToVM = YES;
     if (dataSetFinishCb) {
         dataSetFinishCb();
     }

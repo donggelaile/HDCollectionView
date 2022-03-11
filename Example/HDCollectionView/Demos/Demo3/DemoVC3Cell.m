@@ -110,40 +110,42 @@
         make.height.mas_equalTo(0.5);
     }];
 }
+
+#ifdef DemoVC3OpenCellSubviewFrameCache
 - (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel *)cellModel
 {
     /*
      0、前提条件：该cell所在的段(HDSectionModel)
      secModel.isNeedAutoCountCellHW  = YES;
-     secModel.isNeedCacheSubviewsFrame = YES;
      
      1、当你想缓存cell子view Frame时，实现cacheSubviewsFrameBySetLayoutWithCellModel函数即可，
      在此cell内部无需调用cacheSubviewsFrameBySetLayoutWithCellModel和setLayoutWithModel方法，
      此时最后展示到界面上的cell没有设置任何约束，但其所有frame是通过一个相同类的tempCell在设置约束后计算而来的
      
-     2、当该段设置isNeedCacheSubviewsFrame为NO时，你需要在cell的- (instancetype)initWithFrame:(CGRect)frame中调用setLayoutWithModel方法
+     2、需要在cell的- (instancetype)initWithFrame:(CGRect)frame中调用setLayoutWithModel方法
      此时的展示与常规方式相同，每个cell均设置有约束，滑动列表时autoLayout会重新计算子view新的frame。而情况1滑动列表时只是在重设所有子view的frame。
      
      3、需要注意的是，当cell内嵌套了collectionView时。该cell建议不要开启isNeedCacheSubviewsFrame,因为此时遍历的子view数量可能会太多了。。
-     isNeedCacheSubviewsFrame是以段为单位的，同一段内的某种类型的cell不想开启缓存子view frame功能，不实现
+       同一段内的某种类型的cell不想开启缓存子view frame功能，不实现
      - (void)cacheSubviewsFrameBySetLayoutWithCellModel:(HDCellModel *)cellModel 方法即可。
      */
     [self setLayoutWithModel:cellModel];
 }
+#endif
 
 HDCellVMGetter(DemoVC3CellVM)
 
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
+#ifndef DemoVC3OpenCellSubviewFrameCache
     uint64_t dispatch_benchmark(size_t count, void (^block)(void));//GCD私有API
-    if (!isDemoVC3OpenCellSubviewFrameCache) {
-        uint64_t ns = dispatch_benchmark(1, ^{
-            //写在updateCellUI中会在滑动时创建约束，这会损耗一些时间（因为这里约束需要根据model来做变更）
-            [self setLayoutWithModel:model];
-        });
-        double time1 = ns/(pow(10, 6));
-        printf("重建约束消耗时间为%f毫秒\n",time1);
-    }
+    uint64_t ns = dispatch_benchmark(1, ^{
+        //写在updateCellUI中会在滑动时创建约束，这会损耗一些时间（因为这里约束需要根据model来做变更）
+        [self setLayoutWithModel:model];
+    });
+    double time1 = ns/(pow(10, 6));
+    printf("重建约束消耗时间为%f毫秒\n",time1);
+#endif
 
     self.titleL.attributedText = [self viewModel].title;
     self.detailL.attributedText = [self viewModel].detail;

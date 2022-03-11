@@ -119,7 +119,6 @@ static char *const hd_default_colletionView_maker = "hd_default_colletionView_ma
     }else{
         [obj setValue:@(defultMaker.isNeedAdaptScreenRotaion) forKey:@"isNeedAdaptScreenRotaion"];
     }
-    obj.backgroundColor = [UIColor whiteColor];
     [obj collectionV];
     
     return obj;
@@ -383,7 +382,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
             [self hd_reloadData];
         };
         if (sec.isNeedAutoCountCellHW) {
-            [self hd_autoCountCellsHeight:sec];
+            [self hd_autoCountCellsHeight:sec ignoreCache:YES];
             refreshDataLayout();
         }else{
             refreshDataLayout();
@@ -450,7 +449,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         void(^updateLayout)(void) = ^(){
             [(NSObject*)secModel setValue:@(self.allDataArr.count) forKey:@"section"];
             if (secModel.isNeedAutoCountCellHW) {
-                [self hd_autoCountCellsHeight:secModel];
+                [self hd_autoCountCellsHeight:secModel ignoreCache:YES];
                 [self updateHDColltionViewDataType:HDDataChangeAppendSec start:nil];
                 [self insertOneSection:secModel atIndex:NSIntegerMax];
             }else{
@@ -498,7 +497,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
             [filterSecArr enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> _Nonnull secModel, NSUInteger idx, BOOL * _Nonnull stop) {
                 [(NSObject*)secModel setValue:@(self.allDataArr.count) forKey:@"section"];
                 if (secModel.isNeedAutoCountCellHW) {
-                    [self hd_autoCountCellsHeight:secModel];
+                    [self hd_autoCountCellsHeight:secModel ignoreCache:YES];
                 }
             }];
             [self updateHDColltionViewDataType:HDDataChangeAppendSecs start:nil];
@@ -561,7 +560,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
             [(NSObject*)secModel setValue:@(finalInsertIndex) forKey:@"section"];
             
             if (secModel.isNeedAutoCountCellHW) {
-                [self hd_autoCountCellsHeight:secModel];
+                [self hd_autoCountCellsHeight:secModel ignoreCache:YES];
                 [self updateHDColltionViewDataType:HDDataChangeInsertSec start:finalStart];
                 [self insertOneSection:secModel atIndex:index];
             }else{
@@ -613,7 +612,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         if (secModel.isNeedAutoCountCellHW) {
             id<HDSectionModelProtocol> copy = [(NSObject*)secModel copy];
             copy.sectionDataArr = itemArr.mutableCopy;
-            [self hd_autoCountCellsHeight:copy];
+            [self hd_autoCountCellsHeight:copy ignoreCache:YES];
             finalAddItemArr = copy.sectionDataArr;
         }
         
@@ -650,7 +649,22 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     [self hd_appendDataWithCellModelArr:itemArr sectionKey:sectionKey animated:animated animationFinishCallback:nil];
 }
 
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish {
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated needReCalculateAllCellHeight:YES changingIn:changeBlock animationFinishCallback:animationFinish];
+}
+
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock {
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated changingIn:changeBlock animationFinishCallback:nil];
+}
+
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
+                            animated:(BOOL)animated
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+                          changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock {
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated needReCalculateAllCellHeight:isNeedReCalculateAllCellHeight changingIn:changeBlock animationFinishCallback:nil];
+}
+
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish
 {
     HDDoSomeThingInMainQueue(^{
         if (!sectionKey) {
@@ -667,7 +681,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         
         void(^updateLayout)(void) = ^(){
             if (secModel.isNeedAutoCountCellHW) {
-                [self hd_autoCountCellsHeight:secModel];
+                [self hd_autoCountCellsHeight:secModel ignoreCache:isNeedReCalculateAllCellHeight];
                 secModel.layout.needUpdate = YES;
                 [self updateHDColltionViewDataType:HDDataChangeChangeSec
                                              start:[NSValue valueWithCGPoint:secModel.layout.cacheStart]];
@@ -711,11 +725,6 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         }
         
     });
-}
-
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
-{
-    [self hd_changeSectionModelWithKey:sectionKey animated:animated changingIn:changeBlock animationFinishCallback:nil];
 }
 
 - (void)hd_deleteSectionWithKey:(NSString *)sectionKey animated:(BOOL)animated animationFinishCallback:(void (^ _Nullable)(void))animationFinish
@@ -1059,7 +1068,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
 
     //这里先设置frame的原因是后面的函数可能需要用到子view的frame
     //使用isNeedCacheSubviewsFrame时isNeedAutoCountCellHW必须为YES
-    if ((secM.isNeedAutoCountCellHW&&secM.isNeedCacheSubviewsFrame)||cellModel.subviewsFrame) {
+    if (cellModel.subviewsFrame) {
         if ([cell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
             [cell setCacheKeysIfNeed];
             [HDCellFrameCacheHelper resetViewSubviewFrame:cell subViewFrame:cellModel.subviewsFrame];
@@ -1200,14 +1209,14 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     [self.allDataCopy enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [(NSObject*)obj setValue:@(idx) forKey:@"section"];
         if (obj.isNeedAutoCountCellHW) {
-            [self hd_autoCountCellsHeight:obj];
+            [self hd_autoCountCellsHeight:obj ignoreCache:YES];
         }
     }];
     self.allDataArr = self.allDataCopy;
     [self hd_dataDealFinishCallback:HDDataChangeSetAll];
 }
 
-- (void)hd_autoCountCellsHeight:(id<HDSectionModelProtocol>)secModel
+- (void)hd_autoCountCellsHeight:(id<HDSectionModelProtocol>)secModel ignoreCache:(BOOL)ignoreCache
 {
     NSArray *cellModelArr = secModel.sectionDataArr;
     
@@ -1225,7 +1234,11 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         if (![HDClassFromString(obj.cellClassStr) isSubclassOfClass:[UICollectionViewCell class]]) {
             obj.cellClassStr = secModel.sectionCellClassStr;
         }
-        [obj calculateCellProperSize:secModel.isNeedCacheSubviewsFrame forceUseAutoLayout:NO];
+        if (ignoreCache) {
+            [obj calculateCellProperSize:NO];
+        }else{
+            [obj calculateCellProperSizeWhenNoCache:NO];
+        }
     }];
 }
 
