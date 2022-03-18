@@ -889,13 +889,12 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
 {
     id<HDSectionModelProtocol> secModel = _allDataArr[indexPath.section];
     id<HDCellModelProtocol> cellM = secModel.sectionDataArr[indexPath.item];
-    if (!secModel.isNeedAutoCountCellHW) {
-        if (cellM.cellSizeCb) {
-            cellM.cellSize = cellM.cellSizeCb();
-        }
-    }
-    if (CGSizeEqualToSize(cellM.cellSize, CGSizeZero)) {
-        cellM.cellSize = secModel.layout.cellSize;
+    [(NSObject*)secModel setValue:@(indexPath.section) forKey:@"section"];
+    [(NSObject*)cellM setValue:indexPath forKey:@"indexP"];
+    [(NSObject*)cellM setValue:secModel forKey:@"secModel"];
+    cellM.cellSize = [cellM calculateCellProperSizeWhenNoCache:NO];
+    if (cellM.cellSizeCb) {
+        cellM.cellSize = cellM.cellSizeCb();
     }
     return cellM.cellSize;
 }
