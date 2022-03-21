@@ -892,7 +892,6 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     [(NSObject*)secModel setValue:@(indexPath.section) forKey:@"section"];
     [(NSObject*)cellM setValue:indexPath forKey:@"indexP"];
     [(NSObject*)cellM setValue:secModel forKey:@"secModel"];
-    cellM.cellSize = [cellM calculateCellProperSizeWhenNoCache:NO];
     if (cellM.cellSizeCb) {
         cellM.cellSize = cellM.cellSizeCb();
     }
