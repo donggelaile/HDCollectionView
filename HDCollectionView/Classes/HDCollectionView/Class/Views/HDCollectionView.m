@@ -1066,9 +1066,9 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     };
 
     //这里先设置frame的原因是后面的函数可能需要用到子view的frame
-    //使用isNeedCacheSubviewsFrame时isNeedAutoCountCellHW必须为YES
-    if (cellModel.subviewsFrame) {
-        if ([cell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
+    if ([cell respondsToSelector:@selector(cacheSubviewsFrameBySetLayoutWithCellModel:)]) {
+        [cellModel calculateCellProperSizeWhenNoCache:false];
+        if (cellModel.subviewsFrame) {
             [cell setCacheKeysIfNeed];
             [HDCellFrameCacheHelper resetViewSubviewFrame:cell subViewFrame:cellModel.subviewsFrame];
         }
