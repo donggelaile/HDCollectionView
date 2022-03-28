@@ -895,6 +895,11 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
     if (cellM.cellSizeCb) {
         cellM.cellSize = cellM.cellSizeCb();
     }
+    // 系统flowlayout itemSize < 0 会报 negative sizes are not supported in the flow layout 的错误
+    if (cellM.cellSize.width < 0 || cellM.cellSize.height < 0) {
+        NSAssert(NO, @"negative sizes are not supported in the flow layout");
+        cellM.cellSize = CGSizeMake(MAX(cellM.cellSize.width, 0), MAX(cellM.cellSize.height, 0));
+    }
     return cellM.cellSize;
 }
 
