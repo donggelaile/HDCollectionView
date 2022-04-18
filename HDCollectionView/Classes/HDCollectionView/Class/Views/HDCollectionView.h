@@ -142,17 +142,6 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
  如果设置了SectionModel的sectionKey，则可以通过sectionKey来获取secModel。默认的sectionKey是当前段数
  想要刷新一个或几个cell的UI时，调用此方法
  */
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey
-                            animated:(BOOL)animated
-        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
-                          changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
-             animationFinishCallback:(void (^ _Nullable)(void))animationFinish;
-
-- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
-                            animated:(BOOL)animated
-        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
-                          changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
-
 - (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
                             animated:(BOOL)animated
                           changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock
@@ -161,6 +150,18 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 - (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
                             animated:(BOOL)animated
                           changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
+
+- (void)hd_changeSectionModelWithKey:(nullable NSString*)sectionKey
+                            animated:(BOOL)animated
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+                          changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
+
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey
+                            animated:(BOOL)animated
+                      animationBlcok:(void(^ _Nullable)(void))animationBlock // 传入此参数后动画时将不在使用内部的diff (animated为YES才会生效)
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+                          changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
+             animationFinishCallback:(void (^ _Nullable)(void))animationFinish;
 
 /**
  删除某段的所有内容
