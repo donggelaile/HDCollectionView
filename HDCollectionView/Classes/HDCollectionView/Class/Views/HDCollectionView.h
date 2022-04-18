@@ -156,11 +156,11 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
         needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
                           changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock;
 
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey
+- (void)hd_changeSectionModelWithKey:(nullable NSString *)sectionKey
                             animated:(BOOL)animated
-                      animationBlcok:(void(^ _Nullable)(void))animationBlock // 传入此参数后动画时将不在使用内部的diff (animated为YES才会生效)
+                     isUseInnerDiff:(BOOL)isUseInnerDiff // 是否使用内部的diff做动画, 默认YES
         needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
-                          changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock
+                          changingIn:(void (^ _Nullable)(id<HDSectionModelProtocol>))changeBlock
              animationFinishCallback:(void (^ _Nullable)(void))animationFinish;
 
 /**

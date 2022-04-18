@@ -650,7 +650,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
 }
 
 - (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish {
-    [self hd_changeSectionModelWithKey:sectionKey animated:animated animationBlcok:nil needReCalculateAllCellHeight:YES changingIn:changeBlock animationFinishCallback:animationFinish];
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated isUseInnerDiff:YES needReCalculateAllCellHeight:YES changingIn:changeBlock animationFinishCallback:animationFinish];
 }
 
 - (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock {
@@ -661,10 +661,10 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
                             animated:(BOOL)animated
         needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
                           changingIn:(void(^)(id<HDSectionModelProtocol> secModel))changeBlock {
-    [self hd_changeSectionModelWithKey:sectionKey animated:animated animationBlcok:nil needReCalculateAllCellHeight:isNeedReCalculateAllCellHeight changingIn:changeBlock animationFinishCallback:nil];
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated isUseInnerDiff:YES needReCalculateAllCellHeight:isNeedReCalculateAllCellHeight changingIn:changeBlock animationFinishCallback:nil];
 }
 
-- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated animationBlcok:(void(^)(void))animationBlock needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish
+- (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated isUseInnerDiff:(BOOL)isUseInnerDiff needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish
 {
     HDDoSomeThingInMainQueue(^{
         if (!sectionKey) {
@@ -694,14 +694,17 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         };
         
         if (animated) {
-            if (animationBlock) {
+            if (!isUseInnerDiff) {
                 [self.collectionV performBatchUpdates:^{
-                        animationBlock();
-                    } completion:^(BOOL finished) {
-                        [self hd_dataDealFinishCallback:HDDataChangeChangeSec animated:animated];
-                        if (animationFinish) {
-                            animationFinish();
-                        }
+                    if (changeBlock) {
+                        changeBlock(secModel);
+                    }
+                    updateLayout();
+                } completion:^(BOOL finished) {
+                    [self hd_dataDealFinishCallback:HDDataChangeChangeSec animated:animated];
+                    if (animationFinish) {
+                        animationFinish();
+                    }
                 }];
             } else {
                 NSMutableArray *oldDataArr = secModel.sectionDataArr.mutableCopy;
