@@ -338,6 +338,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
         _collectionV.contentInset = UIEdgeInsetsZero;
+        _collectionV.backgroundColor = UIColor.clearColor;
         [self registerWithCellClass:hd_default_cell_class cellReuseID:hd_default_cell_class headerClass:hd_default_hf_class footerClass:hd_default_hf_class decorationClass:nil];
         [self addSubview:_collectionV];
     }
