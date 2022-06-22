@@ -19,7 +19,7 @@ CACHE_KEYS:
       HDCollectionView:
         :debug: 3560ec631220132825e2fcb287138e70
         :release: 3560ec631220132825e2fcb287138e70
-    CHECKSUM: aa813a050565a1b7da04d2dffd9a303304690ecc
+    CHECKSUM: 6e2ebdc314c52fe4ad1954bf8aab0b85f1fd7f12
     FILES:
       - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDAssociationManager.h"
       - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDAssociationManager.m"
@@ -65,7 +65,7 @@ CACHE_KEYS:
       - "../../README.md"
     PROJECT_NAME: HDCollectionView
     SPECS:
-      - HDCollectionView (0.7.1)
+      - HDCollectionView (0.7.5)
   HDListViewDiffer:
     BUILD_SETTINGS_CHECKSUM:
       HDListViewDiffer:
