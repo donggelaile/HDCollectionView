@@ -65,12 +65,16 @@
 - (void)superAutoLayoutDefaultSet:(id<HDCellModelProtocol>)cellModel
 {
     //设置宽度约束，自适应高度时设定父view宽度 才能准确使用autolayout计算需要的高度，尤其iOS8及以下
-    //这里只计算高度，如果想完全控制cell宽高或者定高算宽 可以在子类cell的 - (CGSize)hdSizeThatFits:(CGSize)size中返回响应的size
     CGFloat fitWidth = cellModel.cellSize.width;
     if (fitWidth == 0) {
         fitWidth = self.frame.size.width;
     }
-    [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:fitWidth]];
+    if (fitWidth != 0) {
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:fitWidth]];
+    } else {
+        CGFloat fitHeight = cellModel.cellSize.height;
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:fitHeight]];
+    }
 }
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
 {
