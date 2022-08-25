@@ -201,6 +201,7 @@ static char *const hd_default_colletionView_maker = "hd_default_colletionView_ma
 @property (nonatomic, copy) BOOL (^multiGesCallBack)(UIGestureRecognizer*ges1,UIGestureRecognizer*ges2);
 @property (nonatomic, copy) void(^contentSizeChangeCallBack)(CGSize newSize);
 @property (nonatomic, strong) NSMutableDictionary *allSecDict;
+@property (nonatomic, copy) void(^headerStopStateChangeCallback)(id<HDSectionModelProtocol> secModel,HDSectionView * _Nullable secView);
 @end
 
 @implementation HDCollectionView
@@ -1344,6 +1345,10 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void))
 - (void)hd_setSecViewUIUpdateCallback:(void (^)(__kindof UICollectionReusableView *, NSIndexPath *,NSString*))setedCallback
 {
     setedSecViewCallback = setedCallback;
+}
+
+- (void)hd_setHeaderStopStateChangedCallback:(void (^)(id<HDSectionModelProtocol> _Nonnull, HDSectionView * _Nullable secView))callback {
+    self.headerStopStateChangeCallback = callback;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

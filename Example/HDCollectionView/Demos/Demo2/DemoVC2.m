@@ -33,6 +33,9 @@
         maker
         .hd_isNeedTopStop(YES).hd_isUseSystemFlowLayout(NO);
     }];
+    [listV hd_setHeaderStopStateChangedCallback:^(id<HDSectionModelProtocol>  _Nonnull secModel, HDSectionView * _Nullable secView) {
+        [secView updateSecVUI:secModel];
+    }];
     [self.view addSubview:listV];
     
     if (@available(iOS 11.0, *)) {
@@ -56,26 +59,26 @@
     //大量数据测试
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSMutableArray *randomArr = @[].mutableCopy;
-        for (int i=0; i<1000; i++) {
+        for (int i=0; i<100; i++) {
             if (arc4random()%2) {
                 HDSectionModel *sec = [self makeCellSizeRandomSecModel:scWidth];
                 sec.headerObj = @(i).stringValue;
                 sec.footerObj = @(i).stringValue;
-                sec.headerTopStopType = arc4random()%2;
+                sec.headerTopStopType = 1;
                 [randomArr addObject:sec];
             }else{
                 HDSectionModel *sec = [self makeSecModel:scWidth];
                 sec.headerObj = @(i).stringValue;
                 sec.footerObj = @(i).stringValue;
-                sec.headerTopStopType = arc4random()%2;
+                sec.headerTopStopType = 1;
                 [randomArr addObject:sec];
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-                [listV hd_setAllDataArrSlowly:randomArr preloadOffset:3000 currentCalculateSectionFinishCallback:^(NSInteger curSection) {
-                        NSLog(@"第%zd段布局计算完毕",curSection);
-                }];
-//              [listV hd_setAllDataArr:randomArr];//对比一次计算所有数据
+//                [listV hd_setAllDataArrSlowly:randomArr preloadOffset:3000 currentCalculateSectionFinishCallback:^(NSInteger curSection) {
+//                        NSLog(@"第%zd段布局计算完毕",curSection);
+//                }];
+              [listV hd_setAllDataArr:randomArr];//对比一次计算所有数据
         });
     });
     

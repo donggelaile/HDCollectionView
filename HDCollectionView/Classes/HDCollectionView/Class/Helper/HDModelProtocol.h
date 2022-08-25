@@ -118,6 +118,11 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
     HDHeaderStopOnTopTypeAlways//始终悬停在顶部(纵向滑动)或左部(横向滑动)，多个悬停的相遇后，后面的会在其后悬停
 };
 
+typedef NS_ENUM(NSInteger,HDHeaderTopStopState) {
+    HDHeaderTopStopStateNoraml, //普通状态
+    HDHeaderTopStopStateStickyIng //吸顶状态
+};
+
 @protocol HDSectionModelProtocol <NSObject,NSCopying>
 
 @required
@@ -167,6 +172,11 @@ typedef NS_ENUM(NSInteger,HDHeaderStopOnTopType) {
  默认0，header悬浮偏移量 (第0段不建议自定义该值)
  */
 @property (nonatomic, assign) NSInteger headerTopStopOffset;
+
+/**
+ 当前header吸顶状态
+ */
+@property (nonatomic, assign, readonly) HDHeaderTopStopState headerTopStopState;
 
 /**
  默认会初始化一个可变空数组,用于存放所有子model(初始化完毕后，不要直接增删元素。需要增删请使用HDCollectionView提供的接口)

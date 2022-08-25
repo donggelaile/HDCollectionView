@@ -10,6 +10,8 @@
 #import "HDSectionModel.h"
 #import "HDBaseLayout.h"
 #import <objc/runtime.h>
+#import "HDCollectionView.h"
+
 static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLayoutAttributesIndexKey";
 @implementation HDHeaderStopHelper
 //视图层级由上到下为 Indicator -> 段数靠前的header -> 段数靠后的header -> footer -> cell -> decorationView
@@ -89,7 +91,6 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
         }
     }];
     
-    
     __block CGFloat topOffset = 0;
     //更新header的frame及topOffset
     [needStopHeader enumerateObjectsUsingBlock:^(id<HDSectionModelProtocol> obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -101,12 +102,12 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
             if (header) {
                 header = [header copy];
                 [AllRectAtts addObject:header];
-                [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset];
+                [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset secModel:obj];
             }
         }else{
             NSInteger orgAttIndex = [objc_getAssociatedObject(header, HDUICollectionViewLayoutAttributesIndexKey) integerValue];
             header = [header copy];//必须copy，不破坏初始计算值，不copy会导致无法正确归位
-            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset];
+            [self updateHeaderAttributes:header secLastAttributes:secLastAtt[@(obj.section)] topOffset:&topOffset topStopType:obj.headerTopStopType section:obj.section layout:layout scollDirection:scorllDirection secOffset:obj.headerTopStopOffset secModel:obj];
             if (orgAttIndex<AllRectAtts.count) {
                 [AllRectAtts replaceObjectAtIndex:orgAttIndex withObject:header];
             }
@@ -116,7 +117,7 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     
     return AllRectAtts;
 }
-+ (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes secLastAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes topOffset:(CGFloat *)offset topStopType:(HDHeaderStopOnTopType)stopType section:(NSInteger)section layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection secOffset:(NSInteger)secOffset
++ (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes secLastAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes topOffset:(CGFloat *)offset topStopType:(HDHeaderStopOnTopType)stopType section:(NSInteger)section layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection secOffset:(NSInteger)secOffset secModel:(id<HDSectionModelProtocol>)secModel
 {
     if (stopType == HDHeaderStopOnTopTypeNone) {
         return;
@@ -135,28 +136,52 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
         sectionMaxXY = CGRectGetMaxX(lastCellAttributes.frame) - CGRectGetWidth(attributes.frame);
     }
     
-    
     CGFloat originY = origin.y;
     CGFloat originX = origin.x;
+    BOOL isNormalState = NO;
     
     if (stopType == HDHeaderStopOnTopTypeAlways) {
         //总是悬停的header总与当前偏移量对齐或是其原本位置
         if (isVertical) {
             *offset = *offset + CGRectGetHeight(attributes.frame) + secOffset;
             originY = MAX(contentOffsetXY, attributes.frame.origin.y);
+            isNormalState = (originY == attributes.frame.origin.y);
         }else{
             *offset = *offset + CGRectGetWidth(attributes.frame) + secOffset;
             originX = MAX(contentOffsetXY, attributes.frame.origin.x);
+            isNormalState = (originX == attributes.frame.origin.x);
         }
-        
+
     }else if(stopType == HDHeaderStopOnTopTypeNormal){
         //只有当前段在当前屏幕上存在时才展示，所以有偏移量最大值限制
         if (isVertical) {
             originY = MIN(MAX(contentOffsetXY, attributes.frame.origin.y), sectionMaxXY);
+            isNormalState = (originY == attributes.frame.origin.y || originY == sectionMaxXY);
         }else{
             originX = MIN(MAX(contentOffsetXY, attributes.frame.origin.x), sectionMaxXY);
+            isNormalState = (originX == attributes.frame.origin.x || originX == sectionMaxXY);
         }
-        
+    }
+    
+    HDCollectionView *hdcv = (HDCollectionView*)layout.collectionView.superview;
+    if ([hdcv isKindOfClass:HDCollectionView.class] && hdcv.headerStopStateChangeCallback) {
+        HDSectionView *headerView = nil;
+        if (@available(iOS 9.0, *)) {
+            headerView = (HDSectionView*)[layout.collectionView supplementaryViewForElementKind:UICollectionElementKindSectionHeader atIndexPath:attributes.indexPath];
+        }
+        if (isNormalState) {
+            if (secModel.headerTopStopState == HDHeaderTopStopStateStickyIng) {
+                [(NSObject*)secModel setValue:@(HDHeaderTopStopStateNoraml) forKey:@"headerTopStopState"];
+                hdcv.headerStopStateChangeCallback(secModel, headerView);
+            }
+            [(NSObject*)secModel setValue:@(HDHeaderTopStopStateNoraml) forKey:@"headerTopStopState"];
+        } else {
+            if (secModel.headerTopStopState == HDHeaderTopStopStateNoraml) {
+                [(NSObject*)secModel setValue:@(HDHeaderTopStopStateStickyIng) forKey:@"headerTopStopState"];
+                hdcv.headerStopStateChangeCallback(secModel, headerView);
+            }
+            [(NSObject*)secModel setValue:@(HDHeaderTopStopStateStickyIng) forKey:@"headerTopStopState"];
+        }
     }
     
     attributes.zIndex =  -10 - section;//后边的逐级递减，否则后边的会在前边view的上面

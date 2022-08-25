@@ -186,6 +186,7 @@
 @synthesize isNeedCacheSubviewsFrame = _isNeedCacheSubviewsFrame;
 @synthesize headerTopStopType        = _headerTopStopType;
 @synthesize headerTopStopOffset      = _headerTopStopOffset;
+@synthesize headerTopStopState       = _headerTopStopState;
 @synthesize sectionDataArr           = _sectionDataArr;
 @synthesize layout                   = _layout;
 @synthesize sectionKey               = _sectionKey;

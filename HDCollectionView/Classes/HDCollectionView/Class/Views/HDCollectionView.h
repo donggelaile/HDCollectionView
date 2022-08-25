@@ -231,6 +231,10 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 - (void)hd_setCellUIUpdateCallback:(void(^)(__kindof UICollectionViewCell*cell,NSIndexPath*indexP))setedCallback;
 - (void)hd_setSecViewUIUpdateCallback:(void(^)(__kindof UICollectionReusableView*secView,NSIndexPath*indexP,NSString* kind))setedCallback;
 
+/// 设置吸顶的setion开始吸顶或结束吸顶的监听 ( 只有设置了吸顶的header才会回调 )
+/// @param callback 吸顶状态发生变化时回调( 通过读取 secModel.headerTopStopState 判断切换到了哪种状态 )
+- (void)hd_setHeaderStopStateChangedCallback:(void(^)(id<HDSectionModelProtocol> secModel, HDSectionView * _Nullable secView))callback;
+
 /**
  用于存储所有子view回调的处理策略，需要外部对字典增删元素，来实现控制某个事件的回调策略
  */
@@ -244,6 +248,7 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
 @property (nonatomic, assign, readonly) BOOL isInnerDataEmpty;//内部数据是否为空
 @property (nonatomic, assign, readonly) BOOL isDeletingSection;
 @property (nonatomic, assign, readonly) BOOL isAppendingOrInsertingSection;
+@property (nonatomic, copy, readonly) void(^headerStopStateChangeCallback)(id<HDSectionModelProtocol> secModel, HDSectionView* _Nullable secView);
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
