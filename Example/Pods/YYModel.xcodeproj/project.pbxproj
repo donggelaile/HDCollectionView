@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		081482DBFF3B7D6372ABD85F0708FF6F /* NSObject+YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30A18C9D10DF666E57A6AFB0811F486C /* NSObject+YYModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0A8E2E1203EF55103200F0438CAE31FA /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E613173B288674A2140F8C7A9A87F9 /* YYClassInfo.m */; };
-		0C5490B8D18966482F58E870A23F55B6 /* YYModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8231B93DF9FCABA0BD5C27BC54E5FDE4 /* YYModel-dummy.m */; };
-		162AE2F617BBBDE31ECB16EFFA164647 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBCB9CC07FB685D7DD395970F70F691 /* Foundation.framework */; };
-		394E601194D9479374950AF90453B45C /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC7B3B49ACCAF1B897A4D5FCA72B92 /* NSObject+YYModel.m */; };
-		584051B63667BA558411C5159FB02AB5 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA404BB34ADE126C8E88728A4B8A2770 /* CoreFoundation.framework */; };
-		7CA1492800D36A606ED2D0586B9D1C6E /* YYModel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FBDA8C3344E7AB0A3474ED9180C4A841 /* YYModel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		912CB5E9F00EC73C14214983BC18B706 /* YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FEC9DFFC02D4DA0C4F34CCCF9ADDAE16 /* YYModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E7EF48B6CA09395435301BC29A558BCB /* YYClassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 404C85D567E9281A37C33B20A0602E3D /* YYClassInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		193186B8E237573E1F3F2613EA9073F6 /* YYModel-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8231B93DF9FCABA0BD5C27BC54E5FDE4 /* YYModel-dummy.m */; };
+		21ED51B38A9DF7683CDFF69F949C66C7 /* YYClassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 404C85D567E9281A37C33B20A0602E3D /* YYClassInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		404F18AB9808229E36AEAF74A36F2542 /* YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FEC9DFFC02D4DA0C4F34CCCF9ADDAE16 /* YYModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		520457D8FB2C572EC08C47C4C2CC2AD6 /* NSObject+YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 30A18C9D10DF666E57A6AFB0811F486C /* NSObject+YYModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64CF522585988F3F56560E64E55C40C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FBCB9CC07FB685D7DD395970F70F691 /* Foundation.framework */; };
+		64E2F278A30030E4502E47CA3F124E4B /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC7B3B49ACCAF1B897A4D5FCA72B92 /* NSObject+YYModel.m */; };
+		C52BF7D3DDFBCC6B5BBD7E7E18DD7943 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA404BB34ADE126C8E88728A4B8A2770 /* CoreFoundation.framework */; };
+		D368A9D336030820A23CA10BA0F1B08F /* YYModel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FBDA8C3344E7AB0A3474ED9180C4A841 /* YYModel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4976181E60EBC5B2CE477B3F4E0C345 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C9E613173B288674A2140F8C7A9A87F9 /* YYClassInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,25 +30,33 @@
 		B73CF485AC12250FA9E3227F74C21501 /* YYModel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YYModel.debug.xcconfig; sourceTree = "<group>"; };
 		BA404BB34ADE126C8E88728A4B8A2770 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		C9E613173B288674A2140F8C7A9A87F9 /* YYClassInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YYClassInfo.m; path = YYModel/YYClassInfo.m; sourceTree = "<group>"; };
-		CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YYModel.framework; path = YYModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YYModel; path = YYModel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDA8C3344E7AB0A3474ED9180C4A841 /* YYModel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YYModel-umbrella.h"; sourceTree = "<group>"; };
 		FD7B8720B1A5B0DF3ECF95D1ACD333C4 /* YYModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = YYModel.modulemap; sourceTree = "<group>"; };
 		FEC9DFFC02D4DA0C4F34CCCF9ADDAE16 /* YYModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YYModel.h; path = YYModel/YYModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		FAE367170218326245EADBE53E2389F9 /* Frameworks */ = {
+		0C0E088D5300CA71200A721EE6DCED0F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				584051B63667BA558411C5159FB02AB5 /* CoreFoundation.framework in Frameworks */,
-				162AE2F617BBBDE31ECB16EFFA164647 /* Foundation.framework in Frameworks */,
+				C52BF7D3DDFBCC6B5BBD7E7E18DD7943 /* CoreFoundation.framework in Frameworks */,
+				64CF522585988F3F56560E64E55C40C5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0755F1CA71CF9A6DB36DF159CE4F2098 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		17F2DAA3D72E7436188B31990EEA9640 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,19 +81,11 @@
 			path = "../Target Support Files/YYModel";
 			sourceTree = "<group>";
 		};
-		C628D6BFDE04D3DD4174F53618655EFD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E5E604EE1F9490CEE3CF895752A6BEAF = {
 			isa = PBXGroup;
 			children = (
 				FBFC217E6E72EE8506717D023275A54B /* Frameworks */,
-				C628D6BFDE04D3DD4174F53618655EFD /* Products */,
+				0755F1CA71CF9A6DB36DF159CE4F2098 /* Products */,
 				F2A5A92C058B5280DD7E3F3493413B6D /* YYModel */,
 			);
 			sourceTree = "<group>";
@@ -115,14 +115,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		BDDDD57140E53348229EF87010C07AA6 /* Headers */ = {
+		2D7A18C4843A7A179F5CE506C7A1874A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				081482DBFF3B7D6372ABD85F0708FF6F /* NSObject+YYModel.h in Headers */,
-				E7EF48B6CA09395435301BC29A558BCB /* YYClassInfo.h in Headers */,
-				912CB5E9F00EC73C14214983BC18B706 /* YYModel.h in Headers */,
-				7CA1492800D36A606ED2D0586B9D1C6E /* YYModel-umbrella.h in Headers */,
+				520457D8FB2C572EC08C47C4C2CC2AD6 /* NSObject+YYModel.h in Headers */,
+				21ED51B38A9DF7683CDFF69F949C66C7 /* YYClassInfo.h in Headers */,
+				404F18AB9808229E36AEAF74A36F2542 /* YYModel.h in Headers */,
+				D368A9D336030820A23CA10BA0F1B08F /* YYModel-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,12 +131,12 @@
 /* Begin PBXNativeTarget section */
 		B24F71FDC23D2B2E241DE51DECC7ED5F /* YYModel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF049E4C4B51337A0FA07B6E69135AFD /* Build configuration list for PBXNativeTarget "YYModel" */;
+			buildConfigurationList = 379277638AAA96914E5596BD8871C6E0 /* Build configuration list for PBXNativeTarget "YYModel" */;
 			buildPhases = (
-				BDDDD57140E53348229EF87010C07AA6 /* Headers */,
-				844B041C4BC7D7D9FB88076555C00E19 /* Sources */,
-				FAE367170218326245EADBE53E2389F9 /* Frameworks */,
-				FA5633D9AF22105666E9AA1F2BDA0BEE /* Resources */,
+				2D7A18C4843A7A179F5CE506C7A1874A /* Headers */,
+				781902D25438A81498CC2538C35E6B60 /* Sources */,
+				0C0E088D5300CA71200A721EE6DCED0F /* Frameworks */,
+				7E1A0759B05BB13C42B333C287661A87 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -144,7 +144,7 @@
 			);
 			name = YYModel;
 			productName = YYModel;
-			productReference = CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel.framework */;
+			productReference = CE2A49A24D7C5976DFF21E892F3E0788 /* YYModel */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -153,19 +153,19 @@
 		4BED0C03B36C5405273F0239D711EB40 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 292E5B4AD06C93EB143EEEEDC0BC7E10 /* Build configuration list for PBXProject "YYModel" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = E5E604EE1F9490CEE3CF895752A6BEAF;
-			productRefGroup = C628D6BFDE04D3DD4174F53618655EFD /* Products */;
+			productRefGroup = 0755F1CA71CF9A6DB36DF159CE4F2098 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -175,7 +175,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		FA5633D9AF22105666E9AA1F2BDA0BEE /* Resources */ = {
+		7E1A0759B05BB13C42B333C287661A87 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -185,13 +185,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		844B041C4BC7D7D9FB88076555C00E19 /* Sources */ = {
+		781902D25438A81498CC2538C35E6B60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				394E601194D9479374950AF90453B45C /* NSObject+YYModel.m in Sources */,
-				0A8E2E1203EF55103200F0438CAE31FA /* YYClassInfo.m in Sources */,
-				0C5490B8D18966482F58E870A23F55B6 /* YYModel-dummy.m in Sources */,
+				64E2F278A30030E4502E47CA3F124E4B /* NSObject+YYModel.m in Sources */,
+				F4976181E60EBC5B2CE477B3F4E0C345 /* YYClassInfo.m in Sources */,
+				193186B8E237573E1F3F2613EA9073F6 /* YYModel-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +326,7 @@
 			};
 			name = Release;
 		};
-		97E9D537CA5EB3053D70B1695D5CC9FC /* Release */ = {
+		A60780662403993C390E2FA77D050C08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A35876751C512BE0987E9CA20259DF55 /* YYModel.release.xcconfig */;
 			buildSettings = {
@@ -356,7 +356,7 @@
 			};
 			name = Release;
 		};
-		FB5D9D3AEC027776481F53DB9F4849DA /* Debug */ = {
+		C8CA2AB3B39903FE55246D68B24839F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B73CF485AC12250FA9E3227F74C21501 /* YYModel.debug.xcconfig */;
 			buildSettings = {
@@ -397,11 +397,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF049E4C4B51337A0FA07B6E69135AFD /* Build configuration list for PBXNativeTarget "YYModel" */ = {
+		379277638AAA96914E5596BD8871C6E0 /* Build configuration list for PBXNativeTarget "YYModel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FB5D9D3AEC027776481F53DB9F4849DA /* Debug */,
-				97E9D537CA5EB3053D70B1695D5CC9FC /* Release */,
+				C8CA2AB3B39903FE55246D68B24839F6 /* Debug */,
+				A60780662403993C390E2FA77D050C08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

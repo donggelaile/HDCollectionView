@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0499D3F693C61C212F26F2ED84C8AC5D /* SDAutoLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1250D6B2CAE1DA78D5D932D781252D30 /* SDAutoLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		04F18F4527F45EEBB24DB0B4DBC0BD8B /* UITableView+SDAutoTableViewCellHeight.h in Headers */ = {isa = PBXBuildFile; fileRef = 05BF359643D2EA8ABD0953EA7A53CD9F /* UITableView+SDAutoTableViewCellHeight.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		053C4E652C110DE0CA20F0D29A0EEAEB /* SDAutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D87650920B2C9F1DD8B90F02C25FF4 /* SDAutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		601C15200C267BB6F376863B3B531157 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBEC2AFA09302974E02FAC57F4044B /* UIView+SDAutoLayout.m */; };
-		6C337B49ACC246E7B740BF646923167E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39238505FFB1E597CC37B8A81DFF13F2 /* Foundation.framework */; };
-		716D69F2798DF3E08C68B8134D680AAE /* SDAutoLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE377C2C81FF0F84172940FC7E11779 /* SDAutoLayout-dummy.m */; };
-		7E605299D2DA45FE828EBAF77FEC604B /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9953244272E0FF4DC750D831918C3 /* UITableView+SDAutoTableViewCellHeight.m */; };
-		AF5E832438F76D34B91FDEC7FE0D6813 /* UIView+SDAutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A5817EC069303C79A9CE98C0E36A81F /* UIView+SDAutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		100776B4A16124B38D3B6E7E09BCCC6A /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BEBEC2AFA09302974E02FAC57F4044B /* UIView+SDAutoLayout.m */; };
+		1A52C2036ADA480914E8F3D30FBCE9CC /* SDAutoLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE377C2C81FF0F84172940FC7E11779 /* SDAutoLayout-dummy.m */; };
+		2AD8CDC53B78AC91923DD2A30CCA5AB2 /* UIView+SDAutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A5817EC069303C79A9CE98C0E36A81F /* UIView+SDAutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		500EEFBC5665955552BD4574F487B075 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE9953244272E0FF4DC750D831918C3 /* UITableView+SDAutoTableViewCellHeight.m */; };
+		A0702E4330023A0B8E92A667C0590C98 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39238505FFB1E597CC37B8A81DFF13F2 /* Foundation.framework */; };
+		CEFE8D43C1169DB4741AA0D59223D000 /* UITableView+SDAutoTableViewCellHeight.h in Headers */ = {isa = PBXBuildFile; fileRef = 05BF359643D2EA8ABD0953EA7A53CD9F /* UITableView+SDAutoTableViewCellHeight.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DBEA4AA976E56E231DE4B962A2328D46 /* SDAutoLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = C1D87650920B2C9F1DD8B90F02C25FF4 /* SDAutoLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EB85D0B6604B54BA3ED2483FCC5F98FA /* SDAutoLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1250D6B2CAE1DA78D5D932D781252D30 /* SDAutoLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,29 +31,21 @@
 		C1D87650920B2C9F1DD8B90F02C25FF4 /* SDAutoLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAutoLayout.h; path = SDAutoLayoutDemo/SDAutoLayout/SDAutoLayout.h; sourceTree = "<group>"; };
 		E28A1A03397ADC30EC78F260FBBE0108 /* SDAutoLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SDAutoLayout.release.xcconfig; sourceTree = "<group>"; };
 		FBE377C2C81FF0F84172940FC7E11779 /* SDAutoLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SDAutoLayout-dummy.m"; sourceTree = "<group>"; };
-		FFE9BD3799F2E0E238750EC7F82CA154 /* SDAutoLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDAutoLayout.framework; path = SDAutoLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFE9BD3799F2E0E238750EC7F82CA154 /* SDAutoLayout */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SDAutoLayout; path = SDAutoLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C1F40886F25D8DB1E1F30D1E1D8DAA57 /* Frameworks */ = {
+		1C02249261688F985FD2D32277895A71 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C337B49ACC246E7B740BF646923167E /* Foundation.framework in Frameworks */,
+				A0702E4330023A0B8E92A667C0590C98 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0F99E9B38BA408013E16643A0DCA9F82 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FFE9BD3799F2E0E238750EC7F82CA154 /* SDAutoLayout.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		25182684552185979741200260B13F5D /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +77,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		553EC4C55D74B7207910A59D4E176F67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFE9BD3799F2E0E238750EC7F82CA154 /* SDAutoLayout */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6F91E17FA193A2F9D27E5E637F6A9E44 /* SDAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				436FD14CCA085637F3E75585BC9859B3 /* Frameworks */,
-				0F99E9B38BA408013E16643A0DCA9F82 /* Products */,
+				553EC4C55D74B7207910A59D4E176F67 /* Products */,
 				6F91E17FA193A2F9D27E5E637F6A9E44 /* SDAutoLayout */,
 			);
 			sourceTree = "<group>";
@@ -111,14 +111,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		1CC9FD38999DDEBC63CED76126E42F6F /* Headers */ = {
+		2532A376532F8025076A8792C212FD76 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				053C4E652C110DE0CA20F0D29A0EEAEB /* SDAutoLayout.h in Headers */,
-				0499D3F693C61C212F26F2ED84C8AC5D /* SDAutoLayout-umbrella.h in Headers */,
-				04F18F4527F45EEBB24DB0B4DBC0BD8B /* UITableView+SDAutoTableViewCellHeight.h in Headers */,
-				AF5E832438F76D34B91FDEC7FE0D6813 /* UIView+SDAutoLayout.h in Headers */,
+				DBEA4AA976E56E231DE4B962A2328D46 /* SDAutoLayout.h in Headers */,
+				EB85D0B6604B54BA3ED2483FCC5F98FA /* SDAutoLayout-umbrella.h in Headers */,
+				CEFE8D43C1169DB4741AA0D59223D000 /* UITableView+SDAutoTableViewCellHeight.h in Headers */,
+				2AD8CDC53B78AC91923DD2A30CCA5AB2 /* UIView+SDAutoLayout.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,12 +127,12 @@
 /* Begin PBXNativeTarget section */
 		1B0A3E8AE773E9B95BC9E7537C8E0DF5 /* SDAutoLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A78D1F395A8B45C7861B9E4E77FF752 /* Build configuration list for PBXNativeTarget "SDAutoLayout" */;
+			buildConfigurationList = ED9BA7BFC85B88878E24A395E84FC417 /* Build configuration list for PBXNativeTarget "SDAutoLayout" */;
 			buildPhases = (
-				1CC9FD38999DDEBC63CED76126E42F6F /* Headers */,
-				475148F32A4E47C8970E035ABAD4DE7F /* Sources */,
-				C1F40886F25D8DB1E1F30D1E1D8DAA57 /* Frameworks */,
-				4599F7DBB6782D2CFAB6687174C2ECB7 /* Resources */,
+				2532A376532F8025076A8792C212FD76 /* Headers */,
+				6FF875D3C6AE94839E0670907FEA14A9 /* Sources */,
+				1C02249261688F985FD2D32277895A71 /* Frameworks */,
+				B13C9C1F8D9CF1F2C60E22430E701B1D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -140,7 +140,7 @@
 			);
 			name = SDAutoLayout;
 			productName = SDAutoLayout;
-			productReference = FFE9BD3799F2E0E238750EC7F82CA154 /* SDAutoLayout.framework */;
+			productReference = FFE9BD3799F2E0E238750EC7F82CA154 /* SDAutoLayout */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -149,19 +149,19 @@
 		AFF101AA38A9BD6E923E2463F96331AE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = BCA003403A42D63F39846C6163D94038 /* Build configuration list for PBXProject "SDAutoLayout" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = DA4FB3527DD5C4E7771C41BA7A8AFC51;
-			productRefGroup = 0F99E9B38BA408013E16643A0DCA9F82 /* Products */;
+			productRefGroup = 553EC4C55D74B7207910A59D4E176F67 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -171,7 +171,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4599F7DBB6782D2CFAB6687174C2ECB7 /* Resources */ = {
+		B13C9C1F8D9CF1F2C60E22430E701B1D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,49 +181,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		475148F32A4E47C8970E035ABAD4DE7F /* Sources */ = {
+		6FF875D3C6AE94839E0670907FEA14A9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				716D69F2798DF3E08C68B8134D680AAE /* SDAutoLayout-dummy.m in Sources */,
-				7E605299D2DA45FE828EBAF77FEC604B /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
-				601C15200C267BB6F376863B3B531157 /* UIView+SDAutoLayout.m in Sources */,
+				1A52C2036ADA480914E8F3D30FBCE9CC /* SDAutoLayout-dummy.m in Sources */,
+				500EEFBC5665955552BD4574F487B075 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
+				100776B4A16124B38D3B6E7E09BCCC6A /* UIView+SDAutoLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		0748FF1B15F041FA1721C50CA68DD564 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E28A1A03397ADC30EC78F260FBBE0108 /* SDAutoLayout.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SDAutoLayout/SDAutoLayout-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout.modulemap";
-				PRODUCT_MODULE_NAME = SDAutoLayout;
-				PRODUCT_NAME = SDAutoLayout;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		1CBBFDB3F908C15E81BB8A703A32F319 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -352,7 +322,37 @@
 			};
 			name = Release;
 		};
-		74B7E71970AFA12DFE6D75F737ACB14E /* Debug */ = {
+		5D303932B9CCA614EE213605BC845119 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E28A1A03397ADC30EC78F260FBBE0108 /* SDAutoLayout.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SDAutoLayout/SDAutoLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout.modulemap";
+				PRODUCT_MODULE_NAME = SDAutoLayout;
+				PRODUCT_NAME = SDAutoLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ECC841BB66189CCF90B86CFBB6ABEC49 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2E910A8C6591D83101AA619EDF15F41 /* SDAutoLayout.debug.xcconfig */;
 			buildSettings = {
@@ -384,20 +384,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A78D1F395A8B45C7861B9E4E77FF752 /* Build configuration list for PBXNativeTarget "SDAutoLayout" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				74B7E71970AFA12DFE6D75F737ACB14E /* Debug */,
-				0748FF1B15F041FA1721C50CA68DD564 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		BCA003403A42D63F39846C6163D94038 /* Build configuration list for PBXProject "SDAutoLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1CBBFDB3F908C15E81BB8A703A32F319 /* Debug */,
 				444986AD4B496EB35CEACFCAF608DA13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ED9BA7BFC85B88878E24A395E84FC417 /* Build configuration list for PBXNativeTarget "SDAutoLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECC841BB66189CCF90B86CFBB6ABEC49 /* Debug */,
+				5D303932B9CCA614EE213605BC845119 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

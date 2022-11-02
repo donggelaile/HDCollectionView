@@ -7,28 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03583B513F346F47248CEDA9EBF2CB63 /* SJUIKitTextMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD1FF8DCCE13EC8CE26A9AE1AF2AADD /* SJUIKitTextMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06279BE0B984C5B041B375501B410112 /* SJAttributeWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3775F00247246995CE9D329C56B7BABF /* SJAttributeWorker.m */; };
-		09F84E5A6985C53B259DBD3B6386B477 /* SJAttributesFactory-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 303397287835AD9A2377AA48C001C31B /* SJAttributesFactory-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		12333AE45A64E13DA8CEB62D4AED594B /* SJUTRegexHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD6AFDDA97F34C5A69316CA6245888 /* SJUTRegexHandler.m */; };
-		13B81B2B5F42E15E4144CEF9B8B06829 /* SJUTRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E5CA03F14A5C3B23F10BD545B2EE38 /* SJUTRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		153839D37006324C372B4E35F00BBD5D /* SJUTAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0ABF0A29E1636C833856E34F2FD3D2 /* SJUTAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		340946E64599AB53E1F0C1B17AE3F12F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670B8208B0A4E1F83EE7EEE41FDD7DAA /* Foundation.framework */; };
-		444A6DE49B5C5BCA7C808F94A45E6C77 /* SJUTRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 220C2B6ACD6100A210D57F44F1869115 /* SJUTRecorder.m */; };
-		4A2FAA73FD0942F08E7DCCFD75112AF7 /* SJAttributesFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3695F70B433A3AA3D01AC45E06C66B77 /* SJAttributesFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5FFB664D863CB7938D58B7C654F30C47 /* SJAttributesRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 67BBA04373195D564E62ECD5AF37E080 /* SJAttributesRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		73DA7435C5C7DCA917B76C3681F8253C /* NSAttributedString+SJMake.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC1FD252E9520E3663B7F55DAB3D81A /* NSAttributedString+SJMake.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75D105C80E2CC6B7010C7412229CE49F /* SJAttributesFactory-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C83BF1DD1C335A19D1F9773482B9C7 /* SJAttributesFactory-dummy.m */; };
-		86148931CEACFEAC865FE730E36BADDC /* SJAttributesRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC936035748DACC0B3E8B1670E12C6D /* SJAttributesRecorder.m */; };
-		8718276A9A75A8EA06677E808090F2EF /* SJUTRangeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B7EF1F9244445FB18249F987E0EED /* SJUTRangeHandler.m */; };
-		94BB6B75BEDF34F55AF0AE1B59883F04 /* SJUTAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A95F15F63C8CB2478260342FAE4286B7 /* SJUTAttributes.m */; };
-		9BFEB170537556442168559A82D927DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893812A7498861C2D1BC863515D1A71F /* UIKit.framework */; };
-		A9B9B1F71710AFE326B8DF64A5D3B71D /* SJUIKitAttributesDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 5054E8251800F9F5D374761BF5662064 /* SJUIKitAttributesDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ABA4BF673B110E1BB22741F3B1704C0D /* SJAttributeWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 99E29E1D502A3BE0BF05667AC98A0EE2 /* SJAttributeWorker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C911AEADC445D9CAF1635E00E2D7EF36 /* SJUIKitTextMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2808093F11051FAC3336D866BC8ADF27 /* SJUIKitTextMaker.m */; };
-		DDAFEF29C78D87F28024BB13AE0503C1 /* SJUTRangeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = B4159DDF2B74518C56FCED987F4E3033 /* SJUTRangeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FBD99D34C018D204B570BD3758041192 /* NSAttributedString+SJMake.m in Sources */ = {isa = PBXBuildFile; fileRef = 082E91F0A92F2C114AC034C0A3F4F433 /* NSAttributedString+SJMake.m */; };
-		FD3B05883DD2A14BC1B142B3349AAC71 /* SJUTRegexHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E525710C9E0D86E95EFFA963842EBBB /* SJUTRegexHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		022E2AD335229C53A79610599789610A /* SJUTRegexHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E525710C9E0D86E95EFFA963842EBBB /* SJUTRegexHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		038F4EEC2A2A46A7B737F21E17EA2509 /* NSAttributedString+SJMake.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AC1FD252E9520E3663B7F55DAB3D81A /* NSAttributedString+SJMake.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17B8AA706479BDC6B2D8E9966193AB4A /* SJUTRangeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = B4159DDF2B74518C56FCED987F4E3033 /* SJUTRangeHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D842BF3CBB26769832BB58C6B5CBDF7 /* NSAttributedString+SJMake.m in Sources */ = {isa = PBXBuildFile; fileRef = 082E91F0A92F2C114AC034C0A3F4F433 /* NSAttributedString+SJMake.m */; };
+		80DBB6A5469A89F890CB7834C2B22288 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893812A7498861C2D1BC863515D1A71F /* UIKit.framework */; };
+		8632477F938551E3CB6AB16288B6D195 /* SJAttributeWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3775F00247246995CE9D329C56B7BABF /* SJAttributeWorker.m */; };
+		880ABD8C27DB98ADFCF571272A599B87 /* SJAttributesFactory-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 303397287835AD9A2377AA48C001C31B /* SJAttributesFactory-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		89E5867E053B540F8B3D4D82180BEE1B /* SJAttributesFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 3695F70B433A3AA3D01AC45E06C66B77 /* SJAttributesFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8DBBFBA2EB5CAF212E3EEBD011530D5B /* SJAttributesFactory-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C83BF1DD1C335A19D1F9773482B9C7 /* SJAttributesFactory-dummy.m */; };
+		9656EA66BB94DDEFFFF9AE2B9EC95DA5 /* SJUIKitTextMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2808093F11051FAC3336D866BC8ADF27 /* SJUIKitTextMaker.m */; };
+		9846CF6004D877225ABDF7AC8945977D /* SJUTRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 06E5CA03F14A5C3B23F10BD545B2EE38 /* SJUTRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A20FEEB0F95C67AD460296E77F25CB15 /* SJAttributesRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 67BBA04373195D564E62ECD5AF37E080 /* SJAttributesRecorder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B352212C05BD15F97893471C9256ADDE /* SJUIKitAttributesDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 5054E8251800F9F5D374761BF5662064 /* SJUIKitAttributesDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF4711B6A5C65EDA4071B4473A3B30AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670B8208B0A4E1F83EE7EEE41FDD7DAA /* Foundation.framework */; };
+		DE077465CBC36C03FB65971AC1FAAA48 /* SJUTRangeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 837B7EF1F9244445FB18249F987E0EED /* SJUTRangeHandler.m */; };
+		E06F84E3DF15FEDAD8CCB3C9E746E37C /* SJUTRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 220C2B6ACD6100A210D57F44F1869115 /* SJUTRecorder.m */; };
+		E2B30C6080A1379923FA914A2CB4DB74 /* SJAttributeWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 99E29E1D502A3BE0BF05667AC98A0EE2 /* SJAttributeWorker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F09C515E9EDFDB6502FB64B33DEC8FD6 /* SJUTRegexHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = E1BD6AFDDA97F34C5A69316CA6245888 /* SJUTRegexHandler.m */; };
+		F1265077302924F2A5F4A6C841A05644 /* SJUTAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A95F15F63C8CB2478260342FAE4286B7 /* SJUTAttributes.m */; };
+		F27F35BC229EBB355084F31C3033E778 /* SJAttributesRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DC936035748DACC0B3E8B1670E12C6D /* SJAttributesRecorder.m */; };
+		F3879BE089C7B4E9C0C3025DF0EA333B /* SJUIKitTextMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = EDD1FF8DCCE13EC8CE26A9AE1AF2AADD /* SJUIKitTextMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEECA22BCFE5D49782E4517A790538D2 /* SJUTAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B0ABF0A29E1636C833856E34F2FD3D2 /* SJUTAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 		837B7EF1F9244445FB18249F987E0EED /* SJUTRangeHandler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJUTRangeHandler.m; path = SJAttributesFactory/UIKitText/SJUTRangeHandler.m; sourceTree = "<group>"; };
 		893812A7498861C2D1BC863515D1A71F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		90C83BF1DD1C335A19D1F9773482B9C7 /* SJAttributesFactory-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SJAttributesFactory-dummy.m"; sourceTree = "<group>"; };
-		963823AB1F442985FD06D2358CE0D4E1 /* SJAttributesFactory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SJAttributesFactory.framework; path = SJAttributesFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		963823AB1F442985FD06D2358CE0D4E1 /* SJAttributesFactory */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SJAttributesFactory; path = SJAttributesFactory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99E29E1D502A3BE0BF05667AC98A0EE2 /* SJAttributeWorker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJAttributeWorker.h; path = SJAttributesFactory/Deprecated/SJAttributeWorker.h; sourceTree = "<group>"; };
 		9E525710C9E0D86E95EFFA963842EBBB /* SJUTRegexHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SJUTRegexHandler.h; path = SJAttributesFactory/UIKitText/SJUTRegexHandler.h; sourceTree = "<group>"; };
 		A95F15F63C8CB2478260342FAE4286B7 /* SJUTAttributes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SJUTAttributes.m; path = SJAttributesFactory/UIKitText/SJUTAttributes.m; sourceTree = "<group>"; };
@@ -63,12 +63,12 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		78670277B1AE83EE8E1D93EA6CBA5B1D /* Frameworks */ = {
+		EC9C76FC202BD558018BF0D56566C23E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				340946E64599AB53E1F0C1B17AE3F12F /* Foundation.framework in Frameworks */,
-				9BFEB170537556442168559A82D927DD /* UIKit.framework in Frameworks */,
+				BF4711B6A5C65EDA4071B4473A3B30AF /* Foundation.framework in Frameworks */,
+				80DBB6A5469A89F890CB7834C2B22288 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,11 +116,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		37C3D46366C1E47B34FF3562C176E51D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				963823AB1F442985FD06D2358CE0D4E1 /* SJAttributesFactory */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4EBCFFB5082F4A43437CF93D47FA717B = {
 			isa = PBXGroup;
 			children = (
 				2361E8C438D6819FF3EB443970283F9D /* Frameworks */,
-				77E1A06D6EC0986F4DF21AA69FC9FFCE /* Products */,
+				37C3D46366C1E47B34FF3562C176E51D /* Products */,
 				EE0A1465D5575A001A417E46629E6E61 /* SJAttributesFactory */,
 			);
 			sourceTree = "<group>";
@@ -134,14 +142,6 @@
 				3775F00247246995CE9D329C56B7BABF /* SJAttributeWorker.m */,
 			);
 			name = Deprecated;
-			sourceTree = "<group>";
-		};
-		77E1A06D6EC0986F4DF21AA69FC9FFCE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				963823AB1F442985FD06D2358CE0D4E1 /* SJAttributesFactory.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		EE0A1465D5575A001A417E46629E6E61 /* SJAttributesFactory */ = {
@@ -170,21 +170,21 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		ABF6DB68234A52F22363B17C4AF16E99 /* Headers */ = {
+		4EFE42524215728A13914E322F905036 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73DA7435C5C7DCA917B76C3681F8253C /* NSAttributedString+SJMake.h in Headers */,
-				4A2FAA73FD0942F08E7DCCFD75112AF7 /* SJAttributesFactory.h in Headers */,
-				09F84E5A6985C53B259DBD3B6386B477 /* SJAttributesFactory-umbrella.h in Headers */,
-				5FFB664D863CB7938D58B7C654F30C47 /* SJAttributesRecorder.h in Headers */,
-				ABA4BF673B110E1BB22741F3B1704C0D /* SJAttributeWorker.h in Headers */,
-				A9B9B1F71710AFE326B8DF64A5D3B71D /* SJUIKitAttributesDefines.h in Headers */,
-				03583B513F346F47248CEDA9EBF2CB63 /* SJUIKitTextMaker.h in Headers */,
-				153839D37006324C372B4E35F00BBD5D /* SJUTAttributes.h in Headers */,
-				DDAFEF29C78D87F28024BB13AE0503C1 /* SJUTRangeHandler.h in Headers */,
-				13B81B2B5F42E15E4144CEF9B8B06829 /* SJUTRecorder.h in Headers */,
-				FD3B05883DD2A14BC1B142B3349AAC71 /* SJUTRegexHandler.h in Headers */,
+				038F4EEC2A2A46A7B737F21E17EA2509 /* NSAttributedString+SJMake.h in Headers */,
+				89E5867E053B540F8B3D4D82180BEE1B /* SJAttributesFactory.h in Headers */,
+				880ABD8C27DB98ADFCF571272A599B87 /* SJAttributesFactory-umbrella.h in Headers */,
+				A20FEEB0F95C67AD460296E77F25CB15 /* SJAttributesRecorder.h in Headers */,
+				E2B30C6080A1379923FA914A2CB4DB74 /* SJAttributeWorker.h in Headers */,
+				B352212C05BD15F97893471C9256ADDE /* SJUIKitAttributesDefines.h in Headers */,
+				F3879BE089C7B4E9C0C3025DF0EA333B /* SJUIKitTextMaker.h in Headers */,
+				FEECA22BCFE5D49782E4517A790538D2 /* SJUTAttributes.h in Headers */,
+				17B8AA706479BDC6B2D8E9966193AB4A /* SJUTRangeHandler.h in Headers */,
+				9846CF6004D877225ABDF7AC8945977D /* SJUTRecorder.h in Headers */,
+				022E2AD335229C53A79610599789610A /* SJUTRegexHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,12 +193,12 @@
 /* Begin PBXNativeTarget section */
 		07D0C461B47C146296F265A33C976ADE /* SJAttributesFactory */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B3B7CB4AB88024F6CAB9E7CF047C9479 /* Build configuration list for PBXNativeTarget "SJAttributesFactory" */;
+			buildConfigurationList = 5522AD73297B51829344E0FD09B44B23 /* Build configuration list for PBXNativeTarget "SJAttributesFactory" */;
 			buildPhases = (
-				ABF6DB68234A52F22363B17C4AF16E99 /* Headers */,
-				62CA1D2D0A8824AAAFC555388985B038 /* Sources */,
-				78670277B1AE83EE8E1D93EA6CBA5B1D /* Frameworks */,
-				C4A6B256538886D8AEB5768CBA54C7B8 /* Resources */,
+				4EFE42524215728A13914E322F905036 /* Headers */,
+				435BE4D1A27599DB4D3173F752E9A6A8 /* Sources */,
+				EC9C76FC202BD558018BF0D56566C23E /* Frameworks */,
+				1024F9F1F220E0125B4D683865659810 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -206,7 +206,7 @@
 			);
 			name = SJAttributesFactory;
 			productName = SJAttributesFactory;
-			productReference = 963823AB1F442985FD06D2358CE0D4E1 /* SJAttributesFactory.framework */;
+			productReference = 963823AB1F442985FD06D2358CE0D4E1 /* SJAttributesFactory */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -215,19 +215,19 @@
 		86919D55ADE5108C602E4CA2949249C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = C92F8B56D9C961DA4D5C1A1F41E00006 /* Build configuration list for PBXProject "SJAttributesFactory" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = 4EBCFFB5082F4A43437CF93D47FA717B;
-			productRefGroup = 77E1A06D6EC0986F4DF21AA69FC9FFCE /* Products */;
+			productRefGroup = 37C3D46366C1E47B34FF3562C176E51D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -237,7 +237,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C4A6B256538886D8AEB5768CBA54C7B8 /* Resources */ = {
+		1024F9F1F220E0125B4D683865659810 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -247,19 +247,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		62CA1D2D0A8824AAAFC555388985B038 /* Sources */ = {
+		435BE4D1A27599DB4D3173F752E9A6A8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD99D34C018D204B570BD3758041192 /* NSAttributedString+SJMake.m in Sources */,
-				75D105C80E2CC6B7010C7412229CE49F /* SJAttributesFactory-dummy.m in Sources */,
-				86148931CEACFEAC865FE730E36BADDC /* SJAttributesRecorder.m in Sources */,
-				06279BE0B984C5B041B375501B410112 /* SJAttributeWorker.m in Sources */,
-				C911AEADC445D9CAF1635E00E2D7EF36 /* SJUIKitTextMaker.m in Sources */,
-				94BB6B75BEDF34F55AF0AE1B59883F04 /* SJUTAttributes.m in Sources */,
-				8718276A9A75A8EA06677E808090F2EF /* SJUTRangeHandler.m in Sources */,
-				444A6DE49B5C5BCA7C808F94A45E6C77 /* SJUTRecorder.m in Sources */,
-				12333AE45A64E13DA8CEB62D4AED594B /* SJUTRegexHandler.m in Sources */,
+				2D842BF3CBB26769832BB58C6B5CBDF7 /* NSAttributedString+SJMake.m in Sources */,
+				8DBBFBA2EB5CAF212E3EEBD011530D5B /* SJAttributesFactory-dummy.m in Sources */,
+				F27F35BC229EBB355084F31C3033E778 /* SJAttributesRecorder.m in Sources */,
+				8632477F938551E3CB6AB16288B6D195 /* SJAttributeWorker.m in Sources */,
+				9656EA66BB94DDEFFFF9AE2B9EC95DA5 /* SJUIKitTextMaker.m in Sources */,
+				F1265077302924F2A5F4A6C841A05644 /* SJUTAttributes.m in Sources */,
+				DE077465CBC36C03FB65971AC1FAAA48 /* SJUTRangeHandler.m in Sources */,
+				E06F84E3DF15FEDAD8CCB3C9E746E37C /* SJUTRecorder.m in Sources */,
+				F09C515E9EDFDB6502FB64B33DEC8FD6 /* SJUTRegexHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +328,35 @@
 			};
 			name = Release;
 		};
+		3C88280DC6D5CC12F2F91DE35943AB74 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED3843E3E303C5301BD36B5B05A3B7B5 /* SJAttributesFactory.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SJAttributesFactory/SJAttributesFactory-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory.modulemap";
+				PRODUCT_MODULE_NAME = SJAttributesFactory;
+				PRODUCT_NAME = SJAttributesFactory;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		69A9E484722FADC68627C076176A7D2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -394,36 +423,7 @@
 			};
 			name = Debug;
 		};
-		A4541D52A3F32FA8C674B505E6F0F326 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED3843E3E303C5301BD36B5B05A3B7B5 /* SJAttributesFactory.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SJAttributesFactory/SJAttributesFactory-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory.modulemap";
-				PRODUCT_MODULE_NAME = SJAttributesFactory;
-				PRODUCT_NAME = SJAttributesFactory;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		E9C3BF4DFADDF78C81294F3C01ABEDD2 /* Release */ = {
+		EB4A13469870044805B3EE521C6D2034 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F88DEE8CCEFBF6234E9BBCECCC97C42 /* SJAttributesFactory.release.xcconfig */;
 			buildSettings = {
@@ -456,11 +456,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B3B7CB4AB88024F6CAB9E7CF047C9479 /* Build configuration list for PBXNativeTarget "SJAttributesFactory" */ = {
+		5522AD73297B51829344E0FD09B44B23 /* Build configuration list for PBXNativeTarget "SJAttributesFactory" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A4541D52A3F32FA8C674B505E6F0F326 /* Debug */,
-				E9C3BF4DFADDF78C81294F3C01ABEDD2 /* Release */,
+				3C88280DC6D5CC12F2F91DE35943AB74 /* Debug */,
+				EB4A13469870044805B3EE521C6D2034 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

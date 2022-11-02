@@ -7,60 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		004F5576F70A494EE3C8121267E458A8 /* HDBaseLayout+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBFF908108CFC4E8FC7DD789969730 /* HDBaseLayout+Cache.m */; };
-		09761D6BD25A80DC7726D61AF766682A /* HDCollectionView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30438FC6DBE2286CE275F3661CC99BF5 /* HDCollectionView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1648AD0D9D112A86BA62C4C7B8B8267D /* HDYogaFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB92E50AEED7C210D424473134A3A4A /* HDYogaFlowLayout.m */; };
-		19170EDF7511025AD9ADFA6BCF706D02 /* HDSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B96A28E579E8B5A7E0A097B7148D65E /* HDSectionModel.m */; };
-		1D29ABA756DEB4E4422C2687EA0F519B /* NSObject+HDCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0FC883C983C04A1D10C073A2B8FD62 /* NSObject+HDCopy.m */; };
-		2859E475BC57E5FA90092523DDCE1BBE /* HDBaseLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0679E52ED8CC8930B66134951EFE966D /* HDBaseLayout.m */; };
-		2C599764AC233A70D63B724247AEF8CD /* HDDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D9EE37A397A42DE6C8524B9AF51EE34C /* HDDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32A3CE4E3893AD40DE8028AB0E5CBC5F /* HDSectionModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 708252E0D2754C375CA4D36B89997198 /* HDSectionModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3AD72A1579FE85200EDD769A84E07D68 /* HDCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD28487C1367032F05CC33B035414B4 /* HDCollectionViewFlowLayout.m */; };
-		3BBE0B65E962CA7776B0D0B204DEFC3A /* HDCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6292C9EBDEEAFD6D0054228F385748 /* HDCollectionViewLayout.m */; };
-		3E0D115F990C9F52481DA808BFC2CAC3 /* HDSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3CE3CE3A6833573B1549C88ACF711 /* HDSectionView.m */; };
-		455F5E50A7171EB41A86C7BCDDE05C8D /* HDScrollJoinView.h in Headers */ = {isa = PBXBuildFile; fileRef = CA71148E85288797029A89CD14F45672 /* HDScrollJoinView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		52A73280E4CF62D28BC6432B4BA9AAA3 /* HDBaseLayout+Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AFC2FCA8992AFE7AB517EEF0FE848CA /* HDBaseLayout+Cache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		56131B2B9298435255DD1AC454661DC5 /* HDHeaderStopHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF9A77B08E4D41BC5BCA8D814C5BE9F /* HDHeaderStopHelper.m */; };
-		56503480D5582F3EED6CB1C760CD7071 /* HDYogaCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A73141F799C559BF97773555E60571F1 /* HDYogaCalculateHelper.m */; };
-		62F7B4A11FB00D8F6D32405CA3E03A12 /* HDCellFrameCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFBB58F806D29C88CBF597192EA523 /* HDCellFrameCacheHelper.m */; };
-		6438706E2CCDEB3674FE0DC49B4416F8 /* HDCollectionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CB84B75BEE2B5FC32B5E01D7B7A4B98 /* HDCollectionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		679AE516E3CFBB5119521DE04DF228BD /* HDCollectionView+HDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD95E10D5058BC19FA961360529CA18 /* HDCollectionView+HDHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		74A522F3A2FF3E1D221A3A9081C1C615 /* HDAssociationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0DBB10C4A98A0A142E662DA6B26726 /* HDAssociationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7F72D7702AE020F1C2B0A3E6F62C7863 /* HDScrollJoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD491CF4F1E23879E2049F861CBFF2 /* HDScrollJoinView.m */; };
-		81F73DBB73AE71AF9B629E418D40142D /* HDCellFrameCacheHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DF13553E4C5BB58EB6DD682BD8F0C45 /* HDCellFrameCacheHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		906C9F8D310827608A065EC7CA451EDB /* HDCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA28C6845B77A877EF9DEE7E0079B7 /* HDCollectionCell.m */; };
-		92B4C9E9AA799DF8104CF2ACA8B011A2 /* HDYogaCalculateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2644BEF05FCF7AA39DA0AB486CC93957 /* HDYogaCalculateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		960AA0FC518B5442EB4F07FEDC76C4ED /* HDCollectionView+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A9192D5A67E6AB19CE9076F4378B29 /* HDCollectionView+HDHelper.m */; };
-		974111932430F46214E0023EFB7CB599 /* HDBaseLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 56E93B4D4E2E0A8A63294A00A30F7787 /* HDBaseLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9B47E8DEF3BB1EB460EEA3558A29E700 /* HDWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C981B3CDC4A22E921EA6D0BA55B649 /* HDWaterFlowLayout.m */; };
-		9B7080193DF34B0418C421DDAF022970 /* HDWaterFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = E66E32A4F6F1E3D508AB1998FA821589 /* HDWaterFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9C3EB8643C44E6EE6DBA0FCA8D8CC5CD /* HDCollectionView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F201F1C65DDD6BD910F5205DCE3575 /* HDCollectionView-dummy.m */; };
-		9F98CAF19356C4C6818737B89D8BD1CA /* HDHeaderStopHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = AFDFD26FF3169F3701F9E545E63B0772 /* HDHeaderStopHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A3FEE17CD660B0D64B899278ED22999A /* HDUpdateUIProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 25C35AEAA6364E4C77034B32B0DFDC0B /* HDUpdateUIProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A853D360CFD7EA6A4126DB1126FFC210 /* HDCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 134B847195FE842C3364A8DE38B90F2F /* HDCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AC965D31627102CC9BDA976A8EB76D6D /* NSObject+HDCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = FCDBE75BE38CAF1174A4CB4E03754621 /* NSObject+HDCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD0C6869E02F139919DA623AFD8EBA8A /* HDCellModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7246857CB0F845DADBFF23350BF8953E /* HDCellModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AED13E1A8D7D3380976F0C58DA57A713 /* HDModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = DE110807B968F51429BB8A45152FEF92 /* HDModelProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C566B82E11C2F8DB3020903BE2630467 /* HDCollectionViewFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 59648BC24406BA69CC3E3EFF7E1F61B7 /* HDCollectionViewFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C73BBD5616758ABA1CB6433ED3510418 /* HDYogaFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B28AA3990025D649B619D585C1D81B0 /* HDYogaFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D10375B0DBF37E50BF25B0F7B92DBED0 /* HDLayoutProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 850B7FA7A897DBD4E525B351968F057C /* HDLayoutProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE4E26AB45D512CEBE5E34D63A5F1636 /* HDCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A67CF76879C011638859ABF76A12F5 /* HDCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EB1A6CACA7FD0D6B821A869446742344 /* HDSectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 924333837800CA4569613311A6AD7948 /* HDSectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7ECCA13D87FF243F23907173A8497ED /* HDCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC3A51D86CC3CFE0DAFFAF5B62FBBAB /* HDCellModel.m */; };
-		F86144C8474E8A071D5A18AAB8A39D3E /* HDAssociationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB78B66FFB8E64387E533575A6D55C9 /* HDAssociationManager.m */; };
-		F908D7D30AD134E8F87F5C00DF9C86BC /* HDCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 757D87C42C36470E37F43CCB14E2FAB9 /* HDCollectionView.m */; };
-		FEDCAF1DD8442809AB5FBA302860E76C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E756877CE75F93EB1830033FD260EF4A /* Foundation.framework */; };
+		042178964CD407247306CC0F21415747 /* HDBaseLayout+Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ACBFF908108CFC4E8FC7DD789969730 /* HDBaseLayout+Cache.m */; };
+		069F4D8002C1F7F640AD61F8DA6619A9 /* HDCollectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A67CF76879C011638859ABF76A12F5 /* HDCollectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07D7F6A7F473C2768268023A908773F4 /* HDCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 757D87C42C36470E37F43CCB14E2FAB9 /* HDCollectionView.m */; };
+		0AFB4D8D88FA0F276F36F51E7A577A6C /* HDAssociationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0DBB10C4A98A0A142E662DA6B26726 /* HDAssociationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		108AE278322008E2765F6B434FFD5088 /* HDCollectionView+HDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A9192D5A67E6AB19CE9076F4378B29 /* HDCollectionView+HDHelper.m */; };
+		10AF908A2B30367967BF0B5EA66748A7 /* HDDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = D9EE37A397A42DE6C8524B9AF51EE34C /* HDDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1379FF319086C5AEBAC195A4730367F3 /* HDUpdateUIProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 25C35AEAA6364E4C77034B32B0DFDC0B /* HDUpdateUIProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1F5FEB28ADF4C25217FE20F2DDA9868C /* HDModelProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = DE110807B968F51429BB8A45152FEF92 /* HDModelProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2CEDD43B0A49F03DDAD54C2741F19F1F /* HDYogaFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B28AA3990025D649B619D585C1D81B0 /* HDYogaFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4A019359B43A1BDF738DCF7A9A68F5C6 /* HDSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3CE3CE3A6833573B1549C88ACF711 /* HDSectionView.m */; };
+		4A3D3EDCDA442CABDAF970AD0F33ACBB /* HDBaseLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0679E52ED8CC8930B66134951EFE966D /* HDBaseLayout.m */; };
+		4C3D23E8C21EDE93CA07281C4A3C5422 /* HDHeaderStopHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF9A77B08E4D41BC5BCA8D814C5BE9F /* HDHeaderStopHelper.m */; };
+		4F8E18F81B8318C428F0AAAEE46483CB /* HDLayoutProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 850B7FA7A897DBD4E525B351968F057C /* HDLayoutProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		580592A75396D227C427E324C153418F /* HDScrollJoinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFD491CF4F1E23879E2049F861CBFF2 /* HDScrollJoinView.m */; };
+		599ABB936315C60EF6DFFF3020143FFF /* HDCollectionView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 30438FC6DBE2286CE275F3661CC99BF5 /* HDCollectionView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5F2739961CCF3063E639B2293E1B4A18 /* HDSectionModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 708252E0D2754C375CA4D36B89997198 /* HDSectionModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5FAEC0C6607A13D77D356A14A940DF05 /* HDSectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 924333837800CA4569613311A6AD7948 /* HDSectionView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6C51F5AA492A86BCF2E1AB5BCE736A97 /* HDCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FD28487C1367032F05CC33B035414B4 /* HDCollectionViewFlowLayout.m */; };
+		70E370FD59742CCE60D829E76EA0E35D /* HDCollectionView+HDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BD95E10D5058BC19FA961360529CA18 /* HDCollectionView+HDHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		74EBD340BF1F3F10FE1A900BFB53B051 /* HDCellFrameCacheHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CFBB58F806D29C88CBF597192EA523 /* HDCellFrameCacheHelper.m */; };
+		797AF3CE1C05F47A0A44A8A5775810DC /* HDCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA28C6845B77A877EF9DEE7E0079B7 /* HDCollectionCell.m */; };
+		7A80A4319AEDC4E932BA24504901DE8D /* HDYogaCalculateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A73141F799C559BF97773555E60571F1 /* HDYogaCalculateHelper.m */; };
+		7D0C61698F78EC7E28A61871993F4AC2 /* NSObject+HDCopy.h in Headers */ = {isa = PBXBuildFile; fileRef = FCDBE75BE38CAF1174A4CB4E03754621 /* NSObject+HDCopy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8FD5158BD2B58BADD5B96C3B602115F3 /* HDCollectionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CB84B75BEE2B5FC32B5E01D7B7A4B98 /* HDCollectionCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		90DAC90CDB939F1E095430C3BA1ACBEF /* HDWaterFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = E66E32A4F6F1E3D508AB1998FA821589 /* HDWaterFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		97D788D30D0E70D8C2B5631B4C5D97D0 /* HDCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BDC3A51D86CC3CFE0DAFFAF5B62FBBAB /* HDCellModel.m */; };
+		9B5FF80CE5BEC792F222A0A6C75B2684 /* HDCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 134B847195FE842C3364A8DE38B90F2F /* HDCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AFC58EACE09490326089C4CF340AFEFB /* HDAssociationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AEB78B66FFB8E64387E533575A6D55C9 /* HDAssociationManager.m */; };
+		B3ED07F0825125AE5DC37FB3A870A3D7 /* NSObject+HDCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0FC883C983C04A1D10C073A2B8FD62 /* NSObject+HDCopy.m */; };
+		B58965CF5D02638323546FB5E82CEBC9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E756877CE75F93EB1830033FD260EF4A /* Foundation.framework */; };
+		B5C4C9452D086F9D11FEF9032C321FF3 /* HDCollectionView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F201F1C65DDD6BD910F5205DCE3575 /* HDCollectionView-dummy.m */; };
+		B9D86B091B973FB2CCD5EDC79BD65512 /* HDSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B96A28E579E8B5A7E0A097B7148D65E /* HDSectionModel.m */; };
+		BB92D30D250011F3E07A33810A34149E /* HDCellModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7246857CB0F845DADBFF23350BF8953E /* HDCellModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB6FACA3350A6F9BCC7A3406E2AE8DC8 /* HDWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C981B3CDC4A22E921EA6D0BA55B649 /* HDWaterFlowLayout.m */; };
+		DC992E891458393A4659D1006BE80254 /* HDBaseLayout+Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AFC2FCA8992AFE7AB517EEF0FE848CA /* HDBaseLayout+Cache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E15AD1B86B0B261F3D45200B4428B9EE /* HDCellFrameCacheHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DF13553E4C5BB58EB6DD682BD8F0C45 /* HDCellFrameCacheHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1E64D9B31C80F0029FC3DBB39321AD4 /* HDCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F6292C9EBDEEAFD6D0054228F385748 /* HDCollectionViewLayout.m */; };
+		E67912EA15560312B163D9B8ED30E6BD /* HDYogaCalculateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2644BEF05FCF7AA39DA0AB486CC93957 /* HDYogaCalculateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA7C1176A7333CAF6C980C8EBF67F4E8 /* HDHeaderStopHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = AFDFD26FF3169F3701F9E545E63B0772 /* HDHeaderStopHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDFA0ECADE4D219C1A0B6C0FB066C483 /* HDYogaFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB92E50AEED7C210D424473134A3A4A /* HDYogaFlowLayout.m */; };
+		EF19DD0C1F6465B82472389750EBE2AB /* HDScrollJoinView.h in Headers */ = {isa = PBXBuildFile; fileRef = CA71148E85288797029A89CD14F45672 /* HDScrollJoinView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFB59CC480293CDC2D9C0260CE0D90C8 /* HDBaseLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 56E93B4D4E2E0A8A63294A00A30F7787 /* HDBaseLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA246A05B38332AEC9E3A04521781E41 /* HDCollectionViewFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 59648BC24406BA69CC3E3EFF7E1F61B7 /* HDCollectionViewFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		321EEA4EF5B86E0D4798CC1CA8F2CA26 /* PBXContainerItemProxy */ = {
+		9166354AEE13AB0794E07A283B906520 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = B87E7A7BFE3E7ECEC888695F8B6B6625;
 			remoteInfo = HDListViewDiffer;
 		};
-		5FA04E0781ABB7F6E5651720EADF7DDD /* PBXContainerItemProxy */ = {
+		C54FA6F313EAD4CBF472F58AE058FE8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3DAC770F4F9CB4B90FA6D40BA31144AF /* Yoga.xcodeproj */;
 			proxyType = 1;
@@ -77,7 +77,7 @@
 		10C981B3CDC4A22E921EA6D0BA55B649 /* HDWaterFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = HDWaterFlowLayout.m; sourceTree = "<group>"; };
 		134B847195FE842C3364A8DE38B90F2F /* HDCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDCollectionViewLayout.h; sourceTree = "<group>"; };
 		20F201F1C65DDD6BD910F5205DCE3575 /* HDCollectionView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HDCollectionView-dummy.m"; sourceTree = "<group>"; };
-		2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HDCollectionView.framework; path = HDCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HDCollectionView; path = HDCollectionView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C35AEAA6364E4C77034B32B0DFDC0B /* HDUpdateUIProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDUpdateUIProtocol.h; sourceTree = "<group>"; };
 		2644BEF05FCF7AA39DA0AB486CC93957 /* HDYogaCalculateHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = HDYogaCalculateHelper.h; sourceTree = "<group>"; };
 		2ACF44A8C7F3EEC7272C304284FCDB8E /* HDCollectionView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HDCollectionView-prefix.pch"; sourceTree = "<group>"; };
@@ -127,11 +127,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B8ACD837D2C4FD2AEA83FD1E81D69682 /* Frameworks */ = {
+		8EBB76E2AAC3F63FB74CFB1A4046C6B3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEDCAF1DD8442809AB5FBA302860E76C /* Foundation.framework in Frameworks */,
+				B58965CF5D02638323546FB5E82CEBC9 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +182,7 @@
 				C4F9A835A4CE5DEB01897997696265E3 /* Dependencies */,
 				13A92B9B31D29C48FCB29CA3858BDCC7 /* Frameworks */,
 				519B7C4A555F7EF9890028E8A5C19D8D /* HDCollectionView */,
-				734BBF6DAA8DBFE3DDC481704C7F9502 /* Products */,
+				80CEE1852EB163869A886846C902E9BF /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,14 +196,6 @@
 			);
 			name = Models;
 			path = HDCollectionView/Classes/HDCollectionView/Class/Models;
-			sourceTree = "<group>";
-		};
-		734BBF6DAA8DBFE3DDC481704C7F9502 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7F5A611A7B33EE94C35381FDF93CB391 /* Helper */ = {
@@ -227,6 +219,14 @@
 			);
 			name = Helper;
 			path = HDCollectionView/Classes/HDCollectionView/Class/Helper;
+			sourceTree = "<group>";
+		};
+		80CEE1852EB163869A886846C902E9BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		90BF05C084EFECF12C506AF5C388B8AA /* Layouts */ = {
@@ -295,33 +295,33 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		CBD38E47D651BFF9EFB413B8DE4757B6 /* Headers */ = {
+		5CD977522D64317A3C4479A6D427B1B3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74A522F3A2FF3E1D221A3A9081C1C615 /* HDAssociationManager.h in Headers */,
-				974111932430F46214E0023EFB7CB599 /* HDBaseLayout.h in Headers */,
-				52A73280E4CF62D28BC6432B4BA9AAA3 /* HDBaseLayout+Cache.h in Headers */,
-				81F73DBB73AE71AF9B629E418D40142D /* HDCellFrameCacheHelper.h in Headers */,
-				AD0C6869E02F139919DA623AFD8EBA8A /* HDCellModel.h in Headers */,
-				6438706E2CCDEB3674FE0DC49B4416F8 /* HDCollectionCell.h in Headers */,
-				DE4E26AB45D512CEBE5E34D63A5F1636 /* HDCollectionView.h in Headers */,
-				679AE516E3CFBB5119521DE04DF228BD /* HDCollectionView+HDHelper.h in Headers */,
-				09761D6BD25A80DC7726D61AF766682A /* HDCollectionView-umbrella.h in Headers */,
-				C566B82E11C2F8DB3020903BE2630467 /* HDCollectionViewFlowLayout.h in Headers */,
-				A853D360CFD7EA6A4126DB1126FFC210 /* HDCollectionViewLayout.h in Headers */,
-				2C599764AC233A70D63B724247AEF8CD /* HDDefines.h in Headers */,
-				9F98CAF19356C4C6818737B89D8BD1CA /* HDHeaderStopHelper.h in Headers */,
-				D10375B0DBF37E50BF25B0F7B92DBED0 /* HDLayoutProtocol.h in Headers */,
-				AED13E1A8D7D3380976F0C58DA57A713 /* HDModelProtocol.h in Headers */,
-				455F5E50A7171EB41A86C7BCDDE05C8D /* HDScrollJoinView.h in Headers */,
-				32A3CE4E3893AD40DE8028AB0E5CBC5F /* HDSectionModel.h in Headers */,
-				EB1A6CACA7FD0D6B821A869446742344 /* HDSectionView.h in Headers */,
-				A3FEE17CD660B0D64B899278ED22999A /* HDUpdateUIProtocol.h in Headers */,
-				9B7080193DF34B0418C421DDAF022970 /* HDWaterFlowLayout.h in Headers */,
-				92B4C9E9AA799DF8104CF2ACA8B011A2 /* HDYogaCalculateHelper.h in Headers */,
-				C73BBD5616758ABA1CB6433ED3510418 /* HDYogaFlowLayout.h in Headers */,
-				AC965D31627102CC9BDA976A8EB76D6D /* NSObject+HDCopy.h in Headers */,
+				0AFB4D8D88FA0F276F36F51E7A577A6C /* HDAssociationManager.h in Headers */,
+				EFB59CC480293CDC2D9C0260CE0D90C8 /* HDBaseLayout.h in Headers */,
+				DC992E891458393A4659D1006BE80254 /* HDBaseLayout+Cache.h in Headers */,
+				E15AD1B86B0B261F3D45200B4428B9EE /* HDCellFrameCacheHelper.h in Headers */,
+				BB92D30D250011F3E07A33810A34149E /* HDCellModel.h in Headers */,
+				8FD5158BD2B58BADD5B96C3B602115F3 /* HDCollectionCell.h in Headers */,
+				069F4D8002C1F7F640AD61F8DA6619A9 /* HDCollectionView.h in Headers */,
+				70E370FD59742CCE60D829E76EA0E35D /* HDCollectionView+HDHelper.h in Headers */,
+				599ABB936315C60EF6DFFF3020143FFF /* HDCollectionView-umbrella.h in Headers */,
+				FA246A05B38332AEC9E3A04521781E41 /* HDCollectionViewFlowLayout.h in Headers */,
+				9B5FF80CE5BEC792F222A0A6C75B2684 /* HDCollectionViewLayout.h in Headers */,
+				10AF908A2B30367967BF0B5EA66748A7 /* HDDefines.h in Headers */,
+				EA7C1176A7333CAF6C980C8EBF67F4E8 /* HDHeaderStopHelper.h in Headers */,
+				4F8E18F81B8318C428F0AAAEE46483CB /* HDLayoutProtocol.h in Headers */,
+				1F5FEB28ADF4C25217FE20F2DDA9868C /* HDModelProtocol.h in Headers */,
+				EF19DD0C1F6465B82472389750EBE2AB /* HDScrollJoinView.h in Headers */,
+				5F2739961CCF3063E639B2293E1B4A18 /* HDSectionModel.h in Headers */,
+				5FAEC0C6607A13D77D356A14A940DF05 /* HDSectionView.h in Headers */,
+				1379FF319086C5AEBAC195A4730367F3 /* HDUpdateUIProtocol.h in Headers */,
+				90DAC90CDB939F1E095430C3BA1ACBEF /* HDWaterFlowLayout.h in Headers */,
+				E67912EA15560312B163D9B8ED30E6BD /* HDYogaCalculateHelper.h in Headers */,
+				2CEDD43B0A49F03DDAD54C2741F19F1F /* HDYogaFlowLayout.h in Headers */,
+				7D0C61698F78EC7E28A61871993F4AC2 /* NSObject+HDCopy.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,22 +330,22 @@
 /* Begin PBXNativeTarget section */
 		C1B7F81766C71DC32A28F8F245553E0F /* HDCollectionView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F8E977C647B221B41088DB1A8D582043 /* Build configuration list for PBXNativeTarget "HDCollectionView" */;
+			buildConfigurationList = 797C0CA69C05E9942281135C24A2F4F5 /* Build configuration list for PBXNativeTarget "HDCollectionView" */;
 			buildPhases = (
-				CBD38E47D651BFF9EFB413B8DE4757B6 /* Headers */,
-				C305ABFB86E6E1418F3962F4EF979E9C /* Sources */,
-				B8ACD837D2C4FD2AEA83FD1E81D69682 /* Frameworks */,
-				E942B33D1F292DEB51727C79CDCA270A /* Resources */,
+				5CD977522D64317A3C4479A6D427B1B3 /* Headers */,
+				D59EC8706E60C8C88F3B4DC8371E2E4C /* Sources */,
+				8EBB76E2AAC3F63FB74CFB1A4046C6B3 /* Frameworks */,
+				FAAE2BC9CDAA5CE57ECAEDCAF5CCCC97 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FDEF144F7BC4A432DAC949C087A584DE /* PBXTargetDependency */,
-				D2BEB0FF39A192DFD72D79DA7BEEC939 /* PBXTargetDependency */,
+				5BE40DE2962DBBE31953886C5B27367A /* PBXTargetDependency */,
+				4440E5C4040C5C8D4B2163059170F780 /* PBXTargetDependency */,
 			);
 			name = HDCollectionView;
 			productName = HDCollectionView;
-			productReference = 2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView.framework */;
+			productReference = 2259A4E36DF7B46BB66194F9401AD5F1 /* HDCollectionView */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -354,19 +354,19 @@
 		C13EFA8FDE4A0E5FF3D0D99D3D3CF2D1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = 4F665DF3E864490685FD2A64013D71CC /* Build configuration list for PBXProject "HDCollectionView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = 70E0074616F12F8691376D534BEE1A8B;
-			productRefGroup = 734BBF6DAA8DBFE3DDC481704C7F9502 /* Products */;
+			productRefGroup = 80CEE1852EB163869A886846C902E9BF /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
@@ -384,7 +384,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E942B33D1F292DEB51727C79CDCA270A /* Resources */ = {
+		FAAE2BC9CDAA5CE57ECAEDCAF5CCCC97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -394,77 +394,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C305ABFB86E6E1418F3962F4EF979E9C /* Sources */ = {
+		D59EC8706E60C8C88F3B4DC8371E2E4C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F86144C8474E8A071D5A18AAB8A39D3E /* HDAssociationManager.m in Sources */,
-				2859E475BC57E5FA90092523DDCE1BBE /* HDBaseLayout.m in Sources */,
-				004F5576F70A494EE3C8121267E458A8 /* HDBaseLayout+Cache.m in Sources */,
-				62F7B4A11FB00D8F6D32405CA3E03A12 /* HDCellFrameCacheHelper.m in Sources */,
-				F7ECCA13D87FF243F23907173A8497ED /* HDCellModel.m in Sources */,
-				906C9F8D310827608A065EC7CA451EDB /* HDCollectionCell.m in Sources */,
-				F908D7D30AD134E8F87F5C00DF9C86BC /* HDCollectionView.m in Sources */,
-				960AA0FC518B5442EB4F07FEDC76C4ED /* HDCollectionView+HDHelper.m in Sources */,
-				9C3EB8643C44E6EE6DBA0FCA8D8CC5CD /* HDCollectionView-dummy.m in Sources */,
-				3AD72A1579FE85200EDD769A84E07D68 /* HDCollectionViewFlowLayout.m in Sources */,
-				3BBE0B65E962CA7776B0D0B204DEFC3A /* HDCollectionViewLayout.m in Sources */,
-				56131B2B9298435255DD1AC454661DC5 /* HDHeaderStopHelper.m in Sources */,
-				7F72D7702AE020F1C2B0A3E6F62C7863 /* HDScrollJoinView.m in Sources */,
-				19170EDF7511025AD9ADFA6BCF706D02 /* HDSectionModel.m in Sources */,
-				3E0D115F990C9F52481DA808BFC2CAC3 /* HDSectionView.m in Sources */,
-				9B47E8DEF3BB1EB460EEA3558A29E700 /* HDWaterFlowLayout.m in Sources */,
-				56503480D5582F3EED6CB1C760CD7071 /* HDYogaCalculateHelper.m in Sources */,
-				1648AD0D9D112A86BA62C4C7B8B8267D /* HDYogaFlowLayout.m in Sources */,
-				1D29ABA756DEB4E4422C2687EA0F519B /* NSObject+HDCopy.m in Sources */,
+				AFC58EACE09490326089C4CF340AFEFB /* HDAssociationManager.m in Sources */,
+				4A3D3EDCDA442CABDAF970AD0F33ACBB /* HDBaseLayout.m in Sources */,
+				042178964CD407247306CC0F21415747 /* HDBaseLayout+Cache.m in Sources */,
+				74EBD340BF1F3F10FE1A900BFB53B051 /* HDCellFrameCacheHelper.m in Sources */,
+				97D788D30D0E70D8C2B5631B4C5D97D0 /* HDCellModel.m in Sources */,
+				797AF3CE1C05F47A0A44A8A5775810DC /* HDCollectionCell.m in Sources */,
+				07D7F6A7F473C2768268023A908773F4 /* HDCollectionView.m in Sources */,
+				108AE278322008E2765F6B434FFD5088 /* HDCollectionView+HDHelper.m in Sources */,
+				B5C4C9452D086F9D11FEF9032C321FF3 /* HDCollectionView-dummy.m in Sources */,
+				6C51F5AA492A86BCF2E1AB5BCE736A97 /* HDCollectionViewFlowLayout.m in Sources */,
+				E1E64D9B31C80F0029FC3DBB39321AD4 /* HDCollectionViewLayout.m in Sources */,
+				4C3D23E8C21EDE93CA07281C4A3C5422 /* HDHeaderStopHelper.m in Sources */,
+				580592A75396D227C427E324C153418F /* HDScrollJoinView.m in Sources */,
+				B9D86B091B973FB2CCD5EDC79BD65512 /* HDSectionModel.m in Sources */,
+				4A019359B43A1BDF738DCF7A9A68F5C6 /* HDSectionView.m in Sources */,
+				DB6FACA3350A6F9BCC7A3406E2AE8DC8 /* HDWaterFlowLayout.m in Sources */,
+				7A80A4319AEDC4E932BA24504901DE8D /* HDYogaCalculateHelper.m in Sources */,
+				EDFA0ECADE4D219C1A0B6C0FB066C483 /* HDYogaFlowLayout.m in Sources */,
+				B3ED07F0825125AE5DC37FB3A870A3D7 /* NSObject+HDCopy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D2BEB0FF39A192DFD72D79DA7BEEC939 /* PBXTargetDependency */ = {
+		4440E5C4040C5C8D4B2163059170F780 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Yoga;
-			targetProxy = 5FA04E0781ABB7F6E5651720EADF7DDD /* PBXContainerItemProxy */;
+			targetProxy = C54FA6F313EAD4CBF472F58AE058FE8C /* PBXContainerItemProxy */;
 		};
-		FDEF144F7BC4A432DAC949C087A584DE /* PBXTargetDependency */ = {
+		5BE40DE2962DBBE31953886C5B27367A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HDListViewDiffer;
-			targetProxy = 321EEA4EF5B86E0D4798CC1CA8F2CA26 /* PBXContainerItemProxy */;
+			targetProxy = 9166354AEE13AB0794E07A283B906520 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		004EECA641BD5903473FE329E883A251 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3815E2AB1B467CD8C73AF22E3A1E60CB /* HDCollectionView.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/HDCollectionView/HDCollectionView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HDCollectionView/HDCollectionView-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HDCollectionView/HDCollectionView.modulemap";
-				PRODUCT_MODULE_NAME = HDCollectionView;
-				PRODUCT_NAME = HDCollectionView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		A4719B4329288AA865DB5BBB34E099FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -527,7 +498,36 @@
 			};
 			name = Release;
 		};
-		A8959A489702E22D65890EAB4DA302A1 /* Release */ = {
+		B79FFA9DB365C65E28799C3519184280 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3815E2AB1B467CD8C73AF22E3A1E60CB /* HDCollectionView.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HDCollectionView/HDCollectionView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HDCollectionView/HDCollectionView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HDCollectionView/HDCollectionView.modulemap";
+				PRODUCT_MODULE_NAME = HDCollectionView;
+				PRODUCT_NAME = HDCollectionView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D3BF453152B411CF0A1D0DE3F6A5CEE4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F059D1397531D1EE4AB3C88CB81DB726 /* HDCollectionView.release.xcconfig */;
 			buildSettings = {
@@ -635,11 +635,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F8E977C647B221B41088DB1A8D582043 /* Build configuration list for PBXNativeTarget "HDCollectionView" */ = {
+		797C0CA69C05E9942281135C24A2F4F5 /* Build configuration list for PBXNativeTarget "HDCollectionView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				004EECA641BD5903473FE329E883A251 /* Debug */,
-				A8959A489702E22D65890EAB4DA302A1 /* Release */,
+				B79FFA9DB365C65E28799C3519184280 /* Debug */,
+				D3BF453152B411CF0A1D0DE3F6A5CEE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,6 +1,6 @@
 PODS:
   - CollectionSwipableCellExtension (0.0.5)
-  - HDCollectionView (0.7.5):
+  - HDCollectionView (0.7.6):
     - HDListViewDiffer
     - Yoga (~> 1.14.0)
   - HDListViewDiffer (0.2.0)
@@ -55,7 +55,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   CollectionSwipableCellExtension: 7f7090dd8941be6ddc0a39bdd8f6204c2d07fe41
-  HDCollectionView: 6e2ebdc314c52fe4ad1954bf8aab0b85f1fd7f12
+  HDCollectionView: 5e7bb248243a516a7cc7d67d1c69c956269ecd4c
   HDListViewDiffer: f1ab8168cfbaddcb93fd57aebeb03a98e7612c46
   JXCategoryView: 72560616347270d34c2e717cc08030e6218d7eda
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -68,4 +68,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1b33dc3269e10dafd3e140cf6c0bd25cf4e43967
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.3

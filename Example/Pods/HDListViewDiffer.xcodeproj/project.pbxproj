@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D97A4F9074150849CE260CFA5FC8739 /* HDListViewDiffer.h in Headers */ = {isa = PBXBuildFile; fileRef = C9201C58EA939F17CBF791829D139B7E /* HDListViewDiffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		210185DA75EBACAEF453A93D8FF81A9B /* HDListViewDiffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 763702A9E4EEDAD378253DD199E29E87 /* HDListViewDiffer.m */; };
-		237724BBFCF6757F442020D15614551A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E94DCC8818329B909F09231A7F47E9D /* Foundation.framework */; };
-		39CB48A75413E0DA0D69CB640141B71A /* HDListViewDiffer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 318DC1D0871859041E78BD5E64063E8C /* HDListViewDiffer-dummy.m */; };
-		666999F4AB9957FBF69D2C01A61DE285 /* HDListViewDiffer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5947FDFA0A9D47D8C83B2DEC654E787 /* HDListViewDiffer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C10C851C5FB93FF76652FD7C83A384F2 /* UICollectionView+HDDiffReload.m in Sources */ = {isa = PBXBuildFile; fileRef = EE97DE059A127C71DE3DCDA361BAD188 /* UICollectionView+HDDiffReload.m */; };
-		C58A172E0168FD87BF6F69C3BA5DE816 /* UICollectionView+HDDiffReload.h in Headers */ = {isa = PBXBuildFile; fileRef = 165CC9C810464CA6416151CB310EDF0F /* UICollectionView+HDDiffReload.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD3886DA4FB5A93500F10B0FABEA388B /* UITableView+HDDiffReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 939444FDF9741D3EC722EED04E805121 /* UITableView+HDDiffReload.m */; };
-		F159F6F2BF943B53F4F865EF1FD9CA8F /* UITableView+HDDiffReload.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D105988083BA4C824EDAFC07E4B409 /* UITableView+HDDiffReload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		10161E7F63BE5285D3EA6AC24FD944FF /* HDListViewDiffer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 318DC1D0871859041E78BD5E64063E8C /* HDListViewDiffer-dummy.m */; };
+		344AD4215AD2C3EA0795FB36734BF2D2 /* UITableView+HDDiffReload.h in Headers */ = {isa = PBXBuildFile; fileRef = 07D105988083BA4C824EDAFC07E4B409 /* UITableView+HDDiffReload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		437ECA46A9FDCF44407A5D1313EB017A /* HDListViewDiffer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B5947FDFA0A9D47D8C83B2DEC654E787 /* HDListViewDiffer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E16BF93CCE7BCCE35EB648655BE050F /* UITableView+HDDiffReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 939444FDF9741D3EC722EED04E805121 /* UITableView+HDDiffReload.m */; };
+		6F0E3A663C45F3F6C4ACB5CCF96AFB37 /* HDListViewDiffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 763702A9E4EEDAD378253DD199E29E87 /* HDListViewDiffer.m */; };
+		7093FC9E79848B4D79346F8861FA015F /* UICollectionView+HDDiffReload.m in Sources */ = {isa = PBXBuildFile; fileRef = EE97DE059A127C71DE3DCDA361BAD188 /* UICollectionView+HDDiffReload.m */; };
+		71D2EFD9ABC1C66BA294308520F77C27 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E94DCC8818329B909F09231A7F47E9D /* Foundation.framework */; };
+		7FC55429EBC8513CCAEE454186785E54 /* HDListViewDiffer.h in Headers */ = {isa = PBXBuildFile; fileRef = C9201C58EA939F17CBF791829D139B7E /* HDListViewDiffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D376C48559DB33A884BE3DC03D90193E /* UICollectionView+HDDiffReload.h in Headers */ = {isa = PBXBuildFile; fileRef = 165CC9C810464CA6416151CB310EDF0F /* UICollectionView+HDDiffReload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		0F34D99CFEE3C5A23020C5DEFD1734C5 /* HDListViewDiffer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = HDListViewDiffer.modulemap; sourceTree = "<group>"; };
 		165CC9C810464CA6416151CB310EDF0F /* UICollectionView+HDDiffReload.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UICollectionView+HDDiffReload.h"; path = "HDListViewDiffer/Classes/UICollectionView+HDDiffReload.h"; sourceTree = "<group>"; };
 		318DC1D0871859041E78BD5E64063E8C /* HDListViewDiffer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HDListViewDiffer-dummy.m"; sourceTree = "<group>"; };
-		38E11B7E5979F535B51BD83253D2978F /* HDListViewDiffer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HDListViewDiffer.framework; path = HDListViewDiffer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38E11B7E5979F535B51BD83253D2978F /* HDListViewDiffer */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HDListViewDiffer; path = HDListViewDiffer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		763702A9E4EEDAD378253DD199E29E87 /* HDListViewDiffer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = HDListViewDiffer.m; path = HDListViewDiffer/Classes/HDListViewDiffer.m; sourceTree = "<group>"; };
 		7F9EAD1BB737782A1904FCE64B29175B /* HDListViewDiffer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "HDListViewDiffer-Info.plist"; sourceTree = "<group>"; };
 		939444FDF9741D3EC722EED04E805121 /* UITableView+HDDiffReload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+HDDiffReload.m"; path = "HDListViewDiffer/Classes/UITableView+HDDiffReload.m"; sourceTree = "<group>"; };
@@ -37,17 +37,25 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6A12483EB3717DB0013A04172D4AC94A /* Frameworks */ = {
+		C7508D04E38F351E408D28D04B4DBAB2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237724BBFCF6757F442020D15614551A /* Foundation.framework in Frameworks */,
+				71D2EFD9ABC1C66BA294308520F77C27 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		274965020267AAB5B7BEF255331BCB87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38E11B7E5979F535B51BD83253D2978F /* HDListViewDiffer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		952FC383FED22A788D9F4567248C9E52 /* HDListViewDiffer */ = {
 			isa = PBXGroup;
 			children = (
@@ -63,14 +71,6 @@
 			path = HDListViewDiffer;
 			sourceTree = "<group>";
 		};
-		998D87B054059C0B7A3D332C8761FB3E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				38E11B7E5979F535B51BD83253D2978F /* HDListViewDiffer.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A05CD398B2874B733DFCC54045383F1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,7 +84,7 @@
 			children = (
 				F7801BCDAE6778B91B7B1501557F6327 /* Frameworks */,
 				952FC383FED22A788D9F4567248C9E52 /* HDListViewDiffer */,
-				998D87B054059C0B7A3D332C8761FB3E /* Products */,
+				274965020267AAB5B7BEF255331BCB87 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,14 +114,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		43C27D4FD23B93AF587DF7AB0170A295 /* Headers */ = {
+		D98CE9964D618E44AD34FD724762B197 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D97A4F9074150849CE260CFA5FC8739 /* HDListViewDiffer.h in Headers */,
-				666999F4AB9957FBF69D2C01A61DE285 /* HDListViewDiffer-umbrella.h in Headers */,
-				C58A172E0168FD87BF6F69C3BA5DE816 /* UICollectionView+HDDiffReload.h in Headers */,
-				F159F6F2BF943B53F4F865EF1FD9CA8F /* UITableView+HDDiffReload.h in Headers */,
+				7FC55429EBC8513CCAEE454186785E54 /* HDListViewDiffer.h in Headers */,
+				437ECA46A9FDCF44407A5D1313EB017A /* HDListViewDiffer-umbrella.h in Headers */,
+				D376C48559DB33A884BE3DC03D90193E /* UICollectionView+HDDiffReload.h in Headers */,
+				344AD4215AD2C3EA0795FB36734BF2D2 /* UITableView+HDDiffReload.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,12 +130,12 @@
 /* Begin PBXNativeTarget section */
 		B87E7A7BFE3E7ECEC888695F8B6B6625 /* HDListViewDiffer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9D10F1B00ADE155FC5AD1FE2FE0EEF58 /* Build configuration list for PBXNativeTarget "HDListViewDiffer" */;
+			buildConfigurationList = 28E343C74FC220791CA8CE9BEED216EE /* Build configuration list for PBXNativeTarget "HDListViewDiffer" */;
 			buildPhases = (
-				43C27D4FD23B93AF587DF7AB0170A295 /* Headers */,
-				90AA41E0E12E4214834531E79697D57E /* Sources */,
-				6A12483EB3717DB0013A04172D4AC94A /* Frameworks */,
-				A63558B2B688B2D4D076A52E907D60BA /* Resources */,
+				D98CE9964D618E44AD34FD724762B197 /* Headers */,
+				77CD80AB1F532F2309B03650D7BA40AD /* Sources */,
+				C7508D04E38F351E408D28D04B4DBAB2 /* Frameworks */,
+				9B17C33C700D1246D4A94B9B01FB9FD8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -143,7 +143,7 @@
 			);
 			name = HDListViewDiffer;
 			productName = HDListViewDiffer;
-			productReference = 38E11B7E5979F535B51BD83253D2978F /* HDListViewDiffer.framework */;
+			productReference = 38E11B7E5979F535B51BD83253D2978F /* HDListViewDiffer */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -152,19 +152,19 @@
 		63A6E1771045C00127F34B8CE8A0FC3F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = BDB4116090E52D42FD2914548A83439E /* Build configuration list for PBXProject "HDListViewDiffer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = B6CC462440E71DF56195A0B06A418ADE;
-			productRefGroup = 998D87B054059C0B7A3D332C8761FB3E /* Products */;
+			productRefGroup = 274965020267AAB5B7BEF255331BCB87 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -174,7 +174,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A63558B2B688B2D4D076A52E907D60BA /* Resources */ = {
+		9B17C33C700D1246D4A94B9B01FB9FD8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -184,14 +184,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		90AA41E0E12E4214834531E79697D57E /* Sources */ = {
+		77CD80AB1F532F2309B03650D7BA40AD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				210185DA75EBACAEF453A93D8FF81A9B /* HDListViewDiffer.m in Sources */,
-				39CB48A75413E0DA0D69CB640141B71A /* HDListViewDiffer-dummy.m in Sources */,
-				C10C851C5FB93FF76652FD7C83A384F2 /* UICollectionView+HDDiffReload.m in Sources */,
-				DD3886DA4FB5A93500F10B0FABEA388B /* UITableView+HDDiffReload.m in Sources */,
+				6F0E3A663C45F3F6C4ACB5CCF96AFB37 /* HDListViewDiffer.m in Sources */,
+				10161E7F63BE5285D3EA6AC24FD944FF /* HDListViewDiffer-dummy.m in Sources */,
+				7093FC9E79848B4D79346F8861FA015F /* UICollectionView+HDDiffReload.m in Sources */,
+				5E16BF93CCE7BCCE35EB648655BE050F /* UITableView+HDDiffReload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +326,7 @@
 			};
 			name = Debug;
 		};
-		9EABC969024664E47DBA4096EA7E54FE /* Debug */ = {
+		DA8FB011CAF64D5232FA898AE095F468 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8487EC9C23921D06D0436DC6F272612 /* HDListViewDiffer.debug.xcconfig */;
 			buildSettings = {
@@ -355,7 +355,7 @@
 			};
 			name = Debug;
 		};
-		FC6FD1854769E603282969AD6EB55A25 /* Release */ = {
+		EA9F850226E4727443F048B3650FA218 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9FAD006736AD0B4BCF5EB2F0632D51A /* HDListViewDiffer.release.xcconfig */;
 			buildSettings = {
@@ -388,11 +388,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D10F1B00ADE155FC5AD1FE2FE0EEF58 /* Build configuration list for PBXNativeTarget "HDListViewDiffer" */ = {
+		28E343C74FC220791CA8CE9BEED216EE /* Build configuration list for PBXNativeTarget "HDListViewDiffer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9EABC969024664E47DBA4096EA7E54FE /* Debug */,
-				FC6FD1854769E603282969AD6EB55A25 /* Release */,
+				DA8FB011CAF64D5232FA898AE095F468 /* Debug */,
+				EA9F850226E4727443F048B3650FA218 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

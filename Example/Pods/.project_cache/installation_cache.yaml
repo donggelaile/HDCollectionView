@@ -5,8 +5,8 @@ CACHE_KEYS:
   CollectionSwipableCellExtension:
     BUILD_SETTINGS_CHECKSUM:
       CollectionSwipableCellExtension:
-        :debug: 6ee2f9c6c30cf78ae34184884354f38d
-        :release: 6ee2f9c6c30cf78ae34184884354f38d
+        :debug: 23d8d3221b375152861f6f2b0c7769cd
+        :release: 23d8d3221b375152861f6f2b0c7769cd
     CHECKOUT_OPTIONS:
       :commit: d3d7c9ee8721562174cbd2c89f88b1d05bbc5fc0
       :git: https://github.com/KosyanMedia/CollectionSwipableCellExtension.git
@@ -17,9 +17,9 @@ CACHE_KEYS:
   HDCollectionView:
     BUILD_SETTINGS_CHECKSUM:
       HDCollectionView:
-        :debug: 3560ec631220132825e2fcb287138e70
-        :release: 3560ec631220132825e2fcb287138e70
-    CHECKSUM: 6e2ebdc314c52fe4ad1954bf8aab0b85f1fd7f12
+        :debug: 38a5894e9f6d0f86d9b8ed77b4dd03e8
+        :release: 38a5894e9f6d0f86d9b8ed77b4dd03e8
+    CHECKSUM: 5e7bb248243a516a7cc7d67d1c69c956269ecd4c
     FILES:
       - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDAssociationManager.h"
       - "../../HDCollectionView/Classes/HDCollectionView/Class/Helper/HDAssociationManager.m"
@@ -65,7 +65,7 @@ CACHE_KEYS:
       - "../../README.md"
     PROJECT_NAME: HDCollectionView
     SPECS:
-      - HDCollectionView (0.7.5)
+      - HDCollectionView (0.7.6)
   HDListViewDiffer:
     BUILD_SETTINGS_CHECKSUM:
       HDListViewDiffer:
@@ -104,8 +104,8 @@ CACHE_KEYS:
       - MJRefresh (3.1.16)
   Pods-HDCollectionView_Example:
     BUILD_SETTINGS_CHECKSUM:
-      Debug: c333397d7410065ff1afe47e847d52ab
-      Release: c333397d7410065ff1afe47e847d52ab
+      Debug: 55db6f60747e593b133b4ea9ba1f6b49
+      Release: 55db6f60747e593b133b4ea9ba1f6b49
   Pods-HDCollectionView_Tests:
     BUILD_SETTINGS_CHECKSUM:
       Debug: 6d7f76b9ba1821bdac6d5e591371f007
@@ -158,6 +158,20 @@ CACHE_KEYS:
     PROJECT_NAME: YYModel
     SPECS:
       - YYModel (1.0.4)
+INSTALLATION_OPTIONS:
+  clean: true
+  deduplicate_targets: true
+  deterministic_uuids: true
+  disable_input_output_paths: false
+  generate_multiple_pod_projects: true
+  incremental_installation: true
+  integrate_targets: true
+  lock_pod_sources: true
+  preserve_pod_file_structure: false
+  share_schemes_for_development_pods: false
+  skip_pods_project_generation: false
+  warn_for_multiple_pod_sources: true
+  warn_for_unused_master_specs_repo: true
 OBJECT_VERSION: 46
 PLUGINS:
   {}

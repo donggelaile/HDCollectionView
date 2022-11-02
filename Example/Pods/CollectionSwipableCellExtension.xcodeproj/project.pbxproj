@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		041257D21522B6CAB19D81459F818649 /* CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E352F129757176050128C2307B4F9 /* CollectionSwipableCellExtension.swift */; };
-		20773617D37BA411CC6FE4979373A7D0 /* CollectionSwipableCellOneButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457A4B0AAB0E26F14C260DE19EBD8F66 /* CollectionSwipableCellOneButtonLayout.swift */; };
-		24E60810CB032FF07B09774C72538AE3 /* SwipableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D704633EEB42EA1E926E7FF737CFA3 /* SwipableCollection.swift */; };
-		38FEBDEA942A68F3F429BEFE270FDC65 /* CollectionSwipableCellExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BD4794C963DA1B3173BDD9334C743455 /* CollectionSwipableCellExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		46E9E1350080658669BF058C512EF373 /* CollectionSwipableCellExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE44D02FF5AD24B9D70F8FDEDAA4C09 /* CollectionSwipableCellExtension-dummy.m */; };
-		4CBF63108C5B7423A15FA3527ECB29F7 /* SwipableCellLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EAABF3C221C4560B92F0E559F42C2 /* SwipableCellLayouter.swift */; };
-		7CDF61CDB942B64097478B7AAD8E708E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22FFE3938CAF3EBAD10D5F221E36FC4 /* Foundation.framework */; };
-		7E469D06A496DF5EFCBA2623C7B152E0 /* SwipableUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA9670257A9C5D1475C173AE839DE /* SwipableUITableView.swift */; };
-		8782072B2B60ADEA4D681428A22DF549 /* SwipableUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CB5FF9C2DB31CC6AEE0E7F15E79C /* SwipableUICollectionView.swift */; };
-		9EDE9DA369FBE423E6889336047F3BB0 /* CollectionSwipableCellHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C694A5D9A6287C52AE1EEE5F810B67 /* CollectionSwipableCellHandler.swift */; };
-		BE9D83D61298E2DEA31362C05C208B60 /* UITableViewCell+CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A3011C2539366110881D67A761F /* UITableViewCell+CollectionSwipableCellExtension.swift */; };
-		D797DDE5F71FE67BCCEAEC56E2576794 /* UICollectionViewCell+CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B7F86D5F79BE8702A84A66D2DAAC3 /* UICollectionViewCell+CollectionSwipableCellExtension.swift */; };
+		0692180B2B9FE28DAA2C65FF0BE6DC0E /* SwipableUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA9670257A9C5D1475C173AE839DE /* SwipableUITableView.swift */; };
+		0F13B6DD76AD246C5FA0BA55089D243F /* SwipableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D704633EEB42EA1E926E7FF737CFA3 /* SwipableCollection.swift */; };
+		5822800022CC35F5539FAB3F24F9D032 /* CollectionSwipableCellExtension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BD4794C963DA1B3173BDD9334C743455 /* CollectionSwipableCellExtension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B1A573BAF94ACD246368FA7CF78C7A2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C22FFE3938CAF3EBAD10D5F221E36FC4 /* Foundation.framework */; };
+		7CF947C5FC9022BD77B5639F78266303 /* SwipableCellLayouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D5EAABF3C221C4560B92F0E559F42C2 /* SwipableCellLayouter.swift */; };
+		BBDD12CB710279907C28B9764D708B16 /* CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3E352F129757176050128C2307B4F9 /* CollectionSwipableCellExtension.swift */; };
+		BE1C89B25D2A7D549A4CA4C4494C40EB /* SwipableUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D33CB5FF9C2DB31CC6AEE0E7F15E79C /* SwipableUICollectionView.swift */; };
+		C6410465BD00BE209F462B6378DD3A13 /* CollectionSwipableCellHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C694A5D9A6287C52AE1EEE5F810B67 /* CollectionSwipableCellHandler.swift */; };
+		CCEB70CD31081FADADBEB6C44182C786 /* CollectionSwipableCellExtension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE44D02FF5AD24B9D70F8FDEDAA4C09 /* CollectionSwipableCellExtension-dummy.m */; };
+		D6716D06CD2E23B58E5E78F1EC273D3A /* CollectionSwipableCellOneButtonLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457A4B0AAB0E26F14C260DE19EBD8F66 /* CollectionSwipableCellOneButtonLayout.swift */; };
+		EEF15D709C832B24513E5C4F920341CD /* UITableViewCell+CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A3011C2539366110881D67A761F /* UITableViewCell+CollectionSwipableCellExtension.swift */; };
+		EF6E5A6DE6B8F7CCA8251E9B89B56675 /* UICollectionViewCell+CollectionSwipableCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233B7F86D5F79BE8702A84A66D2DAAC3 /* UICollectionViewCell+CollectionSwipableCellExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +28,7 @@
 		2E3E352F129757176050128C2307B4F9 /* CollectionSwipableCellExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionSwipableCellExtension.swift; path = Library/CollectionSwipableCellExtension.swift; sourceTree = "<group>"; };
 		32E90B92773512661BA3F804866ED660 /* CollectionSwipableCellExtension-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CollectionSwipableCellExtension-prefix.pch"; sourceTree = "<group>"; };
 		3D33CB5FF9C2DB31CC6AEE0E7F15E79C /* SwipableUICollectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableUICollectionView.swift; path = Library/Private/SwipableUICollectionView.swift; sourceTree = "<group>"; };
-		3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CollectionSwipableCellExtension.framework; path = CollectionSwipableCellExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CollectionSwipableCellExtension; path = CollectionSwipableCellExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		457A4B0AAB0E26F14C260DE19EBD8F66 /* CollectionSwipableCellOneButtonLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionSwipableCellOneButtonLayout.swift; path = Library/CollectionSwipableCellOneButtonLayout.swift; sourceTree = "<group>"; };
 		49CCA9670257A9C5D1475C173AE839DE /* SwipableUITableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableUITableView.swift; path = Library/Private/SwipableUITableView.swift; sourceTree = "<group>"; };
 		4D5EAABF3C221C4560B92F0E559F42C2 /* SwipableCellLayouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwipableCellLayouter.swift; path = Library/Private/SwipableCellLayouter.swift; sourceTree = "<group>"; };
@@ -43,31 +43,31 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6AAF3BF0FE1633103C68ED7E36F7BB19 /* Frameworks */ = {
+		7A43FF807F3CA46FD22C289F53EED533 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CDF61CDB942B64097478B7AAD8E708E /* Foundation.framework in Frameworks */,
+				6B1A573BAF94ACD246368FA7CF78C7A2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43CBB036948937C4EA9D09EA566A768F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7FEF29455FB946A4C509219455E02000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				F284F71EB46C4BBD34EFE4B5E6172B98 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		86DC5284BF627EACC1994DF2DB9497C7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A7F1562293044217C1ECCCB1E4C60B02 /* Support Files */ = {
@@ -108,7 +108,7 @@
 			children = (
 				E4E4B3BA0A93E665446C64ECFA4ABD24 /* CollectionSwipableCellExtension */,
 				7FEF29455FB946A4C509219455E02000 /* Frameworks */,
-				86DC5284BF627EACC1994DF2DB9497C7 /* Products */,
+				43CBB036948937C4EA9D09EA566A768F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,11 +123,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9DEA750B073668E90B81A94C78B28EFE /* Headers */ = {
+		ACEA8B78B002D470CD2D546DB74B0504 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FEBDEA942A68F3F429BEFE270FDC65 /* CollectionSwipableCellExtension-umbrella.h in Headers */,
+				5822800022CC35F5539FAB3F24F9D032 /* CollectionSwipableCellExtension-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,12 +136,12 @@
 /* Begin PBXNativeTarget section */
 		2C2337EEFD8728661144FB96E731946C /* CollectionSwipableCellExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F72EA0EB65C611977B4F04EE6DCC9B9F /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */;
+			buildConfigurationList = 1C2E15E78836F86D84802F071D5198C6 /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */;
 			buildPhases = (
-				9DEA750B073668E90B81A94C78B28EFE /* Headers */,
-				C0715B5396177F8A993AD990286E629E /* Sources */,
-				6AAF3BF0FE1633103C68ED7E36F7BB19 /* Frameworks */,
-				82DEF93DD670806EB0D43B6430964619 /* Resources */,
+				ACEA8B78B002D470CD2D546DB74B0504 /* Headers */,
+				70101D1CD6484C541C9B9C8CFB614B66 /* Sources */,
+				7A43FF807F3CA46FD22C289F53EED533 /* Frameworks */,
+				98E8F3143C4B965CF877C3ABCA23E516 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -149,7 +149,7 @@
 			);
 			name = CollectionSwipableCellExtension;
 			productName = CollectionSwipableCellExtension;
-			productReference = 3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension.framework */;
+			productReference = 3F0C0CD71859B6DC7400813C208DC7E7 /* CollectionSwipableCellExtension */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -158,19 +158,19 @@
 		15925E5C50761C1ADA22FF5451A293D5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastSwiftUpdateCheck = 1300;
+				LastUpgradeCheck = 1300;
 			};
 			buildConfigurationList = B26E538716B600AAFE01E6391AE30F73 /* Build configuration list for PBXProject "CollectionSwipableCellExtension" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
 			mainGroup = F1A173D37E3CB8461FA04A1C1AB9344A;
-			productRefGroup = 86DC5284BF627EACC1994DF2DB9497C7 /* Products */;
+			productRefGroup = 43CBB036948937C4EA9D09EA566A768F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -180,7 +180,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		82DEF93DD670806EB0D43B6430964619 /* Resources */ = {
+		98E8F3143C4B965CF877C3ABCA23E516 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -190,26 +190,87 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C0715B5396177F8A993AD990286E629E /* Sources */ = {
+		70101D1CD6484C541C9B9C8CFB614B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				041257D21522B6CAB19D81459F818649 /* CollectionSwipableCellExtension.swift in Sources */,
-				46E9E1350080658669BF058C512EF373 /* CollectionSwipableCellExtension-dummy.m in Sources */,
-				9EDE9DA369FBE423E6889336047F3BB0 /* CollectionSwipableCellHandler.swift in Sources */,
-				20773617D37BA411CC6FE4979373A7D0 /* CollectionSwipableCellOneButtonLayout.swift in Sources */,
-				4CBF63108C5B7423A15FA3527ECB29F7 /* SwipableCellLayouter.swift in Sources */,
-				24E60810CB032FF07B09774C72538AE3 /* SwipableCollection.swift in Sources */,
-				8782072B2B60ADEA4D681428A22DF549 /* SwipableUICollectionView.swift in Sources */,
-				7E469D06A496DF5EFCBA2623C7B152E0 /* SwipableUITableView.swift in Sources */,
-				D797DDE5F71FE67BCCEAEC56E2576794 /* UICollectionViewCell+CollectionSwipableCellExtension.swift in Sources */,
-				BE9D83D61298E2DEA31362C05C208B60 /* UITableViewCell+CollectionSwipableCellExtension.swift in Sources */,
+				BBDD12CB710279907C28B9764D708B16 /* CollectionSwipableCellExtension.swift in Sources */,
+				CCEB70CD31081FADADBEB6C44182C786 /* CollectionSwipableCellExtension-dummy.m in Sources */,
+				C6410465BD00BE209F462B6378DD3A13 /* CollectionSwipableCellHandler.swift in Sources */,
+				D6716D06CD2E23B58E5E78F1EC273D3A /* CollectionSwipableCellOneButtonLayout.swift in Sources */,
+				7CF947C5FC9022BD77B5639F78266303 /* SwipableCellLayouter.swift in Sources */,
+				0F13B6DD76AD246C5FA0BA55089D243F /* SwipableCollection.swift in Sources */,
+				BE1C89B25D2A7D549A4CA4C4494C40EB /* SwipableUICollectionView.swift in Sources */,
+				0692180B2B9FE28DAA2C65FF0BE6DC0E /* SwipableUITableView.swift in Sources */,
+				EF6E5A6DE6B8F7CCA8251E9B89B56675 /* UICollectionViewCell+CollectionSwipableCellExtension.swift in Sources */,
+				EEF15D709C832B24513E5C4F920341CD /* UITableViewCell+CollectionSwipableCellExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3CCE9DB4CB42A525C299BD1353879D56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
+				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
+				PRODUCT_NAME = CollectionSwipableCellExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		51590B8265239B8773D760DD15C82F48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
+				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
+				PRODUCT_NAME = CollectionSwipableCellExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		6688716389252471A77AF6241107E45C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -269,67 +330,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Release;
-		};
-		A41E3863039B28A1832FB7923FCD8FED /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
-				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
-				PRODUCT_NAME = CollectionSwipableCellExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A469F24A3F3DC4D6E6D6520B28F2BC2A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
-				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
-				PRODUCT_NAME = CollectionSwipableCellExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -402,20 +402,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1C2E15E78836F86D84802F071D5198C6 /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CCE9DB4CB42A525C299BD1353879D56 /* Debug */,
+				51590B8265239B8773D760DD15C82F48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B26E538716B600AAFE01E6391AE30F73 /* Build configuration list for PBXProject "CollectionSwipableCellExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6C28EF025BF079C4967AB49CB8F270D /* Debug */,
 				6688716389252471A77AF6241107E45C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F72EA0EB65C611977B4F04EE6DCC9B9F /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A41E3863039B28A1832FB7923FCD8FED /* Debug */,
-				A469F24A3F3DC4D6E6D6520B28F2BC2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
