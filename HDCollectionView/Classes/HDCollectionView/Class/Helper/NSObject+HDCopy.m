@@ -11,8 +11,8 @@
 #import <objc/runtime.h>
 
 @implementation HDObjectProperty
-- (instancetype)initWithProperty:(objc_property_t)property_t obj:(nonnull NSObject *)obj
-{
+
+- (instancetype)initWithProperty:(objc_property_t)property_t obj:(nonnull NSObject *)obj {
     if (!property_t) {
         return nil;
     }
@@ -56,11 +56,12 @@
     }
     return self;
 }
+
 @end
 
 @implementation NSObject (HDCopy)
-- (id)hd_copyWithZone:(NSZone *)zone
-{
+
+- (id)hd_copyWithZone:(NSZone *)zone {
     id copyIns = [[[self class] allocWithZone:zone] init];
     unsigned int count = 0 ;
     Ivar *ivars = class_copyIvarList([self class], &count);
@@ -84,8 +85,8 @@
     free(ivars);
     return copyIns;
 }
-- (NSDictionary*)hdDefaultIgnorePropertys
-{
+
+- (NSDictionary*)hdDefaultIgnorePropertys {
     return @{
              @"hash":@(YES),
              @"superclass":@(YES),
@@ -93,13 +94,12 @@
              @"debugDescription":@(YES),
              };
 }
-- (NSArray<HDObjectProperty *> *)hdAllPropertys
-{
+
+- (NSArray<HDObjectProperty *> *)hdAllPropertys {
     return [self _hdAllPropertysWithClass:[self class] needSuper:YES];
 }
 
-- (NSArray<HDObjectProperty *> *)_hdAllPropertysWithClass:(Class)cls needSuper:(BOOL)isNeedSuperProperty
-{
+- (NSArray<HDObjectProperty *> *)_hdAllPropertysWithClass:(Class)cls needSuper:(BOOL)isNeedSuperProperty {
     NSMutableArray *res = @[].mutableCopy;
     
     NSMutableDictionary *ignorePropertys = [self hdDefaultIgnorePropertys].mutableCopy;
@@ -130,8 +130,7 @@
     return res;
 }
 
-- (NSString *)hdObjectIDByPropertys
-{
+- (NSString *)hdObjectIDByPropertys {
     NSMapTable *countedObjMap = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsWeakMemory valueOptions:NSPointerFunctionsStrongMemory];
     NSString *finalID = [self _innerHdObjectIDByPropertys:countedObjMap];
     //copy from NSData+YYAdd
@@ -148,8 +147,8 @@
     
     return finalID;
 }
-- (NSString *)_innerHdObjectIDByPropertys:(NSMapTable*)countedObjMap
-{
+
+- (NSString *)_innerHdObjectIDByPropertys:(NSMapTable*)countedObjMap {
     //countedObjMap用来记录计算过了哪些对象
     if ([countedObjMap objectForKey:self]) {
         return [countedObjMap objectForKey:self];
@@ -188,4 +187,5 @@
     
     return finalID;
 }
+
 @end

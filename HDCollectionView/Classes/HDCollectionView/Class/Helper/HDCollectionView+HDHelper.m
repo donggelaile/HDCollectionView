@@ -21,44 +21,41 @@ static char *HDCalculateSectionFinishCbKey;
 
 @implementation HDCollectionView (Helper)
 
-- (void)setCalculateSectionFinishCb:(void (^)(NSInteger))CalculateSectionFinishCb
-{
+- (void)setCalculateSectionFinishCb:(void (^)(NSInteger))CalculateSectionFinishCb {
     objc_setAssociatedObject(self, &HDCalculateSectionFinishCbKey, CalculateSectionFinishCb, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
--(void (^)(NSInteger))CalculateSectionFinishCb
-{
+
+- (void (^)(NSInteger))CalculateSectionFinishCb {
     void (^callback)(NSInteger) = objc_getAssociatedObject(self, &HDCalculateSectionFinishCbKey);
     return callback;
 }
-- (void)setCurrentLoadSec:(NSInteger)currentLoadSec
-{
+
+- (void)setCurrentLoadSec:(NSInteger)currentLoadSec {
     objc_setAssociatedObject(self, &HDCurrentLoadSecKey, @(currentLoadSec), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (NSInteger)currentLoadSec
-{
+
+- (NSInteger)currentLoadSec {
     return [objc_getAssociatedObject(self, &HDCurrentLoadSecKey) integerValue];
 }
-- (void)setPreloadOffset:(NSInteger)preloadOffset
-{
+
+- (void)setPreloadOffset:(NSInteger)preloadOffset {
     objc_setAssociatedObject(self, &HDPreloadOffsetKey, @(preloadOffset), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (NSInteger)preloadOffset
-{
+
+- (NSInteger)preloadOffset {
     NSNumber *num = objc_getAssociatedObject(self, &HDPreloadOffsetKey);
     return [num integerValue];
 }
-- (void)setSlowlyDataArr:(NSMutableArray *)slowlyDataArr
-{
+
+- (void)setSlowlyDataArr:(NSMutableArray *)slowlyDataArr {
     objc_setAssociatedObject(self, &HDSlowlyDataArrKey, slowlyDataArr, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
-- (NSMutableArray *)slowlyDataArr
-{
+
+- (NSMutableArray *)slowlyDataArr {
     return objc_getAssociatedObject(self, &HDSlowlyDataArrKey);
 }
 
-
-- (void)hd_setAllDataArrSlowly:(NSArray<id<HDSectionModelProtocol>> *)dataArr preloadOffset:(NSInteger)preloadOffset currentCalculateSectionFinishCallback:(nullable void (^)(NSInteger))callback
-{
+- (void)hd_setAllDataArrSlowly:(NSArray<id<HDSectionModelProtocol>> *)dataArr preloadOffset:(NSInteger)preloadOffset currentCalculateSectionFinishCallback:(nullable void (^)(NSInteger))callback {
     if ([self.collectionV.collectionViewLayout isKindOfClass:UICollectionViewFlowLayout.class]) {
         // 使用系统flowLayout时不支持渐进加载
         [self hd_setAllDataArr:dataArr];
@@ -82,16 +79,16 @@ static char *HDCalculateSectionFinishCbKey;
         }
     }];
 }
-- (void)hd_scrollViewDidScroll:(NSNotification*)noti
-{
+
+- (void)hd_scrollViewDidScroll:(NSNotification*)noti {
     HDCollectionView *hdcv;
     if ([noti.object isKindOfClass:[HDCollectionView class]]) {
         hdcv = noti.object;
     }
     [self hd_scrollViewDidScroll:hdcv.collectionV callback:self.CalculateSectionFinishCb];
 }
-- (void)hd_scrollViewDidScroll:(UIScrollView *)scrollView callback:(nonnull void (^)(NSInteger))callback
-{
+
+- (void)hd_scrollViewDidScroll:(UIScrollView *)scrollView callback:(nonnull void (^)(NSInteger))callback {
     NSRunLoopMode mode = NSDefaultRunLoopMode;
     if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
         NSInteger offset = 0;
@@ -112,8 +109,7 @@ static char *HDCalculateSectionFinishCbKey;
     });
 }
 
-+ (NSArray<HDSectionModel*> *)hd_getSectionsByPageCount:(NSInteger)pageCount hdCellModelArr:(nonnull NSArray<id<HDCellModelProtocol>> *)cellModelArr secConfiger:(nonnull id<HDSectionModelProtocol>  _Nonnull (^)(NSInteger))secConfig
-{
++ (NSArray<HDSectionModel*> *)hd_getSectionsByPageCount:(NSInteger)pageCount hdCellModelArr:(nonnull NSArray<id<HDCellModelProtocol>> *)cellModelArr secConfiger:(nonnull id<HDSectionModelProtocol>  _Nonnull (^)(NSInteger))secConfig {
     NSMutableArray *finalSecArr = @[].mutableCopy;
     NSMutableArray *tempCellVMArr = @[].mutableCopy;
     NSMutableArray *subArr = @[].mutableCopy;
@@ -149,14 +145,13 @@ static char *HDCalculateSectionFinishCbKey;
     return finalSecArr;
 }
 
-- (void)loadSectionIfNeeded:(nonnull void (^)(NSInteger))callback
-{
+- (void)loadSectionIfNeeded:(nonnull void (^)(NSInteger))callback {
     if ([self isNeedLoadMore]) {
         [self addOneSecWithCallback:callback];
     }
 }
-- (BOOL)isNeedLoadMore
-{
+
+- (BOOL)isNeedLoadMore {
     BOOL isNeed = NO;
     NSInteger curSlowLoadSecIndex = self.currentLoadSec;
     id<HDSectionModelProtocol> lastSecModel = [self.innerAllData lastObject];
@@ -177,8 +172,8 @@ static char *HDCalculateSectionFinishCbKey;
     }
     return isNeed;
 }
-- (void)addOneSecWithCallback:(nonnull void (^)(NSInteger))callback
-{
+
+- (void)addOneSecWithCallback:(nonnull void (^)(NSInteger))callback {
     if (self.isDeletingSection) {
         return;
     }
@@ -192,16 +187,16 @@ static char *HDCalculateSectionFinishCbKey;
     //判断是否当前段仍然无法填满当前可视区域
     [self loadSectionIfNeeded:callback];
 }
-- (HDSectionModel*)secModelWithSection:(NSInteger)section
-{
+
+- (HDSectionModel*)secModelWithSection:(NSInteger)section {
     HDSectionModel *curSec = nil;
     if (section<self.slowlyDataArr.count) {
         curSec = self.slowlyDataArr[section];
     }
     return curSec;
 }
-- (void)hd_appendSecSlowly:(id<HDSectionModelProtocol>)secModel
-{
+
+- (void)hd_appendSecSlowly:(id<HDSectionModelProtocol>)secModel {
     if (self.slowlyDataArr.count && [secModel conformsToProtocol:@protocol(HDSectionModelProtocol)]) {
         [self.slowlyDataArr addObject:secModel];
     }

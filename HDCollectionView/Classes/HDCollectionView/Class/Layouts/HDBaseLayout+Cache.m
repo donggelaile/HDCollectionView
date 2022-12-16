@@ -19,8 +19,7 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
 @end
 
 @implementation HDBaseLayout (Cache)
-- (NSArray *)getAttsWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart isFirstSec:(BOOL)isFirstSec
-{
+- (NSArray *)getAttsWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart isFirstSec:(BOOL)isFirstSec {
     CGPoint orgStart = self.cacheStart;
     self.cacheStart = CGPointMake(cStart->x, cStart->y);
     NSArray* result;
@@ -83,8 +82,7 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
     return result;
 }
 
-- (NSArray*)updateWithoffsetXY:(CGPoint)offsetXY start:(CGPoint*)start secm:(id<HDSectionModelProtocol>)secM
-{
+- (NSArray*)updateWithoffsetXY:(CGPoint)offsetXY start:(CGPoint*)start secm:(id<HDSectionModelProtocol>)secM {
     [self.cacheAtts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGRect newFrame = CGRectMake(obj.frame.origin.x+offsetXY.x, obj.frame.origin.y+offsetXY.y, obj.frame.size.width, obj.frame.size.height);
         obj.frame = newFrame;
@@ -114,52 +112,51 @@ static char *HDCacheSectionSizeKey = "HDCacheSectionSizeKey";
     return self.cacheAtts;
 }
 
-- (void)setCacheAtts:(NSMutableArray *)cacheAtts
-{
+- (void)setCacheAtts:(NSMutableArray *)cacheAtts {
     objc_setAssociatedObject(self, HDCacheAttsKey, cacheAtts, OBJC_ASSOCIATION_RETAIN);
 }
-- (NSMutableArray *)cacheAtts
-{
+
+- (NSMutableArray *)cacheAtts {
     return objc_getAssociatedObject(self, HDCacheAttsKey);
 }
-- (void)setCacheStart:(CGPoint)cacheStart
-{
+
+- (void)setCacheStart:(CGPoint)cacheStart {
     objc_setAssociatedObject(self, HDCacheStartKey, [NSValue valueWithCGPoint:cacheStart], OBJC_ASSOCIATION_RETAIN);
 }
--(CGPoint)cacheStart
-{
+
+-(CGPoint)cacheStart {
     id start = objc_getAssociatedObject(self, HDCacheStartKey);
-    
     return start?[start CGPointValue]:CGPointZero;
 }
-- (void)setNeedUpdate:(BOOL)needUpdate
-{
+
+- (void)setNeedUpdate:(BOOL)needUpdate {
     objc_setAssociatedObject(self, HDCacheNeedUpdateKey, @(needUpdate), OBJC_ASSOCIATION_RETAIN);
 }
-- (BOOL)needUpdate
-{
+
+- (BOOL)needUpdate {
     id needUpdate = objc_getAssociatedObject(self, HDCacheNeedUpdateKey);
     if (!needUpdate) {
         return YES;//未初始化过则认为需要更新
     }
     return [needUpdate boolValue];
 }
-- (void)setCacheSectionSize:(CGRect)cacheSectionSize
-{
+
+- (void)setCacheSectionSize:(CGRect)cacheSectionSize {
     objc_setAssociatedObject(self, HDCacheSectionSizeKey, [NSValue valueWithCGRect:cacheSectionSize], OBJC_ASSOCIATION_RETAIN);
 }
-- (CGRect)cacheSectionSize
-{
+
+- (CGRect)cacheSectionSize {
     id size = objc_getAssociatedObject(self, HDCacheSectionSizeKey);
     return size?[size CGRectValue]:CGRectZero;
 }
- - (void)setCacheEnd:(CGPoint)cacheEnd
-{
+
+- (void)setCacheEnd:(CGPoint)cacheEnd {
     objc_setAssociatedObject(self, HDCacheEndKey, [NSValue valueWithCGPoint:cacheEnd], OBJC_ASSOCIATION_RETAIN);
 }
-- (CGPoint)cacheEnd
-{
+
+- (CGPoint)cacheEnd {
     id end = objc_getAssociatedObject(self, HDCacheEndKey);
     return end?[end CGPointValue]:CGPointZero;
 }
+
 @end

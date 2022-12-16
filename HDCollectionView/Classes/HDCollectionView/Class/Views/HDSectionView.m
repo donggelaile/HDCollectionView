@@ -8,14 +8,16 @@
 
 #import "HDSectionView.h"
 #import "HDCollectionView.h"
+
 @interface HDSectionView()
 @property (nonatomic, copy) void(^superCallback)(id par, HDCallBackType type);
 @end
 
 @implementation HDSectionView
+
 @synthesize superCollectionV = _superCollectionV;
-- (HDCollectionView *)superCollectionV
-{
+
+- (HDCollectionView *)superCollectionV {
     if (!_superCollectionV) {
         UIView *view = self;
         while (view!=nil && ![view isKindOfClass:HDClassFromString(@"HDCollectionView")]) {
@@ -25,8 +27,8 @@
     }
     return _superCollectionV;
 }
-- (void)superUpdateSecVUI:(id<HDSectionModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback
-{
+
+- (void)superUpdateSecVUI:(id<HDSectionModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback {
     self.superCallback = callback;
     __weak typeof(self) weakS = self;
     void(^selfCallback)(id) = ^(id par) {
@@ -38,8 +40,8 @@
     [self setValue:model forKey:@"hdSecModel"];
     
 }
-- (void)secViewCallback:(id)par
-{
+
+- (void)secViewCallback:(id)par {
     HDCallBackType type = HDOtherCallBack;
     if ([self.currentElementKind isEqualToString:UICollectionElementKindSectionHeader]) {
         type = HDSectionHeaderCallBack;
@@ -50,16 +52,17 @@
     }
     self.superCallback(par, type);
 }
-- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
-{
+
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     [super applyLayoutAttributes:layoutAttributes];
     if ([self.superCollectionV.collectionV.collectionViewLayout isKindOfClass:HDClassFromString(@"HDCollectionViewLayout")]) {
         //对于系统的UICollectionViewFlowLayout 设置后反而会引起视图层级混乱，原因未知
         self.layer.zPosition = layoutAttributes.zIndex;
     }
 }
-- (void)dealEventByEventKey:(NSString*)eventKey backType:(HDCallBackType)type backModel:(id)backModel self:(void(^)(void))selfDealCode
-{
+
+- (void)dealEventByEventKey:(NSString*)eventKey backType:(HDCallBackType)type backModel:(id)backModel self:(void(^)(void))selfDealCode {
+    self.hdSecModel.context = eventKey;
     HDCollectionViewEventDealPolicy policy = HDCollectionViewEventDealPolicyBySubView;
     
     //获取HDCollectionView对该事件设置的处理策略
@@ -94,7 +97,9 @@
     self.hdSecModel.context = nil;
     self.hdSecModel.otherParameter = nil;
 }
-+(BOOL)accessInstanceVariablesDirectly{
+
++(BOOL)accessInstanceVariablesDirectly {
     return YES;
 }
+
 @end

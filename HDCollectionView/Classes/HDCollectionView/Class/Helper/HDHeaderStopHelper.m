@@ -14,9 +14,9 @@
 
 static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLayoutAttributesIndexKey";
 @implementation HDHeaderStopHelper
+
 //视图层级由上到下为 Indicator -> 段数靠前的header -> 段数靠后的header -> footer -> cell -> decorationView
-+ (NSMutableArray *)getAdjustAttArrWith:(NSMutableArray *)oriRectAttArr allSectionData:(NSMutableArray *)secDataArr layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection
-{
++ (NSMutableArray *)getAdjustAttArrWith:(NSMutableArray *)oriRectAttArr allSectionData:(NSMutableArray *)secDataArr layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection {
     if (!oriRectAttArr) {
         return nil;
     }
@@ -117,8 +117,8 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     
     return AllRectAtts;
 }
-+ (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes secLastAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes topOffset:(CGFloat *)offset topStopType:(HDHeaderStopOnTopType)stopType section:(NSInteger)section layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection secOffset:(NSInteger)secOffset secModel:(id<HDSectionModelProtocol>)secModel
-{
+
++ (void)updateHeaderAttributes:(UICollectionViewLayoutAttributes *)attributes secLastAttributes:(UICollectionViewLayoutAttributes *)lastCellAttributes topOffset:(CGFloat *)offset topStopType:(HDHeaderStopOnTopType)stopType section:(NSInteger)section layout:(UICollectionViewLayout*)layout scollDirection:(UICollectionViewScrollDirection)scorllDirection secOffset:(NSInteger)secOffset secModel:(id<HDSectionModelProtocol>)secModel {
     if (stopType == HDHeaderStopOnTopTypeNone) {
         return;
     }
@@ -188,4 +188,5 @@ static char *HDUICollectionViewLayoutAttributesIndexKey = "HDUICollectionViewLay
     
     attributes.frame = CGRectMake(originX, originY, attributes.frame.size.width, attributes.frame.size.height);
 }
+
 @end

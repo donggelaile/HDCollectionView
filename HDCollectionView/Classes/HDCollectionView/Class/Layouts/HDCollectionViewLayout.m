@@ -22,8 +22,7 @@
     CGPoint realCurrentStart;
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -31,26 +30,26 @@
     [self resetData];
     return self;
 }
-- (void)resetData
-{
+
+- (void)resetData {
     isNeedReloadAll = YES;
     cacheDicAtts = @{}.mutableCopy;
     realCurrentStart = CGPointZero;
     currentStart = &realCurrentStart;
 
 }
-- (NSMutableArray<id<HDSectionModelProtocol>> *)allDataArr
-{
+
+- (NSMutableArray<id<HDSectionModelProtocol>> *)allDataArr {
     NSMutableArray *arr = [self.collectionView.superview valueForKey:@"allDataArr"];
     return arr;
 }
-- (void)updateCurrentXY:(CGPoint)newStart
-{
+
+- (void)updateCurrentXY:(CGPoint)newStart {
     currentStart->x = newStart.x;
     currentStart->y = newStart.y;
 }
-- (void)prepareLayout
-{
+
+- (void)prepareLayout {
     isNeedTopStop = [[self.collectionView.superview valueForKey:@"isNeedTopStop"] boolValue];
     [super prepareLayout];
     [self invalidateLayout];
@@ -60,17 +59,17 @@
         isNeedReloadAll = NO;
     }
 }
-- (void)setAllNeedUpdate
-{
+
+- (void)setAllNeedUpdate {
     [self resetData];
 }
-- (void)reloadAll
-{
+
+- (void)reloadAll {
     [self resetData];
     [self reloadSetionAfter:0];
 }
-- (void)reloadSetionAfter:(NSInteger)sectionIndex
-{
+
+- (void)reloadSetionAfter:(NSInteger)sectionIndex {
     //前一段布局改变后，会影响其后的所有布局，该段后面的都要刷新
     //刷新重新添加
     if (sectionIndex<0 || isNeedReloadAll) {
@@ -91,11 +90,9 @@
     id<HDSectionModelProtocol> lastSec = [[self allDataArr] lastObject];
     currentStart->x = lastSec.layout.cacheEnd.x;
     currentStart->y = lastSec.layout.cacheEnd.y;
-    
 }
 
-- (void)addOneSection:(id<HDSectionModelProtocol>)section isFirst:(BOOL)isFirst
-{
+- (void)addOneSection:(id<HDSectionModelProtocol>)section isFirst:(BOOL)isFirst {
     NSArray *Atts = [section.layout getAttsWithLayout:self sectionModel:section currentStart:currentStart isFirstSec:isFirst];
     [Atts enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes* obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -115,8 +112,7 @@
     }
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     if (@available(iOS 10.0, *)) {
         self.collectionView.prefetchingEnabled = false;
     } else {
@@ -152,30 +148,27 @@
     return finalAtts;
 }
 
-
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     return self->cacheDicAtts[[self getCacheKeyByKind:nil indexPath:indexPath]];
 }
-- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath
-{
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     return self->cacheDicAtts[[self getCacheKeyByKind:elementKind indexPath:indexPath]];
 }
-- (CGSize)collectionViewContentSize
-{
+
+- (CGSize)collectionViewContentSize {
     return CGSizeMake(MAX(currentStart->x, self.collectionView.frame.size.width), MAX(currentStart->y, self.collectionView.frame.size.height));
 }
 
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
-{
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     BOOL result = !CGSizeEqualToSize(newBounds.size, self.collectionView.bounds.size);
     if (isNeedTopStop) {
         result = YES;//返回YES后,滑动就会调用prepareLayout
     }
     return result;
 }
-- (NSString*)getCacheKeyByKind:(NSString*)kind indexPath:(NSIndexPath*)indexPath
-{
+
+- (NSString*)getCacheKeyByKind:(NSString*)kind indexPath:(NSIndexPath*)indexPath {
     NSString *cacheKey;
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         cacheKey = [NSString stringWithFormat:@"HDHeader_%zd",indexPath.section];
@@ -189,8 +182,7 @@
     return cacheKey;
 }
 
-- (NSArray*)_findAllVisibleSectionsInRect:(CGRect)rect secModelArr:(NSArray*)secModelArr
-{
+- (NSArray*)_findAllVisibleSectionsInRect:(CGRect)rect secModelArr:(NSArray*)secModelArr {
     NSMutableArray *result = @[].mutableCopy;
     NSInteger firstFindSection = [self _binarySearchFirstVisibleSection:0 end:secModelArr.count-1 secModelArr:secModelArr inRect:rect];
     if (firstFindSection != -1) {
@@ -218,8 +210,8 @@
     }
     return result;
 }
-- (NSInteger)_binarySearchFirstVisibleSection:(NSInteger)start end:(NSInteger)end secModelArr:(NSArray*)secModelArr inRect:(CGRect)rect
-{
+
+- (NSInteger)_binarySearchFirstVisibleSection:(NSInteger)start end:(NSInteger)end secModelArr:(NSArray*)secModelArr inRect:(CGRect)rect {
     if (end<start) {
         return -1;
     }
@@ -271,4 +263,5 @@
     
     return firstFind;
 }
+
 @end

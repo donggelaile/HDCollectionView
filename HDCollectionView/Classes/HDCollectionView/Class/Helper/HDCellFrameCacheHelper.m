@@ -10,13 +10,14 @@
 #import "HDAssociationManager.h"
 
 @implementation HDCollectionCell(subViewFrameCache)
-- (void)setCacheKeysIfNeed
-{
+
+- (void)setCacheKeysIfNeed {
     id curObjMap = [[HDAssociationManager hd_currentVaules]objectForKey:self];
     if ([[curObjMap keyEnumerator] allObjects].count<=0) {
         [HDCellFrameCacheHelper setAllsubViewFrameKey:self];
     }
 }
+
 @end
 
 @interface HDCellSubViewFrameCache()
@@ -27,28 +28,28 @@
 @end
 
 @implementation HDCellSubViewFrameCache
-- (void)setCacheKey:(NSString*)key
-{
+
+- (void)setCacheKey:(NSString*)key {
     cacheKey = key;
 }
-- (void)setCacheFrame:(CGRect)Frame
-{
+
+- (void)setCacheFrame:(CGRect)Frame {
     cacheFrame = Frame;
 }
-- (CGRect)cacheFrame
-{
+
+- (CGRect)cacheFrame {
     return cacheFrame;
 }
-- (NSString*)cacheKey
-{
+
+- (NSString*)cacheKey {
     return cacheKey;
 }
+
 @end
 
 @implementation HDCellFrameCacheHelper
 
-+ (NSMutableArray<HDCellSubViewFrameCache*>*)copySubViewsFrame:(UIView*)superView
-{
++ (NSMutableArray<HDCellSubViewFrameCache*>*)copySubViewsFrame:(UIView*)superView {
     NSMutableArray *allSubViewFrame = @[].mutableCopy;
     NSMutableArray *queue = superView.subviews.mutableCopy;
     int index = 0;
@@ -71,8 +72,8 @@
     }
     return allSubViewFrame;
 }
-+ (void)resetViewSubviewFrame:(UIView*)superView subViewFrame:(NSMutableArray<HDCellSubViewFrameCache*>*)subViewFrameArr
-{
+
++ (void)resetViewSubviewFrame:(UIView*)superView subViewFrame:(NSMutableArray<HDCellSubViewFrameCache*>*)subViewFrameArr {
     [subViewFrameArr enumerateObjectsUsingBlock:^(HDCellSubViewFrameCache * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        UIView *subV = objc_getAssociatedObject(superView, (__bridge const void * _Nonnull)(obj.cacheKey));
         UIView *subV = [HDAssociationManager hd_getAssociatedObject:superView key:obj.cacheKey];
@@ -80,9 +81,7 @@
     }];
 }
 
-
-+ (void)setAllsubViewFrameKey:(UIView*)superView
-{
++ (void)setAllsubViewFrameKey:(UIView*)superView {
     NSMutableArray *queue = superView.subviews.mutableCopy;
     int index = 0;
     while (queue.count) {
@@ -101,8 +100,8 @@
         
     }
 }
-+ (BOOL)isListView:(UIView*)view
-{
+
++ (BOOL)isListView:(UIView*)view {
     NSArray *clsArr = @[@"HDCollectionView",@"UITableView",@"UICollectionView"];
     __block BOOL isListV = NO;
     [clsArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

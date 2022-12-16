@@ -19,15 +19,14 @@
 
 @implementation HDCellModelChainMaker
 
-- (NSMutableDictionary *)allValues
-{
+- (NSMutableDictionary *)allValues {
     if (!_allValues) {
         _allValues = @{}.mutableCopy;
     }
     return _allValues;
 }
-- (__kindof id<HDCellModelProtocol>)hd_generateObj
-{
+
+- (__kindof id<HDCellModelProtocol>)hd_generateObj {
     id<HDCellModelProtocol> model;
     if (self.diyCellModelClassStr) {
         if (HDClassFromString(self.diyCellModelClassStr)) {
@@ -47,8 +46,7 @@
     return model;
 }
 
-- (HDCellModelChainMaker * _Nonnull (^)(id _Nullable))hd_orgData
-{
+- (HDCellModelChainMaker * _Nonnull (^)(id _Nullable))hd_orgData {
     return ^(id orgData){
         if (orgData) {
             self.allValues[@"orgData"] = orgData;
@@ -56,15 +54,15 @@
         return self;
     };
 }
-- (HDCellModelChainMaker * _Nonnull (^)(CGSize))hd_cellSize
-{
+
+- (HDCellModelChainMaker * _Nonnull (^)(CGSize))hd_cellSize {
     return ^(CGSize cellSize){
         self.allValues[@"cellSize"] = [NSValue valueWithCGSize:cellSize];
         return self;
     };
 }
-- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_cellClassStr
-{
+
+- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_cellClassStr {
     return ^(NSString* cellClassStr){
         if (cellClassStr) {
             self.allValues[@"cellClassStr"] = cellClassStr;
@@ -72,15 +70,15 @@
         return self;
     };
 }
-- (HDCellModelChainMaker * _Nonnull (^)(UIEdgeInsets))hd_margain
-{
+
+- (HDCellModelChainMaker * _Nonnull (^)(UIEdgeInsets))hd_margain {
     return ^(UIEdgeInsets margain){
         self.allValues[@"margain"] = [NSValue valueWithUIEdgeInsets:margain];
         return self;
     };
 }
-- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_reuseIdentifier
-{
+
+- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_reuseIdentifier {
     return ^(NSString* reuseIdentifier){
         if (reuseIdentifier) {
             self.allValues[@"reuseIdentifier"] = reuseIdentifier;
@@ -88,8 +86,8 @@
         return self;
     };
 }
-- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_diyCellModelClassStr
-{
+
+- (HDCellModelChainMaker * _Nonnull (^)(NSString * _Nullable))hd_diyCellModelClassStr {
     return ^(NSString* diyCellModelClassStr){
         self.diyCellModelClassStr = diyCellModelClassStr;
         return self;
@@ -114,8 +112,8 @@
 @synthesize orgData         = _orgData;
 @synthesize reuseIdentifier = _reuseIdentifier;
 @synthesize otherParameter  = _otherParameter;
-- (instancetype)init
-{
+
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.cellSize = CGSizeZero;
@@ -123,19 +121,19 @@
     }
     return self;
 }
-- (NSString *)reuseIdentifier
-{
+
+- (NSString *)reuseIdentifier {
     if (!_reuseIdentifier) {
         _reuseIdentifier = self.cellClassStr;
     }
     return _reuseIdentifier;
 }
-- (BOOL)hdDiffIdentifierIsNeedAddModelHash
-{
+
+- (BOOL)hdDiffIdentifierIsNeedAddModelHash {
     return YES;
 }
-- (NSDictionary *)hdDiffIdentifierIgnorePropertys
-{
+
+- (NSDictionary *)hdDiffIdentifierIgnorePropertys {
     return @{
              @"hash":@(YES),
              @"superclass":@(YES),
@@ -147,16 +145,16 @@
              @"secModel":@(YES)
              };
 }
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
+
+- (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }
-- (id)valueForUndefinedKey:(NSString *)key
-{
+
+- (id)valueForUndefinedKey:(NSString *)key {
     return nil;
 }
-- (NSString *)hdDiffIdentifier
-{
+
+- (NSString *)hdDiffIdentifier {
     //默认实现为综合HDCellModel的部分属性值及orgData的属性值
     return [self hdObjectIDByPropertys];
 }
@@ -228,8 +226,7 @@
 }
 
 //取出当前类的所有property,然后去self.orgData中查找是否实现了对应的get方法，实现了则读取并赋值。
-- (void)superDefaultConvertOrgModelToViewModel
-{
+- (void)superDefaultConvertOrgModelToViewModel {
     NSMutableArray *allPropertyGetters = @[].mutableCopy;
     unsigned int propertyCount = 0;
     objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);

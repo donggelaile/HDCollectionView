@@ -15,16 +15,17 @@
 @property (nonatomic, assign, readonly) YGConfigRef yogaConfig;
 
 + (instancetype)defaultNode;
+
 @end
 
 @implementation HDYogaNode
-+(instancetype)defaultNode
-{
+
++ (instancetype)defaultNode {
     HDYogaNode *node = [HDYogaNode new];
     return node;
 }
-- (instancetype)init
-{
+
+- (instancetype)init {
     self = [super init];
     if (self) {
         _yogaConfig = YGConfigNew();
@@ -32,41 +33,43 @@
     }
     return self;
 }
-- (void)dealloc
-{
+
+- (void)dealloc {
     YGNodeFree(self.yogaNode);
     YGConfigFree(self.yogaConfig);
 }
+
 @end
 
 @implementation HDYogaCalculateHelper
 // Yoga 配置函数封装
-YGNodeRef makeDefaultNode(){
+YGNodeRef makeDefaultNode(void) {
     YGNodeRef Node = YGNodeNewWithConfig(YGConfigNew());
     YGNodeSetMeasureFunc(Node, NULL);
     YGNodeRemoveAllChildren(Node);
     return Node;
 }
+
 void YGSetPading(YGNodeRef node, UIEdgeInsets pading){
     YGNodeStyleSetPadding(node, YGEdgeLeft, pading.left);
     YGNodeStyleSetPadding(node, YGEdgeRight, pading.right);
     YGNodeStyleSetPadding(node, YGEdgeTop, pading.top);
     YGNodeStyleSetPadding(node, YGEdgeBottom, pading.bottom);
 }
+
 void YGSetMargain(YGNodeRef node, UIEdgeInsets margin){
     YGNodeStyleSetMargin(node, YGEdgeLeft, margin.left);
     YGNodeStyleSetMargin(node, YGEdgeRight, margin.right);
     YGNodeStyleSetMargin(node, YGEdgeTop, margin.top);
     YGNodeStyleSetMargin(node, YGEdgeBottom, margin.bottom);
 }
+
 void YGSetSize(YGNodeRef node, CGSize size){
     YGNodeStyleSetHeight(node, size.height);
     YGNodeStyleSetWidth(node, size.width);
 }
 
-
-+ (NSMutableDictionary *)getSubViewsFrameWithHDYogaSec:(id<HDYogaSecProtocol>)sec
-{
++ (NSMutableDictionary *)getSubViewsFrameWithHDYogaSec:(id<HDYogaSecProtocol>)sec {
     NSMutableDictionary *finalDic = @{}.mutableCopy;
     CGRect decorationFrame = CGRectZero;
     

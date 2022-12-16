@@ -16,62 +16,62 @@
 @end
 
 @implementation HDBaseLayoutChainMaker
-- (NSMutableDictionary *)allValues
-{
+
+- (NSMutableDictionary *)allValues {
     if (!_allValues) {
         _allValues = @{}.mutableCopy;
     }
     return _allValues;
 }
-- (Class)hd_generateLayoutClass
-{
+
+- (Class)hd_generateLayoutClass {
     return [HDBaseLayout class];
 }
-- (__kindof HDBaseLayout*)hd_generateObj
-{
+
+- (__kindof HDBaseLayout*)hd_generateObj {
     HDBaseLayout* layout = [[self hd_generateLayoutClass] new];
     [self.allValues enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         [layout setValue:obj forKey:key];
     }];
     return layout;
 }
-- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_headerSize
-{
+
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_headerSize {
     return ^(CGSize headerSize){
         self.allValues[@"headerSize"] = [NSValue valueWithCGSize:headerSize];
         return self;
     };
 }
-- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_footerSize
-{
+
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_footerSize {
     return ^(CGSize footerSize){
         self.allValues[@"footerSize"] = [NSValue valueWithCGSize:footerSize];
         return self;
     };
 }
-- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_cellSize
-{
+
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGSize))hd_cellSize {
     return ^(CGSize cellSize){
         self.allValues[@"cellSize"] = [NSValue valueWithCGSize:cellSize];
         return self;
     };
 }
-- (HDBaseLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_secInset
-{
+
+- (HDBaseLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_secInset {
     return ^(UIEdgeInsets secInset){
         self.allValues[@"secInset"] = [NSValue valueWithUIEdgeInsets:secInset];
         return self;
     };
 }
-- (HDBaseLayoutChainMaker * _Nonnull (^)(CGFloat))hd_verticalGap
-{
+
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGFloat))hd_verticalGap {
     return ^(CGFloat verticalGap){
         self.allValues[@"verticalGap"] = @(verticalGap);
         return self;
     };
 }
-- (HDBaseLayoutChainMaker * _Nonnull (^)(CGFloat))hd_horizontalGap
-{
+
+- (HDBaseLayoutChainMaker * _Nonnull (^)(CGFloat))hd_horizontalGap {
     return ^(CGFloat horizontalGap){
         self.allValues[@"horizontalGap"] = @(horizontalGap);
         return self;
@@ -85,8 +85,8 @@
 @end
 
 @implementation HDBaseLayout
-- (instancetype)init
-{
+
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.secInset = UIEdgeInsetsZero;
@@ -99,26 +99,26 @@
     }
     return self;
 }
-- (CGSize)headerSize
-{
+
+- (CGSize)headerSize {
     if (self.headerSizeCb) {
         _headerSize = self.headerSizeCb();
     }
     return _headerSize;
 }
-- (CGSize)footerSize
-{
+
+- (CGSize)footerSize {
     if (self.footerSizeCb) {
         _footerSize = self.footerSizeCb();
     }
     return _footerSize;
 }
-- (id)copyWithZone:(NSZone *)zone
-{
+
+- (id)copyWithZone:(NSZone *)zone {
     return  [self hd_copyWithZone:zone];
 }
-- (NSMutableArray *)layoutWithLayout:(UICollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart
-{
+
+- (NSMutableArray *)layoutWithLayout:(UICollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart {
     return @[].mutableCopy;
 }
 
@@ -126,8 +126,7 @@
 #pragma mark 查找当前显示att
 
 //基类默认提供的查找为二分查找，需要保证 self.cacheAtts 基本有序(frame.orign.y/x在数组中递增)
-- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection
-{
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection {
     NSMutableArray *result = @[].mutableCopy;
     NSInteger HDContinueFindCount = 40;
     NSArray *cachedAttributes = self.cacheAtts;
@@ -195,8 +194,7 @@
 }
 
 //找到任意一个出现在rect内的位置
-- (NSInteger)binarySearch:(NSInteger)start end:(NSInteger)end rect:(CGRect)rect inAtts:(NSArray*)atts
-{
+- (NSInteger)binarySearch:(NSInteger)start end:(NSInteger)end rect:(CGRect)rect inAtts:(NSArray*)atts {
     if (end<start) {
         return -1;
     }
@@ -248,13 +246,11 @@
     return first;
 }
 
-- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect
-{
+- (BOOL)isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect {
     return [self _isRectIntersectsRect:attRect rect2:visualRect lastOrNextAttRect:CGRectNull];
 }
 
-- (BOOL)_isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect lastOrNextAttRect:(CGRect)lnRect
-{
+- (BOOL)_isRectIntersectsRect:(CGRect)attRect rect2:(CGRect)visualRect lastOrNextAttRect:(CGRect)lnRect {
     BOOL orgResutlt = CGRectIntersectsRect(attRect,visualRect);
     
     BOOL criticalPoint = NO;
@@ -281,4 +277,5 @@
     
     return orgResutlt || criticalPoint || isLastNextOneLine;
 }
+
 @end

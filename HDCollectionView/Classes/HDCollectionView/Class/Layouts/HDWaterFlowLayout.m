@@ -15,13 +15,11 @@
 @implementation HDWaterFlowLayoutChainMaker
 @dynamic hd_headerSize,hd_footerSize,hd_cellSize,hd_secInset,hd_verticalGap,hd_horizontalGap;
 
-- (Class)hd_generateLayoutClass
-{
+- (Class)hd_generateLayoutClass {
     return [HDWaterFlowLayout class];
 }
 
-- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(NSArray<NSNumber *> * _Nonnull))hd_columnRatioArr
-{
+- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(NSArray<NSNumber *> * _Nonnull))hd_columnRatioArr {
     return ^(NSArray<NSNumber *> *columnRatioArr){
         if (columnRatioArr) {
             self.allValues[@"columnRatioArr"] = columnRatioArr;
@@ -30,20 +28,20 @@
     };
 }
 
-- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_decorationMargin
-{
+- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_decorationMargin {
     return ^(UIEdgeInsets decorationMargin){
         self.allValues[@"decorationMargin"] = [NSValue valueWithUIEdgeInsets:decorationMargin];
         return self;
     };
 }
-- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(BOOL))hd_isFirstAddAtRightOrBottom
-{
+
+- (HDWaterFlowLayoutChainMaker * _Nonnull (^)(BOOL))hd_isFirstAddAtRightOrBottom {
         return ^(BOOL isFirstAddAtRightOrBottom){
         self.allValues[@"isFirstAddAtRightOrBottom"] = @(isFirstAddAtRightOrBottom);
         return self;
     };
 }
+
 @end
 
 
@@ -58,8 +56,7 @@
 
 @implementation HDWaterFlowLayout
 
-- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart
-{
+- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart {
     BOOL isNeedUpdateAll = self.needUpdate || self.cacheAtts.count == 0;
     
     __block CGRect sectionSize = CGRectZero;
@@ -288,25 +285,22 @@
     return self.cacheAtts;
 }
 
-- (void)setColumnRatioArr:(NSArray<NSNumber *> *)columnRatioArr
-{
+- (void)setColumnRatioArr:(NSArray<NSNumber *> *)columnRatioArr {
     _columnRatioArr = columnRatioArr;
     [self resetColumnHeightAndColumAtts];
 }
-- (void)resetColumnHeightAndColumAtts
-{
+
+- (void)resetColumnHeightAndColumAtts {
     columnHeightArr = @[].mutableCopy;
     columAttsArr = @[].mutableCopy;
     [_columnRatioArr enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self->columnHeightArr addObject:@(0)];
         [self->columAttsArr addObject:@[].mutableCopy];
     }];
-
 }
 
 //这里在横向滑动时是最小宽度的位置
-- (NSInteger)minColumnHeightIndex
-{
+- (NSInteger)minColumnHeightIndex {
     NSInteger minIndex = 0;
     CGFloat nowMinH = CGFLOAT_MAX;
     if (self.isFirstAddAtRightOrBottom) {
@@ -333,8 +327,8 @@
     
     return minIndex;
 }
-- (CGFloat)minColumnHeight
-{
+
+- (CGFloat)minColumnHeight {
     CGFloat minH = CGFLOAT_MAX;
     for (int i=0;i<columnHeightArr.count;i++) {
         NSNumber*columH = columnHeightArr[i];
@@ -344,16 +338,14 @@
     }
     return minH;
 }
-- (NSArray<NSArray<UICollectionViewLayoutAttributes *> *> *)columnAtts
-{
+
+- (NSArray<NSArray<UICollectionViewLayoutAttributes *> *> *)columnAtts {
     return columAttsArr;
 }
 
-
 #pragma mark 查找当前显示att
 
-- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection
-{
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection {
     [self setValue:@(scrollDirection) forKey:@"scrollDirection"];
     NSMutableArray *result = @[].mutableCopy;
     [self.columnAtts enumerateObjectsUsingBlock:^(NSArray<UICollectionViewLayoutAttributes *> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -367,8 +359,7 @@
 }
 
 //某列/行 内的可见属性数组
-- (NSMutableArray*)oneColumnAtts:(CGRect)rect columnAtts:(NSArray*)columnAtts
-{
+- (NSMutableArray*)oneColumnAtts:(CGRect)rect columnAtts:(NSArray*)columnAtts {
     NSMutableArray *result = @[].mutableCopy;
     NSInteger firstFind = [self binarySearch:0 end:columnAtts.count-1 rect:rect inAtts:columnAtts];
     if (firstFind == -1) {

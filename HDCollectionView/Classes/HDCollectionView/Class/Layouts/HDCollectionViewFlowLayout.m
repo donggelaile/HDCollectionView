@@ -15,17 +15,17 @@
 }
 @property (nonatomic, strong) NSMutableArray *IndicatorArr;
 @end
+
 @implementation HDCollectionViewFlowLayout
 
--(NSMutableArray *)IndicatorArr
-{
+-(NSMutableArray *)IndicatorArr {
     if (!_IndicatorArr) {
         _IndicatorArr = @[].mutableCopy;
     }
     return _IndicatorArr;
 }
-- (NSMutableArray *)allDataArr
-{
+
+- (NSMutableArray *)allDataArr {
     return [self.collectionView.superview valueForKey:@"allDataArr"];
 }
 
@@ -47,9 +47,7 @@
     
 }
 
-
-- (void)updateInIndicator
-{
+- (void)updateInIndicator {
     //解决Indicator在heder下面的问题
     if (!self.collectionView.showsVerticalScrollIndicator && !self.collectionView.showsHorizontalScrollIndicator) {
         return;
@@ -71,8 +69,8 @@
     }];
     
 }
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
-{
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     BOOL result = !CGSizeEqualToSize(newBounds.size, self.collectionView.bounds.size);
     if (isNeedTopStop) {
         result = YES;

@@ -21,8 +21,7 @@
 }
 @synthesize superCollectionV = _superCollectionV;
 
-- (HDCollectionView *)superCollectionV
-{
+- (HDCollectionView *)superCollectionV {
     if (!_superCollectionV) {
         UIView *view = self;
         while (view!=nil && ![view isKindOfClass:HDClassFromString(@"HDCollectionView")]) {
@@ -33,8 +32,7 @@
     return _superCollectionV;
 }
 
-- (void)superUpdateCellUI:(id<HDCellModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback
-{
+- (void)superUpdateCellUI:(id<HDCellModelProtocol>)model callback:(void (^)(id, HDCallBackType))callback {
     self.superCallback = callback;
     __weak typeof(self)weakS = self;
     void(^subClassCallback)(id) = ^(id par) {
@@ -55,15 +53,13 @@
     }
 }
 
-- (void)hd_superDataSetFinishCallback:(void (^)(void))dataSetFinish
-{
+- (void)hd_superDataSetFinishCallback:(void (^)(void))dataSetFinish {
     if (dataSetFinish) {
         dataSetFinishCb = dataSetFinish;
     }
 }
 
-- (void)superAutoLayoutDefaultSet:(id<HDCellModelProtocol>)cellModel
-{
+- (void)superAutoLayoutDefaultSet:(id<HDCellModelProtocol>)cellModel {
     //设置宽度约束，自适应高度时设定父view宽度 才能准确使用autolayout计算需要的高度，尤其iOS8及以下
     CGFloat fitWidth = cellModel.cellSize.width;
     if (fitWidth == 0) {
@@ -76,8 +72,8 @@
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.contentView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:fitHeight]];
     }
 }
-- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
-{
+
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     [super applyLayoutAttributes:layoutAttributes];
     if ([self.superCollectionV.collectionV.collectionViewLayout isKindOfClass:HDClassFromString(@"HDCollectionViewLayout")]) {
         //对于系统的UICollectionViewFlowLayout 设置后反而会引起视图层级混乱，原因未知
@@ -85,8 +81,8 @@
     }
 }
 
-- (void)dealEventByEventKey:(NSString*)eventKey backType:(HDCallBackType)type backModel:(id)backModel self:(void(^)(void))selfDealCode
-{
+- (void)dealEventByEventKey:(NSString*)eventKey backType:(HDCallBackType)type backModel:(id)backModel self:(void(^)(void))selfDealCode {
+    self.hdModel.context = eventKey;
     HDCollectionViewEventDealPolicy policy = HDCollectionViewEventDealPolicyBySubView;
     
     //获取HDCollectionView对该事件设置的处理策略
@@ -119,7 +115,8 @@
     self.hdModel.context = nil;
     self.hdModel.otherParameter = nil;
 }
-+(BOOL)accessInstanceVariablesDirectly{
+
++(BOOL)accessInstanceVariablesDirectly {
     return YES;
 }
 @end

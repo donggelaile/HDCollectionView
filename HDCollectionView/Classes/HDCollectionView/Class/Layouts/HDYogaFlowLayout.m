@@ -17,34 +17,32 @@
 @implementation HDYogaFlowLayoutChainMaker
 @dynamic hd_headerSize,hd_footerSize,hd_cellSize,hd_secInset,hd_verticalGap,hd_horizontalGap;
 
-- (Class)hd_generateLayoutClass
-{
+- (Class)hd_generateLayoutClass {
     return [HDYogaFlowLayout class];
 }
 
-- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGJustify))hd_justify
-{
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGJustify))hd_justify {
     return ^(YGJustify justify){
         self.allValues[@"justify"] = @(justify);
         return self;
     };
 }
-- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(BOOL))hd_reverseRowOrColumn
-{
+
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(BOOL))hd_reverseRowOrColumn {
     return ^(BOOL reverseRowOrColumn){
         self.allValues[@"reverseRowOrColumn"] = [NSNumber numberWithBool:reverseRowOrColumn];
         return self;
     };
 }
-- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGAlign))hd_align
-{
+
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(YGAlign))hd_align {
     return ^(YGAlign align){
         self.allValues[@"align"] = @(align);
         return self;
     };
 }
-- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_decorationMargin
-{
+
+- (HDYogaFlowLayoutChainMaker * _Nonnull (^)(UIEdgeInsets))hd_decorationMargin {
     return ^(UIEdgeInsets decorationMargin){
         self.allValues[@"decorationMargin"] = [NSValue valueWithUIEdgeInsets:decorationMargin];
         return self;
@@ -89,8 +87,7 @@
 
 @implementation HDYogaFlowLayout
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.secInset = UIEdgeInsetsZero;
@@ -107,8 +104,7 @@
     return self;
 }
 
-- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart
-{
+- (NSArray *)layoutWithLayout:(HDCollectionViewLayout *)layout sectionModel:(id<HDSectionModelProtocol>)secModel currentStart:(CGPoint *)cStart {
     __block CGRect sectionSize = CGRectMake(cStart->x, cStart->y, 0, 0);
     
     HDFlowLayoutSecModel *secM = [HDFlowLayoutSecModel new];
@@ -238,18 +234,18 @@
     self.cacheAtts = atts;
     return atts;
 }
-- (id)valueForUndefinedKey:(NSString *)key
-{
+
+- (id)valueForUndefinedKey:(NSString *)key {
     return nil;
 }
 
 #pragma mark 查找当前显示att
-- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection
-{
+- (NSMutableArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect scrollDirection:(UICollectionViewScrollDirection)scrollDirection {
     NSMutableArray *arr = [super layoutAttributesForElementsInRect:rect scrollDirection:scrollDirection];
     if (self.decorationAtt) {
         [arr addObject:self.decorationAtt];
     }
     return arr;
 }
+
 @end
