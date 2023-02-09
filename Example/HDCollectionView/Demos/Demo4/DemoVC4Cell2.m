@@ -7,6 +7,7 @@
 //
 
 #import "DemoVC4Cell2.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC4Cell2InnerCell : HDCollectionCell
 @property (nonatomic, strong) UILabel *titleL;
@@ -25,9 +26,13 @@
     return self;
 }
 
+HDCellVMGetter(HDDemoCellViewModel);
+
 -(void)updateCellUI:(__kindof HDCellModel *)model
 {
     self.titleL.text = [NSString stringWithFormat:@"%@",@(model.indexP.item)];
+    self.backgroundColor = [self viewModel].bgColor;
+
 }
 @end
 

@@ -10,6 +10,7 @@
 #import "HDCollectionView.h"
 #import <MJRefresh/MJRefresh.h>
 #import "Masonry.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC7 ()
 {
@@ -73,9 +74,9 @@
         HDDoSomeThingInMode(NSDefaultRunLoopMode, ^{
             if (![self->listV hd_sectionModelExist:@"0"]) {
                 HDSectionModel* sec = [self makeWaterSecModel];
-                [self->listV hd_appendDataWithSecModel:sec animated:NO];
+                [self->listV hd_appendDataWithSecModel:sec animated:YES];
             }else{
-                [self->listV hd_appendDataWithCellModelArr:[self waterCellModelArr] sectionKey:@"0" animated:NO];
+                [self->listV hd_appendDataWithCellModelArr:[self waterCellModelArr] sectionKey:@"0" animated:YES];
             }
             [self->listV.collectionV.mj_footer endRefreshing];
         });
@@ -88,7 +89,7 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 14;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake(0, arc4random()%100+50);
         model.cellClassStr = @"DemoVC7Cell";

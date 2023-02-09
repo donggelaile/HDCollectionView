@@ -10,6 +10,8 @@
 #import "HDCollectionView.h"
 #import "YYFPSLabel.h"
 #import "NSArray+HDHelper.h"
+#import "HDDemoCellViewModel.h"
+
 //#import "UILabel+HDChainMaker.h"
 @interface DemoVC1 ()
 
@@ -58,10 +60,11 @@
 //        model.orgData      = @(i).stringValue;
 //        model.cellSize     = CGSizeMake(self.view.frame.size.width/2, 50);
 //        model.cellClassStr = @"DemoVC1Cell";
-        HDCellModel *model = HDMakeCellModelChain
+        HDDemoCellViewModel *model = HDMakeCellModelChain
         .hd_orgData(@(i).stringValue)
         .hd_cellSize(CGSizeMake(self.view.frame.size.width/2, 50))
         .hd_cellClassStr(@"DemoVC1Cell")
+        .hd_diyCellModelClassStr(@"HDDemoCellViewModel")
         .hd_generateObj;
         
         [cellModelArr addObject:model];

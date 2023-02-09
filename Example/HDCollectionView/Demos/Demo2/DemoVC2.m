@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import <HDCollectionView/HDCollectionView.h>
 #import <HDCollectionView/HDCollectionView+HDHelper.h>
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC2 ()
 {
@@ -108,7 +109,7 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 20;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake((screenWidth-secInsect.left-secInsect.right-(columnCount-1)*minItemCap)/columnCount, 20);
         model.cellClassStr = @"DemoVC2Cell";
@@ -149,7 +150,7 @@
         CGFloat randomW = arc4random()%200+40;
         CGFloat cellH = 30;
         
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake(randomW,cellH);
         model.cellClassStr = @"DemoVC2Cell";

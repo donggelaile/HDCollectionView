@@ -13,6 +13,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import "Masonry.h"
 #import <CollectionSwipableCellExtension/CollectionSwipableCellExtension-Swift.h>
+#import "HDDemoCellViewModel.h"
 
 extern BOOL isDemo3OpenSubviewFrameCache;
 @interface DemoVC3 ()<CollectionSwipableCellExtensionDelegate>

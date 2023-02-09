@@ -9,6 +9,7 @@
 #import "DemoVC5.h"
 #import "HDCollectionView.h"
 #import "Masonry.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC5 ()
 {
@@ -86,7 +87,7 @@
     NSInteger rowsCount = 3;
     
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake(100, (collecitonViewH-secInset*2-vhGap*(rowsCount-1))/rowsCount);
         model.cellClassStr = @"DemoVC5Cell";
@@ -123,7 +124,7 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 20;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake(arc4random()%200 + 100, 0);
         model.cellClassStr = @"DemoVC5Cell";

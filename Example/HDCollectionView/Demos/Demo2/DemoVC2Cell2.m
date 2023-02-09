@@ -9,6 +9,7 @@
 #import "DemoVC2Cell2.h"
 #import "UIView+gesture.h"
 #import "HDCollectionView.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC2Cell2()
 @property (nonatomic, strong) UILabel *titleL;
@@ -24,20 +25,25 @@
         [self.contentView addSubview:self.titleL];
     }
     __weak typeof(self) weakS = self;
-    self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
         [weakS clickSelf];
     }];
     return self;
 }
+
 - (void)layoutSubviews
 {
     _titleL.frame = self.bounds;
     [super layoutSubviews];
 }
+
+HDCellVMGetter(HDDemoCellViewModel);
+
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
+    self.backgroundColor = [self viewModel].bgColor;
 }
+
 - (void)clickSelf
 {
     //比如点击这个cell,想做的操作是 删除这个cell

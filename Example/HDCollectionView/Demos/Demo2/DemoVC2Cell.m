@@ -9,6 +9,8 @@
 #import "DemoVC2Cell.h"
 #import "UIView+gesture.h"
 #import "HDCollectionView.h"
+#import "HDDemoCellViewModel.h"
+
 @interface DemoVC2Cell()
 @end
 @implementation DemoVC2Cell
@@ -18,7 +20,6 @@
     if (self) {
     }
     __weak typeof(self) weakS = self;
-    self.contentView.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
         [weakS clickSelf];
     }];
@@ -26,9 +27,11 @@
     return self;
 }
 
+HDCellVMGetter(HDDemoCellViewModel);
 
 -(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
+    self.backgroundColor = [self viewModel].bgColor;
 }
 - (void)clickSelf
 {

@@ -7,6 +7,7 @@
 //
 
 #import <HDCollectionView/HDCollectionView.h>
+#import "HDDemoCellViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 //所有的label样式都用NSAttributedString来展示
@@ -15,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  2、label样式更加灵活，比如轻松调整字间距，行间距等
  此外，使用cellViewModel来展示cell 的UI，后期还更容易适配更多原始model。
  */
-@interface DemoVC3CellVM : HDCellModel
+@interface DemoVC3CellVM : HDDemoCellViewModel
 @property (nonatomic, strong) NSAttributedString *title;
 @property (nonatomic, strong) NSAttributedString *detail;
 @property (nonatomic, strong) NSAttributedString *leftText;

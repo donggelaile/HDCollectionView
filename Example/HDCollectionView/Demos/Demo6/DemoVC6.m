@@ -9,6 +9,7 @@
 #import "DemoVC6.h"
 #import "HDCollectionView.h"
 #import "Masonry.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC6 ()
 {
@@ -109,7 +110,7 @@
     CGFloat cellW = (hd_deviceWidth-secInset.left-secInset.right - vhGap*(columCount-1))/columCount;
     
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = @(i).stringValue;
         model.cellSize     = CGSizeMake(cellW, 50);
         model.cellClassStr = @"DemoVC6Cell";
@@ -146,7 +147,7 @@
     NSMutableArray *cellModelArr = @[].mutableCopy;
     NSInteger cellCount = 20;
     for (int i =0; i<cellCount; i++) {
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake(0, arc4random()%200 + 100);
         model.cellClassStr = @"DemoVC6Cell";
@@ -190,7 +191,7 @@
     CGFloat oneHeight = 150;
     //一
     void(^add1)(void) = ^(void){
-        HDCellModel *model = [HDCellModel new];
+        HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = @"0";
         model.cellSize     = CGSizeMake(0, oneHeight);
         model.cellClassStr = @"DemoVC6Cell";
@@ -202,7 +203,7 @@
         NSInteger n = (arc4random()%3+2);
         CGFloat nHeight = oneHeight/n;
         for (int i=0; i<n; i++) {
-            HDCellModel *model = [HDCellModel new];
+            HDDemoCellViewModel *model = [HDDemoCellViewModel new];
             model.orgData      = @(i+1).stringValue;
             model.cellSize     = CGSizeMake(0, nHeight);
             model.cellClassStr = @"DemoVC6Cell";

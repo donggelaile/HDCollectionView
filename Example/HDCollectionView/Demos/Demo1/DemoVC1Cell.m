@@ -8,6 +8,8 @@
 
 #import "DemoVC1Cell.h"
 #import "UIView+gesture.h"
+#import "HDDemoCellViewModel.h"
+
 @interface DemoVC1Cell()
 @property (nonatomic, strong) UILabel *titleL;
 @end
@@ -22,12 +24,14 @@
         [self.contentView addSubview:self.titleL];
     }
     __weak typeof(self) weakS = self;
-    self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     [self setTapActionWithBlock:^(UITapGestureRecognizer *tap) {
         [weakS clickSelf];
     }];
     return self;
 }
+
+HDCellVMGetter(HDDemoCellViewModel);
+
 - (void)layoutSubviews
 {
     _titleL.frame = self.bounds;
@@ -36,6 +40,7 @@
 - (void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
 {
     self.titleL.text = model.orgData;
+    self.backgroundColor = [self viewModel].bgColor;
 }
 - (void)clickSelf
 {

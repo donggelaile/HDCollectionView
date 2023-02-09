@@ -12,6 +12,7 @@
 #import "Masonry.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DemoVC3.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC3Cell()
 @property (nonatomic, strong) UILabel *titleL;
@@ -155,6 +156,7 @@ HDCellVMGetter(DemoVC3CellVM)
     if ([self viewModel].imageUrl) {
         [self.rightImageV sd_setImageWithURL:[self viewModel].imageUrl];
     }
+//    self.backgroundColor = [self viewModel].bgColor;
     
 }
 - (void)clickSelf

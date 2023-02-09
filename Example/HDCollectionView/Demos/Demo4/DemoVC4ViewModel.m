@@ -8,6 +8,7 @@
 
 #import "DemoVC4ViewModel.h"
 #import "HDCollectionView.h"
+#import "HDDemoCellViewModel.h"
 
 @interface DemoVC4ViewModel(DemoVC4Cell2ViewModel)
 - (HDSectionModel*)HXHD_YogaSec;
@@ -54,6 +55,7 @@
         .hd_orgData(@(i).stringValue)
         .hd_cellSize(CGSizeMake(cellW, 50))
         .hd_cellClassStr(@"DemoVC4Cell")
+        .hd_diyCellModelClassStr(@"HDDemoCellViewModel")
         .hd_generateObj;//最后一定要调用hd_generateObj
         [cellModelArr addObject:model];
     }
@@ -91,10 +93,11 @@
     NSInteger cellCount = 10;
     for (int i =0; i<cellCount; i++) {
         
-        HDCellModel *model = HDMakeCellModelChain
+        HDDemoCellViewModel *model = HDMakeCellModelChain
         .hd_orgData([NSString stringWithFormat:@"%@",@(i+1)])
         .hd_cellSize(CGSizeMake(0, arc4random()%200 + 100))
         .hd_cellClassStr(@"DemoVC4Cell")
+        .hd_diyCellModelClassStr(@"HDDemoCellViewModel")
         .hd_generateObj;
         
         [cellModelArr addObject:model];
@@ -146,10 +149,11 @@
     NSInteger cellCount = 1;
     for (int i =0; i<cellCount; i++) {
         
-        HDCellModel *model = HDMakeCellModelChain
+        HDDemoCellViewModel *model = HDMakeCellModelChain
         .hd_orgData([self HXHDInner_DataArr])
         .hd_cellSize(CGSizeMake([UIScreen mainScreen].bounds.size.width, 170))
         .hd_cellClassStr(@"DemoVC4Cell2")
+        .hd_diyCellModelClassStr(@"HDDemoCellViewModel")
         //赋值一个不会重复的reuseIdentifier，让其与其他cell不会产生复用(此类cell较少时适用)
         .hd_reuseIdentifier([NSString stringWithFormat:@"DemoVC4Cell2_%@",@(idx)])
         .hd_generateObj;
@@ -192,9 +196,10 @@
     NSInteger cellCount = 100;
     for (int i =0; i<cellCount; i++) {
         
-        HDCellModel *model = HDMakeCellModelChain
+        HDDemoCellViewModel *model = HDMakeCellModelChain
         .hd_cellSize(CGSizeMake(150, 150))
         .hd_cellClassStr(@"DemoVC4Cell2InnerCell")
+        .hd_diyCellModelClassStr(@"HDDemoCellViewModel")
         .hd_generateObj;
         
         [cellModelArr addObject:model];
