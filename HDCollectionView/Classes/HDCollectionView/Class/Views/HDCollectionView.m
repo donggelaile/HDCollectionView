@@ -551,18 +551,6 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
             } completion:^(BOOL finished) {
                 self->_isAppendingOrInsertingSection = NO;
                 [self hd_dataDealFinishCallback:HDDataChangeInsertSec animated:animated];
-                
-                /*
-                   经过测试当使用系统的UICollectionViewFlowLayout时，performBatchUpdates 方法对header/footer/cell的刷新都正常
-                   但是使用HDCollectionViewLayout时，
-                   performBatchUpdates没有统计到header/footer的变化(它们没有动画，也可能没刷新)，所以这里需要整体重新刷新
-                   具体可以对比demo1的footer点击 和 demo6的footer点击
-                   目前尚不清楚系统 UICollectionViewFlowLayout 是如何处理header/footer的，如果有知道的同学，请告知下。。。
-                   综上，建议使用 HDCollectionViewLayout 时，animated 参数传NO
-                 */
-                if (![self.collectionV.collectionViewLayout isKindOfClass:UICollectionViewFlowLayout.class]) {
-                    [self hd_reloadData];
-                }
             }];
 
         }else{
@@ -1213,9 +1201,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
     if (type == HDDataChangeSetAll) {
         [self hd_reloadDataAndAllLayout];
     }else{
-        if (!animated) {
-            [self hd_reloadData];
-        }
+        [self hd_reloadData];
     }
     
     if (dataDealFinishCallback) {
