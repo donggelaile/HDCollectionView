@@ -163,6 +163,14 @@ void HDDoSomeThingInMode(NSRunLoopMode mode,void(^thingsToDo)(void));
                           changingIn:(void (^ _Nullable)(id<HDSectionModelProtocol>))changeBlock
              animationFinishCallback:(void (^ _Nullable)(void))animationFinish;
 
+- (void)hd_changeSectionModelWithKey:(nullable NSString *)sectionKey
+                            animated:(BOOL)animated
+                      isUseInnerDiff:(BOOL)isUseInnerDiff // 是否使用内部的diff做动画, 默认YES
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+ isNeedReloadDataWhenAnimationFinish:(BOOL)isNeedReloadDataWhenAnimationFinish // 默认YES
+                          changingIn:(void (^ _Nullable)(id<HDSectionModelProtocol>))changeBlock
+             animationFinishCallback:(void (^ _Nullable)(void))animationFinish;
+
 /**
  删除某段的所有内容
  */

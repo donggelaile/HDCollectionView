@@ -441,7 +441,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                 [self.collectionV insertSections:[NSIndexSet indexSetWithIndex:self.allDataArr.count-1]];
             } completion:^(BOOL finished) {
                 self->_isAppendingOrInsertingSection = NO;
-                [self hd_dataDealFinishCallback:HDDataChangeAppendSec animated:animated];
+                [self hd_dataDealFinishCallback:HDDataChangeAppendSec animated:animated forceReload:YES];
             }];
 
         }else{
@@ -486,7 +486,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                 [self.collectionV insertSections:indexSet];
             } completion:^(BOOL finished) {
                 self->_isAppendingOrInsertingSection = NO;
-                [self hd_dataDealFinishCallback:HDDataChangeAppendSecs animated:animated];
+                [self hd_dataDealFinishCallback:HDDataChangeAppendSecs animated:animated forceReload:YES];
             }];
 
         }else{
@@ -550,7 +550,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                 [self.collectionV insertSections:[NSIndexSet indexSetWithIndex:finalInsertIndex]];
             } completion:^(BOOL finished) {
                 self->_isAppendingOrInsertingSection = NO;
-                [self hd_dataDealFinishCallback:HDDataChangeInsertSec animated:animated];
+                [self hd_dataDealFinishCallback:HDDataChangeInsertSec animated:animated forceReload:YES];
             }];
 
         }else{
@@ -592,7 +592,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                 updateLayout();
                 
             } animationFinishCallback:^{
-                [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel animated:animated];
+                [self hd_dataDealFinishCallback:HDDataChangeAppendCellModel animated:animated forceReload:YES];
                 if (animationFinish) {
                     animationFinish();
                 }
@@ -625,6 +625,16 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
 }
 
 - (void)hd_changeSectionModelWithKey:(NSString *)sectionKey animated:(BOOL)animated isUseInnerDiff:(BOOL)isUseInnerDiff needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight changingIn:(void (^)(id<HDSectionModelProtocol>))changeBlock animationFinishCallback:(void (^)(void))animationFinish {
+    [self hd_changeSectionModelWithKey:sectionKey animated:animated isUseInnerDiff:isUseInnerDiff needReCalculateAllCellHeight:isNeedReCalculateAllCellHeight isNeedReloadDataWhenAnimationFinish:YES changingIn:changeBlock animationFinishCallback:animationFinish];
+}
+
+- (void)hd_changeSectionModelWithKey:(nullable NSString *)sectionKey
+                            animated:(BOOL)animated
+                      isUseInnerDiff:(BOOL)isUseInnerDiff // 是否使用内部的diff做动画, 默认YES
+        needReCalculateAllCellHeight:(BOOL)isNeedReCalculateAllCellHeight
+ isNeedReloadDataWhenAnimationFinish:(BOOL)isNeedReloadDataWhenAnimationFinish // 默认YES
+                          changingIn:(void (^ _Nullable)(id<HDSectionModelProtocol>))changeBlock
+             animationFinishCallback:(void (^ _Nullable)(void))animationFinish {
     HDDoSomeThingInMainQueue(^{
         if (!sectionKey) {
             return;
@@ -660,7 +670,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                     }
                     updateLayout();
                 } completion:^(BOOL finished) {
-                    [self hd_dataDealFinishCallback:HDDataChangeChangeSec animated:animated];
+                    [self hd_dataDealFinishCallback:HDDataChangeChangeSec animated:animated forceReload:isNeedReloadDataWhenAnimationFinish];
                     if (animationFinish) {
                         animationFinish();
                     }
@@ -685,7 +695,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                     updateLayout();
                     
                 } animationFinishCallback:^{
-                    [self hd_dataDealFinishCallback:HDDataChangeChangeSec animated:animated];
+                    [self hd_dataDealFinishCallback:HDDataChangeChangeSec animated:animated forceReload:isNeedReloadDataWhenAnimationFinish];
                     if (animationFinish) {
                         animationFinish();
                     }
@@ -733,7 +743,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
                 if (animationFinish) {
                     animationFinish();
                 }
-                [self hd_dataDealFinishCallback:HDDataChangeDeleteSec animated:animated];
+                [self hd_dataDealFinishCallback:HDDataChangeDeleteSec animated:animated forceReload:YES];
             }];
         }else{
             updateLayout();
@@ -1194,14 +1204,18 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
 }
 
 - (void)hd_dataDealFinishCallback:(HDDataChangeType)type {
-    [self hd_dataDealFinishCallback:type animated:NO];
+    [self hd_dataDealFinishCallback:type animated:NO forceReload:NO];
 }
 
-- (void)hd_dataDealFinishCallback:(HDDataChangeType)type animated:(BOOL)animated {
+- (void)hd_dataDealFinishCallback:(HDDataChangeType)type animated:(BOOL)animated forceReload:(BOOL)forceReload {
     if (type == HDDataChangeSetAll) {
         [self hd_reloadDataAndAllLayout];
-    }else{
+    } else if (forceReload) {
         [self hd_reloadData];
+    } else {
+        if (!animated) {
+            [self hd_reloadData];
+        }
     }
     
     if (dataDealFinishCallback) {
