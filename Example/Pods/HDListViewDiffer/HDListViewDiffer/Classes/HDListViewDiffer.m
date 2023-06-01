@@ -62,7 +62,9 @@ static NSString * HDGetDataIdentifier(id<HDListViewDifferProtocol> data)
            _isExistEqualItemInOldOrNewArr = YES;
            *stop = YES;
        }
-       oldIndexDic[beforeChangeID] = @(idx);
+       if (beforeChangeID) {
+           oldIndexDic[beforeChangeID] = @(idx);
+       }
    }];
     
     if (newArrGenerateCode) {
@@ -79,7 +81,9 @@ static NSString * HDGetDataIdentifier(id<HDListViewDifferProtocol> data)
            _isExistEqualItemInOldOrNewArr = YES;
            *stop = YES;
        }
-       newIndexDic[afterChangeID] = @(idx);
+       if (afterChangeID) {
+           newIndexDic[afterChangeID] = @(idx);
+       }
    }];
    
    if (_isExistEqualItemInOldOrNewArr) {

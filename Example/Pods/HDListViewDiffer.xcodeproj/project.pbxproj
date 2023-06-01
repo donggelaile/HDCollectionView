@@ -326,39 +326,12 @@
 			};
 			name = Debug;
 		};
-		DA8FB011CAF64D5232FA898AE095F468 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8487EC9C23921D06D0436DC6F272612 /* HDListViewDiffer.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/HDListViewDiffer/HDListViewDiffer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HDListViewDiffer/HDListViewDiffer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HDListViewDiffer/HDListViewDiffer.modulemap";
-				PRODUCT_MODULE_NAME = HDListViewDiffer;
-				PRODUCT_NAME = HDListViewDiffer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		EA9F850226E4727443F048B3650FA218 /* Release */ = {
+		65BFA8C04A24B207E608742262479C42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9FAD006736AD0B4BCF5EB2F0632D51A /* HDListViewDiffer.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -370,7 +343,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/HDListViewDiffer/HDListViewDiffer-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/HDListViewDiffer/HDListViewDiffer-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/HDListViewDiffer/HDListViewDiffer.modulemap";
 				PRODUCT_MODULE_NAME = HDListViewDiffer;
@@ -385,14 +358,45 @@
 			};
 			name = Release;
 		};
+		92CA7841C7B1D2A18A008DA4F1D38E36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8487EC9C23921D06D0436DC6F272612 /* HDListViewDiffer.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/HDListViewDiffer/HDListViewDiffer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HDListViewDiffer/HDListViewDiffer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HDListViewDiffer/HDListViewDiffer.modulemap";
+				PRODUCT_MODULE_NAME = HDListViewDiffer;
+				PRODUCT_NAME = HDListViewDiffer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		28E343C74FC220791CA8CE9BEED216EE /* Build configuration list for PBXNativeTarget "HDListViewDiffer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DA8FB011CAF64D5232FA898AE095F468 /* Debug */,
-				EA9F850226E4727443F048B3650FA218 /* Release */,
+				92CA7841C7B1D2A18A008DA4F1D38E36 /* Debug */,
+				65BFA8C04A24B207E608742262479C42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

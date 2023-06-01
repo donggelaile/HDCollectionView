@@ -3,14 +3,14 @@ PODS:
   - HDCollectionView (0.7.6):
     - HDListViewDiffer
     - Yoga (~> 1.14.0)
-  - HDListViewDiffer (0.2.0)
-  - JXCategoryView (1.3.4)
+  - HDListViewDiffer (0.2.1)
+  - JXCategoryView (1.3.20)
   - Masonry (1.1.0)
-  - MJRefresh (3.1.16)
+  - MJRefresh (3.7.5)
   - SDAutoLayout (2.1.9)
-  - SDWebImage (4.4.6):
-    - SDWebImage/Core (= 4.4.6)
-  - SDWebImage/Core (4.4.6)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
   - SJAttributesFactory (2.1.1):
     - SJAttributesFactory/Deprecated (= 2.1.1)
     - SJAttributesFactory/UIKitText (= 2.1.1)
@@ -28,6 +28,7 @@ DEPENDENCIES:
   - SDAutoLayout (~> 2.1.3)
   - SDWebImage (~> 4.0)
   - SJAttributesFactory
+  - Yoga (from `https://github.com/donggelaile/yoga.git`, commit `a5bec7e1b4e31836a2d8bc4591a226428d135fe6`)
   - YYModel (~> 1.0.4)
 
 SPEC REPOS:
@@ -39,7 +40,6 @@ SPEC REPOS:
     - SDAutoLayout
     - SDWebImage
     - SJAttributesFactory
-    - Yoga
     - YYModel
 
 EXTERNAL SOURCES:
@@ -47,25 +47,31 @@ EXTERNAL SOURCES:
     :git: https://github.com/KosyanMedia/CollectionSwipableCellExtension.git
   HDCollectionView:
     :path: "../"
+  Yoga:
+    :commit: a5bec7e1b4e31836a2d8bc4591a226428d135fe6
+    :git: https://github.com/donggelaile/yoga.git
 
 CHECKOUT OPTIONS:
   CollectionSwipableCellExtension:
-    :commit: d3d7c9ee8721562174cbd2c89f88b1d05bbc5fc0
+    :commit: e0cf31e5356ed29a1ba2905344795034138a0a0d
     :git: https://github.com/KosyanMedia/CollectionSwipableCellExtension.git
+  Yoga:
+    :commit: a5bec7e1b4e31836a2d8bc4591a226428d135fe6
+    :git: https://github.com/donggelaile/yoga.git
 
 SPEC CHECKSUMS:
   CollectionSwipableCellExtension: 7f7090dd8941be6ddc0a39bdd8f6204c2d07fe41
   HDCollectionView: 5e7bb248243a516a7cc7d67d1c69c956269ecd4c
-  HDListViewDiffer: f1ab8168cfbaddcb93fd57aebeb03a98e7612c46
-  JXCategoryView: 72560616347270d34c2e717cc08030e6218d7eda
+  HDListViewDiffer: f6af38559d7dbc37723b6aed8bdb604c1f78aa8a
+  JXCategoryView: e43292de667e48394444e4a05fb9bf9a817186de
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDAutoLayout: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
-  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
   SJAttributesFactory: 16cd39e6c0e538933db05ddc06d23c8608b13216
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 1b33dc3269e10dafd3e140cf6c0bd25cf4e43967
+PODFILE CHECKSUM: 74114dbb3aa8f51b81517721e9b53d02e510b5ec
 
 COCOAPODS: 1.11.3

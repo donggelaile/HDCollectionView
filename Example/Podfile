@@ -1,6 +1,6 @@
 use_frameworks!
 
-platform :ios, '8.0'
+platform :ios, '11.0'
 
 install! 'cocoapods',
         :generate_multiple_pod_projects => true,
@@ -8,6 +8,8 @@ install! 'cocoapods',
 
 target 'HDCollectionView_Example' do
   pod 'HDCollectionView', :path => '../'
+  # 此commit在官方版本 1.14.0 基础上修复了Xcode14.3编译报错问题, 仅一处改动
+  pod 'Yoga', :git => 'https://github.com/donggelaile/yoga.git', :commit => 'a5bec7e1b4e31836a2d8bc4591a226428d135fe6'
 
   pod 'MJRefresh'
   pod 'SDAutoLayout', '~> 2.1.3'
@@ -23,4 +25,15 @@ target 'HDCollectionView_Example' do
 
     
   end
+end
+
+post_install do |installer|
+    installer.generated_projects.each do |project|
+          project.targets.each do |target|
+              target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+                config.build_settings['CODE_SIGN_IDENTITY'] = ''
+               end
+          end
+   end
 end

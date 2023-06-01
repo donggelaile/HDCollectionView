@@ -4,6 +4,8 @@
 ![](https://img.shields.io/badge/language-objectiveC-green.svg)
 ![](https://img.shields.io/badge/support-iOS8+-red.svg)
 
+## [相关文章](http://www.cocoachina.com/articles/94615)
+
 ## 前言
 目前开源的列表diff大多数为swift的,OC版本的很少。IGList通过Objective-C++实现了diff。HDListViewDiffer参考了其思想，简化了diff函数。实现了一个轻量的，简化版本的纯OC diff库。
 

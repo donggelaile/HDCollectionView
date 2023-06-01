@@ -328,35 +328,6 @@
 			};
 			name = Release;
 		};
-		3C88280DC6D5CC12F2F91DE35943AB74 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED3843E3E303C5301BD36B5B05A3B7B5 /* SJAttributesFactory.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SJAttributesFactory/SJAttributesFactory-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory.modulemap";
-				PRODUCT_MODULE_NAME = SJAttributesFactory;
-				PRODUCT_NAME = SJAttributesFactory;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		69A9E484722FADC68627C076176A7D2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -423,10 +394,12 @@
 			};
 			name = Debug;
 		};
-		EB4A13469870044805B3EE521C6D2034 /* Release */ = {
+		817A08C4FB1CE8D97C18596066F7B62D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F88DEE8CCEFBF6234E9BBCECCC97C42 /* SJAttributesFactory.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -438,7 +411,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SJAttributesFactory/SJAttributesFactory-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory.modulemap";
 				PRODUCT_MODULE_NAME = SJAttributesFactory;
@@ -453,14 +426,45 @@
 			};
 			name = Release;
 		};
+		BD357A3E86DBC29AB567E1DD686F15CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED3843E3E303C5301BD36B5B05A3B7B5 /* SJAttributesFactory.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SJAttributesFactory/SJAttributesFactory-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SJAttributesFactory/SJAttributesFactory.modulemap";
+				PRODUCT_MODULE_NAME = SJAttributesFactory;
+				PRODUCT_NAME = SJAttributesFactory;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		5522AD73297B51829344E0FD09B44B23 /* Build configuration list for PBXNativeTarget "SJAttributesFactory" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C88280DC6D5CC12F2F91DE35943AB74 /* Debug */,
-				EB4A13469870044805B3EE521C6D2034 /* Release */,
+				BD357A3E86DBC29AB567E1DD686F15CD /* Debug */,
+				817A08C4FB1CE8D97C18596066F7B62D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

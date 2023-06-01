@@ -322,10 +322,12 @@
 			};
 			name = Release;
 		};
-		5D303932B9CCA614EE213605BC845119 /* Release */ = {
+		4E4778228B906092E758BB5519F720A6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E28A1A03397ADC30EC78F260FBBE0108 /* SDAutoLayout.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -337,7 +339,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDAutoLayout/SDAutoLayout-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout.modulemap";
 				PRODUCT_MODULE_NAME = SDAutoLayout;
@@ -352,10 +354,12 @@
 			};
 			name = Release;
 		};
-		ECC841BB66189CCF90B86CFBB6ABEC49 /* Debug */ = {
+		BE06A9AB37C9A94E9883E098F1C863D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B2E910A8C6591D83101AA619EDF15F41 /* SDAutoLayout.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -367,7 +371,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDAutoLayout/SDAutoLayout-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SDAutoLayout/SDAutoLayout.modulemap";
 				PRODUCT_MODULE_NAME = SDAutoLayout;
@@ -396,8 +400,8 @@
 		ED9BA7BFC85B88878E24A395E84FC417 /* Build configuration list for PBXNativeTarget "SDAutoLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				ECC841BB66189CCF90B86CFBB6ABEC49 /* Debug */,
-				5D303932B9CCA614EE213605BC845119 /* Release */,
+				BE06A9AB37C9A94E9883E098F1C863D1 /* Debug */,
+				4E4778228B906092E758BB5519F720A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

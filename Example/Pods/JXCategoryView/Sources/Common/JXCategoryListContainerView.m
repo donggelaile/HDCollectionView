@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, strong) NSMutableDictionary <NSNumber *, id<JXCategoryListContentViewDelegate>> *validListDict;
-@property (nonatomic, strong) NSLock *lock;
 @property (nonatomic, assign) BOOL willRemoveFromWindow;
 @property (nonatomic, assign) BOOL isFirstMoveToWindow;
 @property (nonatomic, strong) JXCategoryListContainerView *retainedSelf;
@@ -21,20 +20,12 @@
 
 @implementation JXCategoryListContainerView
 
-- (void)willMoveToSuperview:(UIView *)newSuperview {
-    if (newSuperview == nil) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-    }
-}
-
 - (instancetype)initWithDelegate:(id<JXCategoryListContainerViewDelegate>)delegate{
     self = [super initWithFrame:CGRectZero];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarningNotification:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         _didAppearPercent = 0.5;
         _delegate = delegate;
         _validListDict = [NSMutableDictionary dictionary];
-        _lock = [[NSLock alloc] init];
         [self initializeViews];
     }
     return self;
@@ -77,12 +68,10 @@
 }
 
 - (void)reloadData {
-    [_lock lock];
     for (id<JXCategoryListContentViewDelegate> list in _validListDict.allValues) {
         [[list listView] removeFromSuperview];
     }
     [_validListDict removeAllObjects];
-    [_lock unlock];
 
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width*[self.delegate numberOfListsInlistContainerView:self], self.scrollView.bounds.size.height);
 
@@ -94,34 +83,22 @@
 
     self.scrollView.frame = self.bounds;
     self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width*[self.delegate numberOfListsInlistContainerView:self], self.scrollView.bounds.size.height);
-    [_lock lock];
     [_validListDict enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull index, id<JXCategoryListContentViewDelegate>  _Nonnull list, BOOL * _Nonnull stop) {
         [list listView].frame = CGRectMake(index.intValue*self.scrollView.bounds.size.width, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
     }];
-    [_lock unlock];
 }
 
 - (void)setDefaultSelectedIndex:(NSInteger)defaultSelectedIndex {
     _defaultSelectedIndex = defaultSelectedIndex;
-    [_lock lock];
     self.currentIndex = defaultSelectedIndex;
-    [_lock unlock];
 }
 
-- (void)didReceiveMemoryWarningNotification:(NSNotification *)notification {
-    [_lock lock];
-    for (NSNumber *index in _validListDict) {
-        if (index.integerValue != _currentIndex) {
-            id<JXCategoryListContentViewDelegate> list = _validListDict[index];
-            [[list listView] removeFromSuperview];
-        }
+- (void)setDidAppearPercent:(CGFloat)didAppearPercent {
+    _didAppearPercent = didAppearPercent;
+
+    if (didAppearPercent <= 0 || didAppearPercent >= 1) {
+        NSAssert(NO, @"didAppearPercent值范围为开区间(0,1)，即不包括0和1");
     }
-    id<JXCategoryListContentViewDelegate> currentList = _validListDict[@(_currentIndex)];
-    if (currentList != nil) {
-        [_validListDict removeAllObjects];
-        [_validListDict setObject:currentList forKey:@(_currentIndex)];
-    }
-    [_lock unlock];
 }
 
 #pragma mark - JXCategoryBaseView回调
@@ -169,9 +146,7 @@
 }
 
 - (void)currentListDidDisappear {
-    [_lock lock];
     id<JXCategoryListContentViewDelegate> list = _validListDict[@(self.currentIndex)];
-    [_lock unlock];
     if (list && [list respondsToSelector:@selector(listDidDisappear)]) {
         [list listDidDisappear];
     }
@@ -184,22 +159,24 @@
     if (count <= 0 || index >= count) {
         return;
     }
-    [_lock lock];
     self.currentIndex = index;
-    id<JXCategoryListContentViewDelegate> list = _validListDict[@(index)];
-    [_lock unlock];
-    if (list == nil) {
-        list = [self.delegate listContainerView:self initListForIndex:index];
+    BOOL canInitList = YES;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(listContainerView:canInitListAtIndex:)]) {
+        canInitList = [self.delegate listContainerView:self canInitListAtIndex:index];
     }
-    if ([list listView].superview == nil) {
-        [list listView].frame = CGRectMake(index*self.scrollView.bounds.size.width, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
-        [self.scrollView addSubview:[list listView]];
-        [_lock lock];
-        _validListDict[@(index)] = list;
-        [_lock unlock];
-    }
-    if (list && [list respondsToSelector:@selector(listDidAppear)]) {
-        [list listDidAppear];
+    if (canInitList) {
+        id<JXCategoryListContentViewDelegate> list = _validListDict[@(index)];
+        if (list == nil) {
+            list = [self.delegate listContainerView:self initListForIndex:index];
+        }
+        if ([list listView].superview == nil) {
+            [list listView].frame = CGRectMake(index*self.scrollView.bounds.size.width, 0, self.scrollView.bounds.size.width, self.scrollView.bounds.size.height);
+            [self.scrollView addSubview:[list listView]];
+            _validListDict[@(index)] = list;
+        }
+        if (list && [list respondsToSelector:@selector(listDidAppear)]) {
+            [list listDidAppear];
+        }
     }
 }
 
@@ -208,9 +185,7 @@
     if (count <= 0 || index >= count) {
         return;
     }
-    [_lock lock];
     id<JXCategoryListContentViewDelegate> list = _validListDict[@(index)];
-    [_lock unlock];
     if (list && [list respondsToSelector:@selector(listDidDisappear)]) {
         [list listDidDisappear];
     }

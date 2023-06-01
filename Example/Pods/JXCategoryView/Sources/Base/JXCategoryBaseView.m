@@ -14,7 +14,6 @@ struct DelegateFlags {
     unsigned int didSelectedItemAtIndexFlag : 1;
     unsigned int didClickSelectedItemAtIndexFlag : 1;
     unsigned int didScrollSelectedItemAtIndexFlag : 1;
-    unsigned int didClickedItemContentScrollViewTransitionToIndexFlag : 1;
     unsigned int canClickItemAtIndexFlag : 1;
     unsigned int scrollingFromLeftIndexToRightIndexFlag : 1;
 };
@@ -29,6 +28,7 @@ struct DelegateFlags {
 @property (nonatomic, strong) JXCategoryViewAnimator *animator;
 // 正在滚动中的目标index。用于处理正在滚动列表的时候，立即点击item，会导致界面显示异常。
 @property (nonatomic, assign) NSInteger scrollingTargetIndex;
+@property (nonatomic, assign, getter=isNeedReloadByBecomeActive) BOOL needReloadByBecomeActive;
 
 @end
 
@@ -39,6 +39,7 @@ struct DelegateFlags {
     if (self.contentScrollView) {
         [self.contentScrollView removeObserver:self forKeyPath:@"contentOffset"];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
     [self.animator stop];
 }
 
@@ -115,7 +116,6 @@ struct DelegateFlags {
     _delegateFlags.didSelectedItemAtIndexFlag = [delegate respondsToSelector:@selector(categoryView:didSelectedItemAtIndex:)];
     _delegateFlags.didClickSelectedItemAtIndexFlag = [delegate respondsToSelector:@selector(categoryView:didClickSelectedItemAtIndex:)];
     _delegateFlags.didScrollSelectedItemAtIndexFlag = [delegate respondsToSelector:@selector(categoryView:didScrollSelectedItemAtIndex:)];
-    _delegateFlags.didClickedItemContentScrollViewTransitionToIndexFlag = [delegate respondsToSelector:@selector(categoryView:didClickedItemContentScrollViewTransitionToIndex:)];
     _delegateFlags.canClickItemAtIndexFlag = [delegate respondsToSelector:@selector(categoryView:canClickItemAtIndex:)];
     _delegateFlags.scrollingFromLeftIndexToRightIndexFlag = [delegate respondsToSelector:@selector(categoryView:scrollingFromLeftIndex:toRightIndex:ratio:)];
 }
@@ -235,6 +235,13 @@ struct DelegateFlags {
     [self selectCellAtIndex:index selectedType:JXCategoryCellSelectedTypeScroll];
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    if (self.isNeedReloadByBecomeActive) {
+        self.needReloadByBecomeActive = NO;
+        [self reloadData];
+    }
+}
+
 @end
 
 @implementation JXCategoryBaseView (UISubclassingBaseHooks)
@@ -267,7 +274,7 @@ struct DelegateFlags {
     return CGRectMake(x, 0, width, self.bounds.size.height);
 }
 
-- (CGRect)getTargetSelectedCellFrame:(NSInteger)targetIndex
+- (CGRect)getTargetSelectedCellFrame:(NSInteger)targetIndex selectedType:(JXCategoryCellSelectedType)selectedType
 {
     CGFloat x = [self getContentEdgeInsetLeft];
     for (int i = 0; i < targetIndex; i ++) {
@@ -302,6 +309,7 @@ struct DelegateFlags {
     _selectedAnimationDuration = 0.25;
     _scrollingTargetIndex = -1;
     _contentScrollViewClickTransitionAnimationEnabled = YES;
+    _needReloadByBecomeActive = YES;
 }
 
 - (void)initializeViews
@@ -323,6 +331,8 @@ struct DelegateFlags {
         self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     [self addSubview:self.collectionView];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
 - (void)refreshDataSource {
@@ -439,6 +449,7 @@ struct DelegateFlags {
         return NO;
     }
 
+    self.needReloadByBecomeActive = NO;
     if (self.selectedIndex == targetIndex) {
         //目标index和当前选中的index相等，就不需要处理后续的选中更新逻辑，只需要回调代理方法即可。
         if (selectedType == JXCategoryCellSelectedTypeClick) {
@@ -491,11 +502,7 @@ struct DelegateFlags {
 
     if (selectedType == JXCategoryCellSelectedTypeClick ||
         selectedType == JXCategoryCellSelectedTypeCode) {
-        if (self.delegateFlags.didClickedItemContentScrollViewTransitionToIndexFlag) {
-            [self.delegate categoryView:self didClickedItemContentScrollViewTransitionToIndex:targetIndex];
-        }else {
-            [self.contentScrollView setContentOffset:CGPointMake(targetIndex*self.contentScrollView.bounds.size.width, 0) animated:self.isContentScrollViewClickTransitionAnimationEnabled];
-        }
+        [self.contentScrollView setContentOffset:CGPointMake(targetIndex*self.contentScrollView.bounds.size.width, 0) animated:self.isContentScrollViewClickTransitionAnimationEnabled];
     }
 
     self.selectedIndex = targetIndex;
@@ -531,9 +538,9 @@ struct DelegateFlags {
                 selectedCellModel.transitionAnimating = YES;
                 unselectedCellModel.transitionAnimating = YES;
                 selectedCellModel.cellWidthCurrentZoomScale = [JXCategoryFactory interpolationFrom:selectedCellModel.cellWidthNormalZoomScale to:selectedCellModel.cellWidthSelectedZoomScale percent:percent];
-                selectedCellModel.cellWidth = [self getCellWidthAtIndex:selectedCellModel.index] * selectedCellModel.cellWidthCurrentZoomScale;
+                selectedCellModel.cellWidth = [weakSelf getCellWidthAtIndex:selectedCellModel.index] * selectedCellModel.cellWidthCurrentZoomScale;
                 unselectedCellModel.cellWidthCurrentZoomScale = [JXCategoryFactory interpolationFrom:unselectedCellModel.cellWidthSelectedZoomScale to:unselectedCellModel.cellWidthNormalZoomScale percent:percent];
-                unselectedCellModel.cellWidth = [self getCellWidthAtIndex:unselectedCellModel.index] * unselectedCellModel.cellWidthCurrentZoomScale;
+                unselectedCellModel.cellWidth = [weakSelf getCellWidthAtIndex:unselectedCellModel.index] * unselectedCellModel.cellWidthCurrentZoomScale;
                 [weakSelf.collectionView.collectionViewLayout invalidateLayout];
             };
             self.animator.completeCallback = ^{
@@ -576,7 +583,20 @@ struct DelegateFlags {
             [self scrollSelectItemAtIndex:baseIndex];
         }
     }else {
-        [self.animator stop];
+        self.needReloadByBecomeActive = YES;
+        if (self.animator.isExecuting) {
+            [self.animator invalid];
+            //需要重置之前animator.progessCallback为处理完的状态
+            for (JXCategoryBaseCellModel *model in self.dataSource) {
+                if (model.isSelected) {
+                    model.cellWidthCurrentZoomScale = model.cellWidthSelectedZoomScale;
+                    model.cellWidth = [self getCellWidthAtIndex:model.index] * model.cellWidthCurrentZoomScale;
+                }else {
+                    model.cellWidthCurrentZoomScale = model.cellWidthNormalZoomScale;
+                    model.cellWidth = [self getCellWidthAtIndex:model.index] * model.cellWidthCurrentZoomScale;
+                }
+            }
+        }
         //快速滑动翻页，当remainderRatio没有变成0，但是已经翻页了，需要通过下面的判断，触发选中
         if (fabs(ratio - self.selectedIndex) > 1) {
             NSInteger targetIndex = baseIndex;

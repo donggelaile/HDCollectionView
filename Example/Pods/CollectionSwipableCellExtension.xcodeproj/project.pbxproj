@@ -210,67 +210,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		3CCE9DB4CB42A525C299BD1353879D56 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
-				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
-				PRODUCT_NAME = CollectionSwipableCellExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		51590B8265239B8773D760DD15C82F48 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
-				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
-				PRODUCT_NAME = CollectionSwipableCellExtension;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		6688716389252471A77AF6241107E45C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -330,6 +269,71 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		A19CA4B61B4CA61774F2E5C2FC888E7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 810F78EB549A314100AFD4DB491B118B /* CollectionSwipableCellExtension.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
+				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
+				PRODUCT_NAME = CollectionSwipableCellExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CF6136F8C1943BEBDC57DB611CACA7B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF27DBF4F91CBDB6819154F6D9D21A33 /* CollectionSwipableCellExtension.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CollectionSwipableCellExtension/CollectionSwipableCellExtension.modulemap";
+				PRODUCT_MODULE_NAME = CollectionSwipableCellExtension;
+				PRODUCT_NAME = CollectionSwipableCellExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -405,8 +409,8 @@
 		1C2E15E78836F86D84802F071D5198C6 /* Build configuration list for PBXNativeTarget "CollectionSwipableCellExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3CCE9DB4CB42A525C299BD1353879D56 /* Debug */,
-				51590B8265239B8773D760DD15C82F48 /* Release */,
+				A19CA4B61B4CA61774F2E5C2FC888E7D /* Debug */,
+				CF6136F8C1943BEBDC57DB611CACA7B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

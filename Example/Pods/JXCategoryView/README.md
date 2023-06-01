@@ -22,24 +22,24 @@ A powerful and easy to use category view (segmentedcontrol, segmentview, pagingv
 
 说明 | Gif |
 ----|------|
-LineView  |  <img src="JXCategoryView/Images/LineView.gif" width="343" height="80"> |
-LineView延长  |  <img src="JXCategoryView/Images/JDLineStyle.gif" width="343" height="80"> |
-LineView延长+偏移  |  <img src="JXCategoryView/Images/IQIYILineStyle.gif" width="343" height="80"> |
-LineView🌈彩虹风格  |  <img src="JXCategoryView/Images/RainbowLineView.gif" width="343" height="80"> |
-DotLineView点线效果 |  <img src="JXCategoryView/Images/IndicatorCustomizeGuide.gif" width="334" height="88"> |
-BallView QQ黏性红点  |  <img src="JXCategoryView/Images/QQBall.gif" width="343" height="84"> |
-TriangleView 三角形底部  |  <img src="JXCategoryView/Images/TriangleBottom.gif" width="343" height="80"> |
-TriangleView 三角形顶部  |  <img src="JXCategoryView/Images/TriangleTop.gif" width="343" height="80"> |
-BackgroundView椭圆形  |  <img src="JXCategoryView/Images/BackgroundEllipseLayer.gif" width="343" height="80"> |
-BackgroundView椭圆形+阴影  |  <img src="JXCategoryView/Images/BackgroundViewShadow.gif" width="343" height="80"> |
-BackgroundView长方形  |  <img src="JXCategoryView/Images/Rectangle.gif" width="343" height="80"> |
-BackgroundView遮罩有背景  |  <img src="JXCategoryView/Images/TitleMask.gif" width="343" height="80"> |
-BackgroundView遮罩无背景  |  <img src="JXCategoryView/Images/TitleMaskNoBackgroundView.gif" width="343" height="80"> |
-BackgroundView渐变色  |  <img src="JXCategoryView/Images/GradientBGIndicatorView.gif" width="350" height="80"> |
-ImageView底部(小船)  |  <img src="JXCategoryView/Images/IndicatorImageView.gif" width="343" height="137"> |
-ImageView背景(最佳男歌手)  |  <img src="JXCategoryView/Images/BackgroundImageView.gif" width="343" height="80"> |
-ImageView滚动效果(足球)  |  <img src="JXCategoryView/Images/Football.gif" width="343" height="135"> |
-混合使用 |  <img src="JXCategoryView/Images/Mixed.gif" width="343" height="80"> |
+LineView  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/LineView.gif" width="343" height="80"> |
+LineView延长  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/JDLineStyle.gif" width="343" height="80"> |
+LineView延长+偏移  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/IQIYILineStyle.gif" width="343" height="80"> |
+LineView🌈彩虹风格  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/RainbowLineView.gif" width="343" height="80"> |
+DotLineView点线效果 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/IndicatorCustomizeGuide.gif" width="334" height="88"> |
+BallView QQ黏性红点  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/QQBall.gif" width="343" height="84"> |
+TriangleView 三角形底部  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TriangleBottom.gif" width="343" height="80"> |
+TriangleView 三角形顶部  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TriangleTop.gif" width="343" height="80"> |
+BackgroundView椭圆形  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/BackgroundEllipseLayer.gif" width="343" height="80"> |
+BackgroundView椭圆形+阴影  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/BackgroundViewShadow.gif" width="343" height="80"> |
+BackgroundView长方形  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/Rectangle.gif" width="343" height="80"> |
+BackgroundView遮罩有背景  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleMask.gif" width="343" height="80"> |
+BackgroundView遮罩无背景  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleMaskNoBackgroundView.gif" width="343" height="80"> |
+BackgroundView渐变色  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/GradientBGIndicatorView.gif" width="350" height="80"> |
+ImageView底部(小船)  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/IndicatorImageView.gif" width="343" height="137"> |
+ImageView背景(最佳男歌手)  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/BackgroundImageView.gif" width="343" height="80"> |
+ImageView滚动效果(足球)  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/Football.gif" width="343" height="135"> |
+混合使用 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/Mixed.gif" width="343" height="80"> |
 
 以下均支持上下位置切换：
 JXCategoryIndicatorLineView、JXCategoryIndicatorImageView、JXCategoryIndicatorBallView、JXCategoryIndicatorTriangleView
@@ -48,40 +48,58 @@ JXCategoryIndicatorLineView、JXCategoryIndicatorImageView、JXCategoryIndicator
 
 说明 | Gif |
 ----|------|
-颜色渐变  |  <img src="JXCategoryView/Images/TitleColorGradient.gif" width="343" height="80"> |
-大小缩放  |  <img src="JXCategoryView/Images/TitleZoom.gif" width="350" height="80"> |
-大小缩放+底部锚点  |  <img src="JXCategoryView/Images/TitleLabelAnchorBottom.gif" width="350" height="80"> |
-大小缩放+顶部锚点  |  <img src="JXCategoryView/Images/TitleLabelAnchorTop.gif" width="350" height="80"> |
-大小缩放+字体粗细  |  <img src="JXCategoryView/Images/TitleZoomStrokeWidth.gif" width="350" height="80"> |
-大小缩放+点击动画  |  <img src="JXCategoryView/Images/TitleZoomSelectedAnimation.gif" width="350" height="80"> |
-大小缩放+cell宽度缩放  |  <img src="JXCategoryView/Images/TitleZoomCellWidth.gif" width="350" height="80"> |
-TitleImage_Top |  <img src="JXCategoryView/Images/TitleImageTop.gif" width="343" height="80"> |
-TitleImage_Left |  <img src="JXCategoryView/Images/TitleImageLeft.gif" width="343" height="80"> |
-TitleImage_Bottom |  <img src="JXCategoryView/Images/TitleImageBottom.gif" width="343" height="80"> |
-TitleImage_Right |  <img src="JXCategoryView/Images/TitleImageRight.gif" width="343" height="80"> |
-cell图文混用 |  <img src="JXCategoryView/Images/CellMixed.gif" width="343" height="90"> |
-Image |  <img src="JXCategoryView/Images/CellImage.gif" width="343" height="80"> |
-数字 |  <img src="JXCategoryView/Images/Number.gif" width="343" height="80"> |
-红点 |  <img src="JXCategoryView/Images/CellRedDot.gif" width="343" height="80"> |
-多行文本 |  <img src="JXCategoryView/Images/MultiLineText.gif" width="350" height="80"> |
-多行富文本 |  <img src="JXCategoryView/Images/AttributeView.gif" width="343" height="80"> |
-Cell背景色渐变  |  <img src="JXCategoryView/Images/CellBackgroundColorGradient.gif" width="343" height="80"> |
-分割线 |  <img src="JXCategoryView/Images/SeparatorLine.gif" width="343" height="80"> |
+颜色渐变  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleColorGradient.gif" width="343" height="80"> |
+大小缩放  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleZoom.gif" width="350" height="80"> |
+大小缩放+底部锚点  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleLabelAnchorBottom.gif" width="350" height="80"> |
+大小缩放+顶部锚点  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleLabelAnchorTop.gif" width="350" height="80"> |
+大小缩放+字体粗细  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleZoomStrokeWidth.gif" width="350" height="80"> |
+大小缩放+点击动画  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleZoomSelectedAnimation.gif" width="350" height="80"> |
+大小缩放+cell宽度缩放  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleZoomCellWidth.gif" width="350" height="80"> |
+TitleImage_Top |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleImageTop.gif" width="343" height="80"> |
+TitleImage_Left |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleImageLeft.gif" width="343" height="80"> |
+TitleImage_Bottom |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleImageBottom.gif" width="343" height="80"> |
+TitleImage_Right |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleImageRight.gif" width="343" height="80"> |
+cell图文混用 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/CellMixed.gif" width="343" height="90"> |
+Image |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/CellImage.gif" width="343" height="80"> |
+数字 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/Number.gif" width="343" height="80"> |
+红点 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/CellRedDot.gif" width="343" height="80"> |
+多行文本 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/MultiLineText.gif" width="350" height="80"> |
+多行富文本 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/AttributeView.gif" width="343" height="80"> |
+Cell背景色渐变  |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/CellBackgroundColorGradient.gif" width="343" height="80"> |
+分割线 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/SeparatorLine.gif" width="343" height="80"> |
 
 ### 特殊效果预览
 
 说明 | Gif |
 ----|------|
-数据源过少<br/> averageCellSpacingEnabled默认为YES |  <img src="JXCategoryView/Images/averageCellSpacingEnabledYES.gif" width="343" height="80"> |
-数据源过少<br/> averageCellSpacingEnabled为NO |  <img src="JXCategoryView/Images/averageCellSpacingEnabledNO.gif" width="343" height="80"> |
-SegmentedControl<br/>参考[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/SegmentedControl/SegmentedControlViewController.m)类 |  <img src="JXCategoryView/Images/SegmentedControl.gif" width="343" height="80"> |
-导航栏使用<br/>参考[`NaviSegmentedControlViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/SegmentedControl/NaviSegmentedControlViewController.m)类 |  <img src="JXCategoryView/Images/SegmentedControlNavi.gif" width="343" height="80"> |
-嵌套使用<br/>参考[`NestViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/Nest/NestViewController.m)类 |  <img src="JXCategoryView/Images/Nest.gif" width="343" height="272"> |
-个人主页(上下左右滚动、header悬浮)<br/>参考[`PagingViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/PagingView/Example/PagingViewController.m)类<br/> 更多样式请点击查看[JXPagingView库](https://github.com/pujiaxin33/JXPagingView) |  <img src="JXCategoryView/Images/UserProfile.gif" width="343" height="562"> |
-垂直列表滚动<br/>参考[`VerticalListViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/VerticalListView/VerticalListViewController.m)类<br/> 高仿腾讯视频<br/>（背景色异常是录屏软件bug） |  <img src="JXCategoryView/Images/VerticalList.gif" width="343" height="607"> |
-| 垂直缩放(仿网易圈圈、脉脉首页)<br/>参考[`ScrollZoomViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/ScrollZoomView/ScrollZoomViewController.m)类 | <img src="JXCategoryView/Images/VerticalZoomTitle.gif" width="350" height="306"> |
-数据源刷新&列表数据加载<br/>参考[`LoadDataListContainerViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/LoadData/LoadDataListContainerViewController.m)类 |  <img src="JXCategoryView/Images/LoadData.gif" width="343" height="619"> |
+数据源过少<br/> averageCellSpacingEnabled默认为YES |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/averageCellSpacingEnabledYES.gif" width="343" height="80"> |
+数据源过少<br/> averageCellSpacingEnabled为NO |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/averageCellSpacingEnabledNO.gif" width="343" height="80"> |
+SegmentedControl<br/>参考[`SegmentedControlViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/SegmentedControl/SegmentedControlViewController.m)类 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/SegmentedControl.gif" width="343" height="80"> |
+导航栏使用<br/>参考[`NaviSegmentedControlViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/SegmentedControl/NaviSegmentedControlViewController.m)类 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/SegmentedControlNavi.gif" width="343" height="80"> |
+嵌套使用<br/>参考[`NestViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/Nest/NestViewController.m)类 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/Nest.gif" width="343" height="272"> |
+个人主页(上下左右滚动、header悬浮)<br/>参考[`PagingViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/PagingView/Example/PagingViewController.m)类<br/> 更多样式请点击查看[JXPagingView库](https://github.com/pujiaxin33/JXPagingView) |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/UserProfile.gif" width="343" height="562"> |
+垂直列表滚动<br/>参考[`VerticalListViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/VerticalListView/VerticalListViewController.m)类<br/> 高仿腾讯视频<br/>支持UITableView，参考[`VerticalListTableViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/VerticalListView/VerticalListTableViewController.m)<br/>（背景色异常是录屏软件bug） |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/VerticalList.gif" width="343" height="607"> |
+| 垂直缩放(仿网易圈圈、脉脉首页)<br/>参考[`ScrollZoomViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/ScrollZoomView/ScrollZoomViewController.m)类 | <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/VerticalZoomTitle.gif" width="350" height="306"> |
+数据源刷新&列表数据加载<br/>参考[`LoadDataListContainerViewController`](https://github.com/pujiaxin33/JXCategoryView/blob/master/JXCategoryView/Example/LoadData/LoadDataListContainerViewController.m)类 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/LoadData.gif" width="343" height="619"> |
 
+### 自定义效果预览
+
+收录来自其他使用者的自定义示例，这些自定义类只在Demo项目里面，Pod库并没有这些文件。所以，如果你需要使用这些自定义效果，请通过文件导入的方式。
+
+目的：
+- 参考学习如何自定义
+- 直接修改自定义示例类以快速实现自己的需求
+
+欢迎提PullRequest进行收录你的自定义效果。
+
+| 说明 | Gif |
+| ----|------|
+| Spring动画指示器 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/SpringIndicator.gif" width="336" height="70"> |
+| 富文本数量cell |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/CountCell.gif" width="336" height="70"> |
+| 左右对齐指示器 |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/AlignmentIndicator.gif" width="336" height="70"> |
+| 秒杀时间线cell |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/timeline.gif" width="336" height="70"> |
+| 京东商品排序cell |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/JDProductSort.gif" width="336" height="70"> |
+| title背景块cell |  <img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/TitleBackgroundExample.gif" width="336" height="70"> |
 
 ## 要求
 
@@ -106,7 +124,7 @@ end
 
 ## 结构图
 
-<img src="JXCategoryView/Images/JXCategoryViewStructure.png" width="933" height="482">
+<img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/JXCategoryViewStructure.png" width="933" height="482">
 
 ## 使用
 
@@ -146,9 +164,6 @@ self.categoryView.indicators = @[lineView];
 
 //正在滚动中的回调
 - (void)categoryView:(JXCategoryBaseView *)categoryView scrollingFromLeftIndex:(NSInteger)leftIndex toRightIndex:(NSInteger)rightIndex ratio:(CGFloat)ratio;
-
-//自定义contentScrollView点击选中切换效果
-- (void)categoryView:(JXCategoryBaseView *)categoryView didClickedItemContentScrollViewTransitionToIndex:(NSInteger)index;
 ```
 
 ### `contentScrollView`列表容器使用示例
@@ -246,13 +261,15 @@ self.categoryView.contentScrollView = self.listContainerView.scrollView;
 - 如果你只是在父类进行一些微调，那就继承目标view、cell、cellModel，对cell原有控件微调、或者加入新的控件皆可。就像`JXCategoryTitleImageView系列、JXCategoryTitleAttributeView系列`那样去做；
 - Cell自定义，请参考已实现的cell样式，多尝试、多思考，再有问题请提Issue或加入反馈QQ群
 
+## 常见问题和答案
+
+❗️❗️❗️这里面包含了许多常见问题和答案，使用之前请务必浏览此文档，或者遇到问题先看此文档❗️❗️❗️
+
+[常见问题和答案](https://github.com/pujiaxin33/JXCategoryView/blob/master/Document/%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
+
 ## 常用属性说明
 
 [常用属性说明文档地址](https://github.com/pujiaxin33/JXCategoryView/blob/master/Document/%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E.md)
-
-## 其他使用注意事项
-
-[其他使用注意事项文档地址](https://github.com/pujiaxin33/JXCategoryView/blob/master/Document/%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.md)
 
 ## 更新记录
 
@@ -263,6 +280,8 @@ self.categoryView.contentScrollView = self.listContainerView.scrollView;
 - 2018.9.4 发布1.0.4版本，更新内容：修复bug、添加cell图文混用示例;
 - 2018.12.19 发布1.1.7版本，更新内容：添加`JXCategoryListContainerView`，高度封装列表逻辑，支持懒加载列表，提升初始化性能；
 - 2019.1.24 发布1.2.2版本，更新内容：非兼容更新接口`- (BOOL)selectCellAtIndex:(NSInteger)index selectedType:(JXCategoryCellSelectedType)selectedType`，自定义有用到该接口的请及时更新。
+- 2019.6.21 发布1.3.13版本，更新内容：将`JXCategoryListCollectionContainerView.dataSource`移动到m实现文件，添加`- (instancetype)initWithDataSource:(id<JXCategoryListCollectionContainerViewDataSource>)dataSource`初始化方法。
+- 2019.7.20 发布1.3.16版本，删除代理方法`- (void)categoryView:(JXCategoryBaseView *)categoryView didClickedItemContentScrollViewTransitionToIndex:(NSInteger)index;`，请使用`contentScrollViewClickTransitionAnimationEnabled`属性。`JXCategoryTitleVerticalZoomView`进行了重构，内容左边距只需要使用`contentEdgeLeft`属性即可。
 
 ## 补充
 
@@ -270,9 +289,9 @@ self.categoryView.contentScrollView = self.listContainerView.scrollView;
 
 该仓库保持随时更新，对于主流新的分类选择效果会第一时间支持。使用过程中，有任何建议或问题，可以通过以下方式联系我：</br>
 邮箱：317437084@qq.com </br>
-QQ群： 112440151
+QQ群： 112440473
 
-<img src="https://note.youdao.com/yws/public/resource/c6fa96a65e424afcf7f6304ddf5c283a/xmlnote/WEBRESOURCE625c5369d52b2852d33e6e7887d7b5ab/2800" width="300" height="411">
+<img src="https://github.com/pujiaxin33/JXExampleImages/blob/master/JXCategoryView/JXCategoryViewQQGroupTwo.JPG" width="300" height="411">
 
 喜欢就star❤️一下吧
 

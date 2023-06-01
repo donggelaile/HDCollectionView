@@ -292,6 +292,7 @@
 		AB48EFB2670617F4F818C679 /* HDCollectionView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HDCollectionView.podspec; path = ../HDCollectionView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DD848C6774F80EBD1F826584 /* Pods_HDCollectionView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HDCollectionView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE00B5FB900A928516BFCB5 /* Pods-HDCollectionView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		EEA05A5829D1C27100B0C3E1 /* HDCollectionView_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HDCollectionView_Example.entitlements; sourceTree = "<group>"; };
 		F22A251054DFB4159FFB0778 /* Pods-HDCollectionView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HDCollectionView_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-HDCollectionView_Example/Pods-HDCollectionView_Example.release.xcconfig"; sourceTree = "<group>"; };
 		F22B999EDC75B021786F5BF8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +337,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				EEA05A5829D1C27100B0C3E1 /* HDCollectionView_Example.entitlements */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for HDCollectionView */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -753,7 +755,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				01CE89A1E99C60EB988E0329 /* [CP] Embed Pods Frameworks */,
+				4AF44DEEC46918BC44D273AB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -846,7 +848,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01CE89A1E99C60EB988E0329 /* [CP] Embed Pods Frameworks */ = {
+		4AF44DEEC46918BC44D273AB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1140,13 +1142,52 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HDCollectionView_Example.entitlements;
 				DEVELOPMENT_TEAM = P6H3ZKH6C9;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HDCollectionView/HDCollectionView-Prefix.pch";
 				INFOPLIST_FILE = "HDCollectionView/HDCollectionView-Info.plist";
 				MODULE_NAME = ExampleApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-framework",
+					"\"CollectionSwipableCellExtension\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"HDCollectionView\"",
+					"-framework",
+					"\"HDListViewDiffer\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JXCategoryView\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"SDAutoLayout\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SJAttributesFactory\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"YYModel\"",
+					"-framework",
+					"\"yoga\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1157,15 +1198,54 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HDCollectionView_Example.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HDCollectionView/HDCollectionView-Prefix.pch";
 				INFOPLIST_FILE = "HDCollectionView/HDCollectionView-Info.plist";
 				MODULE_NAME = ExampleApp;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-framework",
+					"\"CollectionSwipableCellExtension\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"HDCollectionView\"",
+					"-framework",
+					"\"HDListViewDiffer\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"JXCategoryView\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"Masonry\"",
+					"-framework",
+					"\"SDAutoLayout\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SJAttributesFactory\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"YYModel\"",
+					"-framework",
+					"\"yoga\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
