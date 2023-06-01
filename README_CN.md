@@ -120,8 +120,11 @@ HDCollectionView无论是普通布局还是瀑布流布局，均支持横向或�
 ## 4、安装
 ```ruby
 pod 'HDCollectionView'
+pod 'Yoga', :git => 'https://github.com/donggelaile/yoga.git', :commit => 'a5bec7e1b4e31836a2d8bc4591a226428d135fe6'
 ```
 找不到请先执行 ```pod repo update ```
+
+注意 Yoga 需要在主工程 podfile 中指定某个新版本，否则在Xcode14.3上将编译报错，对Yoga版本无特殊需求按如上示例指定即可。(上述commit由官方1.14.0版本改动一处而来)。
 
 1、首先，初始化并加到父view
 ```

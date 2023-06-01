@@ -64,7 +64,8 @@ HDCollectionView is used to quickly build an efficient and flexible listView com
 
 ### 2, installation
 ```ruby
-Pod 'HDCollectionView'
+pod 'HDCollectionView'
+pod 'Yoga', :git => 'https://github.com/donggelaile/yoga.git', :commit => 'a5bec7e1b4e31836a2d8bc4591a226428d135fe6' # fix Xcode14.3 compile error
 ```
 Can't find, please execute ```pod repo update ``` first.
 
