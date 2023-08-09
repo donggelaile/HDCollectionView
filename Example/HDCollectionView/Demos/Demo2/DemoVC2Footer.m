@@ -12,8 +12,7 @@
 @property (nonatomic, strong) UILabel *title;
 @end
 @implementation DemoVC2Footer
--(UILabel *)title
-{
+-(UILabel *)title {
     if (!_title) {
         _title = [UILabel new];
         _title.font = [UIFont systemFontOfSize:20];
@@ -23,13 +22,13 @@
     }
     return _title;
 }
--(void)layoutSubviews
-{
+
+-(void)layoutSubviews {
     _title.frame = self.bounds;
     [super layoutSubviews];
 }
-- (instancetype)initWithFrame:(CGRect)frame
-{
+
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.title];
@@ -41,11 +40,25 @@
     self.backgroundColor = [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1];
     return self;
 }
-- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model
-{
+
+- (void)updateSecVUI:(__kindof id<HDSectionModelProtocol>)model {
     _title.text = [NSString stringWithFormat:@"这是段尾---%@",model.footerObj];
 }
-- (void)clickSelf{
+
+- (void)clickSelf {
     self.callback(self.hdSecModel);
 }
+
+- (void)sectionViewFirstTimeShow {
+    NSLog(@"首次展示footer__%zd", [self hdSecModel].section);
+}
+
+- (void)sectionViewWillShow {
+    NSLog(@"即将展示footer__%zd", [self hdSecModel].section);
+}
+
+- (void)sectionViewDidEndShow {
+    NSLog(@"footer__%zd展示结束", [self hdSecModel].section);
+}
+
 @end

@@ -46,7 +46,6 @@
     if ([model respondsToSelector:@selector(convertOrgModelToViewModel)] && !model.isConvertedToVM) {
         [model convertOrgModelToViewModel];
     }
-    UIAlertView *view;
     model.isConvertedToVM = YES;
     if (dataSetFinishCb) {
         dataSetFinishCb();
@@ -114,6 +113,18 @@
     }
     self.hdModel.context = nil;
     self.hdModel.otherParameter = nil;
+}
+
+- (void)cellFirstTimeShow {
+    
+}
+
+- (void)cellWillShow {
+    
+}
+
+- (void)cellDidEndShow {
+    
 }
 
 +(BOOL)accessInstanceVariablesDirectly {

@@ -159,6 +159,19 @@ HDCellVMGetter(DemoVC3CellVM)
 //    self.backgroundColor = [self viewModel].bgColor;
     
 }
+
+- (void)cellFirstTimeShow {
+    NSLog(@"首次展示了cell--%@", [self viewModel].indexP);
+}
+
+- (void)cellWillShow {
+    NSLog(@"即将展示cell--%@", [self viewModel].indexP);
+}
+
+- (void)cellDidEndShow {
+    NSLog(@"cell--%@--展示结束", [self viewModel].indexP);
+}
+
 - (void)clickSelf
 {
     self.callback(self.hdModel);

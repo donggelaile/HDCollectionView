@@ -29,12 +29,11 @@
 
 HDCellVMGetter(HDDemoCellViewModel);
 
--(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model
-{
+-(void)updateCellUI:(__kindof id<HDCellModelProtocol>)model {
     self.backgroundColor = [self viewModel].bgColor;
 }
-- (void)clickSelf
-{
+
+- (void)clickSelf {
     //比如点击这个cell,想做的操作是 删除这个cell
     
     //方式1
@@ -52,8 +51,20 @@ HDCellVMGetter(HDDemoCellViewModel);
     };
     HDDefaultCellEventDeal(selfDeal);
 }
-- (void)dealloc
-{
+
+//- (void)cellFirstTimeShow {
+//    NSLog(@"首次展示了cell--%@", [self viewModel].indexP);
+//}
+//
+//- (void)cellWillShow {
+//    NSLog(@"即将展示cell--%@", [self viewModel].indexP);
+//}
+//
+//- (void)cellDidEndShow {
+//    NSLog(@"cell--%@--展示结束", [self viewModel].indexP);
+//}
+
+- (void)dealloc {
     
 }
 @end

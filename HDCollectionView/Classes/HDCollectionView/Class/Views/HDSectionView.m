@@ -98,7 +98,19 @@
     self.hdSecModel.otherParameter = nil;
 }
 
-+(BOOL)accessInstanceVariablesDirectly {
+- (void)sectionViewFirstTimeShow {
+    
+}
+
+- (void)sectionViewWillShow {
+    
+}
+
+- (void)sectionViewDidEndShow {
+    
+}
+
++ (BOOL)accessInstanceVariablesDirectly {
     return YES;
 }
 

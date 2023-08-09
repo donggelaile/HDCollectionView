@@ -112,6 +112,7 @@
 @synthesize orgData         = _orgData;
 @synthesize reuseIdentifier = _reuseIdentifier;
 @synthesize otherParameter  = _otherParameter;
+@synthesize isCellHasShow   = _isCellHasShow;
 
 - (instancetype)init {
     self = [super init];

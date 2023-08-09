@@ -103,6 +103,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (CGSize)calculateCellProperSize:(BOOL)isNeedCacheSubviewsFrame forceUseAutoLayout:(BOOL)isForceUseAutoLayout DEPRECATED_MSG_ATTRIBUTE("请使用calculateCellProperSize计算合适宽高, isNeedCacheSubviewsFrame已废弃, 直接使用cacheSubviewsFrameBySetLayoutWithCellModel判断是否需要缓存子view frame");
 
+/**
+ 是否展示了该cell（内部使用，外部不要干预）
+ */
+@property (nonatomic, assign) BOOL isCellHasShow;
 
 @optional
 - (void)convertOrgModelToViewModel;
@@ -222,6 +226,21 @@ typedef NS_ENUM(NSInteger,HDHeaderTopStopState) {
  该段section整体合适的frame (isUseSystemFlowLayout为YES时HDSectionModel该属性返回nil)
  */
 @property (nonatomic, strong, readonly, nullable) NSValue* secProperRect;
+
+/**
+ 是否展示了该header sectionView（内部使用，外部不要干预）
+ */
+@property (nonatomic, assign) BOOL isSecitonHeaderHasShow;
+
+/**
+ 是否展示了该footer sectionView（内部使用，外部不要干预）
+ */
+@property (nonatomic, assign) BOOL isSecitonFooterHasShow;
+
+/**
+ 是否展示了该decoration sectionView（内部使用，外部不要干预）
+ */
+@property (nonatomic, assign) BOOL isSecitonDecorationHasShow;
 
 @end
 //HDSectionModelProtocol------------------------------------------------------------------end

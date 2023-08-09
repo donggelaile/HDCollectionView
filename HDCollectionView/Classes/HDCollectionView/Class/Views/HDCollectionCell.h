@@ -27,8 +27,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly, nullable) __kindof id<HDCellModelProtocol> hdModel;
 @property (nonatomic, weak, readonly, nullable) HDCollectionView *superCollectionV;
 
-
 - (void)hd_superDataSetFinishCallback:(void(^)(void))dataSetFinish;
+
+/// cell首次展示时内部调用 (用于计算宽高的tempCell不会调用此函数, 重新reloadData也不会再次调用,  对应的hdModel重新创建后会再次调用)
+- (void)cellFirstTimeShow;
+
+/// cell 即将展示  (用于计算宽高的tempCell不会调用此函数,  来回滑动及reloadData可能会多次调用)
+- (void)cellWillShow;
+
+/// cell 结束了展示 (用于计算宽高的tempCell不会调用此函数,  来回滑动及reloadData可能会多次调用)
+- (void)cellDidEndShow;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

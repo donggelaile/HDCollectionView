@@ -1046,6 +1046,54 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell isKindOfClass:HDCollectionCell.class]) {
+        [(HDCollectionCell*)cell cellWillShow];
+    }
+    if ([cell isKindOfClass:HDCollectionCell.class] && [[(HDCollectionCell*)cell hdModel] isKindOfClass:HDCellModel.class]) {
+        if (![(HDCollectionCell*)cell hdModel].isCellHasShow) {
+            [(HDCollectionCell*)cell cellFirstTimeShow];
+            [(HDCollectionCell*)cell hdModel].isCellHasShow = YES;
+        }
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell isKindOfClass:HDCollectionCell.class]) {
+        [(HDCollectionCell*)cell cellDidEndShow];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplaySupplementaryView:(UICollectionReusableView *)view forElementKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    if ([view isKindOfClass:HDSectionView.class]) {
+        [(HDSectionView*)view sectionViewWillShow];
+    }
+    if ([view isKindOfClass:HDSectionView.class]
+        && [[(HDSectionView*)view hdSecModel] isKindOfClass:HDSectionModel.class]) {
+        
+        if ([elementKind isEqualToString:UICollectionElementKindSectionHeader] && ![(HDSectionView*)view hdSecModel].isSecitonHeaderHasShow) {
+            // header
+            [(HDSectionView*)view sectionViewFirstTimeShow];
+            [(HDSectionView*)view hdSecModel].isSecitonHeaderHasShow = YES;
+        } else if ([elementKind isEqualToString:UICollectionElementKindSectionFooter] && ![(HDSectionView*)view hdSecModel].isSecitonFooterHasShow) {
+            // footer
+            [(HDSectionView*)view sectionViewFirstTimeShow];
+            [(HDSectionView*)view hdSecModel].isSecitonFooterHasShow = YES;
+        } else if ([elementKind isEqualToString:HDDecorationViewKind] && ![(HDSectionView*)view hdSecModel].isSecitonDecorationHasShow) {
+            // decoration
+            [(HDSectionView*)view sectionViewFirstTimeShow];
+            [(HDSectionView*)view hdSecModel].isSecitonDecorationHasShow = YES;
+        }
+        
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingSupplementaryView:(nonnull UICollectionReusableView *)view forElementOfKind:(nonnull NSString *)elementKind atIndexPath:(nonnull NSIndexPath *)indexPath {
+    if ([view isKindOfClass:HDSectionView.class]) {
+        [(HDSectionView*)view sectionViewDidEndShow];
+    }
+}
+
 #pragma mark -
 #pragma mark register
 

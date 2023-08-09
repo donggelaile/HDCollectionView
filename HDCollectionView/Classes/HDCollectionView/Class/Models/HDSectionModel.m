@@ -191,6 +191,9 @@
 @synthesize context                  = _context;
 @synthesize secProperRect            = _secProperRect;
 @synthesize otherParameter           = _otherParameter;
+@synthesize isSecitonHeaderHasShow   = _isSecitonHeaderHasShow;
+@synthesize isSecitonFooterHasShow   = _isSecitonFooterHasShow;
+@synthesize isSecitonDecorationHasShow = _isSecitonDecorationHasShow;
 
 - (instancetype)init {
     self = [super init];
