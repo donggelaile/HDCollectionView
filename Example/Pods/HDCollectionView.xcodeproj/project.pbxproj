@@ -53,19 +53,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9166354AEE13AB0794E07A283B906520 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B87E7A7BFE3E7ECEC888695F8B6B6625;
-			remoteInfo = HDListViewDiffer;
-		};
-		C54FA6F313EAD4CBF472F58AE058FE8C /* PBXContainerItemProxy */ = {
+		3D51103D4A09268F9F89E5222A6136CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3DAC770F4F9CB4B90FA6D40BA31144AF /* Yoga.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 8DB658880A3F558549A84D99BCFADCBC;
 			remoteInfo = Yoga;
+		};
+		65ED25398FB777E17D3262C673341E7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32226C70564A57D8C45334C61CE2B0AD /* HDListViewDiffer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B87E7A7BFE3E7ECEC888695F8B6B6625;
+			remoteInfo = HDListViewDiffer;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -340,8 +340,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				5BE40DE2962DBBE31953886C5B27367A /* PBXTargetDependency */,
-				4440E5C4040C5C8D4B2163059170F780 /* PBXTargetDependency */,
+				BA66B3A00EBFFA38B941F6159998E6DE /* PBXTargetDependency */,
+				AD97ED9A8903766FF3687E0D4B466552 /* PBXTargetDependency */,
 			);
 			name = HDCollectionView;
 			productName = HDCollectionView;
@@ -423,15 +423,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4440E5C4040C5C8D4B2163059170F780 /* PBXTargetDependency */ = {
+		AD97ED9A8903766FF3687E0D4B466552 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Yoga;
-			targetProxy = C54FA6F313EAD4CBF472F58AE058FE8C /* PBXContainerItemProxy */;
+			targetProxy = 3D51103D4A09268F9F89E5222A6136CA /* PBXContainerItemProxy */;
 		};
-		5BE40DE2962DBBE31953886C5B27367A /* PBXTargetDependency */ = {
+		BA66B3A00EBFFA38B941F6159998E6DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = HDListViewDiffer;
-			targetProxy = 9166354AEE13AB0794E07A283B906520 /* PBXContainerItemProxy */;
+			targetProxy = 65ED25398FB777E17D3262C673341E7D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
