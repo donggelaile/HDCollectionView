@@ -90,7 +90,7 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 10;
+    NSInteger cellCount = 100;
     for (int i =0; i<cellCount; i++) {
         
         HDDemoCellViewModel *model = HDMakeCellModelChain
@@ -99,6 +99,7 @@
         .hd_cellClassStr(@"DemoVC4Cell")
         .hd_diyCellModelClassStr(@"HDDemoCellViewModel")
         .hd_generateObj;
+        model.isFullWidthInWaterFlowLayout = (i % 10 == 0) && i > 0;
         
         [cellModelArr addObject:model];
     }

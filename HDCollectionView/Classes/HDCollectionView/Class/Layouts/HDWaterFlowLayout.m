@@ -179,27 +179,55 @@
         CGFloat x = 0,y = 0,w =0 ,h = 0;
         NSInteger minColumnOrRow = 0;
         if (isVertical) {
-            NSInteger minHColume = [self minColumnHeightIndex];
-            CGFloat minH = [self minColumnHeight];
-            CGFloat topOffset = secInset.top + currentY;
-            w = ((cvSize.width -secInset.left - secInset.right)-gapCount*self.horizontalGap)*[WHRatiDic[@(minHColume).stringValue] floatValue];
-            x = [RowOrColumnXYDic[@(minHColume).stringValue] floatValue];
-            y = topOffset + minH;
-            h = obj.cellSize.height;
-            cellFrame = CGRectMake(x, y, w, h);
-            self->columnHeightArr[minHColume] = @(CGRectGetMaxY(cellFrame)+self.verticalGap-topOffset);
-            minColumnOrRow = minHColume;
+            if (obj.isFullWidthInWaterFlowLayout) {
+                CGFloat maxH = [self maxColumnHeight];
+                CGFloat topOffset = secInset.top + currentY;
+                w = cvSize.width - secInset.left - secInset.right;
+                x = secInset.left;
+                y = topOffset + maxH;
+                h = obj.cellSize.height;
+                cellFrame = CGRectMake(x, y, w, h);
+                [self->columnHeightArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    self->columnHeightArr[idx] = @(CGRectGetMaxY(cellFrame)+self.verticalGap-topOffset);
+                }];
+                minColumnOrRow = 0;
+            } else {
+                NSInteger minHColume = [self minColumnHeightIndex];
+                CGFloat minH = [self minColumnHeight];
+                CGFloat topOffset = secInset.top + currentY;
+                w = ((cvSize.width -secInset.left - secInset.right)-gapCount*self.horizontalGap)*[WHRatiDic[@(minHColume).stringValue] floatValue];
+                x = [RowOrColumnXYDic[@(minHColume).stringValue] floatValue];
+                y = topOffset + minH;
+                h = obj.cellSize.height;
+                cellFrame = CGRectMake(x, y, w, h);
+                self->columnHeightArr[minHColume] = @(CGRectGetMaxY(cellFrame)+self.verticalGap-topOffset);
+                minColumnOrRow = minHColume;
+            }
         }else{
-            NSInteger minWRow = [self minColumnHeightIndex];
-            CGFloat minW = [self minColumnHeight];
-            CGFloat leftOffset = secInset.left + currentX;
-            h = ((cvSize.height -secInset.top - secInset.bottom)-gapCount*self.verticalGap)*[WHRatiDic[@(minWRow).stringValue] floatValue];
-            y = [RowOrColumnXYDic[@(minWRow).stringValue] floatValue];
-            x = leftOffset + minW;
-            w = obj.cellSize.width;
-            cellFrame = CGRectMake(x, y, w, h);
-            self->columnHeightArr[minWRow] = @(CGRectGetMaxX(cellFrame)+self.horizontalGap-leftOffset);
-            minColumnOrRow = minWRow;
+            if (obj.isFullWidthInWaterFlowLayout) {
+                CGFloat maxW = [self maxColumnHeight];
+                CGFloat leftOffset = secInset.left + currentX;
+                h = cvSize.height - secInset.top - secInset.bottom;
+                y = secInset.top;
+                x = leftOffset + maxW;
+                w = obj.cellSize.width;
+                cellFrame = CGRectMake(x, y, w, h);
+                [self->columnHeightArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    self->columnHeightArr[idx] = @(CGRectGetMaxX(cellFrame)+self.horizontalGap-leftOffset);
+                }];
+                minColumnOrRow = 0;
+            } else {
+                NSInteger minWRow = [self minColumnHeightIndex];
+                CGFloat minW = [self minColumnHeight];
+                CGFloat leftOffset = secInset.left + currentX;
+                h = ((cvSize.height -secInset.top - secInset.bottom)-gapCount*self.verticalGap)*[WHRatiDic[@(minWRow).stringValue] floatValue];
+                y = [RowOrColumnXYDic[@(minWRow).stringValue] floatValue];
+                x = leftOffset + minW;
+                w = obj.cellSize.width;
+                cellFrame = CGRectMake(x, y, w, h);
+                self->columnHeightArr[minWRow] = @(CGRectGetMaxX(cellFrame)+self.horizontalGap-leftOffset);
+                minColumnOrRow = minWRow;
+            }
         }
         UICollectionViewLayoutAttributes *cellAtt = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:idx inSection:secModel.section]];
         cellAtt.frame = cellFrame;
@@ -337,6 +365,30 @@
         }
     }
     return minH;
+}
+
+- (NSInteger)maxColumnHeightIndex {
+    NSInteger maxIndex = 0;
+    CGFloat nowMaxH = 0;
+    for (int i=0;i<columnHeightArr.count;i++) {
+        NSNumber*columH = columnHeightArr[i];
+        if ([columH floatValue]>nowMaxH) {
+            maxIndex = i;
+            nowMaxH = [columH floatValue];
+        }
+    }
+    return maxIndex;
+}
+
+- (CGFloat)maxColumnHeight {
+    CGFloat maxH = 0;
+    for (int i=0;i<columnHeightArr.count;i++) {
+        NSNumber*columH = columnHeightArr[i];
+        if ([columH floatValue]>maxH) {
+            maxH = [columH floatValue];
+        }
+    }
+    return maxH;
 }
 
 - (NSArray<NSArray<UICollectionViewLayoutAttributes *> *> *)columnAtts {

@@ -87,12 +87,13 @@
 {
     //该段cell数据源
     NSMutableArray *cellModelArr = @[].mutableCopy;
-    NSInteger cellCount = 14;
+    NSInteger cellCount = 25;
     for (int i =0; i<cellCount; i++) {
         HDDemoCellViewModel *model = [HDDemoCellViewModel new];
         model.orgData      = [NSString stringWithFormat:@"%@",@(i+1)];
         model.cellSize     = CGSizeMake(0, arc4random()%100+50);
         model.cellClassStr = @"DemoVC7Cell";
+        model.isFullWidthInWaterFlowLayout = i % 15 == 0 && i > 0;
         //        model.whRatio = ((arc4random() & 1024)+50)/1024.0f+1;
         [cellModelArr addObject:model];
     }

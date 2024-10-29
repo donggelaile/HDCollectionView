@@ -113,6 +113,7 @@
 @synthesize reuseIdentifier = _reuseIdentifier;
 @synthesize otherParameter  = _otherParameter;
 @synthesize isCellHasShow   = _isCellHasShow;
+@synthesize isFullWidthInWaterFlowLayout   = _isFullWidthInWaterFlowLayout;
 
 - (instancetype)init {
     self = [super init];

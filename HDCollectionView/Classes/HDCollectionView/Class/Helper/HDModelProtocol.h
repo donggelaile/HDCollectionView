@@ -52,6 +52,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString * _Nonnull reuseIdentifier;
 
 /**
+ 默认NO, 设为YES后该Cell在瀑布流布局中将与CollecitonView宽度一致(该cell宽度同样考虑secInset.left及right, 其他layout中该属性无效)
+ */
+@property (nonatomic, assign) BOOL isFullWidthInWaterFlowLayout;
+
+/**
  内部自动赋值
  */
 @property (nonatomic, strong, readonly) NSIndexPath * _Nullable indexP;
