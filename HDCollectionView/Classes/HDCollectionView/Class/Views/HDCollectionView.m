@@ -407,7 +407,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
             self.allDataCopy = dataArr.mutableCopy;
         }
         [self hd_autoCountAllViewsHeight];
-        [self layoutIfNeeded];
+        [self hdLayoutIfNeeded];
     });
 }
 
@@ -418,7 +418,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
         }
         self->_isAppendingOrInsertingSection = YES;
         if (self.allDataArr.count == 0) {
-            [self layoutIfNeeded];
+            [self hdLayoutIfNeeded];
         }
         
         void(^updateLayout)(void) = ^(){
@@ -464,7 +464,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
             }
         }];
         if (self.allDataArr.count == 0) {
-            [self layoutIfNeeded];
+            [self hdLayoutIfNeeded];
         }
         NSInteger insertBeginIndex = self.allDataArr.count;
         void(^updateLayout)(void) = ^(){
@@ -505,7 +505,7 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
         }
         self->_isAppendingOrInsertingSection = YES;
         if (self.allDataArr.count == 0) {
-            [self layoutIfNeeded];
+            [self hdLayoutIfNeeded];
         }
         
         NSValue *finalStart = nil;
@@ -850,8 +850,14 @@ void HDDoSomeThingInMainQueue(void(^thingsToDo)(void)) {
         HDCollectionViewLayout *layout = (HDCollectionViewLayout*)self.collectionV.collectionViewLayout;
         [layout updateCurrentXY:start];
     }
-    
 }
+
+- (void)hdLayoutIfNeeded {
+    if (self.frame.size.width == 0 || self.frame.size.height == 0) {
+        [self layoutIfNeeded];
+    }
+}
+
 #pragma mark - 支持原生layout
 #pragma mark UICollectionViewDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
